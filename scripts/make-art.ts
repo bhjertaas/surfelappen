@@ -78,6 +78,10 @@ const SPECS: Record<string, Spec> = {
   'post-cabin': post(),
   'post-gamer': post(),
   'post-taco': post(),
+  'post-climbing': post(),
+  'post-football': post(),
+  'post-cat': post(),
+  'post-dog': post(),
   town: { style: 'town', width: 1536, height: 1024, generate: '1536x1024' },
   character: { style: 'town', width: 512, height: 512, generate: '1536x1024', transparent: true },
   'character-adult-front': {

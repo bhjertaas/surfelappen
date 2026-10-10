@@ -1167,3 +1167,77 @@
 .sort__choices .button {
   min-width: 9rem;
 }
+
+/* Fasaden: "Tren feeden" */
+
+.feed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  gap: var(--space-3);
+  margin: var(--space-3) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed-grid--small {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+}
+
+.mini-post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-2);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.mini-post img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: calc(var(--radius) / 2);
+}
+
+.mini-post__text {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.mini-post .button {
+  margin-top: auto;
+  padding-inline: var(--space-2);
+  font-size: 0.875rem;
+}
+
+.mini-post--glossy {
+  border-color: #c45a9a;
+}
+
+.feed-meter {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.feed-meter--ok {
+  color: var(--color-correct);
+}
+
+.suggestions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.suggestions li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}

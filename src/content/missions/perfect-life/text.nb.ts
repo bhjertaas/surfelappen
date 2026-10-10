@@ -151,5 +151,39 @@ export const perfectLifeNb: FacadeText<typeof perfectLife> = {
       },
       done: 'Feeden er sortert. Du ser nå forskjell på en venn, en iscenesettelse og en avtale.',
     },
+    'train-the-feed': {
+      brief:
+        'Siste triks: feeden. Den lærer av hva du stopper ved. Vi tester. Velg det innlegget du helst ville sett på, tre ganger.',
+      roundPrompt: 'Runde {round} av {rounds}. Hvilket innlegg stopper du ved?',
+      categories: {
+        glossy: 'glansbilder',
+        friends: 'venner',
+        hobby: 'hobbyer',
+        funny: 'morsomme ting',
+      },
+      posts: {
+        routine: { account: '@livmedlina', caption: 'Morgenrutinen min ☀️' },
+        beach: { account: '@livmedlina', caption: 'Paradis 🌴' },
+        shake: { account: '@livmedlina', caption: 'Ny favoritt 💗' },
+        serum: { account: '@fjordglod', caption: 'Glød hele dagen ✨' },
+        cabin: { account: '@ida.m', caption: 'Hyttetur 🏔️' },
+        taco: { account: '@pappa.tor', caption: 'Fredagstaco' },
+        climbing: { account: '@klatreklubben', caption: 'Første topp! 🧗' },
+        football: { account: '@lenkevik.old.boys', caption: '1–0 og mye gjørme' },
+        cat: { account: '@tigerpus', caption: 'Passer perfekt.' },
+        dog: { account: '@rufus.dino', caption: 'Rawr 🦖' },
+      },
+      trained: 'Du stoppet mest ved {category}. Se hva feeden din har blitt:',
+      explain:
+        'Tre valg, og feeden har allerede bestemt seg for hvem du er. Den viser mer av det du stopper ved, ikke det som er bra for deg. Sara stopper ved glansbilder. Hver gang.',
+      saraIntro:
+        'Her er Saras feed. Hjelp henne: vis færre glansbilder, og følg noe annet. Målet er at glansbildene ikke tar over.',
+      suggestions: {
+        'climbing-club': { account: '@klatreklubben', about: 'Folk på alle nivåer som klatrer' },
+        'cat-account': { account: '@tigerpus', about: 'En katt som ikke passer i esker' },
+        ida: { account: '@ida.m', about: 'Venninna fra hytteturen' },
+      },
+      done: 'Sånn. Feeden er ikke et speil av verden, den er et speil av hva du stopper ved. Og den kan du styre.',
+    },
   },
 };

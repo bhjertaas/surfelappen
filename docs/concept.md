@@ -40,4 +40,6 @@ Hands-on, not a quiz: the player *does* the tricks. Guide: Mira, who makes these
 
 1. **Lag glansbildet** (built): you are Lina. Crop the messy flat down to the one nice spot (a live list names the mess still in the frame), polish with light/glow/warmth sliders while a likes forecast climbs, pick a caption (#nofilter gets the most likes, the honest one the warmest comments), post, watch the likes and Sara's comment, then «Se bak fasaden» shows the tiny square inside the whole room.
 2. **Reklamejakt** (built): sort a feed into reklame / ikke reklame / vet ikke, tapping posts for clues (discount codes, "annonse", retouch marks, unlabelled deals). New posts at the end are the transfer test.
-3. **Tren feeden** (after): pick what you stop at for three rounds, watch the feed fill with perfect lives, then adjust Sara's feed (mute, follow varied accounts) and see it change.
+3. **Tren feeden** (built): pick what you stop at for three rounds, watch the feed fill with perfect lives, then adjust Sara's feed (mute, follow varied accounts) and see it change.
+
+Open items: the climbing and football feed pictures came out photo-like rather than comic (the OpenAI account ran out of credits before they could be redone: `node scripts/make-art.ts post-climbing post-football --generate`). The mission's sources are listed on the About page but `reviewedOn` is still null.

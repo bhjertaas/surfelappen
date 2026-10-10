@@ -1,4 +1,10 @@
-import type { FacadeMission, LinkInspectMission, OptionId, TypingMission } from '../types.ts';
+import type {
+  FacadeMission,
+  FeedCategory,
+  LinkInspectMission,
+  OptionId,
+  TypingMission,
+} from '../types.ts';
 
 /**
  * Per-locale text for a mission (ADR 0004). Step texts are typed from the
@@ -93,7 +99,33 @@ export interface SortText {
   readonly done: string;
 }
 
-export type StepText = CaseText | ChoiceText | InfoText | TypingStepText | ComposeText | SortText;
+/** "Tren feeden": Mira's lines, category names, posts and accounts to follow. */
+export interface FeedText {
+  readonly brief: string;
+  /** `{round}` of `{rounds}`. */
+  readonly roundPrompt: string;
+  /** Category names as used in a sentence, e.g. "glansbilder". */
+  readonly categories: Readonly<Record<FeedCategory, string>>;
+  readonly posts: Readonly<Record<string, { readonly account: string; readonly caption: string }>>;
+  /** After training; `{category}` is the one the player stopped at most. */
+  readonly trained: string;
+  /** Mira explains what just happened. */
+  readonly explain: string;
+  readonly saraIntro: string;
+  readonly suggestions: Readonly<
+    Record<string, { readonly account: string; readonly about: string }>
+  >;
+  readonly done: string;
+}
+
+export type StepText =
+  | CaseText
+  | ChoiceText
+  | InfoText
+  | TypingStepText
+  | ComposeText
+  | SortText
+  | FeedText;
 
 /** Text shared by every mission. */
 export interface MissionText {
@@ -122,7 +154,11 @@ export interface LinkInspectText<M extends LinkInspectMission> extends MissionTe
 }
 
 /** Text for a facade mission: one entry per step. */
-type FacadeTextForStep<S> = S extends { kind: 'sort' } ? SortText : ComposeText;
+type FacadeTextForStep<S> = S extends { kind: 'sort' }
+  ? SortText
+  : S extends { kind: 'feed' }
+    ? FeedText
+    : ComposeText;
 
 export interface FacadeText<M extends FacadeMission> extends MissionText {
   readonly steps: {

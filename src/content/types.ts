@@ -199,7 +199,35 @@ export interface SortStep {
   readonly posts: readonly SortPost[];
 }
 
-export type FacadeStep = ComposeStep | SortStep;
+export type FeedCategory = 'glossy' | 'friends' | 'hobby' | 'funny';
+
+export interface FeedPost {
+  readonly id: string;
+  readonly category: FeedCategory;
+  readonly image: ArtId;
+}
+
+/**
+ * "Tren feeden": pick what you stop at for a few rounds and see the feed follow,
+ * then adjust Sara's feed (fewer glossy posts, follow varied accounts).
+ */
+export interface FeedStep {
+  readonly kind: 'feed';
+  readonly id: StepId;
+  /** Every post the feeds draw from; each category needs at least one. */
+  readonly posts: readonly FeedPost[];
+  readonly rounds: number;
+  /** Posts in a finished feed. */
+  readonly feedSize: number;
+  /** Sara's feed before she changes anything: weight per category. */
+  readonly sara: Readonly<Record<FeedCategory, number>>;
+  /** Accounts Sara can follow, one category each. */
+  readonly suggestions: readonly { readonly id: string; readonly category: FeedCategory }[];
+  /** Done when Sara's feed has at most this many glossy posts. */
+  readonly goal: number;
+}
+
+export type FacadeStep = ComposeStep | SortStep | FeedStep;
 
 /** Completion: every step done, in order. */
 export type FacadeMission = MissionBase<'facade', FacadeStep>;

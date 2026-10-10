@@ -61,6 +61,36 @@ test('Lag glansbildet: crop away the mess, polish, caption, post, look behind', 
   await expectNoAxeViolations(page);
   await page.getByRole('button', { name: 'Ferdig' }).click();
 
+  // Tren feeden: three stops at the same kind, then fix Sara's feed.
+  await expect(page.getByText('Runde 1 av 3')).toBeVisible();
+  for (let i = 0; i < 3; i++) {
+    await page
+      .getByRole('button', { name: /^Stopp her/ })
+      .first()
+      .click();
+  }
+  await expect(page.getByText('Du stoppet mest ved glansbilder.')).toBeVisible();
+  await page.getByRole('button', { name: 'Se Saras feed' }).click();
+  await expect(page.getByText('Glansbilder i Saras feed: 5 av 6')).toBeVisible();
+  const done = page.getByRole('button', { name: 'Ferdig' });
+  await expect(done).toBeDisabled();
+  await page
+    .getByRole('button', { name: /^Vis færre som dette/ })
+    .first()
+    .click();
+  await page
+    .getByRole('button', { name: /^Vis færre som dette/ })
+    .first()
+    .click();
+  for (const account of ['@klatreklubben', '@tigerpus', '@ida.m']) {
+    await page
+      .getByRole('button', { name: new RegExp(`^Følg\\W+${account.replace('.', '\\.')}`) })
+      .click();
+  }
+  await expect(page.getByText('Glansbildene tar ikke over lenger.')).toBeVisible();
+  await expectNoAxeViolations(page);
+  await done.click();
+
   const dialog = page.getByRole('dialog', { name: 'Nye klistremerker' });
   await expect(dialog).toContainText('Bak fasaden');
   await expect(dialog).toContainText('Reklamejeger');
