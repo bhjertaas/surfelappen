@@ -10,7 +10,6 @@
  *   .cache/art/<id>.<draft>.preview.<ext> instead, for comparing options.
  *
  * Without --generate, only post-processing runs on the cached raw image (free).
- * `icon` also writes the favicon and PWA icons in public/.
  * Reads OPENAI_API_KEY from the environment or .env. Dev only: the game never calls an API.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -118,7 +117,6 @@ const SPECS: Record<string, Spec> = {
     colours: 48,
   },
   'scene-facade': { style: 'comic', width: 1536, height: 1024, generate: '1536x1024' },
-  icon: { style: 'town', width: 512, height: 512, generate: '1024x1024' },
   'sticker-link-detective': sticker,
   'sticker-sharp-eye': sticker,
   'sticker-ten-fingers': sticker,
@@ -228,25 +226,6 @@ async function finish(raw: Buffer, spec: Spec): Promise<{ data: Buffer; ext: str
   return { data, ext: 'webp' };
 }
 
-/** Favicon and PWA icons from the icon. The maskable one keeps the art inside the safe zone. */
-async function writeIcons(source: Buffer): Promise<void> {
-  const png = { palette: true, quality: 90, effort: 10, compressionLevel: 9 } as const;
-  const out = (size: number) => sharp(source).resize(size, size).png(png);
-  const dir = join(root, 'public/icons');
-  await out(64).toFile(join(root, 'public/favicon.png'));
-  await out(192).toFile(join(dir, 'icon-192.png'));
-  await out(512).toFile(join(dir, 'icon-512.png'));
-  await out(180).toFile(join(dir, 'apple-touch-icon-180.png'));
-  const { data } = await sharp(source).raw().toBuffer({ resolveWithObject: true });
-  const background = { r: data[0] ?? 0, g: data[1] ?? 0, b: data[2] ?? 0, alpha: 1 };
-  const inner = await sharp(source).resize(410, 410).png().toBuffer();
-  await sharp({ create: { width: 512, height: 512, channels: 4, background } })
-    .composite([{ input: inner, left: 51, top: 51 }])
-    .png(png)
-    .toFile(join(dir, 'icon-maskable-512.png'));
-  console.log('icon: favicon and PWA icons written to public/');
-}
-
 const { values, positionals } = parseArgs({
   allowPositionals: true,
   options: {
@@ -271,13 +250,10 @@ await Promise.all(
       writeFileSync(rawPath, await generate(id, spec, values.model));
     }
     const { data, ext } = await finish(readFileSync(rawPath), spec);
-    // The icon only feeds public/ (favicon, PWA icons); the game doesn't show it.
-    const out =
-      values.draft || id === 'icon'
-        ? join(cache, `${name}.preview.${ext}`)
-        : join(root, `src/assets/art/${id}.${ext}`);
+    const out = values.draft
+      ? join(cache, `${name}.preview.${ext}`)
+      : join(root, `src/assets/art/${id}.${ext}`);
     writeFileSync(out, data);
     console.log(`${name}: ${out} (${Math.round(data.length / 1024)} KB)`);
-    if (id === 'icon' && !values.draft) await writeIcons(data);
   }),
 );

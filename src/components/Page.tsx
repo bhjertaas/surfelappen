@@ -12,13 +12,22 @@ interface PageProps {
   bare?: boolean;
   /** Use the full layout width (the town). */
   wide?: boolean;
-  /** A mission's theme (colours and fonts for the whole screen). */
-  theme?: MissionTheme;
+  /** A mission's theme, or `neon` for the start screen (colours and fonts for the whole screen). */
+  theme?: MissionTheme | 'neon';
+  /** Shown in the <h1> instead of the title text (the start screen's logo). */
+  heading?: ComponentChildren;
   children: ComponentChildren;
 }
 
 /** Layout for every screen: header with a way back to town, <main>, focus and title. */
-export function Page({ title, bare = false, wide = false, theme, children }: PageProps) {
+export function Page({
+  title,
+  bare = false,
+  wide = false,
+  theme,
+  heading: content,
+  children,
+}: PageProps) {
   const { m } = useI18n();
   const heading = useRef<HTMLHeadingElement>(null);
 
@@ -48,7 +57,7 @@ export function Page({ title, bare = false, wide = false, theme, children }: Pag
       )}
       <main class={wide ? 'page page--wide' : 'page'}>
         <h1 ref={heading} tabIndex={-1}>
-          {title}
+          {content ?? title}
         </h1>
         {children}
       </main>

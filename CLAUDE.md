@@ -17,7 +17,8 @@ pnpm build        # production build to dist/, then the size budget (scripts/che
 pnpm preview      # serve dist/ locally (service worker active)
 pnpm format       # biome check --write (format + safe fixes)
 node scripts/build-fonts.ts             # rebuild font subsets (only when fonts change)
-node scripts/make-art.ts <id> [--generate]  # draft art with the OpenAI API, pixelate it (ADR 0016)
+node scripts/make-art.ts <id> [--generate]  # draft art with the OpenAI API (ADR 0016)
+node scripts/make-icons.ts                 # favicon + PWA icons from public/favicon.svg
 ```
 
 Deploy: push to `main`. GitHub Actions runs everything above and deploys to GitHub Pages (`https://surfelappen.minhule.eu`). There is no manual deploy.

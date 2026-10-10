@@ -1,4 +1,5 @@
 import { href } from '../app/routes.ts';
+import { Logo } from '../components/Logo.tsx';
 import { Page } from '../components/Page.tsx';
 import { missions } from '../content/missions/index.ts';
 import { useI18n } from '../i18n/i18n.ts';
@@ -11,7 +12,7 @@ export function Start() {
   const returning = hasStarted(progress);
 
   return (
-    <Page title={m.app.name} bare>
+    <Page title={m.app.name} bare theme="neon" heading={<Logo label={m.app.name} />}>
       <p class="tagline">{m.app.tagline}</p>
       <p class="lead">{m.app.pitch}</p>
       <div class="actions">

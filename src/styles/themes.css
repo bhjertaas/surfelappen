@@ -85,3 +85,49 @@
   --color-border: #2a1a2e;
   --color-focus: #1f6f8b;
 }
+
+/* Start screen: neon surf over the grid, around the logo. */
+.theme--neon {
+  color-scheme: dark;
+  --color-bg: #05060d;
+  --color-surface: #11142a;
+  --color-text: #f2f4ff;
+  --color-muted: #b9c0e6;
+  --color-primary: #2fd8ff;
+  --color-primary-strong: #8deaff;
+  --color-on-primary: #05060d;
+  --color-accent: #ff8a5c;
+  --color-border: #5d6bb3;
+  --color-focus: #ffd166;
+  --color-link-text: #8deaff;
+  background:
+    radial-gradient(ellipse at 50% 18rem, rgb(255 90 54 / 0.18), transparent 60%), var(--color-bg);
+}
+
+.theme--neon .page {
+  text-align: center;
+}
+
+.theme--neon .actions {
+  justify-content: center;
+}
+
+.theme--neon .tagline,
+.theme--neon .lead {
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.logo {
+  display: block;
+  width: min(100%, 40rem);
+  height: auto;
+  margin-inline: auto;
+}
+
+.logo__word {
+  font-family: var(--font-body);
+  font-size: 76px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}

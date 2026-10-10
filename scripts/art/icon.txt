@@ -1,1 +1,0 @@
-An app icon: a tiny isometric harbour-town corner with a colourful house and a big brass magnifying glass leaning against it, on a solid sea-teal background that fills the whole square edge to edge. Simple, bold, readable at very small size, centred with some margin.
