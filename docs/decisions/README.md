@@ -18,3 +18,4 @@ One short note per significant decision: context, decision, alternatives, conseq
 | [0012](0012-licensing.md) | Public repo; MIT code; CC BY-NC-SA 4.0 content and art | Accepted |
 | [0013](0013-link-inspect-flow.md) | Lupen reveals, feedback marks; transfer retry then backup | Accepted |
 | [0014](0014-typing-input.md) | Typing capture, key/code matching, layout fallback, Caps Lock | Accepted |
+| [0015](0015-audience-variants.md) | Audience variants (child/teen/adult): built in now, written later | Accepted |

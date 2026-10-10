@@ -20,6 +20,7 @@ What to build and why: [`PRD.md`](PRD.md). This document covers how it's built. 
 | Licence | Public repo, code MIT, content/art CC BY-NC-SA 4.0 | [0012](decisions/0012-licensing.md) |
 | Mission 1 flow | Lupen reveals, feedback marks; transfer retry → backup | [0013](decisions/0013-link-inspect-flow.md) |
 | Typing input | Native input as key capture; key vs code matching; layout fallback | [0014](decisions/0014-typing-input.md) |
+| Audiences | Optional child/teen/adult choice stored with progress; text variants with fallback; order per audience | [0015](decisions/0015-audience-variants.md) |
 
 **Runtime dependencies:** `preact` and `workbox-window`. Nothing else ships to the browser without asking first.
 **Dev dependencies (planned):** `vite`, `typescript`, `@preact/preset-vite`, `vite-plugin-pwa`, `@biomejs/biome`, `vitest`, `tldts`, `@playwright/test`, `@axe-core/playwright`.
@@ -239,5 +240,7 @@ The logic is pure functions with exhaustive unit tests: `link-inspect/flow.ts` (
 **A new mission with an existing interaction** (e.g. *Ti fingre 2*): add `content/missions/<id>/structure.ts` and `text.nb.ts`, register it in `missions/index.ts`, add its stickers to `stickers.ts`, and point a building at it in `town.ts` (or reuse a building with a mission list, once a building has more than one). Run `pnpm check`: the content tests validate it. No existing mission or component changes. `docs/adding-a-mission.md` (phase 5) walks through it.
 
 **A new interaction type** (e.g. `dialogue`): add `interactions/dialogue/` implementing `InteractionModule`, extend the `InteractionId` and structure unions in `content/types.ts`, add its run type to the progress schema (with a migration if existing data is affected, usually not), register it in `interactions/registry.ts`, and add content tests for its semantics. Existing modules are untouched.
+
+**An audience variant** (e.g. teenagers): add `{ ...baseText, intro: [...] }` objects to `missionTextVariants` (in `content/missions/texts.ts`) and `messageVariants` (in `i18n/i18n.ts`), and optionally a `buildingOrder.teen` list in `content/town.ts`. Lookup falls back to the adult base text for anything not rewritten. The choice UI ("Hvem spiller?", saving `progress.audience`) is still to be built; see [ADR 0015](decisions/0015-audience-variants.md).
 
 **A new locale** (e.g. `en`): add `i18n/locales/en.ts` typed `Messages` and `text.en.ts` per mission, then add the locale to the supported list. The language switch appears automatically once more than one locale exists (FR-08).

@@ -12,6 +12,15 @@
 /** `YYYY-MM-DD`. */
 export type IsoDate = `${number}-${number}-${number}`;
 
+/**
+ * Who is playing, as the player describes themselves (never an age). Changes
+ * wording and the suggested order of missions, never what is available.
+ * Content is written for `adult`; other audiences fall back to it.
+ */
+export type Audience = 'child' | 'teen' | 'adult';
+export const AUDIENCES: readonly Audience[] = ['child', 'teen', 'adult'];
+export const DEFAULT_AUDIENCE: Audience = 'adult';
+
 export type MissionId = string;
 export type StepId = string;
 export type StickerId = string;

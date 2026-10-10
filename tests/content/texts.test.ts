@@ -6,9 +6,9 @@ import type {
   InfoText,
   MissionText,
 } from '../../src/content/missions/text-types.ts';
-import { missionTexts } from '../../src/content/missions/texts.ts';
+import { allMissionTexts, missionTexts } from '../../src/content/missions/texts.ts';
 import { stickers } from '../../src/content/stickers.ts';
-import { buildings } from '../../src/content/town.ts';
+import { buildingOrder, buildings } from '../../src/content/town.ts';
 import type { MissionStructure } from '../../src/content/types.ts';
 import { nb } from '../../src/i18n/locales/nb.ts';
 import { isBalanced } from '../../src/i18n/markup.ts';
@@ -103,4 +103,31 @@ describe('domains in case texts', () => {
       });
     }
   }
+});
+
+describe('audience variants', () => {
+  it('only exist for real missions, with balanced markup', () => {
+    for (const { locale, audience, missionId, text } of allMissionTexts()) {
+      const where = `${locale}/${audience}/${missionId}`;
+      expect(
+        all.some((m) => m.id === missionId),
+        `${where}: no such mission`,
+      ).toBe(true);
+      for (const { path, value } of stringsIn(text, [])) {
+        expect(isBalanced(value), `${where}.${path}`).toBe(true);
+      }
+    }
+  });
+
+  it('order only existing buildings, each once', () => {
+    for (const [audience, order] of Object.entries(buildingOrder)) {
+      expect(new Set(order).size, `buildingOrder.${audience}: duplicates`).toBe(order.length);
+      for (const id of order) {
+        expect(
+          buildings.some((b) => b.id === id),
+          `buildingOrder.${audience}: "${id}"`,
+        ).toBe(true);
+      }
+    }
+  });
 });

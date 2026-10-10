@@ -1,4 +1,4 @@
-import type { BuildingId, MissionId, StepId, StickerId } from '../content/types.ts';
+import type { Audience, BuildingId, MissionId, StepId, StickerId } from '../content/types.ts';
 
 /**
  * Saved progress, version 1 (ADR 0006). Only IDs, booleans and a best accuracy:
@@ -39,6 +39,8 @@ export interface MissionProgress {
 
 export interface ProgressV1 {
   readonly v: 1;
+  /** Chosen by the player; absent means the default audience. */
+  readonly audience?: Audience;
   readonly lastMission?: MissionId;
   readonly visitedBuildings: readonly BuildingId[];
   readonly stickers: readonly StickerId[];

@@ -4,10 +4,9 @@ import { href } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { Rich } from '../components/Rich.tsx';
 import { findMission } from '../content/missions/index.ts';
-import { missionTexts } from '../content/missions/texts.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { format } from '../i18n/format.ts';
-import { useI18n } from '../i18n/i18n.ts';
+import { useI18n, useMissionText } from '../i18n/i18n.ts';
 import { currentStep } from '../interactions/progress.ts';
 import { interactionViews } from '../interactions/registry.ts';
 import { useProgress } from '../progress/hooks.ts';
@@ -20,9 +19,9 @@ export function MissionSummary({ missionId }: { missionId: string }) {
 
 /** Wrap-up: the takeaway, the interaction's details (e.g. first-try score) and stickers. */
 function Summary({ mission }: { mission: MissionStructure }) {
-  const { m, locale } = useI18n();
+  const { m } = useI18n();
   const { progress } = useProgress();
-  const text = missionTexts[locale][mission.id];
+  const text = useMissionText(mission.id);
   const entry = progress.missions[mission.id];
   const step = entry ? currentStep(mission, entry.run) : null;
 

@@ -4,7 +4,7 @@ import { href, type Route } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { art } from '../content/art.ts';
 import { findMission } from '../content/missions/index.ts';
-import { buildings, TOWN_SIZE } from '../content/town.ts';
+import { buildingsFor, TOWN_SIZE } from '../content/town.ts';
 import type { Building } from '../content/types.ts';
 import { plural } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
@@ -87,8 +87,9 @@ function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProp
 }
 
 export function Town() {
-  const { m, locale } = useI18n();
+  const { m, locale, audience } = useI18n();
   const { progress } = useProgress();
+  const buildings = buildingsFor(audience);
   const [closedMessage, setClosedMessage] = useState('');
   const touchOnly = useMemo(isTouchOnly, []);
 

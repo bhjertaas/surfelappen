@@ -1,7 +1,11 @@
+import type { ComponentChildren } from 'preact';
+import { useMemo } from 'preact/hooks';
 import { ErrorBoundary } from '../components/ErrorBoundary.tsx';
 import { StorageNote } from '../components/StorageNote.tsx';
 import { UpdateBar } from '../components/UpdateBar.tsx';
-import { ProgressContext } from '../progress/hooks.ts';
+import { I18nContext, i18nFor } from '../i18n/i18n.ts';
+import { ProgressContext, useProgress } from '../progress/hooks.ts';
+import { audienceOf } from '../progress/selectors.ts';
 import type { ProgressStore } from '../progress/store.ts';
 import { About } from '../screens/About.tsx';
 import { ErrorScreen } from '../screens/ErrorScreen.tsx';
@@ -35,19 +39,29 @@ function Screen({ route }: { route: Route }) {
   }
 }
 
+/** Provides locale and audience; the audience is the player's own choice, saved with progress. */
+function WithI18n({ children }: { children: ComponentChildren }) {
+  const { progress } = useProgress();
+  const audience = audienceOf(progress);
+  const i18n = useMemo(() => i18nFor('nb', audience), [audience]);
+  return <I18nContext.Provider value={i18n}>{children}</I18nContext.Provider>;
+}
+
 export function App({ store }: { store: ProgressStore }) {
   const route = useRoute();
   const key = routeKey(route);
   return (
     <ProgressContext.Provider value={store}>
-      {/* Keyed by route: each screen mounts fresh, and an error on one screen doesn't stick to the next. */}
-      <ErrorBoundary key={key}>
-        <Screen route={route} />
-      </ErrorBoundary>
-      <div class="bars">
-        <StorageNote />
-        <UpdateBar />
-      </div>
+      <WithI18n>
+        {/* Keyed by route: each screen mounts fresh, and an error on one screen doesn't stick to the next. */}
+        <ErrorBoundary key={key}>
+          <Screen route={route} />
+        </ErrorBoundary>
+        <div class="bars">
+          <StorageNote />
+          <UpdateBar />
+        </div>
+      </WithI18n>
     </ProgressContext.Provider>
   );
 }

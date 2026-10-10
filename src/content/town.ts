@@ -1,4 +1,4 @@
-import type { Building } from './types.ts';
+import type { Audience, Building } from './types.ts';
 
 /**
  * The buildings of Lenkevik, in display order. The picture's hotspots and the
@@ -46,3 +46,20 @@ export const buildings = [
 export type TownBuildingId = (typeof buildings)[number]['id'];
 
 export const TOWN_SIZE = { width: 320, height: 180 } as const;
+
+/**
+ * Suggested order per audience (PRD "Later": e.g. a sharing/bullying mission
+ * first for teenagers). Nothing is hidden; buildings not listed keep their
+ * default order after the listed ones. Empty until audience variants exist.
+ */
+export const buildingOrder: Partial<Record<Audience, readonly TownBuildingId[]>> = {};
+
+export function buildingsFor(audience: Audience): readonly Building[] {
+  const order = buildingOrder[audience];
+  if (!order) return buildings;
+  const rank = (b: Building) => {
+    const i = order.indexOf(b.id as TownBuildingId);
+    return i === -1 ? order.length + buildings.indexOf(b as (typeof buildings)[number]) : i;
+  };
+  return [...buildings].sort((a, b) => rank(a) - rank(b));
+}

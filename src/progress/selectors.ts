@@ -1,5 +1,10 @@
 import type { Route } from '../app/routes.ts';
-import type { BuildingId, MissionStructure } from '../content/types.ts';
+import {
+  type Audience,
+  type BuildingId,
+  DEFAULT_AUDIENCE,
+  type MissionStructure,
+} from '../content/types.ts';
 import { currentStep, emptyRun } from '../interactions/progress.ts';
 import type { MissionProgress, Progress, Run } from './schema.ts';
 
@@ -90,4 +95,12 @@ export function setRun(progress: Progress, mission: MissionStructure, run: Run):
       [mission.id]: { completedOnce: progress.missions[mission.id]?.completedOnce ?? false, run },
     },
   };
+}
+
+export function audienceOf(progress: Progress): Audience {
+  return progress.audience ?? DEFAULT_AUDIENCE;
+}
+
+export function setAudience(progress: Progress, audience: Audience): Progress {
+  return progress.audience === audience ? progress : { ...progress, audience };
 }

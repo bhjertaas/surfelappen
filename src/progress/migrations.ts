@@ -1,3 +1,4 @@
+import { AUDIENCES, type Audience } from '../content/types.ts';
 import { CURRENT_VERSION, type Progress } from './schema.ts';
 
 /**
@@ -45,8 +46,11 @@ function validate(data: Record<string, unknown>): Progress | null {
     if (!isRecord(entry) || typeof entry.completedOnce !== 'boolean' || !isRun(entry.run))
       return null;
   }
+  // An unknown audience (e.g. from a later release) is dropped, not fatal.
+  const audience = AUDIENCES.find((a) => a === data.audience) as Audience | undefined;
   return {
     v: 1,
+    ...(audience ? { audience } : {}),
     ...(typeof data.lastMission === 'string' ? { lastMission: data.lastMission } : {}),
     visitedBuildings: data.visitedBuildings,
     stickers: data.stickers,

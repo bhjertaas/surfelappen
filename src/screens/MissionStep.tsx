@@ -3,10 +3,9 @@ import { replace } from '../app/router.ts';
 import { href } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { findMission } from '../content/missions/index.ts';
-import { missionTexts } from '../content/missions/texts.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { format } from '../i18n/format.ts';
-import { useI18n } from '../i18n/i18n.ts';
+import { useI18n, useMissionText } from '../i18n/i18n.ts';
 import { currentStep, stepSequence } from '../interactions/progress.ts';
 import { interactionViews } from '../interactions/registry.ts';
 import { useProgress } from '../progress/hooks.ts';
@@ -25,9 +24,9 @@ export function MissionStep({ missionId, stepId }: { missionId: string; stepId: 
  * The interaction views arrive in phases 3 and 4.
  */
 function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }) {
-  const { m, locale } = useI18n();
+  const { m } = useI18n();
   const { progress, store } = useProgress();
-  const text = missionTexts[locale][mission.id];
+  const text = useMissionText(mission.id);
   const entry = progress.missions[mission.id];
   const current = currentStep(mission, entry?.run);
 

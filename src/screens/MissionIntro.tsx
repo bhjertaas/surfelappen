@@ -5,9 +5,8 @@ import { href } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { Rich } from '../components/Rich.tsx';
 import { findMission } from '../content/missions/index.ts';
-import { missionTexts } from '../content/missions/texts.ts';
 import type { MissionStructure } from '../content/types.ts';
-import { useI18n } from '../i18n/i18n.ts';
+import { useI18n, useMissionText } from '../i18n/i18n.ts';
 import { currentStep } from '../interactions/progress.ts';
 import { useProgress } from '../progress/hooks.ts';
 import type { Progress } from '../progress/schema.ts';
@@ -26,9 +25,9 @@ export function MissionIntro({ missionId }: { missionId: string }) {
 }
 
 function Intro({ mission }: { mission: MissionStructure }) {
-  const { m, locale } = useI18n();
+  const { m } = useI18n();
   const { progress, store } = useProgress();
-  const text = missionTexts[locale][mission.id];
+  const text = useMissionText(mission.id);
   const touchOnly = useMemo(isTouchOnly, []);
 
   useEffect(() => {
