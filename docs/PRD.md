@@ -1,6 +1,8 @@
-# Surfelappen — PRD v0.3
+# Surfelappen — PRD v0.4
 
 Oct 10, 2026 · @Benny
+
+*v0.4: decisions from the first technical session (lupen, transfer flow, back button, typing layout and Caps Lock, Stø hånd, buildings, focus handling, resume). See `docs/architecture.md` and `docs/decisions/`.*
 
 ## Summary
 
@@ -55,7 +57,7 @@ One polished mission beats five thin ones. Everything below "Later" waits until 
 
 The player arrives in **Lenkevik**, a small pixel-art coastal town, picks a building, and plays a 3–5 minute mission. Cute and warm, gently funny, never childish or scary.
 
-**Town screen.** One static illustration with clickable buildings, e.g. *Postkontoret* (messages and scams), *Tastaturhallen* (touch typing), *Torget* (sharing), *Biblioteket* (checking claims), *Lappekontoret* (passport). Every building is a real button with a text label. The same list is shown below or beside the picture, so nobody needs to hunt for hotspots. On small screens the list comes first and the picture scales down.
+**Town screen.** One static illustration with five clickable buildings: *Postkontoret* (messages and scams), *Tastaturhallen* (touch typing), *Torget* (sharing, kommer snart), *Biblioteket* (checking claims, kommer snart) and *Lappekontoret*, which opens the passport (the passport button is a shortcut to the same place). *Nettkaféen* is a scene inside Mission 1, not a building. Every building is a real button with a text label. The same list is shown below or beside the picture, so nobody needs to hunt for hotspots. On small screens the list comes first and the picture scales down.
 
 **Mission loop:**
 
@@ -70,7 +72,7 @@ The player arrives in **Lenkevik**, a small pixel-art coastal town, picks a buil
 
 ## Screens and states
 
-Eight screens cover the MVP. Each has its own URL so the browser back button, refresh and shared links all work on static hosting.
+Eight screens cover the MVP. Each has its own URL so the browser back button, refresh and shared links all work on static hosting. Feedback is a state of the Mission step screen, not a separate URL, so the back button never lands on stale feedback. Inside a mission, moving to the next step replaces the history entry: the back button leaves the mission (to its intro, then the town) instead of stepping back through answered cases.
 
 | Screen | Purpose | Contains |
 | --- | --- | --- |
@@ -85,7 +87,7 @@ Eight screens cover the MVP. Each has its own URL so the browser back button, re
 
 **States every screen must handle:**
 
-- **First visit vs returning:** Start shows "Fortsett der du slapp" only when there is saved progress.
+- **First visit vs returning:** Start shows "Fortsett der du slapp" only when a mission has been started. It goes to the most recently played unfinished mission, at its first unfinished step; if every mission is finished, it goes to the town.
 - **Locked / coming soon:** buildings without a mission say "Kommer snart" in text and look intentionally closed (shutters, sign), never broken. Selecting one shows a friendly line, not an error.
 - **Needs keyboard:** *Tastaturhallen* on touch-only devices (see Mission 2).
 - **Storage unavailable:** a small, dismissible note that progress won't be saved; everything else works.
@@ -100,7 +102,7 @@ Feedback teaches; it never just says right or wrong.
 
 - **Every option has its own feedback.** A wrong answer explains why that answer was tempting and what to look at instead. Example: not "Feil!", but "Navnet *pakkeposten* står i adressen, men det er bare en del av et lengre navn. Se på slutten av adressen før første skråstrek."
 - **Right answers are explained too**, briefly, so a lucky guess still teaches.
-- **Two hint levels per case.** Hint 1 points at where to look ("Se på delen rett før første /"). Hint 2 nearly gives it away. Hints are always available and never reduce the reward, except that a case answered after a hint doesn't count as "first try".
+- **Two hint levels per case.** Hint 1 points at where to look ("Se på delen rett før første /"). Hint 2 nearly gives it away. Hints are always available, including in the transfer test, and never reduce the reward, except that a case answered after a hint doesn't count as "first try". *First try* means answered correctly with no hint and no earlier wrong answer.
 - **Retry is free.** After wrong feedback, the player tries the same case again. They can't move on until they've chosen the right answer once, so they always see the correct reasoning.
 - **Honest about grey areas.** When something is genuinely uncertain (a real bank link in an unexpected email), the feedback says so and gives the safer habit rather than pretending there's a single truth.
 - **Short.** Feedback is at most 3 sentences on screen. A "Les mer" expander can hold more.
@@ -110,7 +112,7 @@ Feedback teaches; it never just says right or wrong.
 
 **Goal:** the player can find which website a link really leads to, and knows the safer habit: don't log in from a link, go via the app or a bookmark instead.
 
-**Setting:** Postkontoret. Townspeople bring messages they've received: SMS, email, a QR poster. The player uses **lupen** on each link. Lupen shows the full address, with the hostname and the registrable domain marked by bold, underline and a text label (not colour alone).
+**Setting:** Postkontoret. Townspeople bring messages they've received: SMS, email, a QR poster. The player uses **lupen** on each link. Lupen reveals the full address the link really goes to, as the player would see it by long-pressing or hovering in real life. It does *not* point out the real site: finding it is the skill being taught. The feedback then shows the parsed address with the hostname and the real site marked by bold, underline and a text label (not colour alone).
 
 **Fictional real sites:** `fjordbanken.example` (bank), `pakkeposten.example` (parcels), `lenkevik-kommune.example` (municipality). All domains use the reserved `.example` TLD, so nothing can ever resolve to a real site.
 
@@ -127,11 +129,11 @@ Feedback teaches; it never just says right or wrong.
 
 **Habit scene (after case 6):** the bank email in case 2 was genuine, but the player is asked what to do anyway. Best answer: open the bank app or type the address yourself. Also covered in one screen: if your password manager won't autofill, be suspicious; if you already entered details, call the bank using the number on your card and change your password.
 
-**Transfer test:** two unseen cases in a new context (a QR parking sign at Nettkaféen): one impostor (`https://betal.lenkevik-kommune.example.parkering-app.example/`) and one genuine (`https://parkering.lenkevik-kommune.example/betal`). A miss shows the explanation, then one backup item.
+**Transfer test:** two unseen cases in a new context (a QR parking sign at Nettkaféen): one impostor (`https://betal.lenkevik-kommune.example.parkering-app.example/`) and one genuine (`https://parkering.lenkevik-kommune.example/betal`). A miss shows the explanation and the player retries that case (free, like everywhere else); once it is right, one unseen backup case of the same pattern follows, also with free retries.
 
-**Completion:** all six cases answered (retries free) and both transfer items correct. The end screen shows privately how many were right on the first try. Sticker: *"Lenkedetektiv"*.
+**Completion:** all six cases answered (retries free), the habit scene answered, and both transfer patterns answered correctly (retries free; a missed transfer case also needs its backup answered). The end screen shows privately how many of the six main cases were right on the first try. Sticker: *"Lenkedetektiv"*.
 
-**Deliberately left out:** the `user@host` trick (modern browsers warn about or block it), homoglyph/punycode domains and full URL anatomy. Possible later bonus content.
+**Deliberately left out:** BankID (saved for *BankID-fella*), the `user@host` trick (modern browsers warn about or block it), homoglyph/punycode domains and full URL anatomy. Possible later bonus content.
 
 ## Mission 2: Ti fingre
 
@@ -147,7 +149,7 @@ Feedback teaches; it never just says right or wrong.
 4. Short home-row words: *da, ha, sal, dag, lag, glad, hall, skall*.
 5. Final line: a few of those words in a row.
 
-**Feedback:** the next character is shown large and announced to screen readers. A wrong key is marked with a symbol and a label, not just colour, and the player simply tries again. Accuracy is shown as a percentage. Speed may be shown as information, but there is never a timer or a time limit.
+**Feedback:** the next character is shown large and announced to screen readers. A wrong key is marked with a symbol and a label, not just colour, and the player simply tries again. Accuracy is shown as a percentage. Speed may be shown as information, but there is never a timer or a time limit. Until a lesson teaches capitals, Caps Lock is forgiven: letters match regardless of case and a small "Caps Lock er på" note explains why the letters look big.
 
 **Completion:** the final line typed with at least 90% accuracy (retries free). Sticker: *"Ti fingre"*.
 
@@ -164,10 +166,10 @@ Feedback teaches; it never just says right or wrong.
 | Sticker | Earned by |
 | --- | --- |
 | Skarpt øye | Both transfer cases in *Finn bedrageren* right on the first try |
-| Stø hånd | 98% accuracy on the final line in *Ti fingre* |
+| Stø hånd | The final line in *Ti fingre* typed with no mistakes |
 | Nysgjerrig | Visiting every building in town, open or not |
 
-New stickers get a small, skippable celebration (respecting reduced motion). Empty slots show which stickers exist and how to earn them, so nothing is hidden. A printable *Surfelapp* certificate comes once there are 3+ missions.
+Bonus stickers can be earned on any playthrough, including replays. New stickers get a small, skippable celebration (respecting reduced motion). Empty slots show which stickers exist and how to earn them, so nothing is hidden. A printable *Surfelapp* certificate comes once there are 3+ missions.
 
 **Devices.** Mobile-first: works from 320 px wide phones up to desktop browsers, with touch, mouse and keyboard. Touch targets are at least 44 px. The town picture scales; nothing needs pinch-zoom or horizontal scrolling. Installable as a PWA and playable offline once loaded.
 
@@ -193,13 +195,14 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 
 - No account, sign-up or personal question before play.
 - A first-time player understands what the game is from the Start screen without reading more than \~30 words.
-- "Fortsett" appears only if saved progress exists, and goes to the last unfinished mission step.
+- "Fortsett" appears only if a mission has been started, and goes to the first unfinished step of the most recently played unfinished mission (or the town if all are finished).
 
 ### FR-02 Town and navigation
 
-- Every building is a focusable, labelled button; the text list contains exactly the same destinations in the same order.
+- Every building is a focusable, labelled control (a link for open destinations, a button for "kommer snart"); the text list contains exactly the same destinations in the same order.
 - Open, coming-soon and needs-keyboard buildings are distinguishable by text label, not only by look.
-- Every screen has a visible way back to the town; the browser back button works everywhere.
+- Every screen has a visible way back to the town; the browser back button works everywhere. Inside a mission, back leaves the mission rather than returning to an answered case.
+- A deep link to a mission step beyond the player's progress goes to their current step instead.
 - Deep links to a mission work after refresh on static hosting.
 
 ### FR-03 Generic mission flow
@@ -207,14 +210,15 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 - Flow: intro → steps → summary. Progress ("3 av 6") is visible during steps.
 - The player can request hints, retry without penalty, exit at any time and restart a mission from its intro.
 - No drag-and-drop, no time limits, no input that requires precise pointer movement.
-- Feedback text is announced to screen readers when it appears, and focus moves to it.
+- When feedback appears, focus moves to it, which makes screen readers read it once. Live regions are used only where focus does not move (typing prompts, sticker earned, update bar, storage note), so nothing is announced twice.
 
 ### FR-04 Finn bedrageren
 
 - Six cases, habit scene and transfer test as specified in Mission 1 and Appendix A.
-- "Bruk lupen" is a button. It reveals the full address, wraps long addresses instead of cutting them off, and marks the real site with bold, underline and a text label.
+- "Bruk lupen" is a button. It reveals the full address and wraps long addresses instead of cutting them off. It does not mark the real site; the feedback does, with bold, underline and a text label.
+- Addresses are shown in the same proportional font as the message text, as on a real phone (a monospace font would give away the *rn*/*m* trick).
 - Each case offers exactly three options in a fixed order (no shuffling between retries, so a helper can say "press the second one").
-- The transfer test uses cases the player has not seen. If a transfer case is missed, a backup case of the same pattern is shown after the explanation.
+- The transfer test uses cases the player has not seen. If a transfer case is missed, the player retries it after the explanation, and then gets a backup case of the same pattern.
 - Completion as specified; awards *Lenkedetektiv* and, if earned, *Skarpt øye*.
 
 ### FR-05 Ti fingre
@@ -222,7 +226,8 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 - Five steps as specified in Mission 2 and Appendix B; each drill uses only keys already taught.
 - Correct keystrokes advance; a wrong key shows which key was expected and which finger, then waits. Backspace is not needed.
 - Accuracy = correct keystrokes ÷ total keystrokes on the final line, shown as a whole percent.
-- Works with the Norwegian keyboard layout, including Ø and Æ. If the player types characters that suggest another layout (e.g. `;` where `Ø` was expected), show a hint about keyboard layout instead of counting endless errors.
+- Works with the Norwegian keyboard layout, including Ø and Æ. If the player types characters that suggest another layout (e.g. `;` where `Ø` was expected), these keystrokes are not counted as errors; after three of them, show a hint about keyboard layout. If the player chooses to continue, the drill matches keys by physical position (`KeyboardEvent.code`) so they can still finish.
+- Until capitals are taught, letters match regardless of case; when Caps Lock is on, a small note says so.
 - On touch-only devices, show the "Trenger tastatur" explanation with an option to start anyway.
 - Completion as specified; awards *Ti fingre* and, if earned, *Stø hånd*.
 
@@ -266,15 +271,17 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 
 ## Content model
 
-Each mission is split into **structure** (IDs, URLs, correct answers, sticker rules; shared by all languages) and **text** (one file per language). This keeps answers identical across translations, and a translator never touches logic. Exact file formats and types are Claude Code's call; these are the fields that must exist.
+Each mission is split into **structure** (IDs, URLs, correct answers, sticker rules; shared by all languages) and **text** (one file per language). This keeps answers identical across translations, and a translator never touches logic. Exact file formats and types are Claude Code's call; these are the fields that must exist. IDs and URL slugs are English, like all code (e.g. mission `find-the-impostor`, step `case-1`, sticker `link-detective`); the full list is in `docs/architecture.md`.
 
 **Mission:** `id`, `building`, `interaction` (`link-inspect` | `typing`), `requires` (e.g. `physical-keyboard`), `steps[]`, `completion` rule, `stickers[]`, `reviewedOn` date, `sources[]`.
 
-**Link case (`link-inspect`):** `id`, `context` (`sms` | `email` | `social` | `qr` | `browser`), `sender`, `linkText` (what the message shows, may differ from the URL), `url`, `expectedHost`, `expectedSite`, `verdict` (`genuine` | `impostor`), `options[3]` each with `id` and `correct`, `pattern` (e.g. `subdomain-trick`, `brand-in-path`, `lookalike-letters`), `role` (`main` | `transfer` | `transfer-backup`).
+**Link-inspect steps** are of three kinds: `case` (below), `choice` (the habit scene: three options, one correct, per-option feedback) and `info` (a single text screen, e.g. the habit tip and the transfer intro).
 
-**Typing step (`typing`):** `id`, `keysTaught[]`, `keysAllowed[]`, `drill` (the target text), `minAccuracy` (only on the final step).
+**Link case (`link-inspect`):** `id`, `context` (`sms` | `email` | `social` | `qr` | `browser`), `sender`, `linkText` (what the message shows, may differ from the URL), `url`, `expectedHost`, `expectedSite`, `verdict` (`genuine` | `impostor`), `options[3]` each with `id` and `correct`, `pattern` (e.g. `subdomain-trick`, `brand-in-path`, `lookalike-letters`), `role` (`main` | `transfer` | `transfer-backup`), `backupFor` (on a backup: the transfer case it replaces), optional `claimedSite` (the site the message pretends to come from; used by content tests and the feedback breakdown).
 
-**Sticker:** `id`, `image`, `awardedBy` (mission completion or a named condition such as `transfer-first-try`).
+**Typing step (`typing`):** `id`, `keysTaught[]`, `keysAllowed[]`, `drills[]` (one or more target lines), `minAccuracy` (only on the final step).
+
+**Sticker:** `id`, `image`, `awardedBy` (mission completion or a named condition such as `transfer-first-try`, `final-line-flawless` or `visited-all-buildings`).
 
 **Text file (per language):** intro lines, each case's message body, option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
 
@@ -282,7 +289,7 @@ Example structure for case 1:
 
 ```json
 {
-  "id": "fb-01",
+  "id": "case-1",
   "role": "main",
   "context": "sms",
   "sender": "Pakkeposten",
@@ -312,7 +319,7 @@ These are constraints, not an architecture; ask Claude Code to propose one withi
 - **Content as data.** Each mission is a typed data file (cases or steps, options, correct answers, feedback, hints, stickers) with stable IDs, separate from components. Text references locale keys or is stored per locale.
 - **Two interactions** for the MVP: "inspect link → choose one of three" and "type the target text". Don't build a generic engine for interactions that don't exist yet.
 - **Progress store.** One small module owns saved progress: versioned schema, migration on version change, and a clear boundary so it could later sync to an account without touching mission code.
-- **Typing input.** Use `KeyboardEvent.code` for physical key position (finger hints) and `KeyboardEvent.key` for the character, so the Norwegian layout and later other layouts work. Ignore modifier and IME composition events sensibly.
+- **Typing input.** Use `KeyboardEvent.code` for physical key position (finger hints, and matching after the player accepts the layout hint) and `KeyboardEvent.key` for the character, so the Norwegian layout and later other layouts work. Ignore modifier and IME composition events sensibly.
 - **Content tests in CI.** For every link case, parse the URL with the standard `URL` API and a Public Suffix List library (e.g. `tldts`) and assert the hostname and real site stated in the content. Also assert every domain ends in `.example`, every typing drill uses only the keys its lesson has taught, and every locale has every key.
 - **Accessibility checks:** automated axe checks on each screen, plus a manual keyboard and screen-reader pass (VoiceOver/NVDA/TalkBack) before release.
 - **Performance:** whole app under \~1 MB on first load; works on a mid-range phone on 4G.
@@ -422,9 +429,9 @@ If minors take part, get a parent's consent and keep a parent present. Store no 
 
 ## Open questions
 
-- [ ] Final name: *Surfelappen*, or keep *License to Surf*? Check the domain is free.
-- [ ] Art: make the pixel art yourself, commission it, or start with simple placeholders for one scene?
-- [ ] Should the habit scene mention BankID ("never approve a BankID request you didn't start"), or save that for the SMS/BankID mission?
+- [ ] Final name: *Surfelappen*, or keep *License to Surf*? Check the domain is free. (The MVP is hosted at `surfelappen.minhule.eu` until this is settled.)
+- [ ] Art: make the pixel art yourself, commission it, or generate and clean it up? Placeholders until phase 7; decide before phase 7. The technical base (sizes, formats) is fixed in `docs/decisions/`.
+- [x] Should the habit scene mention BankID? **No**, it is saved for *BankID-fella* so Mission 1 keeps one takeaway.
 
 ## Appendix A: Finn bedrageren (draft content, nb)
 
@@ -497,7 +504,7 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 - **Feedback A:** "Lurt forsøk! Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre."
 - **Feedback B:** "Godt øye! *rn* ser nesten ut som *m*. Det er et helt annet nettsted enn kommunens."
 - **Hint 1:** "Les navnet bokstav for bokstav."
-- **Hint 2:** "Se på bokstavene etter *ko*. Står det *m** eller rn*?"
+- **Hint 2:** "Se på bokstavene etter *ko*. Står det *m* eller *rn*?"
 
 ### Habit scene
 
@@ -561,7 +568,8 @@ Step 5 needs at least 90% accuracy. Every drill contains only keys taught in ear
 ### Messages
 
 - **Wrong key:** "Det var *\[key\]*. Prøv *\[expected\]* med *\[finger\]*." (e.g. "Prøv K med høyre langfinger.")
-- **Layout hint** (after 3 layout-looking errors): "Det ser ut som tastaturet ditt er satt til et annet språk. Bytt til norsk tastatur, eller fortsett hvis du vil."
+- **Layout hint** (after 3 layout-looking keystrokes, which are not counted as errors): "Det ser ut som tastaturet ditt er satt til et annet språk. Bytt til norsk tastatur, eller fortsett hvis du vil." *Fortsett* switches the drill to matching by key position.
+- **Caps Lock note:** "Caps Lock er på. Det går fint, men bokstavene blir store."
 - **Touch-only notice:** "Trenger tastatur. For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel." Buttons: *Start likevel* · *Tilbake til byen*
 - **Step done:** "Bra! *\[accuracy\]* % riktig."
 - **Final line below 90 %:** "*\[accuracy\]* % riktig. Nesten! Prøv linjen én gang til, rolig og nøyaktig."
@@ -570,6 +578,6 @@ Step 5 needs at least 90% accuracy. Every drill contains only keys taught in ear
 
 *Takeaway:* "Fingrene har hver sin plass. Finn hakkene på F og J, så finner fingrene veien hjem. Øv litt hver gang, så sitter det."
 
-*Sticker:* **Ti fingre** – "Fullfør første tastaturleksjon." · **Stø hånd** – "Skriv siste linje med minst 98 % riktig."
+*Sticker:* **Ti fingre** – "Fullfør første tastaturleksjon." · **Stø hånd** – "Skriv siste linje uten feil."
 
 *Nysgjerrig* sticker text (town-wide): "Besøk alle husene i Lenkevik."
