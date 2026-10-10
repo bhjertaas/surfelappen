@@ -820,3 +820,11 @@
 .source ul {
   margin-top: 0;
 }
+
+/* Links that stand alone (not inside a sentence) get a full touch target. */
+.source li a,
+.link-block {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}

@@ -64,7 +64,9 @@ export function About() {
       <h2>{m.about.licenceHeading}</h2>
       <p>{m.about.licence}</p>
       <p>
-        <a href={SOURCE_CODE_URL}>{m.about.sourceCode}</a>
+        <a class="link-block" href={SOURCE_CODE_URL}>
+          {m.about.sourceCode}
+        </a>
       </p>
 
       <p class="version">
