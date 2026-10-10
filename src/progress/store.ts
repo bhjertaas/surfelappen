@@ -25,7 +25,14 @@ export interface ProgressStore {
   status(): StoreStatus;
 }
 
-export function createProgressStore(backend: StorageBackend | null): ProgressStore {
+/**
+ * @param derive applied after every update, e.g. to award stickers; must return
+ *   the same object when it changes nothing.
+ */
+export function createProgressStore(
+  backend: StorageBackend | null,
+  derive: (progress: Progress) => Progress = (p) => p,
+): ProgressStore {
   const listeners = new Set<() => void>();
   let status: StoreStatus = backend ? 'ok' : 'unavailable';
   let state = emptyProgress();
@@ -76,7 +83,7 @@ export function createProgressStore(backend: StorageBackend | null): ProgressSto
   return {
     get: () => state,
     update(next) {
-      const updated = next(state);
+      const updated = derive(next(state));
       if (updated === state) return;
       state = updated;
       persist();

@@ -15,6 +15,11 @@
   --color-focus: #b03a27;
   --color-notice-bg: #fff1bf;
   --color-notice-border: #8a6a00;
+  --color-correct: #2d6a3e;
+  --color-correct-bg: #e9f5ec;
+  --color-wrong: #9b2c1c;
+  --color-wrong-bg: #fcebe7;
+  --color-link-text: #1a5fb4;
 
   --font-body:
     "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;

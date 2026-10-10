@@ -181,31 +181,34 @@ interface TypingRun { done: StepId[]; positional: boolean; bestFinalAccuracy?: n
 
 ### Interaction modules (`interactions/`)
 
-The mission shell (intro, step, summary screens) is generic. Everything interaction-specific is behind one interface:
+The mission shell (intro, step, summary screens) is generic. Each interaction type has two parts:
+
+- **Pure logic**, used by the shell and the sticker rules: `emptyRun`, `stepSequence`, `currentStep` (dispatched by `interactions/progress.ts`), plus type-specific functions such as `solveStep`, `missTransfer`, `firstTryScore` and `transferFirstTry` in `link-inspect/flow.ts`.
+- **Views**, registered in `interactions/registry.ts`:
 
 ```ts
-interface InteractionModule<S extends MissionStructure, R> {
-  id: InteractionId;
-  emptyRun(): R;
-  /** Ordered steps for this run, including any backups that became necessary. */
-  stepSequence(structure: S, run: R): StepId[];
-  currentStep(structure: S, run: R): StepId | 'done';
-  StepView: ComponentType<StepViewProps<S, R>>;   // renders one step, reports via onRunChange
-  SummaryDetails: ComponentType<{ structure: S; run: R }>; // first-try score / accuracy
-  /** Named sticker conditions this interaction can evaluate. */
-  conditions: Record<string, (structure: S, run: R) => boolean>;
+interface InteractionViews {
+  StepView: ComponentType<StepViewProps>;          // one step; calls save(run) or advance(run)
+  SummaryDetails: ComponentType<SummaryDetailsProps>; // e.g. first-try score, accuracy
+}
+interface StepViewProps {
+  mission; text; stepId; run;
+  save(run): void;     // store the run, stay on the step (e.g. a missed transfer case)
+  advance(run): void;  // store the run, replace() to the next step or the summary
 }
 ```
 
+A step is saved when the player leaves it with "Neste" (after a correct answer), so reading the feedback never races a redirect. A missed transfer case is saved at once, so its backup is still due after a reload. A hint or wrong answer that was followed by a reload mid-case is not remembered; the only cost is a slightly generous private first-try score.
+
 The logic is pure functions with exhaustive unit tests: `link-inspect/flow.ts` (sequence, backups, first-try, completion) and `typing/matcher.ts` (keystroke → `correct | wrong | layout-suspect | ignored`, accuracy). The views stay thin.
 
-**link-inspect:** a `CaseView` holds a message card (sender, body, link text) and a "Bruk lupen" button that reveals `url` with `overflow-wrap: anywhere`. Below it come three fixed-order option buttons, the hints and `LesMer`. On answer, the `FeedbackPanel` takes focus and shows the per-option feedback. On a correct answer it also shows the address breakdown from `address.ts`: scheme, subdomain, **real site** (bold + underline + label), and path, split using `expectedHost`/`expectedSite`. A wrong answer offers "Prøv igjen"; a correct one offers "Neste". See [ADR 0013](decisions/0013-link-inspect-flow.md).
+**link-inspect:** `LinkInspectStep` picks `CaseView`, `ChoiceView` or `InfoView` and shows "Sak 3 av 6" / "Prøvesak 1 av 2" / "Ekstra prøvesak". A `CaseView` holds the situation line, a message card (context, sender, body, link text styled like a link but only text) and a "Bruk lupen" disclosure button that reveals `url`, wrapping instead of cutting. Below it come three fixed-order, lettered option buttons in a `<fieldset>` labelled by the question, and the hints (two levels, announced politely). On answer, the `FeedbackPanel` takes focus and shows the per-option feedback. On a correct answer it also shows the address breakdown from `address.ts`: scheme, subdomain, **real site** (bold + underline + label), and path, split using `expectedHost`/`expectedSite`. A correct answer also shows "Les mer" (`<details>`) when the case has it, and "Neste". A wrong answer offers "Prøv igjen", which returns focus to the question. See [ADR 0013](decisions/0013-link-inspect-flow.md).
 
 **typing:** a native `<input>` (`inputmode="none"`, autocorrect, autocapitalize and spellcheck off, labelled) captures `keydown` and keeps itself empty. A large "next character" display plus a polite live region announces the next key, and an on-screen Norwegian keyboard (`keymap-nb.ts`: `code` → label, hand, finger) highlights the key and finger. See [ADR 0014](decisions/0014-typing-input.md).
 
 ### Stickers
 
-`content/stickers.ts` lists every sticker with `awardedBy`: `{ mission: id }` (completion), `{ condition: 'transfer-first-try' | 'final-line-flawless' }` (evaluated by the mission's interaction) or `{ town: 'visited-all-buildings' }` (evaluated from `visitedBuildings`). After each progress write, `awardStickers()` adds newly earned IDs. The UI then queues a `StickerCelebration` dialog. It is skippable and reduced-motion aware, and is announced through its dialog label.
+`content/stickers.ts` lists every sticker with `awardedBy`: `{ mission: id }` (completion), `{ condition: 'transfer-first-try' | 'final-line-flawless' }` (evaluated by the mission's interaction) or `{ town: 'visited-all-buildings' }` (evaluated from `visitedBuildings`). `progress/awards.ts` (`applyAwards`) is passed to the store as a `derive` step, so after **every** update it marks finished runs `completedOnce` and adds newly earned sticker IDs, wherever the earning happened (a mission step, a town visit). Conditions are only judged on a finished run. Phase 5 adds the `StickerCelebration` dialog on new IDs. It is skippable and reduced-motion aware, and is announced through its dialog label.
 
 ### PWA (`pwa/`, `vite.config.ts`)
 

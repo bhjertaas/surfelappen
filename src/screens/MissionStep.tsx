@@ -8,8 +8,10 @@ import type { MissionStructure } from '../content/types.ts';
 import { format } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
 import { currentStep, stepSequence } from '../interactions/progress.ts';
+import { interactionViews } from '../interactions/registry.ts';
 import { useProgress } from '../progress/hooks.ts';
-import { isUnfinished, startMission } from '../progress/selectors.ts';
+import type { Run } from '../progress/schema.ts';
+import { isUnfinished, setRun, startMission } from '../progress/selectors.ts';
 import { ErrorScreen } from './ErrorScreen.tsx';
 
 export function MissionStep({ missionId, stepId }: { missionId: string; stepId: string }) {
@@ -45,19 +47,43 @@ function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }
   }, [current, stepId, mission.id]);
 
   if (!text) return <ErrorScreen kind="not-found" />;
-  if (current !== stepId) return null;
+  if (current !== stepId || !entry) return null;
 
-  const sequence = stepSequence(mission, entry?.run);
+  const save = (run: Run) => store.update((p) => setRun(p, mission, run));
+  const advance = (run: Run) => {
+    save(run);
+    const next = currentStep(mission, store.get().missions[mission.id]?.run);
+    replace(
+      next === 'done'
+        ? { name: 'mission-summary', missionId: mission.id }
+        : { name: 'mission-step', missionId: mission.id, stepId: next },
+    );
+  };
+
+  const { StepView } = interactionViews[mission.interaction];
   return (
     <Page title={text.title}>
-      <p class="step-progress">
-        {format(m.mission.progress, {
-          current: sequence.indexOf(stepId) + 1,
-          total: sequence.length,
-        })}
-      </p>
-      <p>{m.mission.notReady}</p>
-      <p>
+      {StepView ? (
+        <StepView
+          mission={mission}
+          text={text}
+          stepId={stepId}
+          run={entry.run}
+          save={save}
+          advance={advance}
+        />
+      ) : (
+        <>
+          <p class="step-progress">
+            {format(m.mission.progress, {
+              current: stepSequence(mission, entry.run).indexOf(stepId) + 1,
+              total: stepSequence(mission, entry.run).length,
+            })}
+          </p>
+          <p>{m.mission.notReady}</p>
+        </>
+      )}
+      <p class="exit">
         <a href={href({ name: 'town' })}>{m.mission.exit}</a>
       </p>
     </Page>

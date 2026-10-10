@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { findTheImpostor } from '../../content/missions/find-the-impostor/structure.ts';
 import type { LinkInspectRun } from '../../progress/schema.ts';
-import { emptyLinkInspectRun, linkInspectCurrentStep, linkInspectSequence } from './flow.ts';
+import {
+  emptyLinkInspectRun,
+  firstTryScore,
+  linkInspectCurrentStep,
+  linkInspectSequence,
+  missTransfer,
+  solveStep,
+  transferFirstTry,
+} from './flow.ts';
 
 const MAIN = [
   'case-1',
@@ -64,5 +72,35 @@ describe('linkInspectCurrentStep', () => {
         run({ solved: [...MAIN, 'transfer-1', 'transfer-2'] }),
       ),
     ).toBe('done');
+  });
+});
+
+describe('solveStep and missTransfer', () => {
+  it('records a solved step once, with first try only when earned', () => {
+    let r = solveStep(emptyLinkInspectRun(), 'case-1', { firstTry: true });
+    r = solveStep(r, 'case-2');
+    expect(r.solved).toEqual(['case-1', 'case-2']);
+    expect(r.firstTry).toEqual(['case-1']);
+    expect(solveStep(r, 'case-1', { firstTry: true })).toBe(r);
+  });
+
+  it('records a missed transfer case once', () => {
+    const r = missTransfer(emptyLinkInspectRun(), 'transfer-2');
+    expect(r.missedTransfer).toEqual(['transfer-2']);
+    expect(missTransfer(r, 'transfer-2')).toBe(r);
+  });
+});
+
+describe('firstTryScore and transferFirstTry', () => {
+  it('counts only main cases', () => {
+    const r = run({ firstTry: ['case-1', 'case-3', 'transfer-1'] });
+    expect(firstTryScore(findTheImpostor, r)).toEqual({ correct: 2, total: 6 });
+  });
+
+  it('needs both original transfer cases right first time', () => {
+    expect(transferFirstTry(findTheImpostor, run({ firstTry: ['transfer-1'] }))).toBe(false);
+    expect(transferFirstTry(findTheImpostor, run({ firstTry: ['transfer-1', 'transfer-2'] }))).toBe(
+      true,
+    );
   });
 });

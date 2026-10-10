@@ -283,7 +283,7 @@ Each mission is split into **structure** (IDs, URLs, correct answers, sticker ru
 
 **Sticker:** `id`, `image`, `awardedBy` (mission completion or a named condition such as `transfer-first-try`, `final-line-flawless` or `visited-all-buildings`).
 
-**Text file (per language):** intro lines, each case's sender (e.g. *Lenkevik kommune*, which a translation may change) and message body, option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
+**Text file (per language):** intro lines, each case's situation line ("Arne har fått en SMS."), sender (e.g. *Lenkevik kommune*, which a translation may change) and message body (the link is shown after it from the structure's `linkText`), option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
 
 Example structure for case 1:
 
@@ -528,7 +528,7 @@ Intro: "Nå er det din tur, uten Solveig. Nettkaféen har satt opp et parkerings
 | T1-backup | `https://kunde.fjordbanken.example.trygg-sjekk.example/logg-inn` | B – *trygg-sjekk.example* | subdomain trick |
 | T2-backup | `https://minside.pakkeposten.example/sporing` | A – *pakkeposten.example* | genuine subdomain |
 
-Feedback on transfer cases follows the same pattern as the main cases.
+Feedback on transfer cases follows the same pattern as the main cases. Draft texts for the transfer cases and backups (situation, sender, message, options, feedback, hints) are in `src/content/missions/find-the-impostor/text.nb.ts`; review them with the rest of the wording in testing.
 
 ### Summary
 

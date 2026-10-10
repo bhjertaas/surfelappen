@@ -306,3 +306,237 @@
 .bar--note {
   background: var(--color-notice-bg);
 }
+
+/* Mission 1: link-inspect */
+
+.muted {
+  color: var(--color-muted);
+}
+
+.exit {
+  margin-top: var(--space-6);
+}
+
+.situation {
+  font-weight: 700;
+}
+
+.message {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius) var(--radius) var(--radius) 0;
+  background: var(--color-surface);
+}
+
+.message__meta {
+  margin-bottom: var(--space-2);
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+.message__context {
+  display: inline-block;
+  padding: 0 var(--space-2);
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  font-weight: 700;
+}
+
+.message__body {
+  margin: 0;
+}
+
+/* Looks like a link in a real message, but is only text. */
+.message__link {
+  color: var(--color-link-text);
+  text-decoration: underline;
+  overflow-wrap: break-word;
+}
+
+.lupen {
+  margin: 0 0 var(--space-4);
+}
+
+.lupen__icon {
+  position: relative;
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-right: var(--space-2);
+  border: 3px solid currentColor;
+  border-radius: 50%;
+}
+
+.lupen__icon::after {
+  content: "";
+  position: absolute;
+  right: -0.5rem;
+  bottom: -0.45rem;
+  width: 0.55rem;
+  height: 3px;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.lupen__result {
+  margin-top: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 2px dashed var(--color-primary);
+  border-radius: var(--radius);
+}
+
+.lupen__result p {
+  margin-bottom: var(--space-2);
+}
+
+.lupen__result p:last-child {
+  margin-bottom: 0;
+}
+
+/* Addresses wrap anywhere instead of being cut off, in the body font (case 6: rn vs m). */
+.address__url {
+  font-size: 1.125rem;
+  overflow-wrap: break-word;
+}
+
+.address__site {
+  text-decoration: underline;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.18em;
+}
+
+.address {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.address h3 {
+  margin-top: 0;
+  font-size: 1.125rem;
+}
+
+.address__explain {
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+.options {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  border: 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.option__letter {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  color: var(--color-primary-strong);
+  font-weight: 700;
+}
+
+.hints {
+  margin: 0 0 var(--space-4);
+}
+
+.hint {
+  margin: var(--space-3) 0 0;
+  padding: var(--space-2) var(--space-3);
+  border-left: 4px solid var(--color-notice-border);
+  background: var(--color-notice-bg);
+}
+
+.feedback {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border: 3px solid;
+  border-radius: var(--radius);
+}
+
+.feedback h2 {
+  margin-top: 0;
+}
+
+.feedback--correct {
+  border-color: var(--color-correct);
+  background: var(--color-correct-bg);
+}
+
+.feedback--wrong {
+  border-color: var(--color-wrong);
+  background: var(--color-wrong-bg);
+}
+
+.feedback--correct .feedback__symbol {
+  color: var(--color-correct);
+}
+
+.feedback--wrong .feedback__symbol {
+  color: var(--color-wrong);
+}
+
+.feedback .actions {
+  margin-bottom: 0;
+}
+
+.les-mer summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: var(--color-primary-strong);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Summary */
+
+.sticker-list {
+  padding: 0;
+  list-style: none;
+}
+
+.sticker-list__item {
+  margin-bottom: var(--space-2);
+  color: var(--color-muted);
+}
+
+.sticker-list__item--earned {
+  color: var(--color-text);
+  font-weight: 700;
+}

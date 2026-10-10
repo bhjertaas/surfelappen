@@ -1,7 +1,7 @@
 import type { Route } from '../app/routes.ts';
 import type { BuildingId, MissionStructure } from '../content/types.ts';
 import { currentStep, emptyRun } from '../interactions/progress.ts';
-import type { MissionProgress, Progress } from './schema.ts';
+import type { MissionProgress, Progress, Run } from './schema.ts';
 
 /** Pure questions and updates on Progress. Updates return the same object when nothing changes. */
 
@@ -78,4 +78,16 @@ export function restartMission(progress: Progress, mission: MissionStructure): P
 export function visitBuilding(progress: Progress, id: BuildingId): Progress {
   if (progress.visitedBuildings.includes(id)) return progress;
   return { ...progress, visitedBuildings: [...progress.visitedBuildings, id] };
+}
+
+/** Saves the current run of a mission (and makes it the last played). */
+export function setRun(progress: Progress, mission: MissionStructure, run: Run): Progress {
+  return {
+    ...progress,
+    lastMission: mission.id,
+    missions: {
+      ...progress.missions,
+      [mission.id]: { completedOnce: progress.missions[mission.id]?.completedOnce ?? false, run },
+    },
+  };
 }

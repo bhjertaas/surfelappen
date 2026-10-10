@@ -1,0 +1,17 @@
+import type { ComponentType } from 'preact';
+import type { InteractionId } from '../content/types.ts';
+import { LinkInspectStep } from './link-inspect/LinkInspectStep.tsx';
+import { LinkInspectSummary } from './link-inspect/LinkInspectSummary.tsx';
+import type { StepViewProps, SummaryDetailsProps } from './types.ts';
+
+/** The views of each interaction type. A new type adds one entry (architecture "Adding things"). */
+export interface InteractionViews {
+  readonly StepView: ComponentType<StepViewProps> | null;
+  readonly SummaryDetails: ComponentType<SummaryDetailsProps> | null;
+}
+
+export const interactionViews: Record<InteractionId, InteractionViews> = {
+  'link-inspect': { StepView: LinkInspectStep, SummaryDetails: LinkInspectSummary },
+  // Phase 4.
+  typing: { StepView: null, SummaryDetails: null },
+};

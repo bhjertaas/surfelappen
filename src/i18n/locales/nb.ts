@@ -38,6 +38,23 @@ const buildings: Record<string, BuildingText> = {
   },
 };
 
+interface StickerText {
+  readonly name: string;
+  /** How to earn it, shown in the passport and the summary. */
+  readonly howTo: string;
+}
+
+const stickers: Record<string, StickerText> = {
+  'link-detective': { name: 'Lenkedetektiv', howTo: 'Fullfør Finn bedrageren.' },
+  'sharp-eye': {
+    name: 'Skarpt øye',
+    howTo: 'Svar riktig på begge prøvesakene i Finn bedrageren på første forsøk.',
+  },
+  'ten-fingers': { name: 'Ti fingre', howTo: 'Fullfør første tastaturleksjon.' },
+  'steady-hand': { name: 'Stø hånd', howTo: 'Skriv siste linje i Ti fingre uten feil.' },
+  curious: { name: 'Nysgjerrig', howTo: 'Besøk alle husene i Lenkevik.' },
+};
+
 const stickerCount: PluralForms = {
   zero: 'Du har ingen klistremerker ennå.',
   one: 'Du har {count} klistremerke.',
@@ -75,6 +92,7 @@ export const nb = {
     needsKeyboard: 'Trenger tastatur',
   },
   buildings,
+  stickers,
   mission: {
     learnHeading: 'Dette lærer du',
     begin: 'Begynn',
@@ -86,6 +104,38 @@ export const nb = {
     progress: 'Del {current} av {total}',
     notReady: 'Denne delen av oppdraget er ikke ferdig ennå. Den kommer i en senere versjon.',
   },
+  linkInspect: {
+    caseProgress: 'Sak {current} av {total}',
+    transferProgress: 'Prøvesak {current} av {total}',
+    backupProgress: 'Ekstra prøvesak',
+    contexts: {
+      sms: 'SMS',
+      email: 'E-post',
+      social: 'Innlegg på sosiale medier',
+      qr: 'QR-kode',
+      browser: 'Nettleser',
+    },
+    messageLabel: 'Meldingen',
+    from: 'Fra:',
+    useLupen: 'Bruk lupen',
+    lupenResult: 'Lupen viser hvor lenken egentlig går:',
+    question: 'Hvilken nettside ville du egentlig kommet til?',
+    optionLetters: ['A', 'B', 'C'],
+    hint: 'Vis et hint',
+    hintMore: 'Vis et hint til',
+    hintHeading: 'Hint',
+    correctHeading: 'Riktig svar',
+    wrongHeading: 'Ikke helt',
+    addressHeading: 'Slik leser du adressen',
+    siteLabel: 'Nettstedet',
+    siteExplain:
+      'Nettstedet står rett før første skråstrek (/). Alt foran kan avsenderen velge fritt.',
+    lesMer: 'Les mer',
+    next: 'Neste',
+    tryAgain: 'Prøv igjen',
+    firstTry: 'Du svarte riktig på første forsøk på {correct} av {total} saker.',
+    firstTryNote: 'Det er bare du som ser dette.',
+  },
   keyboard: {
     title: 'Trenger tastatur',
     body: 'For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel.',
@@ -93,6 +143,9 @@ export const nb = {
   },
   summary: {
     title: 'Oppdraget er fullført',
+    stickersHeading: 'Klistremerker',
+    stickerEarned: 'Du har klistremerket {name}.',
+    stickerMissing: 'Du kan også få {name}: {howTo}',
     takeawayHeading: 'Husk dette',
     toPassport: 'Til passet',
     toTown: 'Til byen',

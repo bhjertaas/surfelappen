@@ -48,7 +48,7 @@ Phase 1 can be built and tested locally without these; only its deploy step need
 - Lighthouse installability passes; app loads offline after the first visit (e2e).
 - Manual: 320 px and 200% zoom on Start and Town.
 
-## Phase 3: Mission 1, *Finn bedrageren*
+## Phase 3: Mission 1, *Finn bedrageren* ✅
 
 **Delivers**
 - `link-inspect` module: `flow.ts` (sequence, backups, first-try, completion, `transfer-first-try`), `address.ts` (breakdown), CaseView, lupen, FeedbackPanel (focus), hints (2 levels), Les mer, ChoiceView (habit), InfoView.

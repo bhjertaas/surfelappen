@@ -1,0 +1,146 @@
+import { expect, test } from '@playwright/test';
+import { expectHeading, expectNoAxeViolations, storedProgress } from './helpers.ts';
+import { choose, next, PERFECT_RUN, QUESTION, solve, solveAll, startMission1 } from './mission1.ts';
+
+test('a perfect run earns Lenkedetektiv and Skarpt øye', async ({ page }) => {
+  await startMission1(page);
+  await expect(page.getByText('Sak 1 av 6')).toBeVisible();
+  await solveAll(page, PERFECT_RUN);
+
+  await expect(page).toHaveURL(/#\/mission\/find-the-impostor\/done$/);
+  await expectHeading(page, 'Oppdraget er fullført');
+  await expect(page.getByText('6 av 6 saker')).toBeVisible();
+  await expect(page.getByText('Du har klistremerket Lenkedetektiv.')).toBeVisible();
+  await expect(page.getByText('Du har klistremerket Skarpt øye.')).toBeVisible();
+  expect((await storedProgress(page))?.stickers).toEqual(['link-detective', 'sharp-eye']);
+});
+
+test('wrong answers explain, retries are free, and missed transfer cases get a backup', async ({
+  page,
+}) => {
+  await startMission1(page);
+
+  // Case 1: wrong first; feedback takes focus and explains.
+  await choose(page, 'A');
+  const feedback = page.locator('.feedback');
+  await expect(feedback).toBeFocused();
+  await expect(feedback).toContainText('Lurt forsøk!');
+  await page.getByRole('button', { name: 'Prøv igjen' }).click();
+  await expect(page.getByRole('heading', { name: QUESTION })).toBeFocused();
+  await choose(page, 'B');
+  await expect(feedback).toContainText('Riktig!');
+  await expect(page.locator('.address')).toContainText('Nettstedet: sporing-levering.example');
+  await next(page);
+
+  // Case 2: with both hint levels.
+  await page.getByRole('button', { name: 'Vis et hint' }).click();
+  await expect(page.getByText('Hva står helt til slutt')).toBeVisible();
+  await page.getByRole('button', { name: 'Vis et hint til' }).click();
+  await expect(page.getByRole('button', { name: /Vis et hint/ })).toHaveCount(0);
+  await solve(page, 'case-2', 'A');
+
+  await solveAll(page, PERFECT_RUN.slice(2, 9));
+
+  // Transfer 1 missed: retry it, then its backup follows.
+  await expect(page.getByText('Prøvesak 1 av 2')).toBeVisible();
+  await choose(page, 'A');
+  await page.getByRole('button', { name: 'Prøv igjen' }).click();
+  await solve(page, 'transfer-1', 'B');
+  await expect(page.getByText('Ekstra prøvesak')).toBeVisible();
+  await solve(page, 'transfer-1-backup', 'B');
+  await solve(page, 'transfer-2', 'A');
+
+  await expectHeading(page, 'Oppdraget er fullført');
+  await expect(page.getByText('4 av 6 saker')).toBeVisible();
+  await expect(page.getByText('Du har klistremerket Lenkedetektiv.')).toBeVisible();
+  await expect(page.getByText('Du kan også få Skarpt øye')).toBeVisible();
+});
+
+test('the lupen reveals where a link really goes', async ({ page }) => {
+  await startMission1(page);
+  await solveAll(page, PERFECT_RUN.slice(0, 4));
+  await expect(page).toHaveURL(/\/case-5$/);
+  await expect(page.locator('.message__link')).toHaveText('fjordbanken.example/sikkerhet');
+  const lupen = page.getByRole('button', { name: 'Bruk lupen' });
+  await expect(lupen).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.getByText('https://sikkerhet-varsel.example/fjordbanken')).toBeHidden();
+  await lupen.click();
+  await expect(lupen).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByText('https://sikkerhet-varsel.example/fjordbanken')).toBeVisible();
+});
+
+test('leaving mid-mission and coming back resumes at the first unfinished step', async ({
+  page,
+}) => {
+  await startMission1(page);
+  await solveAll(page, PERFECT_RUN.slice(0, 2));
+  await page.reload();
+  await expect(page).toHaveURL(/\/case-3$/);
+  await page.goto('/');
+  await page.getByRole('link', { name: 'Fortsett der du slapp' }).click();
+  await expect(page).toHaveURL(/\/case-3$/);
+});
+
+test('a missed transfer case still needs its backup after a reload', async ({ page }) => {
+  await startMission1(page);
+  await solveAll(page, PERFECT_RUN.slice(0, 9));
+  await choose(page, 'A');
+  await page.reload();
+  await solve(page, 'transfer-1', 'B');
+  await expect(page).toHaveURL(/\/transfer-1-backup$/);
+});
+
+test('"Spill igjen" replays the mission without losing stickers', async ({ page }) => {
+  await startMission1(page);
+  await solveAll(page, PERFECT_RUN);
+  await page.goto('/#/mission/find-the-impostor');
+  await page.getByRole('button', { name: 'Spill igjen' }).click();
+  await expect(page).toHaveURL(/\/case-1$/);
+  expect((await storedProgress(page))?.stickers).toEqual(['link-detective', 'sharp-eye']);
+});
+
+test('playable with the keyboard alone', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'A keyboard-only run is a desktop scenario');
+  await startMission1(page);
+  // Tab to the "B" option and press Enter.
+  for (let i = 0; i < 12; i++) {
+    await page.keyboard.press('Tab');
+    const text = await page.evaluate(() => document.activeElement?.textContent ?? '');
+    if (text.startsWith('B ')) break;
+  }
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.feedback')).toBeFocused();
+  // Through the feedback ("Les mer"), on to "Neste".
+  await page.keyboard.press('Tab');
+  await expect(page.getByText('Les mer')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Neste' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(/\/case-2$/);
+  await expect(page.getByRole('heading', { level: 1 })).toBeFocused();
+});
+
+test('no axe violations in any Mission 1 state', async ({ page }) => {
+  await startMission1(page);
+  await page.getByRole('button', { name: 'Bruk lupen' }).click();
+  await page.getByRole('button', { name: 'Vis et hint' }).click();
+  await expectNoAxeViolations(page);
+  await choose(page, 'A');
+  await expectNoAxeViolations(page);
+  await choose(page, 'B');
+  await page.getByText('Les mer').click();
+  await expectNoAxeViolations(page);
+  await next(page);
+  await solveAll(page, PERFECT_RUN.slice(1, 6));
+  await expect(page).toHaveURL(/\/habit$/);
+  await expectNoAxeViolations(page);
+  await choose(page, 'A');
+  await expectNoAxeViolations(page);
+  await choose(page, 'B');
+  await next(page);
+  await expect(page).toHaveURL(/\/habit-tip$/);
+  await expectNoAxeViolations(page);
+  await solveAll(page, PERFECT_RUN.slice(7));
+  await expectHeading(page, 'Oppdraget er fullført');
+  await expectNoAxeViolations(page);
+});
