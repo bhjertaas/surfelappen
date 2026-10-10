@@ -1082,3 +1082,88 @@
   opacity: 0.45;
   cursor: not-allowed;
 }
+
+/* Fasaden: "Reklamejakt" */
+
+.post__label {
+  margin: var(--space-2) 0 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.post__picture {
+  position: relative;
+  margin-block: var(--space-2);
+  line-height: 0;
+}
+
+.post__picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+/* The Norwegian «Retusjert person» mark (drawn here, not in the art). */
+.post__retouch {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 4px 8px;
+  border: 2px solid #000;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.post__stamp {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  padding: 4px 16px;
+  border: 5px solid #c4122f;
+  border-radius: 8px;
+  color: #c4122f;
+  background: rgb(255 255 255 / 0.75);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  animation: stamp 0.25s ease-out;
+}
+
+.post__stamp--real {
+  border-color: #1d7a3e;
+  color: #1d7a3e;
+}
+
+@keyframes stamp {
+  from {
+    transform: translate(-50%, -50%) rotate(-12deg) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.post__clues {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius);
+  background: var(--color-notice-bg);
+}
+
+.post__clues p {
+  margin: 0 0 var(--space-1);
+}
+
+.post__clues ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.sort__choices .button {
+  min-width: 9rem;
+}

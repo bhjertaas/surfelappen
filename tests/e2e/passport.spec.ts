@@ -34,9 +34,10 @@ test('the passport shows every sticker and how to earn it', async ({ page }) => 
     'Ti fingre',
     'Stø hånd',
     'Bak fasaden',
+    'Reklamejeger',
     'Nysgjerrig',
   ]);
-  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(6);
+  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(7);
   await expect(page.getByText('Du har besøkt 1 av 5 hus.')).toBeVisible();
   await expectNoAxeViolations(page);
 });
@@ -83,7 +84,7 @@ test('stickers survive a reload and are cleared only by a confirmed reset', asyn
   ).toBeVisible();
   await expect(
     page.getByRole('list', { name: 'Klistremerker' }).getByText('Ikke tjent ennå'),
-  ).toHaveCount(6);
+  ).toHaveCount(7);
   expect(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY)).toBeNull();
   await page.goto('/');
   await expect(page.getByRole('link', { name: 'Fortsett der du slapp' })).toHaveCount(0);
@@ -99,7 +100,7 @@ test('the about page explains storage, deletion, sources and licence', async ({ 
     'href',
     'https://nettvett.no',
   );
-  await expect(page.getByText('Ikke kontrollert mot kildene ennå.')).toBeVisible();
+  await expect(page.getByText('Ikke kontrollert mot kildene ennå.').first()).toBeVisible();
   await expect(page.getByText('ikke et bevis på kompetanse')).toBeVisible();
   await expect(page.getByText(/^Versjon \d+\.\d+\.\d+\+\w+$/)).toBeVisible();
   await expectNoAxeViolations(page);

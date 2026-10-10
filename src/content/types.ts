@@ -179,7 +179,27 @@ export interface ComposeStep {
   readonly captions: readonly { readonly id: string; readonly likes: number }[];
 }
 
-export type FacadeStep = ComposeStep;
+/** One post in "Reklamejakt". */
+export interface SortPost {
+  readonly id: string;
+  readonly image: ArtId;
+  readonly verdict: 'ad' | 'not-ad';
+  /** How the post is marked as advertising, if at all (shown above the picture). */
+  readonly label?: 'reklame' | 'annonse';
+  /** Carries the «Retusjert person» mark (a body or skin has been edited). */
+  readonly retouchMark?: boolean;
+  /** `transfer` posts come last and are new kinds of cases: the Reklamejeger sticker. */
+  readonly role: 'main' | 'transfer';
+}
+
+/** "Reklamejakt": sort a feed into advertising or not, looking closer for clues. */
+export interface SortStep {
+  readonly kind: 'sort';
+  readonly id: StepId;
+  readonly posts: readonly SortPost[];
+}
+
+export type FacadeStep = ComposeStep | SortStep;
 
 /** Completion: every step done, in order. */
 export type FacadeMission = MissionBase<'facade', FacadeStep>;
@@ -189,7 +209,7 @@ export type MissionStructure = LinkInspectMission | TypingMission | FacadeMissio
 // ---------------------------------------------------------------------------
 // stickers and town
 
-export type StickerCondition = 'transfer-first-try' | 'final-line-flawless';
+export type StickerCondition = 'transfer-first-try' | 'final-line-flawless' | 'ads-first-try';
 
 export type AwardedBy =
   | { readonly mission: MissionId }

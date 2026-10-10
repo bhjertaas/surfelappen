@@ -28,6 +28,8 @@ function conditionMet(condition: StickerCondition, mission: MissionStructure, ru
       );
     case 'final-line-flawless':
       return run.interaction === 'typing' && run.finalErrors === 0;
+    case 'ads-first-try':
+      return run.interaction === 'facade' && (run.flawless?.length ?? 0) > 0;
   }
 }
 

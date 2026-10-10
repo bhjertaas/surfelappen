@@ -73,6 +73,11 @@ const SPECS: Record<string, Spec> = {
   'post-routine-real': post(['post-routine']),
   'post-sponsored': post(['post-filter']),
   'post-sponsored-real': post(['post-sponsored']),
+  'post-serum': post(),
+  'post-beach': post(['post-filter']),
+  'post-cabin': post(),
+  'post-gamer': post(),
+  'post-taco': post(),
   town: { style: 'town', width: 1536, height: 1024, generate: '1536x1024' },
   character: { style: 'town', width: 512, height: 512, generate: '1536x1024', transparent: true },
   'character-adult-front': {
@@ -123,6 +128,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-steady-hand': sticker,
   'sticker-curious': sticker,
   'sticker-behind-the-facade': sticker,
+  'sticker-ad-hunter': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;

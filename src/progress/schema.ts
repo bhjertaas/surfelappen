@@ -34,6 +34,8 @@ export interface TypingRun {
 export interface FacadeRun {
   readonly interaction: 'facade';
   readonly done: readonly StepId[];
+  /** Sort steps whose transfer posts were all right on the first try (Reklamejeger). */
+  readonly flawless?: readonly StepId[];
 }
 
 export type Run = LinkInspectRun | TypingRun | FacadeRun;

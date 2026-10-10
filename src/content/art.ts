@@ -3,10 +3,18 @@ import characterAdultFront from '../assets/art/character-adult-front.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
 import portraitMira from '../assets/art/portrait-mira.webp';
+import postBeach from '../assets/art/post-beach.webp';
+import postCabin from '../assets/art/post-cabin.webp';
+import postGamer from '../assets/art/post-gamer.webp';
+import postRoutine from '../assets/art/post-routine.webp';
+import postSerum from '../assets/art/post-serum.webp';
+import postSponsored from '../assets/art/post-sponsored.webp';
+import postTaco from '../assets/art/post-taco.webp';
 import roomReality from '../assets/art/room-reality.webp';
 import sceneArcade from '../assets/art/scene-arcade.png';
 import sceneFacade from '../assets/art/scene-facade.webp';
 import scenePhishing from '../assets/art/scene-phishing.webp';
+import stickerAdHunter from '../assets/art/sticker-ad-hunter.webp';
 import stickerBehindTheFacade from '../assets/art/sticker-behind-the-facade.webp';
 import stickerCurious from '../assets/art/sticker-curious.webp';
 import stickerLinkDetective from '../assets/art/sticker-link-detective.webp';
@@ -33,6 +41,14 @@ export const art = {
   town: { src: townUrl, width: 1536, height: 1024 },
   'portrait-hanne': { src: portraitHanne, width: 256, height: 256 },
   'portrait-kai': { src: portraitKai, width: 64, height: 64 },
+  'post-sponsored': { src: postSponsored, width: 768, height: 768 },
+  'post-routine': { src: postRoutine, width: 768, height: 768 },
+  'post-serum': { src: postSerum, width: 768, height: 768 },
+  'post-cabin': { src: postCabin, width: 768, height: 768 },
+  'post-beach': { src: postBeach, width: 768, height: 768 },
+  'post-gamer': { src: postGamer, width: 768, height: 768 },
+  'post-taco': { src: postTaco, width: 768, height: 768 },
+  'sticker-ad-hunter': sticker(stickerAdHunter),
   'portrait-mira': { src: portraitMira, width: 256, height: 256 },
   'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
   'room-reality': { src: roomReality, width: 1536, height: 1024 },

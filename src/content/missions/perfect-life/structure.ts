@@ -9,9 +9,18 @@ export const perfectLife = {
   guide: 'portrait-mira',
   theme: 'comic',
   scene: 'scene-facade',
-  stickers: ['behind-the-facade'],
+  stickers: ['behind-the-facade', 'ad-hunter'],
   reviewedOn: null,
-  sources: [],
+  sources: [
+    {
+      title: 'Forbrukertilsynet: markedsføring og reklame i sosiale medier',
+      url: 'https://www.forbrukertilsynet.no/',
+    },
+    {
+      title: 'Prop. 134 L (2020–2021): merking av retusjert reklame',
+      url: 'https://www.regjeringen.no/no/dokumenter/prop.-134-l-20202021/id2842301/',
+    },
+  ],
   steps: [
     {
       kind: 'compose',
@@ -35,6 +44,26 @@ export const perfectLife = {
         { id: 'nofilter', likes: 4800 },
         { id: 'plain', likes: 2100 },
         { id: 'honest', likes: 900 },
+      ],
+    },
+    {
+      kind: 'sort',
+      id: 'ad-hunt',
+      posts: [
+        { id: 'shake', image: 'post-sponsored', verdict: 'ad', role: 'main' },
+        { id: 'yoga', image: 'post-routine', verdict: 'not-ad', role: 'main' },
+        {
+          id: 'serum',
+          image: 'post-serum',
+          verdict: 'ad',
+          label: 'reklame',
+          retouchMark: true,
+          role: 'main',
+        },
+        { id: 'cabin', image: 'post-cabin', verdict: 'not-ad', role: 'main' },
+        { id: 'beach', image: 'post-beach', verdict: 'ad', role: 'main' },
+        { id: 'gamer', image: 'post-gamer', verdict: 'ad', role: 'transfer' },
+        { id: 'taco', image: 'post-taco', verdict: 'not-ad', role: 'transfer' },
       ],
     },
   ],

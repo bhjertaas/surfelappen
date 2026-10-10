@@ -35,7 +35,33 @@ test('Lag glansbildet: crop away the mess, polish, caption, post, look behind', 
   await expect(page.getByText('Dette er hele bildet.')).toBeVisible();
   await page.getByRole('button', { name: 'Neste' }).click();
 
-  await expect(page.getByRole('dialog', { name: 'Nytt klistremerke' })).toContainText(
-    'Bak fasaden',
-  );
+  // Reklamejakt: a wrong answer is explained and retried; the rest right first time.
+  await expect(page.getByRole('heading', { name: 'Reklamejakt' })).toBeVisible();
+  await expect(page.getByText('Innlegg 1 av 7')).toBeVisible();
+  await page.getByRole('button', { name: 'Ikke reklame', exact: true }).click();
+  await expect(page.locator('.feedback')).toBeFocused();
+  await expect(page.locator('.feedback')).toContainText('Ikke helt');
+  await page.getByRole('button', { name: 'Prøv igjen' }).click();
+  await expect(page.getByText('rabattkode med navnet hennes')).toBeVisible();
+  const verdicts = [
+    'Reklame',
+    'Ikke reklame',
+    'Reklame',
+    'Ikke reklame',
+    'Reklame',
+    'Reklame',
+    'Ikke reklame',
+  ];
+  for (const verdict of verdicts) {
+    await page.getByRole('button', { name: verdict, exact: true }).click();
+    await expect(page.locator('.feedback')).toContainText('Riktig');
+    await page.getByRole('button', { name: 'Neste' }).click();
+  }
+  await expect(page.getByText('Riktig på første forsøk: 6 av 7.')).toBeVisible();
+  await expectNoAxeViolations(page);
+  await page.getByRole('button', { name: 'Ferdig' }).click();
+
+  const dialog = page.getByRole('dialog', { name: 'Nye klistremerker' });
+  await expect(dialog).toContainText('Bak fasaden');
+  await expect(dialog).toContainText('Reklamejeger');
 });

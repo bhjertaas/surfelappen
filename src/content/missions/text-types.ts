@@ -69,7 +69,31 @@ export interface ComposeText {
   readonly reveal: string;
 }
 
-export type StepText = CaseText | ChoiceText | InfoText | TypingStepText | ComposeText;
+/** One post in "Reklamejakt". */
+export interface SortPostText {
+  readonly account: string;
+  /** Shown above the picture when the post is labelled, e.g. "Reklame · Betalt samarbeid med Fjordglød". */
+  readonly label?: string;
+  readonly caption: string;
+  /** What "Se nærmere" reveals. */
+  readonly clues: readonly string[];
+  /** One or two sentences after a right answer. */
+  readonly right: string;
+  /** After a wrong answer: a nudge, without giving the answer away. */
+  readonly wrong: string;
+}
+
+/** "Reklamejakt": Mira's lines and the posts. */
+export interface SortText {
+  readonly brief: string;
+  /** Mira, before the last posts (the transfer cases). */
+  readonly transferIntro: string;
+  readonly posts: Readonly<Record<string, SortPostText>>;
+  /** Mira, when the feed is sorted. */
+  readonly done: string;
+}
+
+export type StepText = CaseText | ChoiceText | InfoText | TypingStepText | ComposeText | SortText;
 
 /** Text shared by every mission. */
 export interface MissionText {
@@ -98,8 +122,12 @@ export interface LinkInspectText<M extends LinkInspectMission> extends MissionTe
 }
 
 /** Text for a facade mission: one entry per step. */
+type FacadeTextForStep<S> = S extends { kind: 'sort' } ? SortText : ComposeText;
+
 export interface FacadeText<M extends FacadeMission> extends MissionText {
-  readonly steps: { readonly [S in M['steps'][number] as S['id']]: ComposeText };
+  readonly steps: {
+    readonly [S in M['steps'][number] as S['id']]: FacadeTextForStep<S>;
+  };
 }
 
 /** Text for a typing mission: an instruction per step. */

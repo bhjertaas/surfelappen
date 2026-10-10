@@ -15,6 +15,9 @@ export function facadeCurrentStep(mission: FacadeMission, run: FacadeRun): StepI
   return facadeSequence(mission).find((id) => !run.done.includes(id)) ?? 'done';
 }
 
-export function completeFacadeStep(run: FacadeRun, stepId: StepId): FacadeRun {
-  return run.done.includes(stepId) ? run : { ...run, done: [...run.done, stepId] };
+/** Records a finished step; `flawless` marks a sort step whose transfer posts were all first-try. */
+export function completeFacadeStep(run: FacadeRun, stepId: StepId, flawless = false): FacadeRun {
+  if (run.done.includes(stepId)) return run;
+  const next = { ...run, done: [...run.done, stepId] };
+  return flawless ? { ...next, flawless: [...(run.flawless ?? []), stepId] } : next;
 }
