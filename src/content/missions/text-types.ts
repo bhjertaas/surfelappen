@@ -1,4 +1,4 @@
-import type { LinkInspectMission, OptionId } from '../types.ts';
+import type { LinkInspectMission, OptionId, TypingMission } from '../types.ts';
 
 /**
  * Per-locale text for a mission (ADR 0004). Step texts are typed from the
@@ -37,7 +37,12 @@ export interface InfoText {
   readonly body: readonly string[];
 }
 
-export type StepText = CaseText | ChoiceText | InfoText;
+/** A typing step: what to do, shown above the drill. */
+export interface TypingStepText {
+  readonly instruction: string;
+}
+
+export type StepText = CaseText | ChoiceText | InfoText | TypingStepText;
 
 /** Text shared by every mission. */
 export interface MissionText {
@@ -63,4 +68,9 @@ type TextForStep<S> = S extends { kind: 'case' }
 /** Text for a link-inspect mission: one entry per step, of the matching kind. */
 export interface LinkInspectText<M extends LinkInspectMission> extends MissionText {
   readonly steps: { readonly [S in M['steps'][number] as S['id']]: TextForStep<S> };
+}
+
+/** Text for a typing mission: an instruction per step. */
+export interface TypingText<M extends TypingMission> extends MissionText {
+  readonly steps: { readonly [S in M['steps'][number] as S['id']]: TypingStepText };
 }

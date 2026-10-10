@@ -4,9 +4,8 @@ import { href } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { findMission } from '../content/missions/index.ts';
 import type { MissionStructure } from '../content/types.ts';
-import { format } from '../i18n/format.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
-import { currentStep, stepSequence } from '../interactions/progress.ts';
+import { currentStep } from '../interactions/progress.ts';
 import { interactionViews } from '../interactions/registry.ts';
 import { useProgress } from '../progress/hooks.ts';
 import type { Run } from '../progress/schema.ts';
@@ -21,7 +20,6 @@ export function MissionStep({ missionId, stepId }: { missionId: string; stepId: 
 /**
  * The generic step shell. Only the player's current step can be shown: any other
  * step URL (an old link, or a step further ahead) is replaced by the current one.
- * The interaction views arrive in phases 3 and 4.
  */
 function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }) {
   const { m } = useI18n();
@@ -62,26 +60,14 @@ function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }
   const { StepView } = interactionViews[mission.interaction];
   return (
     <Page title={text.title}>
-      {StepView ? (
-        <StepView
-          mission={mission}
-          text={text}
-          stepId={stepId}
-          run={entry.run}
-          save={save}
-          advance={advance}
-        />
-      ) : (
-        <>
-          <p class="step-progress">
-            {format(m.mission.progress, {
-              current: stepSequence(mission, entry.run).indexOf(stepId) + 1,
-              total: stepSequence(mission, entry.run).length,
-            })}
-          </p>
-          <p>{m.mission.notReady}</p>
-        </>
-      )}
+      <StepView
+        mission={mission}
+        text={text}
+        stepId={stepId}
+        run={entry.run}
+        save={save}
+        advance={advance}
+      />
       <p class="exit">
         <a href={href({ name: 'town' })}>{m.mission.exit}</a>
       </p>

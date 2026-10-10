@@ -42,7 +42,7 @@ function Summary({ mission }: { mission: MissionStructure }) {
       <p>
         <Rich text={text.summary.takeaway} />
       </p>
-      {SummaryDetails && entry && <SummaryDetails mission={mission} run={entry.run} />}
+      {entry && <SummaryDetails mission={mission} run={entry.run} />}
       <h2>{m.summary.stickersHeading}</h2>
       <ul class="sticker-list">
         {mission.stickers.map((id) => {

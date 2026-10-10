@@ -61,7 +61,7 @@ Phase 1 can be built and tested locally without these; only its deploy step need
 - Content tests: text domains match their case; markup balanced; every step and option has text.
 - e2e (phone + desktop, Chromium + WebKit): perfect run; run with misses, hints and both backups; quit mid-mission → reload → resumes; back button leaves the mission; keyboard-only run; axe on case, feedback, habit, info and summary states.
 
-## Phase 4: Mission 2, *Ti fingre*
+## Phase 4: Mission 2, *Ti fingre* ✅
 
 **Delivers**
 - `typing` module: `matcher.ts` (key/code matching, ignored events, layout-suspect counting, positional mode, Caps Lock, accuracy), `keymap-nb.ts`, capture input, next-character display with a live region, on-screen keyboard with finger hints, wrong-key message, layout hint, Caps Lock note.

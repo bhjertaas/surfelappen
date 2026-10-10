@@ -576,7 +576,7 @@ Step 5 needs at least 90% accuracy. Every drill contains only keys taught in ear
 - **Layout hint** (after 3 layout-looking keystrokes, which are not counted as errors): "Det ser ut som tastaturet ditt er satt til et annet språk. Bytt til norsk tastatur, eller fortsett hvis du vil." *Fortsett* switches the drill to matching by key position.
 - **Caps Lock note:** "Caps Lock er på. Det går fint, men bokstavene blir store."
 - **Touch-only notice:** "Trenger tastatur. For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel." Buttons: *Start likevel* · *Tilbake til byen*
-- **Step done:** "Bra! *\[accuracy\]* % riktig."
+- **Step done:** "Godt jobbet. *\[accuracy\]* % riktig."
 - **Final line below 90 %:** "*\[accuracy\]* % riktig. Prøv linjen én gang til, rolig og nøyaktig."
 
 ### Summary

@@ -540,3 +540,152 @@
   color: var(--color-text);
   font-weight: 700;
 }
+
+/* Mission 2: typing */
+
+.drill {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  text-align: center;
+}
+
+.drill__line {
+  margin: 0 0 var(--space-3);
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.drill__done {
+  color: var(--color-muted);
+}
+
+.drill__current {
+  display: inline-block;
+  min-width: 0.8em;
+  border-bottom: 4px solid var(--color-primary);
+  background: var(--color-notice-bg);
+  font-weight: 700;
+}
+
+.drill__next {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.instruction {
+  font-size: 1.25rem;
+}
+
+.typing-status {
+  min-height: 1.55em;
+  font-weight: 700;
+}
+
+.typing-status--wrong {
+  color: var(--color-wrong);
+}
+
+.capture {
+  margin: var(--space-4) 0;
+}
+
+.capture__label {
+  display: grid;
+  gap: var(--space-1);
+  font-weight: 700;
+}
+
+.capture__input {
+  width: 100%;
+  max-width: 20rem;
+  min-height: var(--tap);
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: transparent;
+  caret-color: transparent;
+  font: inherit;
+}
+
+.capture__input:focus {
+  border-color: var(--color-primary);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.notice--small {
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+}
+
+.keyboard {
+  display: grid;
+  gap: 4px;
+  margin: var(--space-5) 0;
+  font-size: clamp(0.625rem, 2.6vw, 1rem);
+}
+
+.keyboard__row {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.keyboard__row:nth-child(2) {
+  margin-left: 2%;
+}
+
+.keyboard__row:nth-child(3) {
+  margin-left: 6%;
+}
+
+.keyboard__key {
+  position: relative;
+  display: inline-flex;
+  flex: 0 1 2.5em;
+  align-items: center;
+  justify-content: center;
+  height: 2.5em;
+  border: 2px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-surface);
+  font-weight: 700;
+}
+
+.keyboard__key--space {
+  flex-basis: 16em;
+  font-weight: 400;
+}
+
+/* The F and J bumps: "the way home". */
+.keyboard__key--bump::after {
+  content: "";
+  position: absolute;
+  bottom: 0.3em;
+  width: 0.8em;
+  height: 2px;
+  background: currentColor;
+}
+
+/* Never colour alone: the next key is also thicker, raised and underlined. */
+.keyboard__key--next {
+  border-width: 4px;
+  border-color: var(--color-primary-strong);
+  background: var(--color-notice-bg);
+  text-decoration: underline;
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .keyboard__key--next {
+    transform: none;
+  }
+}

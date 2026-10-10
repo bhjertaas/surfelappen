@@ -102,7 +102,6 @@ export const nb = {
     backToTown: 'Tilbake til byen',
     exit: 'Avslutt og gå til byen',
     progress: 'Del {current} av {total}',
-    notReady: 'Denne delen av oppdraget er ikke ferdig ennå. Den kommer i en senere versjon.',
   },
   linkInspect: {
     caseProgress: 'Sak {current} av {total}',
@@ -135,6 +134,35 @@ export const nb = {
     tryAgain: 'Prøv igjen',
     firstTry: 'Du svarte riktig på første forsøk på {correct} av {total} saker.',
     firstTryNote: 'Det er bare du som ser dette.',
+  },
+  typing: {
+    lineProgress: 'Linje {current} av {total}',
+    inputLabel: 'Skriv her',
+    inputHelp: 'Trykk i feltet hvis tastene ikke virker. Det du skriver lagres ikke.',
+    nextKey: 'Neste tast: {key}, med {finger}.',
+    wrongKey: 'Det var {typed}. Prøv {expected} med {finger}.',
+    layoutHint:
+      'Det ser ut som tastaturet ditt er satt til et annet språk. Bytt til norsk tastatur, eller fortsett hvis du vil.',
+    continueAnyway: 'Fortsett med dette tastaturet',
+    capsLock: 'Caps Lock er på. Det går fint, men bokstavene blir store.',
+    stepDone: 'Godt jobbet. {accuracy} riktig.',
+    finalTooLow:
+      '{accuracy} riktig. Du trenger minst {min} for å fullføre. Prøv linjen én gang til, rolig og nøyaktig.',
+    tryAgain: 'Prøv linjen igjen',
+    next: 'Neste',
+    finalScore: 'Siste linje: {accuracy} riktig.',
+    space: 'mellomrom',
+    fingers: {
+      'left-pinky': 'venstre lillefinger',
+      'left-ring': 'venstre ringfinger',
+      'left-middle': 'venstre langfinger',
+      'left-index': 'venstre pekefinger',
+      'right-index': 'høyre pekefinger',
+      'right-middle': 'høyre langfinger',
+      'right-ring': 'høyre ringfinger',
+      'right-pinky': 'høyre lillefinger',
+      thumb: 'tommelen',
+    },
   },
   keyboard: {
     title: 'Trenger tastatur',

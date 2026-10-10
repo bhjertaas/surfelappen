@@ -10,8 +10,8 @@
 - **Ignored:** modifier-only keys, `isComposing` / keyCode 229, `Dead`, auto-repeat, and Tab/Escape (left to the browser).
 - **Matching:** by `key` (case-insensitive until a lesson teaches capitals). A keystroke whose `code` is the expected key's position but whose `key` differs, e.g. `;` on `Semicolon` where `ø` is expected, is **layout-suspect**: not counted. After 3, the layout hint appears; "Fortsett" switches the drill to **positional matching** by `code`.
 - **Caps Lock:** detected via `getModifierState('CapsLock')`; a small note, no errors.
-- **Accuracy** = correct ÷ (correct + wrong) on the final line, shown as a whole percent with `Intl.NumberFormat`. Completion ≥ 90%. *Stø hånd* = zero wrong keystrokes on the final line.
-- `typing/matcher.ts` is pure and unit-tested; `keymap-nb.ts` maps `code` → label, hand, finger for the on-screen keyboard and the "Prøv K med høyre langfinger" message.
+- **Accuracy** = correct ÷ (correct + wrong), shown as a whole percent with `Intl.NumberFormat`. Every step shows it; only the final step has a threshold. The threshold compares the exact ratio (30/33 = 90.9 % passes, 30/34 = 88.2 % doesn't), so rounding can't let 89.6 % through. *Stø hånd* = zero wrong keystrokes on the passing attempt of the final line.
+- `typing/matcher.ts` (one keystroke) and `typing/stepState.ts` (a whole step as a reducer: lines, totals, layout hint, result, retry) are pure and unit-tested; `keymap-nb.ts` maps `code` → label, hand, finger for the on-screen keyboard and the "Prøv K med høyre langfinger" message.
 
 ## Alternatives
 - `role="application"` div as capture: no text-field semantics, but less predictable across screen readers.
