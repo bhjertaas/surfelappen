@@ -2,7 +2,7 @@
 
 **Status:** Accepted · 2026-10-10 · Amends the art sizes in [0011](0011-art-and-fonts.md) · *Updated:* the art is now illustrated per theme, not pixel art throughout (see below and `docs/concept.md`)
 
-> **Update (same day).** The pixel-art town was replaced by an illustrated isometric town, and each place got its own theme: the town and Gone Phishing are painted illustrations (WebP), Arkaden stays pixel art (indexed PNG), Filterboulevarden will be comic style. The script supports both (`colours` set = pixel art). Pieces can be cut from a larger image (`from`), e.g. guide portraits from their scene and the two character views from one character sheet. The image budget is 3 MB. The rest of this ADR (source, review, licence) still holds.
+> **Update (same day).** The pixel-art town was replaced by an illustrated isometric town, and each place got its own theme: the town and Gone Phishing are painted illustrations (WebP), Arkaden stays pixel art (indexed PNG), Fasaden will be comic style. The script supports both (`colours` set = pixel art). Pieces can be cut from a larger image (`from`), e.g. guide portraits from their scene and the two character views from one character sheet. The image budget is 3 MB. The rest of this ADR (source, review, licence) still holds.
 
 ## Context
 Phase 7 needs final art: the town, sticker art, portraits for the townspeople and an app icon. Surfelappen is a hobby project for friends and family; look & feel matters more than hand-made provenance. The owner already makes illustrations with the OpenAI image API for minhule.eu, and the keys are in the git-ignored `.env` (ADR 0011 allows dev-time use). ADR 0011 asked for a licensing note before AI output became final art.

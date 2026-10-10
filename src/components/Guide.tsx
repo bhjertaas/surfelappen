@@ -16,7 +16,7 @@ export function Guide({ portrait, name, children }: Props) {
     <div class="guide">
       {image && (
         <img
-          class="pixel-art guide__portrait"
+          class="guide__portrait"
           src={image.src}
           width={image.width * 2}
           height={image.height * 2}

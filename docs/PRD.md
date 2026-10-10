@@ -1,6 +1,6 @@
 # Surfelappen — PRD v0.4
 
-> **v0.5 concept refresh:** `docs/concept.md` overrides this PRD on world, place names, tone and art (an isometric town with themed places: Gone Phishing, Arkaden, Filterboulevarden, Ryktebørsen, Lisenskontoret). Mechanics, privacy and progress below still hold.
+> **v0.5 concept refresh:** `docs/concept.md` overrides this PRD on world, place names, tone and art (an isometric town with themed places: Gone Phishing, Arkaden, Fasaden, Ryktebørsen, Lisenskontoret). Mechanics, privacy and progress below still hold.
 
 Oct 10, 2026 · @Benny
 

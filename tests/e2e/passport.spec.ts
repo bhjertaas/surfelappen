@@ -8,7 +8,7 @@ const list = (page: import('@playwright/test').Page) =>
 async function visitEveryBuilding(page: import('@playwright/test').Page) {
   await page.goto('/#/town');
   await list(page)
-    .getByRole('button', { name: /Filterboulevarden/ })
+    .getByRole('button', { name: /Fasaden/ })
     .click();
   await list(page)
     .getByRole('button', { name: /Ryktebørsen/ })

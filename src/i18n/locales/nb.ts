@@ -22,8 +22,8 @@ const buildings: Record<string, BuildingText> = {
     name: 'Arkaden',
     about: 'Lær å skrive med ti fingre, uten å se ned.',
   },
-  boulevard: {
-    name: 'Filterboulevarden',
+  facade: {
+    name: 'Fasaden',
     about: 'Om influensere, filtre og det perfekte livet.',
     closed: 'Her kommer et oppdrag om livet bak de perfekte bildene. Det er ikke klart ennå.',
   },

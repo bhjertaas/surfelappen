@@ -23,7 +23,7 @@ export const buildings = [
     image: 'town',
   },
   {
-    id: 'boulevard',
+    id: 'facade',
     status: 'coming-soon',
     missions: [],
     hotspot: { x: 960, y: 102, w: 320, h: 300 },

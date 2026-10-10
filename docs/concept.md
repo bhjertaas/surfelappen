@@ -22,7 +22,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 | --- | --- | --- | --- |
 | **Gone Phishing** (a bait-and-tackle shop on the pier, with the sign on the door) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
-| **Filterboulevarden** (working name) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
+| **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
 | **Ryktebørsen** (working name) | Rumours, fact-checking, AI images | Noir detective | Later |
 | **Lisenskontoret** / *The Licence Bureau* | Passport, and the final practical test that combines skills | Town style | Passport now; final test later |
 

@@ -88,9 +88,7 @@ function StickerImage({ id, earned }: { id: string; earned: boolean }) {
   if (!image) return null;
   return (
     <img
-      class={
-        earned ? 'pixel-art sticker-list__image' : 'pixel-art sticker-list__image sticker--locked'
-      }
+      class={earned ? 'sticker-list__image' : 'sticker-list__image sticker--locked'}
       src={image.src}
       width={image.width}
       height={image.height}

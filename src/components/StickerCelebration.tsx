@@ -41,13 +41,7 @@ export function StickerCelebration() {
           return (
             <li key={id}>
               {image && (
-                <img
-                  class="pixel-art celebration__image"
-                  src={image.src}
-                  width={96}
-                  height={96}
-                  alt=""
-                />
+                <img class="celebration__image" src={image.src} width={96} height={96} alt="" />
               )}
               <p class="celebration__name">{text?.name}</p>
               <p class="muted">{text?.howTo}</p>

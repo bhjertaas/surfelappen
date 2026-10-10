@@ -36,6 +36,15 @@ interface Spec {
   contain?: boolean;
 }
 
+const sticker: Spec = {
+  style: 'town',
+  width: 192,
+  height: 192,
+  generate: '1024x1024',
+  transparent: true,
+  contain: true,
+};
+
 const SPECS: Record<string, Spec> = {
   town: { style: 'town', width: 1536, height: 1024, generate: '1536x1024' },
   character: { style: 'town', width: 512, height: 512, generate: '1536x1024', transparent: true },
@@ -80,8 +89,13 @@ const SPECS: Record<string, Spec> = {
     generate: '1536x1024',
     colours: 48,
   },
-  'scene-boulevard': { style: 'comic', width: 1536, height: 1024, generate: '1536x1024' },
+  'scene-facade': { style: 'comic', width: 1536, height: 1024, generate: '1536x1024' },
   icon: { style: 'town', width: 512, height: 512, generate: '1024x1024' },
+  'sticker-link-detective': sticker,
+  'sticker-sharp-eye': sticker,
+  'sticker-ten-fingers': sticker,
+  'sticker-steady-hand': sticker,
+  'sticker-curious': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;
@@ -169,7 +183,8 @@ async function finish(raw: Buffer, spec: Spec): Promise<{ data: Buffer; ext: str
 
 /** Favicon and PWA icons from the icon. The maskable one keeps the art inside the safe zone. */
 async function writeIcons(source: Buffer): Promise<void> {
-  const out = (size: number) => sharp(source).resize(size, size).png({ compressionLevel: 9 });
+  const png = { palette: true, quality: 90, effort: 10, compressionLevel: 9 } as const;
+  const out = (size: number) => sharp(source).resize(size, size).png(png);
   const dir = join(root, 'public/icons');
   await out(64).toFile(join(root, 'public/favicon.png'));
   await out(192).toFile(join(dir, 'icon-192.png'));
@@ -180,7 +195,7 @@ async function writeIcons(source: Buffer): Promise<void> {
   const inner = await sharp(source).resize(410, 410).png().toBuffer();
   await sharp({ create: { width: 512, height: 512, channels: 4, background } })
     .composite([{ input: inner, left: 51, top: 51 }])
-    .png({ compressionLevel: 9 })
+    .png(png)
     .toFile(join(dir, 'icon-maskable-512.png'));
   console.log('icon: favicon and PWA icons written to public/');
 }
@@ -209,9 +224,11 @@ await Promise.all(
       writeFileSync(rawPath, await generate(id, spec, values.model));
     }
     const { data, ext } = await finish(readFileSync(rawPath), spec);
-    const out = values.draft
-      ? join(cache, `${name}.preview.${ext}`)
-      : join(root, `src/assets/art/${id}.${ext}`);
+    // The icon only feeds public/ (favicon, PWA icons); the game doesn't show it.
+    const out =
+      values.draft || id === 'icon'
+        ? join(cache, `${name}.preview.${ext}`)
+        : join(root, `src/assets/art/${id}.${ext}`);
     writeFileSync(out, data);
     console.log(`${name}: ${out} (${Math.round(data.length / 1024)} KB)`);
     if (id === 'icon' && !values.draft) await writeIcons(data);

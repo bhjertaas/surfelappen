@@ -39,11 +39,7 @@ export function Passport() {
             <li key={sticker.id} class={earned ? 'album__item album__item--earned' : 'album__item'}>
               {image && (
                 <img
-                  class={
-                    earned
-                      ? 'pixel-art album__image'
-                      : 'pixel-art album__image album__image--locked'
-                  }
+                  class={earned ? 'album__image' : 'album__image album__image--locked'}
                   src={image.src}
                   width={96}
                   height={96}
