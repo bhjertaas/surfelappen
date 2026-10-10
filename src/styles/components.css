@@ -689,3 +689,134 @@
     transform: none;
   }
 }
+
+/* Passport */
+
+.album {
+  display: grid;
+  /* Columns follow the text size, not the viewport: two side by side only when they fit. */
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.album__item {
+  display: flex;
+  min-width: 0;
+  overflow-wrap: break-word;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-3) var(--space-4);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius);
+}
+
+.album__item--earned {
+  border-style: solid;
+  background: var(--color-surface);
+}
+
+.album__image {
+  flex: none;
+  width: 4rem;
+  height: 4rem;
+}
+
+.album__name {
+  margin: 0 0 var(--space-1);
+  font-size: 1.25rem;
+}
+
+.album__status {
+  margin-bottom: var(--space-1);
+  font-weight: 700;
+}
+
+.album__item p:last-child {
+  margin-bottom: 0;
+}
+
+.reset {
+  margin: var(--space-6) 0;
+  padding-top: var(--space-4);
+  border-top: 2px solid var(--color-border);
+}
+
+.reset__status {
+  margin-top: var(--space-3);
+  font-weight: 700;
+}
+
+.button--danger {
+  border-color: var(--color-wrong);
+  background: var(--color-wrong);
+}
+
+.button--danger:hover {
+  border-color: #7a2216;
+  background: #7a2216;
+}
+
+/* Dialogs */
+
+.dialog {
+  width: min(32rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  padding: var(--space-4) var(--space-5);
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow: auto;
+}
+
+.dialog::backdrop {
+  background: rgb(31 42 54 / 0.6);
+}
+
+.dialog h2 {
+  margin-top: 0;
+}
+
+.celebration {
+  text-align: center;
+  animation: celebration-in 300ms ease-out;
+}
+
+.celebration__list {
+  padding: 0;
+  list-style: none;
+}
+
+.celebration__image {
+  width: 6rem;
+  height: 6rem;
+}
+
+.celebration__name {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-display);
+  font-variant-ligatures: var(--display-ligatures);
+  font-size: 1.5rem;
+}
+
+.celebration form {
+  display: flex;
+  justify-content: center;
+}
+
+/* Size only, no fading: text keeps full contrast throughout. */
+@keyframes celebration-in {
+  from {
+    transform: scale(0.85);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.source ul {
+  margin-top: 0;
+}

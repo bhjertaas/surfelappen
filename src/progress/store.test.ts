@@ -132,6 +132,22 @@ describe('createProgressStore', () => {
     expect(listener).toHaveBeenCalled();
   });
 
+  it('reports updates in this tab, but not reloads or resets', () => {
+    const backend = memoryBackend();
+    const store = createProgressStore(backend);
+    const listener = vi.fn();
+    store.onUpdate(listener);
+    store.update((p) => ({ ...p, stickers: ['curious'] }));
+    expect(listener).toHaveBeenCalledWith(
+      emptyProgress(),
+      expect.objectContaining({ stickers: ['curious'] }),
+    );
+    backend.write(JSON.stringify(sample));
+    store.reload();
+    store.reset();
+    expect(listener).toHaveBeenCalledTimes(1);
+  });
+
   it('reloads after another tab changed storage', () => {
     const backend = memoryBackend();
     const store = createProgressStore(backend);

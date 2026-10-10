@@ -4,7 +4,7 @@
     "lib": ["ES2022", "DOM"],
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
-    "types": ["node"]
+    "types": ["node", "vite/client"]
   },
   "include": ["tests", "scripts", "vite.config.ts", "playwright.config.ts", "src/**/*.test.ts"]
 }

@@ -1,6 +1,7 @@
 import type { ComponentChildren } from 'preact';
 import { useMemo } from 'preact/hooks';
 import { ErrorBoundary } from '../components/ErrorBoundary.tsx';
+import { StickerCelebration } from '../components/StickerCelebration.tsx';
 import { StorageNote } from '../components/StorageNote.tsx';
 import { UpdateBar } from '../components/UpdateBar.tsx';
 import { I18nContext, i18nFor } from '../i18n/i18n.ts';
@@ -57,6 +58,7 @@ export function App({ store }: { store: ProgressStore }) {
         <ErrorBoundary key={key}>
           <Screen route={route} />
         </ErrorBoundary>
+        <StickerCelebration />
         <div class="bars">
           <StorageNote />
           <UpdateBar />

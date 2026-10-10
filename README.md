@@ -7,6 +7,7 @@ A small, free, browser-based game that teaches practical online safety and touch
 - What it is and why: [`docs/PRD.md`](docs/PRD.md)
 - How it's built: [`docs/architecture.md`](docs/architecture.md) and [`docs/decisions/`](docs/decisions/)
 - Build plan: [`docs/implementation-plan.md`](docs/implementation-plan.md)
+- Adding a mission: [`docs/adding-a-mission.md`](docs/adding-a-mission.md); yearly advice review: [`docs/content-review.md`](docs/content-review.md)
 
 ## Run it
 

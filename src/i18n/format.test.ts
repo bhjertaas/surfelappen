@@ -38,3 +38,10 @@ describe('percent', () => {
     expect(percent('nb', 1)).toBe('100 %');
   });
 });
+
+describe('formatDate', () => {
+  it('writes a long Norwegian date', async () => {
+    const { formatDate } = await import('./format.ts');
+    expect(formatDate('nb', '2026-10-10')).toBe('10. oktober 2026');
+  });
+});

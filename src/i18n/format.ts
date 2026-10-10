@@ -36,3 +36,10 @@ export function percent(locale: Locale, ratio: number): string {
     ratio,
   );
 }
+
+/** Formats an ISO date (`2026-10-10`) as a long date, e.g. "10. oktober 2026". */
+export function formatDate(locale: Locale, isoDate: string): string {
+  const [year, month, day] = isoDate.split('-').map(Number);
+  const date = new Date(Date.UTC(year ?? 1970, (month ?? 1) - 1, day ?? 1));
+  return new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' }).format(date);
+}

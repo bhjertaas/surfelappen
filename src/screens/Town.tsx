@@ -80,7 +80,13 @@ function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProp
       ? { name: 'passport' }
       : { name: 'mission-intro', missionId: firstMission };
   return (
-    <a class={className} style={style} href={href(target)}>
+    <a
+      class={className}
+      style={style}
+      href={href(target)}
+      // Selecting a building is the visit (Nysgjerrig); the screen also records it for deep links.
+      onClick={() => store.update((p) => visitBuilding(p, building.id))}
+    >
       {content}
     </a>
   );

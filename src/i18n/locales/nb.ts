@@ -180,22 +180,61 @@ export const nb = {
   },
   passport: {
     title: 'Passet ditt',
-    notReady: 'Her kommer klistremerkene du samler. Albumet er ikke ferdig ennå.',
+    intro:
+      'Her samler du klistremerker. Tomme plasser viser hvilke som finnes, og hva du gjør for å få dem.',
+    albumLabel: 'Klistremerker',
+    earned: 'Tjent',
+    notEarned: 'Ikke tjent ennå',
+    visited: 'Du har besøkt {visited} av {total} hus.',
+    resetHeading: 'Begynne helt på nytt?',
+    resetIntro: 'Du kan slette all fremgang og alle klistremerker på denne enheten.',
+    reset: 'Nullstill fremgang',
+    resetConfirmTitle: 'Slette all fremgang?',
+    resetConfirmBody:
+      'Alle klistremerker og alt du har gjort i oppdragene blir slettet fra denne enheten. Dette kan ikke angres.',
+    resetConfirm: 'Ja, slett alt',
+    resetCancel: 'Avbryt',
+    resetDone: 'Fremgangen er slettet.',
+  },
+  celebration: {
+    title: 'Nytt klistremerke',
+    titleMany: 'Nye klistremerker',
+    close: 'Fint',
   },
   about: {
     title: 'Om Surfelappen',
-    what: 'Surfelappen er et lite, gratis spill der du øver på trygg bruk av nett: å se hvor lenker egentlig fører, og å skrive med ti fingre.',
+    what: 'Surfelappen er et lite, gratis spill der du øver på trygg bruk av nett: å se hvor lenker egentlig fører, og å skrive med ti fingre. Det passer fint å spille sammen med noen.',
     privacyHeading: 'Personvern',
     privacy: [
-      'Fremgangen din lagres bare i nettleseren på denne enheten. Ingenting sendes til noen server.',
+      'Spillet husker hvilke oppdrag du har gjort, hvor langt du har kommet og hvilke klistremerker du har. Det lagres bare i nettleseren på denne enheten. Ingenting sendes til noen server.',
+      'Det lagres ikke navn, tidspunkter eller noe du skriver. Tastene du trykker i Ti fingre blir sjekket og glemt med en gang.',
       'Spillet bruker ikke informasjonskapsler (cookies), analyseverktøy eller innhold fra andre nettsteder.',
       'Som alle nettsteder ser vertstjenesten (GitHub Pages) at noen besøker siden, men spillet samler ikke inn noe om deg.',
     ],
+    deleteHeading: 'Slik sletter du det som er lagret',
+    delete:
+      'Gå til passet og trykk «Nullstill fremgang». Du kan også slette nettstedsdata for Surfelappen i innstillingene i nettleseren.',
+    sourcesHeading: 'Kilder',
+    sourcesIntro:
+      'Rådene i spillet er sjekket mot disse kildene. Vi kopierer ikke innhold fra dem.',
+    reviewedOn: 'Sist kontrollert: {date}.',
+    notReviewed: 'Ikke kontrollert mot kildene ennå.',
+    noSources: 'Dette oppdraget gir ikke sikkerhetsråd, så det har ingen kilder.',
     informalHeading: 'Ikke en offisiell prøve',
     informal: 'Klistremerkene og passet er bare for moro skyld. De er ikke et bevis på kompetanse.',
     fictionHeading: 'Alt er oppdiktet',
     fiction:
       'Fjordbanken, Pakkeposten og Lenkevik kommune finnes ikke. Alle nettadressene i spillet slutter på *.example*, som aldri kan føre til et ekte nettsted.',
+    creditsHeading: 'Laget av',
+    credits: [
+      'Laget av Benny Hjertaas.',
+      'Skrifttyper: Pixelify Sans av Stefie Justprince og Atkinson Hyperlegible Next av Braille Institute, begge med SIL Open Font License.',
+      'Grafikken er foreløpig enkle skisser.',
+    ],
+    licenceHeading: 'Lisens',
+    licence:
+      'Koden er fri programvare med MIT-lisens. Tekst og grafikk kan brukes og deles videre etter CC BY-NC-SA 4.0. Kildekoden ligger på GitHub.',
+    sourceCode: 'Se kildekoden på GitHub',
   },
   error: {
     notFoundTitle: 'Fant ikke siden',

@@ -13,6 +13,15 @@ test('a perfect run earns Lenkedetektiv and Skarpt øye', async ({ page }) => {
   await expect(page.getByText('Du har klistremerket Lenkedetektiv.')).toBeVisible();
   await expect(page.getByText('Du har klistremerket Skarpt øye.')).toBeVisible();
   expect((await storedProgress(page))?.stickers).toEqual(['link-detective', 'sharp-eye']);
+
+  // Both stickers are celebrated together, then focus returns to the summary.
+  const celebration = page.getByRole('dialog', { name: 'Nye klistremerker' });
+  await expect(celebration).toContainText('Lenkedetektiv');
+  await expect(celebration).toContainText('Skarpt øye');
+  await celebration.getByRole('button', { name: 'Fint' }).click();
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'Oppdraget er fullført' }),
+  ).toBeFocused();
 });
 
 test('wrong answers explain, retries are free, and missed transfer cases get a backup', async ({
@@ -93,6 +102,10 @@ test('a missed transfer case still needs its backup after a reload', async ({ pa
 test('"Spill igjen" replays the mission without losing stickers', async ({ page }) => {
   await startMission1(page);
   await solveAll(page, PERFECT_RUN);
+  await page
+    .getByRole('dialog', { name: 'Nye klistremerker' })
+    .getByRole('button', { name: 'Fint' })
+    .click();
   await page.goto('/#/mission/find-the-impostor');
   await page.getByRole('button', { name: 'Spill igjen' }).click();
   await expect(page).toHaveURL(/\/case-1$/);

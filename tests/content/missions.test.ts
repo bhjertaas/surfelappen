@@ -42,3 +42,15 @@ describe('all missions', () => {
     });
   }
 });
+
+describe('art', () => {
+  it('exists for every sticker and building', async () => {
+    const { artFor } = await import('../../src/content/art.ts');
+    const { stickers } = await import('../../src/content/stickers.ts');
+    const { buildings } = await import('../../src/content/town.ts');
+    for (const s of stickers)
+      expect(artFor(s.image), `sticker ${s.id}: art "${s.image}"`).toBeDefined();
+    for (const b of buildings)
+      expect(artFor(b.image), `building ${b.id}: art "${b.image}"`).toBeDefined();
+  });
+});

@@ -74,7 +74,7 @@ Phase 1 can be built and tested locally without these; only its deploy step need
 - e2e: Playwright `keyboard.press` with Norwegian `key`/`code` pairs for a full run; a below-90% final line forces a retry; a simulated US layout triggers the hint and positional mode; touch-only notice on the phone profile.
 - Manual: one real run with a physical Norwegian keyboard (you).
 
-## Phase 5: Passport and polish
+## Phase 5: Passport and polish ✅
 
 **Delivers**
 - Passport: all stickers, earned and empty, with "how to earn"; *Nysgjerrig*; reset with a `<dialog>` confirmation.

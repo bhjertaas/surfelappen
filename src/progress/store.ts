@@ -18,6 +18,12 @@ export interface ProgressStore {
   get(): Progress;
   update(next: (current: Progress) => Progress): void;
   subscribe(listener: () => void): () => void;
+  /**
+   * Called after each `update` in this tab with the state before and after. Not
+   * called for `reload` (another tab) or `reset`, so effects like a sticker
+   * celebration happen only where the sticker was earned.
+   */
+  onUpdate(listener: (before: Progress, after: Progress) => void): () => void;
   /** Clears everything, including stored data. Only after the player confirms. */
   reset(): void;
   /** Re-reads stored data, e.g. after another tab changed it. */
@@ -34,6 +40,7 @@ export function createProgressStore(
   derive: (progress: Progress) => Progress = (p) => p,
 ): ProgressStore {
   const listeners = new Set<() => void>();
+  const updateListeners = new Set<(before: Progress, after: Progress) => void>();
   let status: StoreStatus = backend ? 'ok' : 'unavailable';
   let state = emptyProgress();
 
@@ -83,11 +90,17 @@ export function createProgressStore(
   return {
     get: () => state,
     update(next) {
+      const before = state;
       const updated = derive(next(state));
       if (updated === state) return;
       state = updated;
       persist();
       notify();
+      for (const listener of updateListeners) listener(before, updated);
+    },
+    onUpdate(listener) {
+      updateListeners.add(listener);
+      return () => updateListeners.delete(listener);
     },
     subscribe(listener) {
       listeners.add(listener);
