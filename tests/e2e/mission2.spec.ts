@@ -21,10 +21,13 @@ test('a flawless run earns Ti fingre and Stø hånd', async ({ page }) => {
 
 test('real key presses work, and the field stays empty', async ({ page }) => {
   await startMission2(page);
+  // Keys are shown in lower case, as typed, so nobody reaches for Shift.
+  await expect(page.locator('.drill__next')).toHaveText('f');
+  await expect(page.getByText('Neste tast: f, med venstre pekefinger.')).toBeVisible();
   await page.keyboard.press('f');
   await page.keyboard.press('Space');
   await page.keyboard.press('k');
-  await expect(page.getByText('Det var K. Prøv J med høyre pekefinger.')).toBeVisible();
+  await expect(page.getByText('Det var k. Prøv j med høyre pekefinger.')).toBeVisible();
   await page.keyboard.press('j');
   await expect(page.getByText('Neste tast: mellomrom, med tommelen.')).toBeVisible();
   await expect(page.locator('.capture__input')).toHaveValue('');

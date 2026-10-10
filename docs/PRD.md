@@ -572,7 +572,7 @@ Step 5 needs at least 90% accuracy. Every drill contains only keys taught in ear
 
 ### Messages
 
-- **Wrong key:** "Det var *\[key\]*. Prøv *\[expected\]* med *\[finger\]*." (e.g. "Prøv K med høyre langfinger.")
+- **Wrong key:** "Det var *\[key\]*. Prøv *\[expected\]* med *\[finger\]*." (e.g. "Prøv k med høyre langfinger."). Keys are shown in lower case, as typed; only the drawn keyboard uses capitals, like real keycaps.
 - **Layout hint** (after 3 layout-looking keystrokes, which are not counted as errors): "Det ser ut som tastaturet ditt er satt til et annet språk. Bytt til norsk tastatur, eller fortsett hvis du vil." *Fortsett* switches the drill to matching by key position.
 - **Caps Lock note:** "Caps Lock er på. Det går fint, men bokstavene blir store."
 - **Touch-only notice:** "Trenger tastatur. For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel." Buttons: *Start likevel* · *Tilbake til byen*

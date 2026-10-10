@@ -60,7 +60,8 @@ function Drill({ step, instruction, positional, onUsePositional, onDone }: Drill
   const isFinal = step.minAccuracy !== undefined;
 
   const expected = expectedChar(state.drill);
-  const keyName = (ch: string) => (ch === ' ' ? m.typing.space : ch.toUpperCase());
+  // Lower case, as typed: a capital here reads as "hold Shift". Only the keycaps are upper case.
+  const keyName = (ch: string) => (ch === ' ' ? m.typing.space : ch);
   const fingerFor = (ch: string) => {
     const finger = keyForChar(ch)?.finger;
     return finger ? m.typing.fingers[finger] : '';
