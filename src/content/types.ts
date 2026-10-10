@@ -35,7 +35,7 @@ export interface Source {
 
 export type MissionTheme = 'pointclick' | 'arcade' | 'comic';
 
-export type InteractionId = 'link-inspect' | 'typing';
+export type InteractionId = 'link-inspect' | 'typing' | 'facade';
 export type Requirement = 'physical-keyboard';
 
 interface MissionBase<I extends InteractionId, S> {
@@ -147,7 +147,44 @@ export interface TypingStep {
 /** Completion: every step done, and the final step at or above its `minAccuracy`. */
 export type TypingMission = MissionBase<'typing', TypingStep>;
 
-export type MissionStructure = LinkInspectMission | TypingMission;
+// ---------------------------------------------------------------------------
+// facade (Fasaden: hands-on activities about the polished front online)
+
+/** A rectangle in an image's pixel space. */
+export interface Rect {
+  readonly x: number;
+  readonly y: number;
+  readonly w: number;
+  readonly h: number;
+}
+
+/**
+ * "Lag glansbildet": crop a messy picture down to the one nice spot, polish it,
+ * pick a caption and post it.
+ */
+export interface ComposeStep {
+  readonly kind: 'compose';
+  readonly id: StepId;
+  /** The wide "reality" picture (art ID); `width`×`height` is its pixel space. */
+  readonly image: ArtId;
+  readonly width: number;
+  readonly height: number;
+  /** What the post is of: must stay inside the frame. */
+  readonly subject: Rect;
+  /** Things that spoil the picture; each has a name in the text file. */
+  readonly mess: readonly { readonly id: string; readonly rect: Rect }[];
+  /** Square frame sizes the player can switch between, largest first. */
+  readonly frameSizes: readonly number[];
+  /** Captions to choose from; `likes` is how many likes the post gets with it. */
+  readonly captions: readonly { readonly id: string; readonly likes: number }[];
+}
+
+export type FacadeStep = ComposeStep;
+
+/** Completion: every step done, in order. */
+export type FacadeMission = MissionBase<'facade', FacadeStep>;
+
+export type MissionStructure = LinkInspectMission | TypingMission | FacadeMission;
 
 // ---------------------------------------------------------------------------
 // stickers and town

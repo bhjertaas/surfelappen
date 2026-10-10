@@ -2,8 +2,12 @@ import characterAdultBack from '../assets/art/character-adult-back.webp';
 import characterAdultFront from '../assets/art/character-adult-front.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
+import portraitMira from '../assets/art/portrait-mira.webp';
+import roomReality from '../assets/art/room-reality.webp';
 import sceneArcade from '../assets/art/scene-arcade.png';
+import sceneFacade from '../assets/art/scene-facade.webp';
 import scenePhishing from '../assets/art/scene-phishing.webp';
+import stickerBehindTheFacade from '../assets/art/sticker-behind-the-facade.webp';
 import stickerCurious from '../assets/art/sticker-curious.webp';
 import stickerLinkDetective from '../assets/art/sticker-link-detective.webp';
 import stickerSharpEye from '../assets/art/sticker-sharp-eye.webp';
@@ -29,6 +33,10 @@ export const art = {
   town: { src: townUrl, width: 1536, height: 1024 },
   'portrait-hanne': { src: portraitHanne, width: 256, height: 256 },
   'portrait-kai': { src: portraitKai, width: 64, height: 64 },
+  'portrait-mira': { src: portraitMira, width: 256, height: 256 },
+  'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
+  'room-reality': { src: roomReality, width: 1536, height: 1024 },
+  'sticker-behind-the-facade': sticker(stickerBehindTheFacade),
   'scene-phishing': { src: scenePhishing, width: 1536, height: 1024 },
   'scene-arcade': { src: sceneArcade, width: 384, height: 256 },
   'character-adult-front': { src: characterAdultFront, width: 160, height: 320 },

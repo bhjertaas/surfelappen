@@ -34,6 +34,11 @@ interface Spec {
   from?: { id: string; left: number; top: number; width: number; height: number };
   /** Fit inside width×height and trim transparent edges, instead of cropping to cover. */
   contain?: boolean;
+  /**
+   * Other pieces whose raw images are sent along (image edit endpoint): keeps a person
+   * the same across pictures, or turns a "perfect" picture into its "reality" version.
+   */
+  refs?: string[];
 }
 
 const sticker: Spec = {
@@ -45,7 +50,30 @@ const sticker: Spec = {
   contain: true,
 };
 
+/** A social media post picture in the comic style (Fasaden). */
+const post = (refs?: string[]): Spec => ({
+  style: 'comic',
+  width: 768,
+  height: 768,
+  generate: '1024x1024',
+  ...(refs ? { refs } : {}),
+});
+
 const SPECS: Record<string, Spec> = {
+  'room-reality': {
+    style: 'comic',
+    width: 1536,
+    height: 1024,
+    generate: '1536x1024',
+    refs: ['post-routine', 'post-routine-real'],
+  },
+  'portrait-mira': { style: 'comic', width: 256, height: 256, generate: '1024x1024' },
+  'post-filter': post(),
+  'post-filter-real': post(['post-filter']),
+  'post-routine': post(['post-filter']),
+  'post-routine-real': post(['post-routine']),
+  'post-sponsored': post(['post-filter']),
+  'post-sponsored-real': post(['post-sponsored']),
   town: { style: 'town', width: 1536, height: 1024, generate: '1536x1024' },
   character: { style: 'town', width: 512, height: 512, generate: '1536x1024', transparent: true },
   'character-adult-front': {
@@ -96,6 +124,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-ten-fingers': sticker,
   'sticker-steady-hand': sticker,
   'sticker-curious': sticker,
+  'sticker-behind-the-facade': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;
@@ -119,11 +148,29 @@ function apiKey(): string {
 async function generate(id: string, spec: Spec, model: string): Promise<Buffer> {
   const style = readFileSync(join(root, `scripts/art/_style-${spec.style}.txt`), 'utf8');
   const prompt = `${style}\n\n${readFileSync(join(root, `scripts/art/${id}.txt`), 'utf8')}`;
-  const res = await fetch('https://api.openai.com/v1/images/generations', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${apiKey()}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ model, prompt, size: spec.generate, n: 1, quality: 'high' }),
-  });
+  const auth = { Authorization: `Bearer ${apiKey()}` };
+  let res: Response;
+  if (spec.refs?.length) {
+    const form = new FormData();
+    for (const [k, v] of Object.entries({ model, prompt, size: spec.generate, quality: 'high' }))
+      form.append(k, v);
+    for (const ref of spec.refs) {
+      const file = join(root, `.cache/art/${ref}.png`);
+      if (!existsSync(file)) throw new Error(`${id}: make ${ref} first`);
+      form.append('image[]', new Blob([readFileSync(file)], { type: 'image/png' }), `${ref}.png`);
+    }
+    res = await fetch('https://api.openai.com/v1/images/edits', {
+      method: 'POST',
+      headers: auth,
+      body: form,
+    });
+  } else {
+    res = await fetch('https://api.openai.com/v1/images/generations', {
+      method: 'POST',
+      headers: { ...auth, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model, prompt, size: spec.generate, n: 1, quality: 'high' }),
+    });
+  }
   if (!res.ok) throw new Error(`OpenAI ${res.status}: ${(await res.text()).slice(0, 300)}`);
   const json = (await res.json()) as { data: { b64_json: string }[] };
   const b64 = json.data[0]?.b64_json;

@@ -24,8 +24,8 @@ export const buildings = [
   },
   {
     id: 'facade',
-    status: 'coming-soon',
-    missions: [],
+    status: 'open',
+    missions: ['perfect-life'],
     hotspot: { x: 960, y: 102, w: 320, h: 300 },
     door: { x: 1030, y: 460 },
     image: 'town',

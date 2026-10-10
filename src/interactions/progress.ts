@@ -1,5 +1,6 @@
 import type { MissionStructure, StepId } from '../content/types.ts';
 import type { Run } from '../progress/schema.ts';
+import { emptyFacadeRun, facadeCurrentStep, facadeSequence } from './facade/flow.ts';
 import {
   emptyLinkInspectRun,
   linkInspectCurrentStep,
@@ -14,7 +15,14 @@ import { emptyTypingRun, typingCurrentStep, typingSequence } from './typing/flow
  */
 
 export function emptyRun(mission: MissionStructure): Run {
-  return mission.interaction === 'link-inspect' ? emptyLinkInspectRun() : emptyTypingRun();
+  switch (mission.interaction) {
+    case 'link-inspect':
+      return emptyLinkInspectRun();
+    case 'typing':
+      return emptyTypingRun();
+    case 'facade':
+      return emptyFacadeRun();
+  }
 }
 
 function matchingRun(mission: MissionStructure, run: Run | undefined): Run {
@@ -27,6 +35,7 @@ export function stepSequence(mission: MissionStructure, run: Run | undefined): S
     return linkInspectSequence(mission, r);
   }
   if (mission.interaction === 'typing') return typingSequence(mission);
+  if (mission.interaction === 'facade') return facadeSequence(mission);
   return [];
 }
 
@@ -37,6 +46,9 @@ export function currentStep(mission: MissionStructure, run: Run | undefined): St
   }
   if (mission.interaction === 'typing' && r.interaction === 'typing') {
     return typingCurrentStep(mission, r);
+  }
+  if (mission.interaction === 'facade' && r.interaction === 'facade') {
+    return facadeCurrentStep(mission, r);
   }
   return 'done';
 }

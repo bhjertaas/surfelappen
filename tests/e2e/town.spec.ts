@@ -30,14 +30,14 @@ test('picture and list offer the same destinations in the same order', async ({ 
 test('closed buildings say so in text and answer with a friendly line', async ({ page }) => {
   await page.goto('/#/town');
   const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
-  const square = list.getByRole('button', { name: /Fasaden/ });
+  const square = list.getByRole('button', { name: /Ryktebørsen/ });
   await expect(square).toContainText('Kommer snart');
   await square.click();
   await expect(
-    page.getByRole('status').filter({ hasText: 'livet bak de perfekte bildene' }),
+    page.getByRole('status').filter({ hasText: 'rykter og falske nyheter' }),
   ).toBeVisible();
   await expect(square).toBeFocused();
-  expect((await storedProgress(page))?.visitedBuildings).toEqual(['facade']);
+  expect((await storedProgress(page))?.visitedBuildings).toEqual(['rumour-exchange']);
 });
 
 test('the arcade says "Trenger tastatur" only on touch-only devices', async ({ page }) => {

@@ -30,7 +30,13 @@ export interface TypingRun {
   readonly finalErrors?: number;
 }
 
-export type Run = LinkInspectRun | TypingRun;
+/** A playthrough of a facade mission (Fasaden). */
+export interface FacadeRun {
+  readonly interaction: 'facade';
+  readonly done: readonly StepId[];
+}
+
+export type Run = LinkInspectRun | TypingRun | FacadeRun;
 
 export interface MissionProgress {
   readonly completedOnce: boolean;

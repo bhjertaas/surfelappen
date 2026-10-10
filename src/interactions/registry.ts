@@ -1,5 +1,6 @@
 import type { ComponentType } from 'preact';
 import type { InteractionId } from '../content/types.ts';
+import { FacadeStep, FacadeSummary } from './facade/FacadeStep.tsx';
 import { LinkInspectStep } from './link-inspect/LinkInspectStep.tsx';
 import { LinkInspectSummary } from './link-inspect/LinkInspectSummary.tsx';
 import type { StepViewProps, SummaryDetailsProps } from './types.ts';
@@ -15,4 +16,5 @@ export interface InteractionViews {
 export const interactionViews: Record<InteractionId, InteractionViews> = {
   'link-inspect': { StepView: LinkInspectStep, SummaryDetails: LinkInspectSummary },
   typing: { StepView: TypingStep, SummaryDetails: TypingSummary },
+  facade: { StepView: FacadeStep, SummaryDetails: FacadeSummary },
 };

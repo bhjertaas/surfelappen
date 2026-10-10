@@ -910,3 +910,175 @@
   color: var(--color-muted);
   font-style: italic;
 }
+
+/* Fasaden: "Lag glansbildet" */
+
+.compose__stage {
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--color-border);
+  border-radius: var(--radius);
+  line-height: 0;
+  user-select: none;
+}
+
+.compose__picture {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The frame darkens everything outside it. */
+.compose__frame {
+  position: absolute;
+  border: 3px dashed #fff;
+  box-shadow: 0 0 0 100vmax rgb(20 10 25 / 0.6);
+  cursor: grab;
+  touch-action: none;
+}
+
+.compose__frame--ready {
+  border-style: solid;
+  border-color: #ffd166;
+}
+
+.compose__stage--reveal .compose__frame {
+  box-shadow: 0 0 0 100vmax rgb(20 10 25 / 0.25);
+  cursor: default;
+}
+
+.compose__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-3) 0;
+  padding: 0;
+  border: 0;
+}
+
+.compose__controls .button {
+  min-width: var(--tap);
+  padding-inline: var(--space-3);
+}
+
+.compose__status {
+  min-height: 3em;
+  font-weight: 700;
+}
+
+.compose__ready {
+  color: var(--color-correct);
+}
+
+.compose__crop {
+  width: 100%;
+  max-width: 24rem;
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  border-radius: var(--radius);
+}
+
+.compose__polish {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 40rem) {
+  .compose__polish {
+    grid-template-columns: minmax(0, 24rem) 1fr;
+    align-items: center;
+  }
+}
+
+.compose__slider {
+  display: grid;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+}
+
+.compose__slider input {
+  width: 100%;
+  min-height: var(--tap);
+  accent-color: var(--color-primary);
+}
+
+.compose__forecast {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.option[aria-pressed="true"] {
+  border-color: var(--color-primary);
+  outline: 3px solid var(--color-primary);
+  outline-offset: -1px;
+}
+
+/* A social media post. */
+.post {
+  max-width: 24rem;
+  padding: var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+  background: var(--color-surface);
+  box-shadow: 6px 6px 0 rgb(42 26 46 / 0.2);
+}
+
+.post .compose__stage,
+.post .compose__crop {
+  margin-block: var(--space-2);
+}
+
+.post__account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-weight: 700;
+}
+
+.post__avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e9a3c0, #f6d28b);
+}
+
+.post__likes {
+  margin: var(--space-2) 0 var(--space-1);
+  font-weight: 700;
+}
+
+.post__caption {
+  margin: 0 0 var(--space-2);
+}
+
+.post__comments {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--color-muted);
+}
+
+.post__comments li {
+  margin-bottom: var(--space-1);
+}
+
+.post__sara {
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+  background: var(--color-notice-bg);
+  color: var(--color-text);
+}
+
+.compose__reveal {
+  max-width: 24rem;
+  font-weight: 700;
+}
+
+.button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
