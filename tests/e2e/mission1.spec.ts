@@ -24,11 +24,11 @@ test('wrong answers explain, retries are free, and missed transfer cases get a b
   await choose(page, 'A');
   const feedback = page.locator('.feedback');
   await expect(feedback).toBeFocused();
-  await expect(feedback).toContainText('Lurt forsøk!');
+  await expect(feedback).toContainText('Ikke helt');
   await page.getByRole('button', { name: 'Prøv igjen' }).click();
   await expect(page.getByRole('heading', { name: QUESTION })).toBeFocused();
   await choose(page, 'B');
-  await expect(feedback).toContainText('Riktig!');
+  await expect(feedback).toContainText('Riktig svar');
   await expect(page.locator('.address')).toContainText('Nettstedet: sporing-levering.example');
   await next(page);
 

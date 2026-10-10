@@ -45,7 +45,7 @@ test('unknown pages show a friendly not-found screen', async ({ page }) => {
     '#/mission/no-such-mission/case-1',
   ]) {
     await page.goto(`/${path}`);
-    await expectHeading(page, 'Her var det tomt');
+    await expectHeading(page, 'Fant ikke siden');
   }
   await page.getByRole('main').getByRole('link', { name: 'Tilbake til byen' }).click();
   await expectHeading(page, 'Lenkevik');

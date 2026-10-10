@@ -33,7 +33,7 @@ test('closed buildings say so in text and answer with a friendly line', async ({
   const square = list.getByRole('button', { name: /Torget/ });
   await expect(square).toContainText('Kommer snart');
   await square.click();
-  await expect(page.getByRole('status').filter({ hasText: 'Torget er stengt' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'hva du deler på nett' })).toBeVisible();
   await expect(square).toBeFocused();
   expect((await storedProgress(page))?.visitedBuildings).toEqual(['square']);
 });

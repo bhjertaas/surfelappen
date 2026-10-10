@@ -10,7 +10,7 @@ export type OptionTexts = Readonly<Record<OptionId, string>>;
 
 /** A link case: the message, three answers, feedback per answer, two hints. */
 export interface CaseText {
-  /** One sentence setting the scene, e.g. "Arne har fått en SMS." */
+  /** One sentence setting the scene, e.g. "Bjørn har fått en SMS." */
   readonly situation: string;
   /** Who the message claims to be from, as the player sees it. */
   readonly sender: string;
@@ -42,7 +42,7 @@ export type StepText = CaseText | ChoiceText | InfoText;
 /** Text shared by every mission. */
 export interface MissionText {
   readonly title: string;
-  /** The townsperson who brings the problem, e.g. "Postmester Solveig". */
+  /** The townsperson who brings the problem, e.g. "Hanne på postkontoret". */
   readonly character: string;
   readonly intro: readonly string[];
   /** "Du lærer å …" */

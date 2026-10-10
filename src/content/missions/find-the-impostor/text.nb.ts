@@ -9,7 +9,7 @@ import type { findTheImpostor } from './structure.ts';
 /** Option C is the same on every case. */
 const CANT_TELL = 'Det kan man ikke vite ut fra adressen';
 const CANT_TELL_FEEDBACK =
-  'Jo, det kan du faktisk! Se på slutten av adressen, rett før første skråstrek (/). Det er der det ekte nettstedet står. Alt foran det kan avsenderen skrive fritt.';
+  'Det kan du faktisk se. Se på slutten av adressen, rett før første skråstrek (/). Der står det ekte nettstedet. Alt foran kan avsenderen skrive fritt.';
 
 const FJORDBANKEN = 'Fjordbanken (fjordbanken.example)';
 const KOMMUNEN = 'Lenkevik kommune (lenkevik-kommune.example)';
@@ -20,9 +20,9 @@ const WHAT_IS_LAST = 'Hva står helt til slutt, rett før første /?';
 
 export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
   title: 'Finn bedrageren',
-  character: 'Postmester Solveig',
+  character: 'Hanne på postkontoret',
   intro: [
-    'Hei, og velkommen til Postkontoret! Folk i Lenkevik får stadig rare meldinger med lenker i. Noen er ekte, noen er lureri. Ta med deg lupen og hjelp meg å finne ut hvor lenkene egentlig fører.',
+    'Hei! Mange her i Lenkevik får meldinger med lenker de er usikre på. Noen er ekte, andre er forsøk på svindel. Vil du se på dem sammen med meg? Lupen viser hvor lenkene egentlig fører.',
   ],
   learn: 'Du lærer å se hvilket nettsted en lenke egentlig går til.',
   summary: {
@@ -31,13 +31,13 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
   },
   steps: {
     'case-1': {
-      situation: 'Arne har fått en SMS.',
+      situation: 'Bjørn har fått en SMS.',
       sender: 'Pakkeposten',
       message: 'Pakken din venter! Bekreft levering innen i dag:',
       options: { a: PAKKEPOSTEN, b: 'Et annet nettsted: sporing-levering.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! *pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*.',
-        b: 'Riktig! Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig.',
+        a: '*pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*.',
+        b: 'Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
@@ -51,8 +51,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Ny melding i nettbanken. Logg inn for å lese den:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted som heter «nettbank»', c: CANT_TELL },
       feedback: {
-        a: 'Riktig! Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alt er svindel!',
-        b: 'Nesten! *nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*.',
+        a: 'Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alle meldinger er svindel.',
+        b: '*nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,
@@ -68,8 +68,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
         c: CANT_TELL,
       },
       feedback: {
-        a: 'Lurt forsøk! *fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*.',
-        b: 'Riktig! Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting.',
+        a: '*fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*.',
+        b: 'Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: 'Sammenlign navnet rett før / med Fjordbankens ekte nettsted, *fjordbanken.example*.',
@@ -81,8 +81,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Du har vunnet et gavekort fra Fjordbanken! Hent premien:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted: premie-trekning.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! *fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*.',
-        b: 'Riktig! Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*.',
+        a: '*fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*.',
+        b: 'Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: 'Hvor er den første skråstreken? Står bankens navn før eller etter den?',
@@ -94,8 +94,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Viktig sikkerhetsvarsel. Klikk her:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted: sikkerhet-varsel.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*.',
-        b: 'Riktig! Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen.',
+        a: 'Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*.',
+        b: 'Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: 'Bruk lupen. Er adressen den samme som teksten?',
@@ -107,8 +107,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Du har en ubetalt faktura. Betal her for å unngå gebyr:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted: lenkevik-kornmune.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre.',
-        b: 'Godt øye! *rn* ser nesten ut som *m*. Det er et helt annet nettsted enn kommunens.',
+        a: 'Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre.',
+        b: 'Godt sett. *rn* ser nesten ut som *m*, men det er et helt annet nettsted enn kommunens.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: 'Les navnet bokstav for bokstav.',
@@ -124,7 +124,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       },
       feedback: {
         a: 'Neste e-post kan se helt lik ut og være falsk. Det er tryggere å ikke logge inn fra lenker i det hele tatt.',
-        b: 'Akkurat! Da kommer du alltid til det ekte stedet, uansett hva e-posten sier.',
+        b: 'Da kommer du alltid til det ekte stedet, uansett hva e-posten sier.',
         c: 'Hvis e-posten er falsk, svarer du svindleren. Kontakt heller banken på en måte du allerede vet er ekte.',
       },
     },
@@ -136,9 +136,9 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       ],
     },
     'transfer-intro': {
-      heading: 'Nå er det din tur',
+      heading: 'Prøv selv',
       body: [
-        'Nå klarer du deg uten Solveig. Nettkaféen har satt opp et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
+        'Nå prøver du på egen hånd, i en ny situasjon. Ved Nettkaféen står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
       ],
     },
     'transfer-1': {
@@ -147,8 +147,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Betal parkeringen enkelt! Skann koden:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted: parkering-app.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! *lenkevik-kommune.example* står først, men det er bare en del av et lengre navn. Rett før første / står *parkering-app.example*.',
-        b: 'Riktig! Kommunens navn er lagt foran som pynt. Det ekte nettstedet er *parkering-app.example*.',
+        a: '*lenkevik-kommune.example* står først, men det er bare en del av et lengre navn. Rett før første / står *parkering-app.example*.',
+        b: 'Kommunens navn er lagt foran som pynt. Det ekte nettstedet er *parkering-app.example*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
@@ -160,8 +160,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Betal for parkering her. Skann koden:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted som heter «parkering»', c: CANT_TELL },
       feedback: {
-        a: 'Riktig! Rett før første / står *lenkevik-kommune.example*. *parkering* foran er bare en avdeling av kommunens eget nettsted.',
-        b: 'Nesten! *parkering* står foran, men det er bare en del av kommunens eget nettsted. Det som teller er det rett før første /: *lenkevik-kommune.example*.',
+        a: 'Rett før første / står *lenkevik-kommune.example*. *parkering* foran er bare en avdeling av kommunens eget nettsted.',
+        b: '*parkering* står foran, men det er bare en del av kommunens eget nettsted. Det som teller er det rett før første /: *lenkevik-kommune.example*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,
@@ -173,8 +173,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Fjordbanken: Sjekk kontoen din gratis! Skann koden og logg inn:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted: trygg-sjekk.example', c: CANT_TELL },
       feedback: {
-        a: 'Lurt forsøk! *fjordbanken.example* står først, men det er bare en del av et lengre navn. Rett før første / står *trygg-sjekk.example*.',
-        b: 'Riktig! Bankens navn er lagt foran som pynt. Det ekte nettstedet er *trygg-sjekk.example*, og der skal du ikke logge inn i banken.',
+        a: '*fjordbanken.example* står først, men det er bare en del av et lengre navn. Rett før første / står *trygg-sjekk.example*.',
+        b: 'Bankens navn er lagt foran som pynt. Det ekte nettstedet er *trygg-sjekk.example*, og der skal du ikke logge inn i banken.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
@@ -186,8 +186,8 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Nå kan du hente pakker her! Spor pakken din:',
       options: { a: PAKKEPOSTEN, b: 'Et annet nettsted som heter «minside»', c: CANT_TELL },
       feedback: {
-        a: 'Riktig! Rett før første / står *pakkeposten.example*. *minside* foran er bare en del av Pakkepostens eget nettsted.',
-        b: 'Nesten! *minside* står foran, men det er bare en del av Pakkepostens eget nettsted. Det som teller er det rett før første /: *pakkeposten.example*.',
+        a: 'Rett før første / står *pakkeposten.example*. *minside* foran er bare en del av Pakkepostens eget nettsted.',
+        b: '*minside* står foran, men det er bare en del av Pakkepostens eget nettsted. Det som teller er det rett før første /: *pakkeposten.example*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,

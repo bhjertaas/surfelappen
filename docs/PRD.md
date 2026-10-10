@@ -50,7 +50,7 @@ One polished mission beats five thin ones. Everything below "Later" waits until 
 |  | Items |
 | --- | --- |
 | **MVP** | Start screen · town screen with 4–5 locations (two open, the rest marked "kommer snart") · list navigation · missions *Finn bedrageren* and *Ti fingre* · sticker passport · progress saved locally, resumable mid-mission · reset progress · installable PWA, works offline · mobile-first, also desktop · Norwegian (bokmål) · i18n structure ready for English · about/privacy page |
-| **Later** | English translation · more missions (SMS/BankID scams, passwords, sharing, checking claims, more typing lessons) · printable certificate after 3+ missions · export/import progress code to move between devices · optional user accounts, e.g. for classes (needs its own privacy review) · nynorsk |
+| **Later** | Audience variants: the player may say whether they are a child, a teenager or an adult (optional, never required, stored with progress; no age asked). This changes wording and the order missions are suggested in, never hides content; children will likely need their own missions rather than reworded ones · English translation · more missions (SMS/BankID scams, passwords, sharing, checking claims, more typing lessons) · printable certificate after 3+ missions · export/import progress code to move between devices · optional user accounts, e.g. for classes (needs its own privacy review) · nynorsk |
 | **Never** | Leaderboards, streaks, push notifications · chat or user content · real brands or live websites · storing or sending anything the player types |
 
 ## Experience
@@ -69,6 +69,8 @@ The player arrives in **Lenkevik**, a small pixel-art coastal town, picks a buil
 6. A stamp lands in the passport.
 
 **Tone rules:** mistakes are free and explained kindly; no timers; hints always available; no fear-mongering or blaming victims; jokes are about scammers, never about people who are new to this.
+
+**Register (v0.4):** written for adults. Characters are neighbours with first names and a place ("Hanne på postkontoret", "Kai i Tastaturhallen"), not titles like "Postmester". Few exclamation marks; explain rather than cheer. The feedback heading already says *Riktig svar* / *Ikke helt*, so feedback text starts with the explanation, not "Riktig!" or "Lurt forsøk!". Scam messages inside cases may of course shout.
 
 ## Screens and states
 
@@ -283,7 +285,7 @@ Each mission is split into **structure** (IDs, URLs, correct answers, sticker ru
 
 **Sticker:** `id`, `image`, `awardedBy` (mission completion or a named condition such as `transfer-first-try`, `final-line-flawless` or `visited-all-buildings`).
 
-**Text file (per language):** intro lines, each case's situation line ("Arne har fått en SMS."), sender (e.g. *Lenkevik kommune*, which a translation may change) and message body (the link is shown after it from the structure's `linkText`), option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
+**Text file (per language):** intro lines, each case's situation line ("Bjørn har fått en SMS."), sender (e.g. *Lenkevik kommune*, which a translation may change) and message body (the link is shown after it from the structure's `linkText`), option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
 
 Example structure for case 1:
 
@@ -434,6 +436,8 @@ If minors take part, get a parent's consent and keep a parent present. Store no 
 
 ## Appendix A: Finn bedrageren (draft content, nb)
 
+*The text actually used lives in `src/content/missions/find-the-impostor/text.nb.ts`, which is the source of truth; this appendix is the starting draft, kept roughly in step.*
+
 Draft text to start from. Polish the wording in testing; keep the structure. All URLs here are verified with a WHATWG URL parser and `tldts`.
 
 **Fixed options for every case** (same order every time):
@@ -442,20 +446,20 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 - **B** – the other candidate, e.g. *Et annet nettsted: sporing-levering.example*
 - **C** – *Det kan man ikke vite ut fra adressen*
 
-**Shared feedback for C** (when wrong): "Jo, det kan du faktisk! Se på slutten av adressen, rett før første skråstrek (/). Det er der det ekte nettstedet står. Alt foran det kan avsenderen skrive fritt."
+**Shared feedback for C** (when wrong): "Det kan du faktisk se. Se på slutten av adressen, rett før første skråstrek (/). Der står det ekte nettstedet. Alt foran kan avsenderen skrive fritt."
 
 ### Intro
 
-*Postmester Solveig:* "Hei, og velkommen til Postkontoret! Folk i Lenkevik får stadig rare meldinger med lenker i. Noen er ekte, noen er lureri. Ta med deg lupen og hjelp meg å finne ut hvor lenkene egentlig fører."
+*Hanne på postkontoret:* "Hei! Mange her i Lenkevik får meldinger med lenker de er usikre på. Noen er ekte, andre er forsøk på svindel. Vil du se på dem sammen med meg? Lupen viser hvor lenkene egentlig fører."
 
 *Learning line:* "Du lærer å se hvilket nettsted en lenke egentlig går til."
 
 ### Case 1 – SMS (subdomain trick) · answer B
 
-- **From:** Arne. **Message (SMS from "Pakkeposten"):** "Pakken din venter! Bekreft levering innen i dag: https://pakkeposten.example.sporing-levering.example/pakke/7731"
+- **From:** Bjørn. **Message (SMS from "Pakkeposten"):** "Pakken din venter! Bekreft levering innen i dag: https://pakkeposten.example.sporing-levering.example/pakke/7731"
 - **Options:** A *Pakkeposten (pakkeposten.example)* · B *Et annet nettsted: sporing-levering.example*
-- **Feedback A:** "Lurt forsøk! *pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*."
-- **Feedback B:** "Riktig! Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig."
+- **Feedback A:** "*pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*."
+- **Feedback B:** "Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig."
 - **Hint 1:** "Finn den første skråstreken (/) etter https://. Se rett foran den."
 - **Hint 2:** "Det som står helt til slutt før / er *sporing-levering.example*. Er det Pakkeposten?"
 - **Les mer:** "Hvem som helst kan lage adresser som begynner med et kjent navn, så lenge slutten er deres eget nettsted. Det kalles et underdomene."
@@ -464,8 +468,8 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 - **From:** Fatima. **Message (email from Fjordbanken):** "Ny melding i nettbanken. Logg inn for å lese den: https://nettbank.fjordbanken.example/logg-inn"
 - **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted som heter «nettbank»*
-- **Feedback A:** "Riktig! Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alt er svindel!"
-- **Feedback B:** "Nesten! *nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*."
+- **Feedback A:** "Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alle meldinger er svindel."
+- **Feedback B:** "*nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*."
 - **Hint 1:** "Hva står helt til slutt, rett før første /?"
 - **Hint 2:** "Slutten er *fjordbanken.example*. Alt foran det hører til samme nettsted."
 
@@ -473,8 +477,8 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 - **From:** Jonas. **Message:** "Kontoen din er låst. Kontakt kundeservice her: https://fjordbanken-kundeservice.example/"
 - **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: fjordbanken-kundeservice.example*
-- **Feedback A:** "Lurt forsøk! *fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*."
-- **Feedback B:** "Riktig! Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting."
+- **Feedback A:** "*fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*."
+- **Feedback B:** "Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting."
 - **Hint 1:** "Sammenlign navnet rett før / med Fjordbankens ekte nettsted, *fjordbanken.example*."
 - **Hint 2:** "Er *fjordbanken-kundeservice.example* og *fjordbanken.example* nøyaktig like?"
 
@@ -482,8 +486,8 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 - **From:** Mari. **Message (post shared by a friend):** "Du har vunnet et gavekort fra Fjordbanken! Hent premien: https://premie-trekning.example/fjordbanken.example/vinner"
 - **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: premie-trekning.example*
-- **Feedback A:** "Lurt forsøk! *fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*."
-- **Feedback B:** "Riktig! Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*."
+- **Feedback A:** "*fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*."
+- **Feedback B:** "Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*."
 - **Hint 1:** "Hvor er den første skråstreken? Står bankens navn før eller etter den?"
 - **Hint 2:** "Det som står før første / er *premie-trekning.example*."
 
@@ -491,8 +495,8 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 - **From:** Ole. **Message (email):** "Viktig sikkerhetsvarsel. Klikk her: fjordbanken.example/sikkerhet" (the visible text). Lupen reveals: `https://sikkerhet-varsel.example/fjordbanken`
 - **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: sikkerhet-varsel.example*
-- **Feedback A:** "Lurt forsøk! Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*."
-- **Feedback B:** "Riktig! Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen."
+- **Feedback A:** "Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*."
+- **Feedback B:** "Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen."
 - **Hint 1:** "Bruk lupen. Er adressen den samme som teksten?"
 - **Hint 2:** "Lupen viser *sikkerhet-varsel.example* rett før første /."
 
@@ -500,26 +504,26 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 - **From:** Sunniva. **Message (SMS from "Lenkevik kommune"):** "Du har en ubetalt faktura. Betal her for å unngå gebyr: https://lenkevik-kornmune.example/faktura"
 - **Options:** A *Lenkevik kommune (lenkevik-kommune.example)* · B *Et annet nettsted: lenkevik-kornmune.example*
-- **Feedback A:** "Lurt forsøk! Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre."
-- **Feedback B:** "Godt øye! *rn* ser nesten ut som *m*. Det er et helt annet nettsted enn kommunens."
+- **Feedback A:** "Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre."
+- **Feedback B:** "Godt sett. *rn* ser nesten ut som *m*, men det er et helt annet nettsted enn kommunens."
 - **Hint 1:** "Les navnet bokstav for bokstav."
 - **Hint 2:** "Se på bokstavene etter *ko*. Står det *m* eller *rn*?"
 
 ### Habit scene
 
-*Solveig:* "Fatimas e-post fra banken var ekte. Men hva er lurest å gjøre neste gang du får en slik e-post?"
+*Hanne:* "Fatimas e-post fra banken var ekte. Men hva er lurest å gjøre neste gang du får en slik e-post?"
 
 - **A** *Trykke på lenken, siden den var ekte forrige gang*
 - **B** *Åpne bankappen eller skrive adressen selv* ✔
 - **C** *Svare på e-posten og spørre om den er ekte*
 - **Feedback A:** "Neste e-post kan se helt lik ut og være falsk. Det er tryggere å ikke logge inn fra lenker i det hele tatt."
-- **Feedback B:** "Akkurat! Da kommer du alltid til det ekte stedet, uansett hva e-posten sier."
+- **Feedback B:** "Da kommer du alltid til det ekte stedet, uansett hva e-posten sier."
 - **Feedback C:** "Hvis e-posten er falsk, svarer du svindleren. Kontakt heller banken på en måte du allerede vet er ekte."
 - **Then, one screen:** "Tips: Bruker du passordbehandler og den ikke fyller inn passordet, kan det være fordi du er på feil nettsted. Har du allerede tastet inn noe? Ring banken på nummeret på kortet ditt, og bytt passord."
 
 ### Transfer test (new context: QR sign at Nettkaféen)
 
-Intro: "Nå er det din tur, uten Solveig. Nettkaféen har satt opp et parkeringsskilt med QR-kode."
+Intro: "Nå prøver du på egen hånd, i en ny situasjon. Ved Nettkaféen står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører."
 
 | ID | URL | Answer | Pattern |
 | --- | --- | --- | --- |
@@ -538,6 +542,8 @@ Feedback on transfer cases follows the same pattern as the main cases. Draft tex
 
 ## Appendix B: Ti fingre (draft content, nb)
 
+*The text actually used lives in `src/content/missions/ten-fingers/text.nb.ts` and `src/i18n/locales/nb.ts`; this appendix is the starting draft.*
+
 **Finger map (Norwegian layout, home row):**
 
 | Finger | Left hand | Right hand |
@@ -550,7 +556,7 @@ Feedback on transfer cases follows the same pattern as the main cases. Draft tex
 
 ### Intro
 
-*Tastaturmester Kai:* "Velkommen til Tastaturhallen! Her lærer du å skrive med alle ti fingrene, uten å se ned. Det går sakte i starten, og det er helt greit. Nøyaktighet først, fart kommer av seg selv."
+*Kai i Tastaturhallen:* "Med alle ti fingrene på tastaturet skriver du roligere, og du slipper å se ned hele tiden. Det går sakte i starten, og det er helt normalt. Nøyaktighet først – farten kommer av seg selv."
 
 ### Steps
 
@@ -571,7 +577,7 @@ Step 5 needs at least 90% accuracy. Every drill contains only keys taught in ear
 - **Caps Lock note:** "Caps Lock er på. Det går fint, men bokstavene blir store."
 - **Touch-only notice:** "Trenger tastatur. For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel." Buttons: *Start likevel* · *Tilbake til byen*
 - **Step done:** "Bra! *\[accuracy\]* % riktig."
-- **Final line below 90 %:** "*\[accuracy\]* % riktig. Nesten! Prøv linjen én gang til, rolig og nøyaktig."
+- **Final line below 90 %:** "*\[accuracy\]* % riktig. Prøv linjen én gang til, rolig og nøyaktig."
 
 ### Summary
 

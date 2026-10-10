@@ -16,7 +16,7 @@ interface BuildingText {
 const buildings: Record<string, BuildingText> = {
   'post-office': {
     name: 'Postkontoret',
-    about: 'Hvor går lenken egentlig? Hjelp postmesteren å avsløre lure meldinger.',
+    about: 'Se hvor lenker i SMS og e-post egentlig fører.',
   },
   'keyboard-hall': {
     name: 'Tastaturhallen',
@@ -25,12 +25,12 @@ const buildings: Record<string, BuildingText> = {
   square: {
     name: 'Torget',
     about: 'Om å dele bilder og informasjon trygt.',
-    closed: 'Torget er stengt mens vi rigger til. Her kommer et oppdrag om å dele trygt.',
+    closed: 'Her kommer et oppdrag om hva du deler på nett. Det er ikke klart ennå.',
   },
   library: {
     name: 'Biblioteket',
     about: 'Om å sjekke om noe du leser er sant.',
-    closed: 'Biblioteket åpner snart. Her skal du lære å sjekke påstander.',
+    closed: 'Her kommer et oppdrag om å sjekke om noe du leser er sant. Det er ikke klart ennå.',
   },
   'licence-office': {
     name: 'Lappekontoret',
@@ -83,7 +83,7 @@ export const nb = {
   },
   town: {
     title: 'Lenkevik',
-    intro: 'Velkommen til Lenkevik! Velg et sted du vil besøke.',
+    intro: 'Lenkevik er en liten by ved sjøen. Velg et sted du vil besøke.',
     mapLabel: 'Bilde av Lenkevik',
     listLabel: 'Steder i Lenkevik',
     stickerCount,
@@ -170,7 +170,7 @@ export const nb = {
       'Fjordbanken, Pakkeposten og Lenkevik kommune finnes ikke. Alle nettadressene i spillet slutter på *.example*, som aldri kan føre til et ekte nettsted.',
   },
   error: {
-    notFoundTitle: 'Her var det tomt',
+    notFoundTitle: 'Fant ikke siden',
     notFoundBody: 'Vi fant ikke siden du lette etter.',
     errorTitle: 'Noe gikk galt',
     errorBody: 'Beklager, her skjedde det en feil. Det du har gjort så langt, er lagret.',
