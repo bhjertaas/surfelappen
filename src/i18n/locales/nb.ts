@@ -64,7 +64,8 @@ const stickerCount: PluralForms = {
 export const nb = {
   app: {
     name: 'Surfelappen',
-    tagline: '«Å surfe» er et gammelt ord for å bruke nettet. Her tar du lappen på det.',
+    tagline:
+      '«Å surfe på nettet» sier man gjerne om det å bruke Internett. Her tar du lappen på det.',
     pitch:
       'Korte oppdrag i den litt rare byen Lenkevik: avslør svindellenker, lær touch på tastaturet, og mer etter hvert.',
     version: 'Versjon',

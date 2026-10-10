@@ -13,7 +13,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 ## Names and metaphors
 
 - Mostly **Norwegian**; **English** where it works better (a pun, a sign, a phrase people know).
-- **Surfelappen** stays as the name. Don't build on it: no cars, traffic or driving tests, and no heavy surfing or "www" imagery (younger players don't know them). A tagline under the logo explains it once, e.g. *«Å surfe» er et gammelt ord for å bruke nettet. Her tar du lappen på det.*
+- **Surfelappen** stays as the name. Don't build on it: no cars, traffic or driving tests, and no heavy surfing or "www" imagery (younger players don't know them). A tagline under the logo explains it once, e.g. *«Å surfe på nettet» sier man gjerne om det å bruke Internett. Her tar du lappen på det.*
 - City: **Lenkevik** (working name).
 
 ## Places
