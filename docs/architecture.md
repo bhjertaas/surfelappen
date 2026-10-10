@@ -52,7 +52,7 @@ surfelappen/
 │  ├─ content/
 │  │  ├─ types.ts             # MissionStructure, LinkCase, ChoiceStep, InfoStep, TypingStep,
 │  │  │                       # Sticker, Building, MissionText…
-│  │  ├─ town.ts              # 5 buildings: id, mission?, status, hotspot rect, art id
+│  │  ├─ town.ts              # 5 buildings: id, status, missions[], hotspot rect, art id
 │  │  ├─ stickers.ts          # sticker registry (id, art, awardedBy)
 │  │  ├─ art.ts               # art id → imported URL + intrinsic size (the only file that changes in phase 7)
 │  │  └─ missions/
@@ -123,6 +123,8 @@ Slugs and IDs are English, like all code, and **not** localised. They are stable
 ### Content (`content/`)
 
 Each mission is **structure** (`structure.ts`, `satisfies MissionStructure`: IDs, URLs, verdicts, correct options, sticker rules, `reviewedOn`, `sources`) plus **text** (`text.<locale>.ts`, typed `MissionText<typeof structure>`). The text type is derived from the structure: every step ID needs its text entry and every option ID its label and feedback, so tsc catches gaps.
+
+The case's sender is text (it can be translated, e.g. *Lenkevik kommune*), so it lives in the text file, not the structure. Text types (`MissionText`) arrive with the first text file in phase 3.
 
 `link-inspect` steps have three kinds: `case`, `choice` (habit scene) and `info` (tip, transfer intro). `typing` steps have `drills: string[]`.
 
@@ -216,7 +218,7 @@ The logic is pure functions with exhaustive unit tests: `link-inspect/flow.ts` (
 
 ### Town screen
 
-`content/town.ts` defines the five buildings in display order. Each has an `id`, an optional `mission`, a `status` (`open | coming-soon | passport`) and a hotspot `rect` in the 320×180 logical coordinate space. The picture is a `PixelImage`. Hotspots are absolutely positioned controls sized in percentages: `<a>` for open destinations, `<button>` for "kommer snart" (which shows a friendly line in a status region). The text list below renders the same array, so it can't drift. On narrow screens the list comes first (CSS `order`). The "Trenger tastatur" label comes from the mission's `requires: ['physical-keyboard']` combined with `matchMedia('(any-pointer: fine)')` being false. A Bluetooth keyboard can't be detected, so "Start likevel" is always offered.
+`content/town.ts` defines the five buildings in display order. Each has an `id`, a list of `missions` (empty unless open; *Tastaturhallen* will hold several lessons), a `status` (`open | coming-soon | passport`) and a hotspot `rect` in the 320×180 logical coordinate space. The picture is a `PixelImage`. Hotspots are absolutely positioned controls sized in percentages: `<a>` for open destinations, `<button>` for "kommer snart" (which shows a friendly line in a status region). The text list below renders the same array, so it can't drift. On narrow screens the list comes first (CSS `order`). The "Trenger tastatur" label comes from the mission's `requires: ['physical-keyboard']` combined with `matchMedia('(any-pointer: fine)')` being false. A Bluetooth keyboard can't be detected, so "Start likevel" is always offered.
 
 ## How a mission flows through the code
 

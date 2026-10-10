@@ -1,0 +1,166 @@
+/**
+ * The content model (PRD "Content model", architecture "Content").
+ *
+ * Structure files (`missions/<id>/structure.ts`) hold everything language-neutral:
+ * IDs, URLs, verdicts, correct answers, sticker rules. Text files
+ * (`missions/<id>/text.<locale>.ts`) hold everything the player reads.
+ *
+ * tsc checks the shape; the content tests in `tests/content/` check the semantics.
+ * Structure files are written `as const satisfies …` so step IDs stay literal types.
+ */
+
+/** `YYYY-MM-DD`. */
+export type IsoDate = `${number}-${number}-${number}`;
+
+export type MissionId = string;
+export type StepId = string;
+export type StickerId = string;
+export type BuildingId = string;
+export type ArtId = string;
+
+/** A source the advice was checked against (shown on the About page). Real URLs, not `.example`. */
+export interface Source {
+  readonly title: string;
+  readonly url: string;
+}
+
+export type InteractionId = 'link-inspect' | 'typing';
+export type Requirement = 'physical-keyboard';
+
+interface MissionBase<I extends InteractionId, S> {
+  readonly id: MissionId;
+  readonly building: BuildingId;
+  readonly interaction: I;
+  readonly requires: readonly Requirement[];
+  readonly steps: readonly S[];
+  /** Stickers this mission can award; their rules live in the sticker registry. */
+  readonly stickers: readonly StickerId[];
+  /** When the advice was last checked against `sources`; `null` until the first review. */
+  readonly reviewedOn: IsoDate | null;
+  readonly sources: readonly Source[];
+}
+
+// ---------------------------------------------------------------------------
+// link-inspect
+
+export type OptionId = 'a' | 'b' | 'c';
+
+export interface Option {
+  readonly id: OptionId;
+  readonly correct: boolean;
+}
+
+/** Always exactly three options, in a fixed order (FR-04). */
+export type ThreeOptions = readonly [Option, Option, Option];
+
+export type LinkContext = 'sms' | 'email' | 'social' | 'qr' | 'browser';
+
+export type LinkPattern =
+  | 'subdomain-trick'
+  | 'genuine-subdomain'
+  | 'brand-in-other-domain'
+  | 'brand-in-path'
+  | 'link-text-mismatch'
+  | 'lookalike-letters';
+
+export type CaseRole = 'main' | 'transfer' | 'transfer-backup';
+
+/** "Which site would you really reach?" */
+export interface LinkCase {
+  readonly kind: 'case';
+  readonly id: StepId;
+  readonly role: CaseRole;
+  /** On a `transfer-backup`: the transfer case it stands in for. */
+  readonly backupFor?: StepId;
+  readonly context: LinkContext;
+  /** What the message shows as the link; may differ from `url`. */
+  readonly linkText: string;
+  /** Where the link really goes. */
+  readonly url: string;
+  /** `new URL(url).hostname`; checked by the content tests. */
+  readonly expectedHost: string;
+  /** The registrable domain ("the real site"); checked against tldts. */
+  readonly expectedSite: string;
+  /** The site the message pretends to come from. */
+  readonly claimedSite?: string;
+  readonly verdict: 'genuine' | 'impostor';
+  readonly pattern: LinkPattern;
+  readonly options: ThreeOptions;
+}
+
+/** A question with three options and per-option feedback, e.g. the habit scene. */
+export interface ChoiceStep {
+  readonly kind: 'choice';
+  readonly id: StepId;
+  readonly options: ThreeOptions;
+}
+
+/** A single text screen, e.g. the habit tip or the transfer intro. */
+export interface InfoStep {
+  readonly kind: 'info';
+  readonly id: StepId;
+}
+
+export type LinkInspectStep = LinkCase | ChoiceStep | InfoStep;
+
+/**
+ * Completion: every step solved, and every missed transfer case followed by its backup.
+ * The rule lives in the interaction module, not in data.
+ */
+export type LinkInspectMission = MissionBase<'link-inspect', LinkInspectStep>;
+
+// ---------------------------------------------------------------------------
+// typing
+
+/** A single character as `KeyboardEvent.key` reports it on a Norwegian layout, lower case. Space is `' '`. */
+export type KeyChar = string;
+
+export interface TypingStep {
+  readonly id: StepId;
+  /** Keys introduced in this step. */
+  readonly keysTaught: readonly KeyChar[];
+  /** Keys the drills may use: a subset of everything taught so far. */
+  readonly keysAllowed: readonly KeyChar[];
+  /** One or more target lines, typed in order. */
+  readonly drills: readonly string[];
+  /** Only on the final step: whole percent needed to complete the mission. */
+  readonly minAccuracy?: number;
+}
+
+/** Completion: every step done, and the final step at or above its `minAccuracy`. */
+export type TypingMission = MissionBase<'typing', TypingStep>;
+
+export type MissionStructure = LinkInspectMission | TypingMission;
+
+// ---------------------------------------------------------------------------
+// stickers and town
+
+export type StickerCondition = 'transfer-first-try' | 'final-line-flawless';
+
+export type AwardedBy =
+  | { readonly mission: MissionId }
+  | { readonly mission: MissionId; readonly condition: StickerCondition }
+  | { readonly town: 'visited-all-buildings' };
+
+export interface Sticker {
+  readonly id: StickerId;
+  readonly image: ArtId;
+  readonly awardedBy: AwardedBy;
+}
+
+/** A rectangle in the town picture's 320×180 logical pixel space. */
+export interface Hotspot {
+  readonly x: number;
+  readonly y: number;
+  readonly w: number;
+  readonly h: number;
+}
+
+export interface Building {
+  readonly id: BuildingId;
+  readonly status: 'open' | 'coming-soon' | 'passport';
+  /** Missions housed here, in order; empty unless `status` is `open`. */
+  readonly missions: readonly MissionId[];
+  readonly hotspot: Hotspot;
+  readonly image: ArtId;
+}

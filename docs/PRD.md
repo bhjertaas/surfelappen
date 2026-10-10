@@ -273,17 +273,17 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 
 Each mission is split into **structure** (IDs, URLs, correct answers, sticker rules; shared by all languages) and **text** (one file per language). This keeps answers identical across translations, and a translator never touches logic. Exact file formats and types are Claude Code's call; these are the fields that must exist. IDs and URL slugs are English, like all code (e.g. mission `find-the-impostor`, step `case-1`, sticker `link-detective`); the full list is in `docs/architecture.md`.
 
-**Mission:** `id`, `building`, `interaction` (`link-inspect` | `typing`), `requires` (e.g. `physical-keyboard`), `steps[]`, `completion` rule, `stickers[]`, `reviewedOn` date, `sources[]`.
+**Mission:** `id`, `building`, `interaction` (`link-inspect` | `typing`), `requires` (e.g. `physical-keyboard`), `steps[]`, `stickers[]`, `reviewedOn` date (`null` until the advice has been checked for the first time), `sources[]`. The completion rule is defined by the interaction type (all steps solved; for typing, the final step's `minAccuracy`), not repeated per mission.
 
 **Link-inspect steps** are of three kinds: `case` (below), `choice` (the habit scene: three options, one correct, per-option feedback) and `info` (a single text screen, e.g. the habit tip and the transfer intro).
 
-**Link case (`link-inspect`):** `id`, `context` (`sms` | `email` | `social` | `qr` | `browser`), `sender`, `linkText` (what the message shows, may differ from the URL), `url`, `expectedHost`, `expectedSite`, `verdict` (`genuine` | `impostor`), `options[3]` each with `id` and `correct`, `pattern` (e.g. `subdomain-trick`, `brand-in-path`, `lookalike-letters`), `role` (`main` | `transfer` | `transfer-backup`), `backupFor` (on a backup: the transfer case it replaces), optional `claimedSite` (the site the message pretends to come from; used by content tests and the feedback breakdown).
+**Link case (`link-inspect`):** `id`, `context` (`sms` | `email` | `social` | `qr` | `browser`), `linkText` (what the message shows, may differ from the URL), `url`, `expectedHost`, `expectedSite`, `verdict` (`genuine` | `impostor`), `options[3]` each with `id` and `correct`, `pattern` (e.g. `subdomain-trick`, `brand-in-path`, `lookalike-letters`), `role` (`main` | `transfer` | `transfer-backup`), `backupFor` (on a backup: the transfer case it replaces), optional `claimedSite` (the site the message pretends to come from; used by content tests and the feedback breakdown).
 
 **Typing step (`typing`):** `id`, `keysTaught[]`, `keysAllowed[]`, `drills[]` (one or more target lines), `minAccuracy` (only on the final step).
 
 **Sticker:** `id`, `image`, `awardedBy` (mission completion or a named condition such as `transfer-first-try`, `final-line-flawless` or `visited-all-buildings`).
 
-**Text file (per language):** intro lines, each case's message body, option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
+**Text file (per language):** intro lines, each case's sender (e.g. *Lenkevik kommune*, which a translation may change) and message body, option labels, per-option feedback, `hint1`, `hint2`, `lesMer`, summary takeaway, sticker names and "how to earn" text.
 
 Example structure for case 1:
 
@@ -292,7 +292,6 @@ Example structure for case 1:
   "id": "case-1",
   "role": "main",
   "context": "sms",
-  "sender": "Pakkeposten",
   "linkText": "https://pakkeposten.example.sporing-levering.example/pakke/7731",
   "url": "https://pakkeposten.example.sporing-levering.example/pakke/7731",
   "expectedHost": "pakkeposten.example.sporing-levering.example",

@@ -15,6 +15,6 @@ A client-side single-page app built with **Preact + TypeScript (strict)**, compi
 - **Next.js / SvelteKit / SSR:** solve problems we don't have (server data, SEO for dynamic pages) and bring a server or adapter.
 
 ## Consequences
-- One UI runtime dependency (`preact`, ~4 KB gz). React-ecosystem knowledge transfers.
+- One UI runtime dependency (`preact`, ~4 KB gz). Pinned to the mature 10.x line at setup (Preact 11.0 was only 10 days old); upgrading to 11 is a separate, small change. React-ecosystem knowledge transfers.
 - No SEO for inner screens. Fine: links are shared to the start page or to a mission, and the content is the app itself.
 - Pre-rendering the Start screen to static HTML stays possible later (it would help first paint), but isn't in the MVP.

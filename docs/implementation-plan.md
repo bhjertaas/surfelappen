@@ -19,7 +19,7 @@ Based on the PRD's *Build order*. Each phase ends with something that runs and c
 
 Phase 1 can be built and tested locally without these; only its deploy step needs them.
 
-## Phase 1: Skeleton
+## Phase 1: Skeleton ✅
 
 **Delivers**
 - pnpm + Vite + Preact + TypeScript (strict), Biome, Vitest, Playwright, with the scripts from `CLAUDE.md`.

@@ -9,7 +9,7 @@ The PRD asks for content tests in CI (URL parsing with tldts, `.example`, typing
 - **Vitest:** unit tests for pure modules (router parsing, i18n, markup, progress store and migrations, link-inspect flow, typing matcher, address split) and content tests.
 - **Playwright** e2e on **Chromium and WebKit**, at a phone viewport (360×740, touch) and a desktop viewport, against the production build (`vite preview`). Covers: both missions end to end, resume after reload, reset, deep links, back button, coming-soon and needs-keyboard states, storage unavailable, update bar, offline after service-worker install.
 - **@axe-core/playwright** on every screen and key states (WCAG 2.2 AA tags). Violations fail the run.
-- **Size budget** (`scripts/check-size.ts`, no dependency): JS ≤ 60 KB gz, CSS ≤ 15 KB gz, fonts ≤ 100 KB, total precache ≤ 1 MB; prints a per-category table.
+- **Size budget** (`scripts/check-size.ts`, no dependency): JS ≤ 60 KB gz, CSS ≤ 15 KB gz, fonts ≤ 100 KB, images ≤ 700 KB, other ≤ 50 KB, total ≤ 1 MB (text assets measured gzipped, binary assets as they are); prints a per-category table.
 - **CI (GitHub Actions)** on every push and PR: Biome → tsc → Vitest → build → size budget → Playwright. Deploy job on `main` only, needing all of these.
 - **Manual, per phase:** Lighthouse mobile (target LCP < 2.5 s on Slow 4G). **Before release:** keyboard-only run, VoiceOver (iOS + macOS), TalkBack, NVDA, 320 px, 200% zoom, reduced motion.
 
