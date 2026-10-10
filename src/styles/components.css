@@ -12,6 +12,7 @@
 
 .site-header__home {
   font-family: var(--font-display);
+  font-weight: var(--display-weight);
   font-variant-ligatures: var(--display-ligatures);
   font-size: 1.25rem;
   text-decoration: none;
@@ -97,6 +98,52 @@
 
 .character {
   font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-variant-ligatures: var(--display-ligatures);
+  font-size: 1.25rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+/* A townsperson speaking: portrait plus speech bubble. Side by side when there is room. */
+.guide {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3) var(--space-4);
+  margin-block: var(--space-4);
+}
+
+.guide__portrait {
+  flex: none;
+  /* 1× on small phones up to 2× on wide screens. */
+  width: clamp(4rem, 22vw, 8rem);
+  height: clamp(4rem, 22vw, 8rem);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-notice-bg);
+}
+
+.guide__bubble {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 2px solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+  background: var(--color-surface);
+  box-shadow: 4px 4px 0 rgb(31 42 54 / 0.15);
+}
+
+.guide__bubble > :last-child {
+  margin-bottom: 0;
+}
+
+.guide .character {
+  margin-top: 0;
+}
+
+.mission-name {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
   font-variant-ligatures: var(--display-ligatures);
   font-size: 1.25rem;
   color: var(--color-accent);
@@ -132,16 +179,11 @@
 
 /* Town */
 
-.town {
-  display: grid;
-  gap: var(--space-5);
-}
-
-@media (min-width: 52rem) {
-  .town {
-    grid-template-columns: minmax(16rem, 1fr) 2fr;
-    align-items: start;
-  }
+/* The map scrolls sideways on narrow screens instead of shrinking past readability. */
+.town__scroll {
+  overflow-x: auto;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
 }
 
 .town__list ul,
@@ -153,6 +195,7 @@
 
 .town__list ul {
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
   gap: var(--space-2);
 }
 
@@ -186,6 +229,7 @@
 
 .building--list .building__name {
   font-family: var(--font-display);
+  font-weight: var(--display-weight);
   font-variant-ligatures: var(--display-ligatures);
   font-size: 1.25rem;
 }
@@ -207,17 +251,28 @@
 
 .town__map {
   position: relative;
+  min-width: 44rem;
   margin: 0;
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius);
-  overflow: hidden;
   line-height: 0;
 }
 
-.town__map img {
+.town__picture {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* The player's character: feet on the point, glides to a door before going in. */
+.town__walker {
+  position: absolute;
+  width: 4%;
+  height: auto;
+  transform: translate(-50%, -100%);
+  transition:
+    left 0.7s ease-in-out,
+    top 0.7s ease-in-out;
+  pointer-events: none;
+  filter: drop-shadow(0 3px 2px rgb(0 0 0 / 0.35));
 }
 
 .building--map {
@@ -225,41 +280,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  gap: 1px;
-  padding: 2px;
-  border: 2px solid transparent;
-  border-radius: 4px;
+  justify-content: flex-start;
+  gap: 2px;
+  padding: 4px;
+  border: 3px solid transparent;
+  border-radius: 12px;
   background: transparent;
   line-height: 1.15;
-  overflow: hidden;
+  text-decoration: none;
 }
 
 .building--map:hover {
-  border-color: var(--color-primary-strong);
+  border-color: rgb(255 255 255 / 0.85);
+  background: rgb(255 255 255 / 0.12);
 }
 
+/* Name pins over the picture. */
 .building--map .building__name,
 .building--map .building__badge {
   max-width: 100%;
-  padding: 0 3px;
-  border: 0;
-  border-radius: 2px;
-  background: rgb(253 248 236 / 0.94);
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgb(31 42 54 / 0.88);
+  color: #fff;
   text-align: center;
-  hyphens: auto;
-  overflow-wrap: anywhere;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.35);
 }
 
 .building--map .building__name {
   font-family: var(--font-display);
+  font-weight: var(--display-weight);
   font-variant-ligatures: var(--display-ligatures);
-  font-size: clamp(0.625rem, 2.1vw, 0.8125rem);
+  font-size: 0.9375rem;
 }
 
 .building--map .building__badge {
-  justify-self: auto;
-  font-size: clamp(0.5625rem, 1.9vw, 0.8125rem);
+  font-size: 0.75rem;
+  background: rgb(255 241 191 / 0.95);
+  color: var(--color-text);
 }
 
 .town__message {
@@ -532,8 +590,17 @@
 }
 
 .sticker-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   margin-bottom: var(--space-2);
   color: var(--color-muted);
+}
+
+.sticker-list__image {
+  flex: none;
+  width: 3rem;
+  height: 3rem;
 }
 
 .sticker-list__item--earned {
@@ -720,8 +787,15 @@
 
 .album__image {
   flex: none;
-  width: 4rem;
-  height: 4rem;
+  width: 6rem;
+  height: 6rem;
+}
+
+/* Not earned yet: the sticker shows as a faded grey preview of what's to come. */
+.album__image--locked,
+.sticker--locked {
+  filter: grayscale(1);
+  opacity: 0.4;
 }
 
 .album__name {
@@ -798,6 +872,7 @@
 .celebration__name {
   margin-bottom: var(--space-1);
   font-family: var(--font-display);
+  font-weight: var(--display-weight);
   font-variant-ligatures: var(--display-ligatures);
   font-size: 1.5rem;
 }
@@ -827,4 +902,11 @@
   display: inline-flex;
   align-items: center;
   min-height: var(--tap);
+}
+
+/* Start screen: explains the name once. */
+.tagline {
+  margin-top: calc(var(--space-2) * -1);
+  color: var(--color-muted);
+  font-style: italic;
 }

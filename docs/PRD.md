@@ -1,5 +1,7 @@
 # Surfelappen — PRD v0.4
 
+> **v0.5 concept refresh:** `docs/concept.md` overrides this PRD on world, place names, tone and art (an isometric town with themed places: Gone Phishing, Arkaden, Filterboulevarden, Ryktebørsen, Lisenskontoret). Mechanics, privacy and progress below still hold.
+
 Oct 10, 2026 · @Benny
 
 *v0.4: decisions from the first technical session (lupen, transfer flow, back button, typing layout and Caps Lock, Stø hånd, buildings, focus handling, resume). See `docs/architecture.md` and `docs/decisions/`.*
@@ -431,7 +433,7 @@ If minors take part, get a parent's consent and keep a parent present. Store no 
 ## Open questions
 
 - [ ] Final name: *Surfelappen*, or keep *License to Surf*? Check the domain is free. (The MVP is hosted at `surfelappen.minhule.eu` until this is settled.)
-- [ ] Art: make the pixel art yourself, commission it, or generate and clean it up? Placeholders until phase 7; decide before phase 7. The technical base (sizes, formats) is fixed in `docs/decisions/`.
+- [x] Art: drafted with an image model, reduced to real pixels, approved by the owner (ADR 0016).
 - [x] Should the habit scene mention BankID? **No**, it is saved for *BankID-fella* so Mission 1 keeps one takeaway.
 
 ## Appendix A: Finn bedrageren (draft content, nb)

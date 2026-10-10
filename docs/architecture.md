@@ -55,7 +55,7 @@ surfelappen/
 │  │  │                       # Sticker, Building, MissionText…
 │  │  ├─ town.ts              # 5 buildings: id, status, missions[], hotspot rect, art id
 │  │  ├─ stickers.ts          # sticker registry (id, art, awardedBy)
-│  │  ├─ art.ts               # art id → imported URL + intrinsic size (the only file that changes in phase 7)
+│  │  ├─ art.ts               # art id → imported URL + intrinsic size (town, portraits, stickers, icon)
 │  │  └─ missions/
 │  │     ├─ index.ts          # mission registry (id → structure + text loaders)
 │  │     ├─ find-the-impostor/ # structure.ts, text.nb.ts
@@ -74,7 +74,7 @@ surfelappen/
 │  ├─ styles/                 # tokens.css, base.css, layout.css (mobile-first)
 │  └─ assets/
 │     ├─ fonts/               # subsetted woff2 + OFL licence files
-│     └─ art/                 # placeholder SVGs now, PNGs in phase 7
+│     └─ art/                 # indexed PNGs made by scripts/make-art.ts (ADR 0016)
 ├─ tests/
 │  ├─ content/                # Vitest: URLs (URL + tldts), .example, drills, locales, option rules
 │  └─ e2e/                    # Playwright: flows, axe per screen, offline, resume
@@ -108,7 +108,7 @@ Slugs and IDs are English, like all code, and **not** localised. They are stable
 | Kind | IDs |
 | --- | --- |
 | Missions | `find-the-impostor` (*Finn bedrageren*), `ten-fingers` (*Ti fingre*) |
-| Buildings | `post-office` (*Postkontoret*), `keyboard-hall` (*Tastaturhallen*), `square` (*Torget*), `library` (*Biblioteket*), `licence-office` (*Lappekontoret*) |
+| Buildings | `gone-phishing` (*Postkontoret*), `arcade` (*Tastaturhallen*), `square` (*Torget*), `library` (*Biblioteket*), `licence-bureau` (*Lappekontoret*) |
 | Mission 1 steps | `case-1` … `case-6`, `habit`, `habit-tip`, `transfer-intro`, `transfer-1`, `transfer-2`, `transfer-1-backup`, `transfer-2-backup` |
 | Mission 2 steps | `step-1` … `step-5` |
 | Stickers | `link-detective` (*Lenkedetektiv*), `ten-fingers` (*Ti fingre*), `sharp-eye` (*Skarpt øye*), `steady-hand` (*Stø hånd*), `curious` (*Nysgjerrig*) |
@@ -209,7 +209,7 @@ The logic is pure functions with exhaustive unit tests: `link-inspect/flow.ts` (
 
 ### Stickers
 
-`content/stickers.ts` lists every sticker with `awardedBy`: `{ mission: id }` (completion), `{ condition: 'transfer-first-try' | 'final-line-flawless' }` (evaluated by the mission's interaction) or `{ town: 'visited-all-buildings' }` (evaluated from `visitedBuildings`). `progress/awards.ts` (`applyAwards`) is passed to the store as a `derive` step, so after **every** update it marks finished runs `completedOnce` and adds newly earned sticker IDs, wherever the earning happened (a mission step, a town visit). Conditions are only judged on a finished run. `StickerCelebration` listens to `store.onUpdate` (updates made in this tab only, never reloads from another tab or a reset) and shows newly earned stickers in a native modal `<dialog>` (`components/Dialog.tsx`): announced through its heading, closed with Escape or "Fint", focus returned to where it was, and a size-only animation that reduced motion turns off. The passport (`screens/Passport.tsx`) shows every sticker earned or not, with how to earn it, and a reset behind a confirmation dialog whose first, focused button is "Avbryt". It is skippable and reduced-motion aware, and is announced through its dialog label.
+`content/stickers.ts` lists every sticker with `awardedBy`: `{ mission: id }` (completion), `{ condition: 'transfer-first-try' | 'final-line-flawless' }` (evaluated by the mission's interaction) or `{ town: 'visited-all-buildings' }` (evaluated from `visitedBuildings`). `progress/awards.ts` (`applyAwards`) is passed to the store as a `derive` step, so after **every** update it marks finished runs `completedOnce` and adds newly earned sticker IDs, wherever the earning happened (a mission step, a town visit). Conditions are only judged on a finished run. `StickerCelebration` listens to `store.onUpdate` (updates made in this tab only, never reloads from another tab or a reset) and shows newly earned stickers in a native modal `<dialog>` (`components/Dialog.tsx`): announced through its heading, closed with Escape or "Fint", focus returned to where it was, and a size-only animation that reduced motion turns off. The passport (`screens/Passport.tsx`) shows every sticker earned or not (unearned ones as a faded grey preview of the art), with how to earn it, and a reset behind a confirmation dialog whose first, focused button is "Avbryt". It is skippable and reduced-motion aware, and is announced through its dialog label.
 
 ### PWA (`pwa/`, `vite.config.ts`)
 
@@ -222,13 +222,17 @@ The logic is pure functions with exhaustive unit tests: `link-inspect/flow.ts` (
 - A `<meta http-equiv="Content-Security-Policy">` restricts everything to `'self'`. GitHub Pages can't set headers, and this enforces the "no external requests" promise in the browser itself.
 - `__APP_VERSION__`, the package version plus short git SHA, is injected at build and shown on About.
 
+### Art, themes and townspeople
+
+Art lives in `src/assets/art/` (WebP illustrations, PNG pixel art) made by `scripts/make-art.ts` (ADR 0016) and is only referenced through `content/art.ts`. Each mission's structure names its `guide` (portrait), `theme` (`pointclick | arcade | comic`) and `scene`. `Page` puts `theme--<theme>` on the screen wrapper; `styles/themes.css` redefines the colour and font tokens there, so components follow without per-theme code. The intro shows the scene and the guide's words in a speech bubble (`components/Guide.tsx`); the summary shows the portrait with the takeaway. Pictures are decoration (`alt=""`); text carries the content.
+
 ### Town screen
 
-`content/town.ts` defines the five buildings in display order. Selecting a building records the visit (Nysgjerrig) on the click itself; the screen it opens also records it, for deep links. Each has an `id`, a list of `missions` (empty unless open; *Tastaturhallen* will hold several lessons), a `status` (`open | coming-soon | passport`) and a hotspot `rect` in the 320×180 logical coordinate space. The picture is a `PixelImage`. Hotspots are absolutely positioned controls sized in percentages: `<a>` for open destinations, `<button>` for "kommer snart" (which shows a friendly line in a status region). The text list below renders the same array, so it can't drift. On narrow screens the list comes first (CSS `order`). The "Trenger tastatur" label comes from the mission's `requires: ['physical-keyboard']` combined with `matchMedia('(any-pointer: fine)')` being false. A Bluetooth keyboard can't be detected, so "Start likevel" is always offered.
+`content/town.ts` defines the places in display order: `id`, `missions`, `status` (`open | coming-soon | passport`), a hotspot rect and a `door` point, both in the town picture's pixel space (`TOWN_SIZE`, 1536×1024). Hotspots are absolutely positioned controls sized in percentages (`<a>` for open places, `<button>` for "kommer snart", which shows a line in a status region), with the name as a pin. The player's character (`characterFor(audience)` in `art.ts`, so child/teen versions can be added) starts on the square (`TOWN_START`); choosing a place on the map glides it to the door with a CSS transition, then opens the place. No pathfinding; with reduced motion it opens at once. The map scrolls sideways on narrow screens (min-width 44rem), centred on load. The text list below renders the same array. Selecting a place records the visit (Nysgjerrig). "Trenger tastatur" comes from `requires: ['physical-keyboard']` plus no fine pointer.
 
 ## How a mission flows through the code
 
-1. **Town.** Selecting *Postkontoret* (`post-office`) records the visit (`visitedBuildings`), then `navigate({ name: 'mission-intro', missionId: 'find-the-impostor' })`.
+1. **Town.** Selecting *Postkontoret* (`gone-phishing`) records the visit (`visitedBuildings`), then `navigate({ name: 'mission-intro', missionId: 'find-the-impostor' })`.
 2. **Intro screen.** This looks up the registry, renders intro text, and offers "Begynn" (or "Fortsett" if a run exists, plus "Start på nytt", which resets `run` but not stickers). It sets `lastMission`.
 3. **Step screen.** Resolves the step: `module.currentStep(structure, run)`. If the URL's step is ahead of it, it `replace()`s to the current one. It renders `module.StepView`.
 4. **Answer.** The StepView computes the result with pure functions, shows feedback (focus moves), and on success calls `onRunChange(newRun)`. The shell writes it through the progress store, runs `awardStickers()`, and `replace()`s to the next step. "Neste" handles that transition, so feedback stays readable until the player moves on.

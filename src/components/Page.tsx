@@ -2,6 +2,7 @@ import type { ComponentChildren } from 'preact';
 import { useEffect, useRef } from 'preact/hooks';
 import { focusScreenHeading } from '../app/focus.ts';
 import { href } from '../app/routes.ts';
+import type { MissionTheme } from '../content/types.ts';
 import { useI18n } from '../i18n/i18n.ts';
 
 interface PageProps {
@@ -11,11 +12,13 @@ interface PageProps {
   bare?: boolean;
   /** Use the full layout width (the town). */
   wide?: boolean;
+  /** A mission's theme (colours and fonts for the whole screen). */
+  theme?: MissionTheme;
   children: ComponentChildren;
 }
 
 /** Layout for every screen: header with a way back to town, <main>, focus and title. */
-export function Page({ title, bare = false, wide = false, children }: PageProps) {
+export function Page({ title, bare = false, wide = false, theme, children }: PageProps) {
   const { m } = useI18n();
   const heading = useRef<HTMLHeadingElement>(null);
 
@@ -25,7 +28,7 @@ export function Page({ title, bare = false, wide = false, children }: PageProps)
   }, [title, m.app.name]);
 
   return (
-    <>
+    <div class={theme ? `screen theme--${theme}` : 'screen'}>
       {!bare && (
         <header class="site-header">
           <a class="site-header__home" href={href({ name: 'start' })}>
@@ -49,6 +52,6 @@ export function Page({ title, bare = false, wide = false, children }: PageProps)
         </h1>
         {children}
       </main>
-    </>
+    </div>
   );
 }

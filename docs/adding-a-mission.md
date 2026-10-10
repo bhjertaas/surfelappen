@@ -50,7 +50,7 @@ Follow the PRD's tone and register rules: adult, plain Norwegian, a named neighb
 2. `src/content/missions/texts.ts`: add the text to `missionTexts.nb`.
 3. `src/content/stickers.ts`: add its stickers (`awardedBy: { mission }` or a named condition).
 4. `src/i18n/locales/nb.ts`: add each sticker's `name` and `howTo` under `stickers`.
-5. `src/content/art.ts`: add sticker art (a placeholder SVG is fine at first).
+5. `src/content/art.ts`: add sticker art and the guide's portrait (`guide` in the structure). Write a prompt in `scripts/art/<id>.txt`, add the ID to `SPECS` in `scripts/make-art.ts`, run `node scripts/make-art.ts <id> --generate`, and get it approved.
 6. `src/content/town.ts`: add the mission ID to its building's `missions`, or open a closed building (`status: 'open'`). A building with several missions currently opens the first one; a mission list per building is a small UI addition when needed.
 
 No screen or component changes are needed.

@@ -24,7 +24,7 @@ h3 {
   font-family: var(--font-display);
   /* Pixelify's "fi" ligature reads as "A" ("Ti fingre" → "Ti Angre"). */
   font-variant-ligatures: none;
-  font-weight: 500;
+  font-weight: var(--display-weight);
   line-height: 1.2;
   margin: var(--space-5) 0 var(--space-3);
 }

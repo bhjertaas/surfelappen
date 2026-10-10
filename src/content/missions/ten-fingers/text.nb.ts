@@ -4,7 +4,7 @@ import type { tenFingers } from './structure.ts';
 /** Ti fingre, bokmål (PRD Appendix B). */
 export const tenFingersNb: TypingText<typeof tenFingers> = {
   title: 'Ti fingre',
-  character: 'Kai i Tastaturhallen',
+  character: 'Kai i Arkaden',
   intro: [
     'Med alle ti fingrene på tastaturet skriver du roligere, og du slipper å se ned hele tiden. Det går sakte i starten, og det er helt normalt. Nøyaktighet først – farten kommer av seg selv.',
   ],

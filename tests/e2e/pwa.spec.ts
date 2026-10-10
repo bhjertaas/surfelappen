@@ -43,9 +43,9 @@ test('works offline after the first visit', async ({ page, context }) => {
   await expectHeading(page, 'Finn bedrageren');
   await page.goto('/#/town');
   await expectHeading(page, 'Lenkevik');
-  await expect(page.locator('.town__map img')).toHaveJSProperty('complete', true);
+  await expect(page.locator('.town__picture')).toHaveJSProperty('complete', true);
   expect(
-    await page.locator('.town__map img').evaluate((img: HTMLImageElement) => img.naturalWidth),
+    await page.locator('.town__picture').evaluate((img: HTMLImageElement) => img.naturalWidth),
   ).toBeGreaterThan(0);
   await context.setOffline(false);
 });

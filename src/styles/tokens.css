@@ -23,7 +23,10 @@
 
   --font-body:
     "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Pixelify Sans", var(--font-body);
+  --font-display: var(--font-body);
+  /* Pixel font: only inside the Arkaden theme. */
+  --font-pixel: "Pixelify Sans", var(--font-body);
+  --display-weight: 700;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;

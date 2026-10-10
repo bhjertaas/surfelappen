@@ -20,7 +20,7 @@ export function Passport() {
 
   useEffect(() => {
     // Opening the passport counts as visiting Lappekontoret (Nysgjerrig).
-    store.update((p) => visitBuilding(p, 'licence-office'));
+    store.update((p) => visitBuilding(p, 'licence-bureau'));
   }, [store]);
 
   const visitedCount = buildings.filter((b) => progress.visitedBuildings.includes(b.id)).length;
@@ -33,12 +33,22 @@ export function Passport() {
       <ul class="album" aria-label={m.passport.albumLabel}>
         {stickers.map((sticker) => {
           const earned = progress.stickers.includes(sticker.id);
-          const image = artFor(earned ? sticker.image : 'sticker-empty');
+          const image = artFor(sticker.image);
           const text = m.stickers[sticker.id];
           return (
             <li key={sticker.id} class={earned ? 'album__item album__item--earned' : 'album__item'}>
               {image && (
-                <img class="pixel-art album__image" src={image.src} width={96} height={96} alt="" />
+                <img
+                  class={
+                    earned
+                      ? 'pixel-art album__image'
+                      : 'pixel-art album__image album__image--locked'
+                  }
+                  src={image.src}
+                  width={96}
+                  height={96}
+                  alt=""
+                />
               )}
               <div>
                 <h2 class="album__name">{text?.name}</h2>

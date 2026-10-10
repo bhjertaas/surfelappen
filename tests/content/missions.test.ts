@@ -44,7 +44,7 @@ describe('all missions', () => {
 });
 
 describe('art', () => {
-  it('exists for every sticker and building', async () => {
+  it('exists for every sticker, building and mission guide', async () => {
     const { artFor } = await import('../../src/content/art.ts');
     const { stickers } = await import('../../src/content/stickers.ts');
     const { buildings } = await import('../../src/content/town.ts');
@@ -52,5 +52,7 @@ describe('art', () => {
       expect(artFor(s.image), `sticker ${s.id}: art "${s.image}"`).toBeDefined();
     for (const b of buildings)
       expect(artFor(b.image), `building ${b.id}: art "${b.image}"`).toBeDefined();
+    for (const m of missions)
+      expect(artFor(m.guide), `mission ${m.id}: guide "${m.guide}"`).toBeDefined();
   });
 });

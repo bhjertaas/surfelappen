@@ -16,9 +16,10 @@ const BUDGET: Record<Category | 'total', number> = {
   js: 60 * KB,
   css: 15 * KB,
   fonts: 100 * KB,
-  images: 700 * KB,
+  // Illustrated scenes (docs/concept.md): a few hundred KB each as WebP.
+  images: 3000 * KB,
   other: 50 * KB,
-  total: 1024 * KB,
+  total: 3500 * KB,
 };
 
 function category(file: string): Category {

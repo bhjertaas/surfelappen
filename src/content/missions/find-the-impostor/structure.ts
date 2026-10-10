@@ -17,9 +17,12 @@ const B_CORRECT: ThreeOptions = [
 /** Finn bedrageren (PRD Mission 1, Appendix A). */
 export const findTheImpostor = {
   id: 'find-the-impostor',
-  building: 'post-office',
+  building: 'gone-phishing',
   interaction: 'link-inspect',
   requires: [],
+  guide: 'portrait-hanne',
+  theme: 'pointclick',
+  scene: 'scene-phishing',
   stickers: ['link-detective', 'sharp-eye'],
   reviewedOn: null,
   sources: [

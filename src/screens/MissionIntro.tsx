@@ -2,8 +2,10 @@ import { useEffect, useMemo } from 'preact/hooks';
 import { isTouchOnly } from '../app/device.ts';
 import { navigate } from '../app/router.ts';
 import { href } from '../app/routes.ts';
+import { Guide } from '../components/Guide.tsx';
 import { Page } from '../components/Page.tsx';
 import { Rich } from '../components/Rich.tsx';
+import { Scene } from '../components/Scene.tsx';
 import { findMission } from '../content/missions/index.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
@@ -49,13 +51,15 @@ function Intro({ mission }: { mission: MissionStructure }) {
   };
 
   return (
-    <Page title={text.title}>
-      <p class="character">{text.character}</p>
-      {text.intro.map((paragraph) => (
-        <p key={paragraph}>
-          <Rich text={paragraph} />
-        </p>
-      ))}
+    <Page title={text.title} theme={mission.theme}>
+      <Scene id={mission.scene} />
+      <Guide name={text.character}>
+        {text.intro.map((paragraph) => (
+          <p key={paragraph}>
+            <Rich text={paragraph} />
+          </p>
+        ))}
+      </Guide>
       <h2>{m.mission.learnHeading}</h2>
       <p>{text.learn}</p>
 

@@ -59,7 +59,7 @@ function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }
 
   const { StepView } = interactionViews[mission.interaction];
   return (
-    <Page title={text.title}>
+    <Page title={text.title} theme={mission.theme}>
       <StepView
         mission={mission}
         text={text}

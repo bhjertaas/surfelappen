@@ -7,7 +7,7 @@ import { createProgressStore } from './store.ts';
 const sample: Progress = {
   v: 1,
   lastMission: 'find-the-impostor',
-  visitedBuildings: ['post-office'],
+  visitedBuildings: ['gone-phishing'],
   stickers: ['link-detective'],
   missions: {
     'find-the-impostor': {
@@ -67,9 +67,12 @@ describe('createProgressStore', () => {
     const store = createProgressStore(backend);
     const listener = vi.fn();
     store.subscribe(listener);
-    store.update((p) => ({ ...p, visitedBuildings: ['library'] }));
+    store.update((p) => ({ ...p, visitedBuildings: ['rumour-exchange'] }));
     expect(listener).toHaveBeenCalledTimes(1);
-    expect(JSON.parse(backend.read() ?? '')).toMatchObject({ v: 1, visitedBuildings: ['library'] });
+    expect(JSON.parse(backend.read() ?? '')).toMatchObject({
+      v: 1,
+      visitedBuildings: ['rumour-exchange'],
+    });
   });
 
   it('skips saving and notifying when nothing changed', () => {

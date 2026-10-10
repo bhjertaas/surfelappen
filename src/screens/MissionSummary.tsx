@@ -1,9 +1,12 @@
 import { useEffect } from 'preact/hooks';
 import { replace } from '../app/router.ts';
 import { href } from '../app/routes.ts';
+import { Guide } from '../components/Guide.tsx';
 import { Page } from '../components/Page.tsx';
 import { Rich } from '../components/Rich.tsx';
+import { artFor } from '../content/art.ts';
 import { findMission } from '../content/missions/index.ts';
+import { stickers } from '../content/stickers.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { format } from '../i18n/format.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
@@ -36,12 +39,14 @@ function Summary({ mission }: { mission: MissionStructure }) {
   const { SummaryDetails } = interactionViews[mission.interaction];
 
   return (
-    <Page title={m.summary.title}>
-      <p class="character">{text.title}</p>
+    <Page title={m.summary.title} theme={mission.theme}>
+      <p class="mission-name">{text.title}</p>
       <h2>{m.summary.takeawayHeading}</h2>
-      <p>
-        <Rich text={text.summary.takeaway} />
-      </p>
+      <Guide portrait={mission.guide} name={text.character}>
+        <p>
+          <Rich text={text.summary.takeaway} />
+        </p>
+      </Guide>
       {entry && <SummaryDetails mission={mission} run={entry.run} />}
       <h2>{m.summary.stickersHeading}</h2>
       <ul class="sticker-list">
@@ -54,10 +59,13 @@ function Summary({ mission }: { mission: MissionStructure }) {
               key={id}
               class={has ? 'sticker-list__item sticker-list__item--earned' : 'sticker-list__item'}
             >
-              <span aria-hidden="true">{has ? '★' : '☆'}</span>{' '}
-              {has
-                ? format(m.summary.stickerEarned, { name: sticker.name })
-                : format(m.summary.stickerMissing, { name: sticker.name, howTo: sticker.howTo })}
+              <StickerImage id={id} earned={has} />
+              <span>
+                <span aria-hidden="true">{has ? '★' : '☆'}</span>{' '}
+                {has
+                  ? format(m.summary.stickerEarned, { name: sticker.name })
+                  : format(m.summary.stickerMissing, { name: sticker.name, howTo: sticker.howTo })}
+              </span>
             </li>
           );
         })}
@@ -71,5 +79,22 @@ function Summary({ mission }: { mission: MissionStructure }) {
         </a>
       </div>
     </Page>
+  );
+}
+
+/** The sticker's picture, greyed out until it's earned. Decoration only. */
+function StickerImage({ id, earned }: { id: string; earned: boolean }) {
+  const image = artFor(stickers.find((s) => s.id === id)?.image ?? '');
+  if (!image) return null;
+  return (
+    <img
+      class={
+        earned ? 'pixel-art sticker-list__image' : 'pixel-art sticker-list__image sticker--locked'
+      }
+      src={image.src}
+      width={image.width}
+      height={image.height}
+      alt=""
+    />
   );
 }

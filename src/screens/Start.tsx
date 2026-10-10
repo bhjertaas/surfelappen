@@ -12,6 +12,7 @@ export function Start() {
 
   return (
     <Page title={m.app.name} bare>
+      <p class="tagline">{m.app.tagline}</p>
       <p class="lead">{m.app.pitch}</p>
       <div class="actions">
         {returning && (

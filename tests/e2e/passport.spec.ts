@@ -8,13 +8,13 @@ const list = (page: import('@playwright/test').Page) =>
 async function visitEveryBuilding(page: import('@playwright/test').Page) {
   await page.goto('/#/town');
   await list(page)
-    .getByRole('button', { name: /Torget/ })
+    .getByRole('button', { name: /Filterboulevarden/ })
     .click();
   await list(page)
-    .getByRole('button', { name: /Biblioteket/ })
+    .getByRole('button', { name: /Ryktebørsen/ })
     .click();
   await list(page)
-    .getByRole('link', { name: /Postkontoret/ })
+    .getByRole('link', { name: /Gone Phishing/ })
     .click();
   await expectHeading(page, 'Finn bedrageren');
   await page.goto('/#/mission/ten-fingers');

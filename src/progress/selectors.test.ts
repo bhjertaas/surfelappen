@@ -127,8 +127,8 @@ describe('restartMission', () => {
 
 describe('visitBuilding', () => {
   it('records a visit once', () => {
-    const p = visitBuilding(emptyProgress(), 'library');
-    expect(p.visitedBuildings).toEqual(['library']);
-    expect(visitBuilding(p, 'library')).toBe(p);
+    const p = visitBuilding(emptyProgress(), 'rumour-exchange');
+    expect(p.visitedBuildings).toEqual(['rumour-exchange']);
+    expect(visitBuilding(p, 'rumour-exchange')).toBe(p);
   });
 });

@@ -18,11 +18,11 @@ test('picture and list offer the same destinations in the same order', async ({ 
   const list = await destinations(page.locator('.town__list'));
   const map = await destinations(page.locator('.town__hotspots'));
   expect(list.map((d) => d.name)).toEqual([
-    'Postkontoret',
-    'Tastaturhallen',
-    'Torget',
-    'Biblioteket',
-    'Lappekontoret',
+    'Gone Phishing',
+    'Arkaden',
+    'Filterboulevarden',
+    'Ryktebørsen',
+    'Lisenskontoret',
   ]);
   expect(map).toEqual(list);
 });
@@ -30,22 +30,24 @@ test('picture and list offer the same destinations in the same order', async ({ 
 test('closed buildings say so in text and answer with a friendly line', async ({ page }) => {
   await page.goto('/#/town');
   const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
-  const square = list.getByRole('button', { name: /Torget/ });
+  const square = list.getByRole('button', { name: /Filterboulevarden/ });
   await expect(square).toContainText('Kommer snart');
   await square.click();
-  await expect(page.getByRole('status').filter({ hasText: 'hva du deler på nett' })).toBeVisible();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'livet bak de perfekte bildene' }),
+  ).toBeVisible();
   await expect(square).toBeFocused();
-  expect((await storedProgress(page))?.visitedBuildings).toEqual(['square']);
+  expect((await storedProgress(page))?.visitedBuildings).toEqual(['boulevard']);
 });
 
-test('the keyboard hall says "Trenger tastatur" only on touch-only devices', async ({ page }) => {
+test('the arcade says "Trenger tastatur" only on touch-only devices', async ({ page }) => {
   await page.goto('/#/town');
   const touchOnly = await page.evaluate(
     () => matchMedia('(any-pointer: coarse)').matches && !matchMedia('(any-pointer: fine)').matches,
   );
   const hall = page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Tastaturhallen/ });
+    .getByRole('link', { name: /Arkaden/ });
   if (touchOnly) {
     await expect(hall).toContainText('Trenger tastatur');
     await hall.click();
@@ -56,14 +58,36 @@ test('the keyboard hall says "Trenger tastatur" only on touch-only devices', asy
   }
 });
 
-test('Lappekontoret opens the passport', async ({ page }) => {
+test('Lisenskontoret opens the passport', async ({ page }) => {
   await page.goto('/#/town');
   await page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Lappekontoret/ })
+    .getByRole('link', { name: /Lisenskontoret/ })
     .click();
   await expect(page).toHaveURL(/#\/passport$/);
   await expect
     .poll(async () => (await storedProgress(page))?.visitedBuildings)
-    .toEqual(['licence-office']);
+    .toEqual(['licence-bureau']);
+});
+
+test('choosing a place on the map walks the character there, then goes in', async ({ page }) => {
+  await page.goto('/#/town');
+  const walker = page.locator('.town__walker');
+  const before = await walker.boundingBox();
+  await page
+    .locator('.town__hotspots')
+    .getByRole('link', { name: /Gone Phishing/ })
+    .click();
+  await expect(page).toHaveURL(/#\/mission\/find-the-impostor$/);
+  expect(before).not.toBeNull();
+});
+
+test('with reduced motion, the map goes straight in', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/#/town');
+  await page
+    .locator('.town__hotspots')
+    .getByRole('link', { name: /Arkaden/ })
+    .click();
+  await expect(page).toHaveURL(/#\/mission\/ten-fingers$/);
 });

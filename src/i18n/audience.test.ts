@@ -33,13 +33,13 @@ describe('audience variants', () => {
 
   it('reorder buildings without hiding any', () => {
     expect(buildingsFor('teen')).toBe(buildings);
-    buildingOrder.teen = ['square', 'post-office'];
+    buildingOrder.teen = ['boulevard', 'gone-phishing'];
     expect(buildingsFor('teen').map((b) => b.id)).toEqual([
-      'square',
-      'post-office',
-      'keyboard-hall',
-      'library',
-      'licence-office',
+      'boulevard',
+      'gone-phishing',
+      'arcade',
+      'rumour-exchange',
+      'licence-bureau',
     ]);
   });
 

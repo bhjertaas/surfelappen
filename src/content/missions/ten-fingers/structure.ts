@@ -5,9 +5,12 @@ const HOME_ROW = ['f', 'j', 'd', 'k', 's', 'l', 'a', 'ø', ' '];
 /** Ti fingre, lesson 1 (PRD Mission 2, Appendix B). */
 export const tenFingers = {
   id: 'ten-fingers',
-  building: 'keyboard-hall',
+  building: 'arcade',
   interaction: 'typing',
   requires: ['physical-keyboard'],
+  guide: 'portrait-kai',
+  theme: 'arcade',
+  scene: 'scene-arcade',
   stickers: ['ten-fingers', 'steady-hand'],
   reviewedOn: null,
   sources: [],

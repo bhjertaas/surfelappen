@@ -33,6 +33,8 @@ export interface Source {
   readonly url: string;
 }
 
+export type MissionTheme = 'pointclick' | 'arcade' | 'comic';
+
 export type InteractionId = 'link-inspect' | 'typing';
 export type Requirement = 'physical-keyboard';
 
@@ -41,6 +43,12 @@ interface MissionBase<I extends InteractionId, S> {
   readonly building: BuildingId;
   readonly interaction: I;
   readonly requires: readonly Requirement[];
+  /** Portrait of the townsperson who brings the mission (art ID). */
+  readonly guide: ArtId;
+  /** Look of the mission's screens (colours, fonts); each place has its own (docs/concept.md). */
+  readonly theme: MissionTheme;
+  /** The place's scene, shown on the mission intro (art ID). */
+  readonly scene: ArtId;
   readonly steps: readonly S[];
   /** Stickers this mission can award; their rules live in the sticker registry. */
   readonly stickers: readonly StickerId[];
@@ -157,7 +165,13 @@ export interface Sticker {
   readonly awardedBy: AwardedBy;
 }
 
-/** A rectangle in the town picture's 320×180 logical pixel space. */
+/** A point in the town picture's pixel space (TOWN_SIZE). */
+export interface Point {
+  readonly x: number;
+  readonly y: number;
+}
+
+/** A rectangle in the town picture's pixel space (TOWN_SIZE). */
 export interface Hotspot {
   readonly x: number;
   readonly y: number;
@@ -171,5 +185,7 @@ export interface Building {
   /** Missions housed here, in order; empty unless `status` is `open`. */
   readonly missions: readonly MissionId[];
   readonly hotspot: Hotspot;
+  /** Where the player's character walks to before going in. */
+  readonly door: Point;
   readonly image: ArtId;
 }

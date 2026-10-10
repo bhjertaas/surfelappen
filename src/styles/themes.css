@@ -1,0 +1,87 @@
+/* Mission themes (docs/concept.md): each place has its own look. A theme redefines
+   the colour tokens on the screen wrapper, so every component follows. Text colours
+   keep 4.5:1 on --color-bg and --color-surface. */
+
+.screen {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.scene {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: var(--space-3) var(--space-4);
+  border: 3px solid var(--color-border);
+  border-radius: calc(var(--radius) * 2);
+}
+
+/* Gone Phishing: 90s point-and-click. Warm sand and rust, chunky outlines. */
+.theme--pointclick {
+  --color-bg: #f4e6c8;
+  --color-surface: #fffaf0;
+  --color-text: #2b1d14;
+  --color-muted: #5b4635;
+  --color-primary: #a63c1a;
+  --color-primary-strong: #7a2a10;
+  --color-accent: #8c3415;
+  --color-border: #2b1d14;
+  --color-focus: #1f5f8b;
+  --color-link-text: #1f5f8b;
+}
+
+.theme--pointclick .button,
+.theme--pointclick .option,
+.theme--pointclick .guide__bubble,
+.theme--pointclick .feedback {
+  border-width: 3px;
+  box-shadow: 4px 4px 0 var(--color-border);
+}
+
+/* Arkaden: neon pixel arcade. Dark purple, neon pink and cyan, pixel headings. */
+.theme--arcade {
+  color-scheme: dark;
+  --color-bg: #170d2e;
+  --color-surface: #24164a;
+  --color-text: #f4efff;
+  --color-muted: #c9bdf0;
+  --color-primary: #ff5cad;
+  --color-primary-strong: #ff8cc6;
+  --color-on-primary: #170d2e;
+  --color-accent: #5ff2ff;
+  --color-border: #9d84f0;
+  --color-focus: #5ff2ff;
+  --color-link-text: #7fe9ff;
+  --color-notice-bg: #3a2a10;
+  --color-notice-border: #ffd166;
+  --color-correct: #7dffa8;
+  --color-correct-bg: #123222;
+  --color-wrong: #ff9b8a;
+  --color-wrong-bg: #3a1620;
+  --font-display: var(--font-pixel);
+  --display-weight: 500;
+}
+
+.theme--arcade .scene,
+.theme--arcade .guide__portrait {
+  image-rendering: pixelated;
+  box-shadow: 0 0 18px rgb(255 92 173 / 0.45);
+}
+
+.theme--arcade .site-header {
+  border-bottom-color: var(--color-border);
+}
+
+/* Filterboulevarden: comic. Muted plum and dusty pink (used by mission 3). */
+.theme--comic {
+  --color-bg: #f3e7e4;
+  --color-surface: #fffaf8;
+  --color-text: #2a1a2e;
+  --color-muted: #5e4a5f;
+  --color-primary: #7a3b6e;
+  --color-primary-strong: #5a2650;
+  --color-accent: #9c3d5c;
+  --color-border: #2a1a2e;
+  --color-focus: #1f6f8b;
+}

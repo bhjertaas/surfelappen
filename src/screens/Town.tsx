@@ -1,11 +1,12 @@
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { isTouchOnly } from '../app/device.ts';
+import { navigate } from '../app/router.ts';
 import { href, type Route } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
-import { art } from '../content/art.ts';
+import { art, characterFor } from '../content/art.ts';
 import { findMission } from '../content/missions/index.ts';
-import { buildingsFor, TOWN_SIZE } from '../content/town.ts';
-import type { Building } from '../content/types.ts';
+import { buildingsFor, TOWN_SIZE, TOWN_START } from '../content/town.ts';
+import type { Building, Point } from '../content/types.ts';
 import { plural } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
 import { useProgress } from '../progress/hooks.ts';
@@ -13,8 +14,22 @@ import { visitBuilding } from '../progress/selectors.ts';
 
 type Variant = 'map' | 'list';
 
+/** How long the character takes to walk to a place (matches the CSS transition). */
+const WALK_MS = 700;
+
 function pct(value: number, of: number): string {
   return `${(value / of) * 100}%`;
+}
+
+function targetOf(building: Building): Route {
+  const firstMission = building.missions[0];
+  return building.status === 'passport' || firstMission === undefined
+    ? { name: 'passport' }
+    : { name: 'mission-intro', missionId: firstMission };
+}
+
+function reducedMotion(): boolean {
+  return window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 }
 
 interface ControlProps {
@@ -22,10 +37,12 @@ interface ControlProps {
   variant: Variant;
   touchOnly: boolean;
   onClosed: (message: string) => void;
+  /** Map only: walk the character to the place, then run `then`. */
+  onWalk?: (building: Building, then: () => void) => void;
 }
 
 /** One destination, rendered the same way in the picture and in the list (FR-02). */
-function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProps) {
+function BuildingControl({ building, variant, touchOnly, onClosed, onWalk }: ControlProps) {
   const { m } = useI18n();
   const { store } = useProgress();
   const text = m.buildings[building.id];
@@ -57,6 +74,7 @@ function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProp
       {variant === 'list' && <span class="building__about">{text.about}</span>}
     </>
   );
+  const visit = () => store.update((p) => visitBuilding(p, building.id));
 
   if (building.status === 'coming-soon') {
     return (
@@ -65,8 +83,9 @@ function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProp
         class={className}
         style={style}
         onClick={() => {
-          store.update((p) => visitBuilding(p, building.id));
-          onClosed(text.closed ?? '');
+          visit();
+          const show = () => onClosed(text.closed ?? '');
+          onWalk ? onWalk(building, show) : show();
         }}
       >
         {content}
@@ -74,21 +93,39 @@ function BuildingControl({ building, variant, touchOnly, onClosed }: ControlProp
     );
   }
 
-  const firstMission = building.missions[0];
-  const target: Route =
-    building.status === 'passport' || firstMission === undefined
-      ? { name: 'passport' }
-      : { name: 'mission-intro', missionId: firstMission };
+  const target = targetOf(building);
   return (
     <a
       class={className}
       style={style}
       href={href(target)}
-      // Selecting a building is the visit (Nysgjerrig); the screen also records it for deep links.
-      onClick={() => store.update((p) => visitBuilding(p, building.id))}
+      onClick={(event) => {
+        // Selecting a building is the visit (Nysgjerrig); the screen also records it for deep links.
+        visit();
+        // On the map, walk there first. Modified clicks (new tab etc.) keep the browser's behaviour.
+        if (!onWalk || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0)
+          return;
+        event.preventDefault();
+        onWalk(building, () => navigate(target));
+      }}
     >
       {content}
     </a>
+  );
+}
+
+/** The player's character on the map. Decoration: the controls say where you go. */
+function Walker({ at, facing }: { at: Point; facing: 'front' | 'back' }) {
+  const { audience } = useI18n();
+  const character = characterFor(audience);
+  const image = facing === 'front' ? character.front : character.back;
+  return (
+    <img
+      class="town__walker"
+      src={image.src}
+      alt=""
+      style={{ left: pct(at.x, TOWN_SIZE.width), top: pct(at.y, TOWN_SIZE.height) }}
+    />
   );
 }
 
@@ -98,6 +135,30 @@ export function Town() {
   const buildings = buildingsFor(audience);
   const [closedMessage, setClosedMessage] = useState('');
   const touchOnly = useMemo(isTouchOnly, []);
+  const [walker, setWalker] = useState<{ at: Point; facing: 'front' | 'back' }>({
+    at: TOWN_START,
+    facing: 'front',
+  });
+  const walkTimer = useRef<number>(undefined);
+  const scroller = useRef<HTMLDivElement>(null);
+
+  useEffect(() => () => window.clearTimeout(walkTimer.current), []);
+
+  // On narrow screens the map scrolls sideways; start with the square in view.
+  useEffect(() => {
+    const el = scroller.current;
+    if (el) el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
+  }, []);
+
+  const walkTo = (building: Building, then: () => void) => {
+    window.clearTimeout(walkTimer.current);
+    if (reducedMotion()) return then();
+    setWalker((w) => ({
+      at: building.door,
+      facing: building.door.y < w.at.y ? 'back' : 'front',
+    }));
+    walkTimer.current = window.setTimeout(then, WALK_MS);
+  };
 
   return (
     <Page title={m.town.title} wide>
@@ -106,29 +167,16 @@ export function Town() {
         {plural(locale, progress.stickers.length, m.town.stickerCount)}{' '}
         <a href={href({ name: 'passport' })}>{m.town.toPassport}</a>
       </p>
-      <div class="town">
-        <nav class="town__list" aria-label={m.town.listLabel}>
-          <ul>
-            {buildings.map((b) => (
-              <li key={b.id}>
-                <BuildingControl
-                  building={b}
-                  variant="list"
-                  touchOnly={touchOnly}
-                  onClosed={setClosedMessage}
-                />
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <div class="town__scroll" ref={scroller}>
         <figure class="town__map" aria-label={m.town.mapLabel}>
           <img
-            class="pixel-art"
+            class="town__picture"
             src={art.town.src}
             width={art.town.width}
             height={art.town.height}
             alt=""
           />
+          <Walker at={walker.at} facing={walker.facing} />
           <ul class="town__hotspots">
             {buildings.map((b) => (
               <li key={b.id}>
@@ -137,6 +185,7 @@ export function Town() {
                   variant="map"
                   touchOnly={touchOnly}
                   onClosed={setClosedMessage}
+                  onWalk={walkTo}
                 />
               </li>
             ))}
@@ -146,6 +195,20 @@ export function Town() {
       <p class="town__message" role="status">
         {closedMessage}
       </p>
+      <nav class="town__list" aria-label={m.town.listLabel}>
+        <ul>
+          {buildings.map((b) => (
+            <li key={b.id}>
+              <BuildingControl
+                building={b}
+                variant="list"
+                touchOnly={touchOnly}
+                onClosed={setClosedMessage}
+              />
+            </li>
+          ))}
+        </ul>
+      </nav>
     </Page>
   );
 }

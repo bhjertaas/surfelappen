@@ -14,26 +14,26 @@ interface BuildingText {
 }
 
 const buildings: Record<string, BuildingText> = {
-  'post-office': {
-    name: 'Postkontoret',
+  'gone-phishing': {
+    name: 'Gone Phishing',
     about: 'Se hvor lenker i SMS og e-post egentlig fører.',
   },
-  'keyboard-hall': {
-    name: 'Tastaturhallen',
+  arcade: {
+    name: 'Arkaden',
     about: 'Lær å skrive med ti fingre, uten å se ned.',
   },
-  square: {
-    name: 'Torget',
-    about: 'Om å dele bilder og informasjon trygt.',
-    closed: 'Her kommer et oppdrag om hva du deler på nett. Det er ikke klart ennå.',
+  boulevard: {
+    name: 'Filterboulevarden',
+    about: 'Om influensere, filtre og det perfekte livet.',
+    closed: 'Her kommer et oppdrag om livet bak de perfekte bildene. Det er ikke klart ennå.',
   },
-  library: {
-    name: 'Biblioteket',
+  'rumour-exchange': {
+    name: 'Ryktebørsen',
     about: 'Om å sjekke om noe du leser er sant.',
-    closed: 'Her kommer et oppdrag om å sjekke om noe du leser er sant. Det er ikke klart ennå.',
+    closed: 'Her kommer et oppdrag om rykter og falske nyheter. Det er ikke klart ennå.',
   },
-  'licence-office': {
-    name: 'Lappekontoret',
+  'licence-bureau': {
+    name: 'Lisenskontoret',
     about: 'Her ligger passet ditt med klistremerkene du har samlet.',
   },
 };
@@ -64,8 +64,9 @@ const stickerCount: PluralForms = {
 export const nb = {
   app: {
     name: 'Surfelappen',
+    tagline: '«Å surfe» er et gammelt ord for å bruke nettet. Her tar du lappen på det.',
     pitch:
-      'Lær å se hvor en lenke egentlig fører, og skriv med ti fingre. Korte oppdrag i den lille byen Lenkevik.',
+      'Korte oppdrag i den litt rare byen Lenkevik: avslør svindellenker, lær touch på tastaturet, og mer etter hvert.',
     version: 'Versjon',
   },
   nav: {
@@ -83,8 +84,8 @@ export const nb = {
   },
   town: {
     title: 'Lenkevik',
-    intro: 'Lenkevik er en liten by ved sjøen. Velg et sted du vil besøke.',
-    mapLabel: 'Bilde av Lenkevik',
+    intro: 'Velkommen til Lenkevik. Trykk på et sted, så går du dit.',
+    mapLabel: 'Kart over Lenkevik',
     listLabel: 'Steder i Lenkevik',
     stickerCount,
     toPassport: 'Se passet ditt',
@@ -181,7 +182,7 @@ export const nb = {
   passport: {
     title: 'Passet ditt',
     intro:
-      'Her samler du klistremerker. Tomme plasser viser hvilke som finnes, og hva du gjør for å få dem.',
+      'Her samler du klistremerker. De grå viser hvilke som finnes, og hva du gjør for å få dem.',
     albumLabel: 'Klistremerker',
     earned: 'Tjent',
     notEarned: 'Ikke tjent ennå',
@@ -229,7 +230,7 @@ export const nb = {
     credits: [
       'Laget av Benny Hjertaas.',
       'Skrifttyper: Pixelify Sans av Stefie Justprince og Atkinson Hyperlegible Next av Braille Institute, begge med SIL Open Font License.',
-      'Grafikken er foreløpig enkle skisser.',
+      'Grafikken er laget med hjelp av en bildemodell (OpenAI) og tilpasset til pikselkunst.',
     ],
     licenceHeading: 'Lisens',
     licence:

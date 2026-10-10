@@ -1,51 +1,59 @@
-import type { Audience, Building } from './types.ts';
+import type { Audience, Building, Point } from './types.ts';
 
 /**
- * The buildings of Lenkevik, in display order. The picture's hotspots and the
- * text list both render this array, so they can't drift apart (FR-02).
- * Hotspots are in the town picture's 320×180 logical pixel space (ADR 0011).
+ * The places in Lenkevik, in display order. The picture's hotspots and the text
+ * list both render this array, so they can't drift apart (FR-02).
+ * Hotspots and doors are in the town picture's pixel space (TOWN_SIZE).
  */
 export const buildings = [
   {
-    id: 'post-office',
+    id: 'gone-phishing',
     status: 'open',
     missions: ['find-the-impostor'],
-    hotspot: { x: 14, y: 58, w: 56, h: 70 },
+    hotspot: { x: 102, y: 486, w: 435, h: 282 },
+    door: { x: 470, y: 720 },
     image: 'town',
   },
   {
-    id: 'keyboard-hall',
+    id: 'arcade',
     status: 'open',
     missions: ['ten-fingers'],
-    hotspot: { x: 76, y: 50, w: 64, h: 78 },
+    hotspot: { x: 115, y: 179, w: 397, h: 269 },
+    door: { x: 420, y: 470 },
     image: 'town',
   },
   {
-    id: 'square',
+    id: 'boulevard',
     status: 'coming-soon',
     missions: [],
-    hotspot: { x: 146, y: 76, w: 56, h: 52 },
+    hotspot: { x: 960, y: 102, w: 320, h: 300 },
+    door: { x: 1030, y: 460 },
     image: 'town',
   },
   {
-    id: 'library',
+    id: 'rumour-exchange',
     status: 'coming-soon',
     missions: [],
-    hotspot: { x: 208, y: 56, w: 52, h: 72 },
+    hotspot: { x: 1050, y: 420, w: 397, h: 340 },
+    door: { x: 1120, y: 770 },
     image: 'town',
   },
   {
-    id: 'licence-office',
+    id: 'licence-bureau',
     status: 'passport',
     missions: [],
-    hotspot: { x: 266, y: 64, w: 48, h: 64 },
+    hotspot: { x: 614, y: 0, w: 384, h: 339 },
+    door: { x: 778, y: 360 },
     image: 'town',
   },
 ] as const satisfies readonly Building[];
 
 export type TownBuildingId = (typeof buildings)[number]['id'];
 
-export const TOWN_SIZE = { width: 320, height: 180 } as const;
+export const TOWN_SIZE = { width: 1536, height: 1024 } as const;
+
+/** Where the player's character stands when the town opens: on the square, by the fountain. */
+export const TOWN_START: Point = { x: 700, y: 640 };
 
 /**
  * Suggested order per audience (PRD "Later": e.g. a sharing/bullying mission
