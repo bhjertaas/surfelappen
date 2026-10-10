@@ -98,3 +98,4 @@ Notes per reader (step number + what happened):
 | # | Found by | Severity | Description | Status |
 | --- | --- | --- | --- | --- |
 | 1 | Automated (target size) | ⚠️ | Standalone links on About were 24 px tall | Fixed |
+| 2 | Owner, keyboard run | ⚠️ | Ti fingre showed the next key and messages in capitals ("Neste tast: D") while the line is lower case, which suggested holding Shift | Fixed (`fe94a3b`) |
