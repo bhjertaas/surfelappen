@@ -10,7 +10,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "check": "biome check . && tsc -p tsconfig.json && tsc -p tsconfig.node.json",
+    "check": "biome check --error-on-warnings . && tsc -p tsconfig.json && tsc -p tsconfig.node.json",
     "format": "biome check --write .",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -19,7 +19,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "11.0.1"
+    "preact": "11.0.1",
+    "workbox-window": "7.4.1"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
@@ -28,9 +29,12 @@
     "@playwright/test": "^1.64.0",
     "@preact/preset-vite": "^2.10.6",
     "@types/node": "^24.19.1",
+    "harfbuzzjs": "^1.6.3",
+    "subset-font": "^2.9.0",
     "tldts": "^7.4.18",
     "typescript": "^7.0.2",
     "vite": "^8.3.4",
+    "vite-plugin-pwa": "^2.0.0",
     "vitest": "^5.0.3"
   },
   "packageManager": "pnpm@12.8.1"

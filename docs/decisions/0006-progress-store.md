@@ -9,7 +9,7 @@ Progress must survive reloads, be resumable at the first unfinished step, never 
 - One module (`src/progress/`) owns all reads and writes. One `localStorage` key, `surfelappen:progress`, holding JSON `{ v: 1, … }`.
 - Contents: last played mission, visited buildings, earned sticker IDs, and per mission `completedOnce` plus the current run (owned by the interaction type). **No timestamps, no device info.**
 - Writes after every finished step and every sticker award.
-- Migrations: a chain of pure `vN → vN+1` functions, unit-tested with fixtures. Unknown or removed IDs are ignored. Corrupt data, or data from a newer version, starts a fresh in-memory state **without overwriting the stored value**.
+- Migrations: a chain of pure `vN → vN+1` functions, unit-tested with fixtures. Unknown or removed IDs are ignored. Corrupt data starts a fresh state and is replaced by the next save. Data from a newer version starts a fresh in-memory state **without ever overwriting the stored value**, and a note says progress from this tab isn't saved.
 - `StorageBackend` interface (`localStorage`, `memory`). If the startup probe fails, use memory and show the storage note.
 - Other tabs are kept in sync via the `storage` event.
 - Preact binding: `useProgress(selector)`.

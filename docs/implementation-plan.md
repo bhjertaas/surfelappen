@@ -33,7 +33,7 @@ Phase 1 can be built and tested locally without these; only its deploy step need
 - CI green; content tests fail when a URL or `expectedSite` is deliberately broken (shown once, then reverted).
 - `https://surfelappen.minhule.eu` shows the hello page over HTTPS.
 
-## Phase 2: Shell
+## Phase 2: Shell ✅
 
 **Delivers**
 - Hash router with all routes; focus/title handling; not-found → ErrorScreen.

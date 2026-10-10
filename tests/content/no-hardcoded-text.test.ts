@@ -16,14 +16,17 @@ function stripComments(source: string): string {
   return source.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 }
 
-const JSX_TEXT = />\s*([A-Za-zÆØÅæøå][^<>{}]*?)\s*</g;
+/** Text after a closing `>` (not the `>` of `=>` or `>=`) and before the next `<`. */
+const JSX_TEXT = /(?<![=>-])>\s*([A-Za-zÆØÅæøå][^<>{}]*?)\s*</g;
+/** Code, not prose: comparisons, logic and statements. */
+const CODE = /===|!==|&&|\|\||=>|;|\breturn\b/;
 
 describe('components', () => {
   for (const file of tsxFiles('src')) {
     it(`${file} has no hard-coded text between JSX tags`, () => {
-      const found = [...stripComments(readFileSync(file, 'utf8')).matchAll(JSX_TEXT)].map(
-        (m) => m[1],
-      );
+      const found = [...stripComments(readFileSync(file, 'utf8')).matchAll(JSX_TEXT)]
+        .map((m) => m[1])
+        .filter((text) => text !== undefined && !CODE.test(text));
       expect(found, `${file}: move this text to a locale or content file`).toEqual([]);
     });
   }

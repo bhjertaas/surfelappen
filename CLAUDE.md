@@ -10,12 +10,14 @@ A small, free, browser-based digital literacy game for Norway: short missions in
 
 ```bash
 pnpm dev          # Vite dev server (no service worker in dev)
-pnpm check        # biome check + tsc --noEmit; must be clean
+pnpm check        # biome check (warnings fail) + tsc for src and for tests/scripts; must be clean
 pnpm test         # Vitest: unit + content tests (URLs via URL + tldts, .example, drills, locales)
 pnpm test:e2e     # Playwright (Chromium + WebKit, phone + desktop) against the production build, incl. axe and offline
 pnpm build        # production build to dist/, then the size budget (scripts/check-size.ts)
 pnpm preview      # serve dist/ locally (service worker active)
-pnpm format       # biome format --write
+pnpm format       # biome check --write (format + safe fixes)
+node scripts/build-fonts.ts             # rebuild font subsets (only when fonts change)
+node scripts/make-placeholder-icons.ts  # regenerate placeholder PWA icons
 ```
 
 Deploy: push to `main`. GitHub Actions runs everything above and deploys to GitHub Pages (`https://surfelappen.minhule.eu`). There is no manual deploy.

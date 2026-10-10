@@ -110,7 +110,9 @@ Slugs and IDs are English, like all code, and **not** localised. They are stable
 | Buildings | `post-office` (*Postkontoret*), `keyboard-hall` (*Tastaturhallen*), `square` (*Torget*), `library` (*Biblioteket*), `licence-office` (*Lappekontoret*) |
 | Mission 1 steps | `case-1` … `case-6`, `habit`, `habit-tip`, `transfer-intro`, `transfer-1`, `transfer-2`, `transfer-1-backup`, `transfer-2-backup` |
 | Mission 2 steps | `step-1` … `step-5` |
-| Stickers | `link-detective` (*Lenkedetektiv*), `ten-fingers` (*Ti fingre*), `sharp-eye` (*Skarpt øye*), `steady-hand` (*Stø hånd*), `curious` (*Nysgjerrig*) | Inside a mission, moving to the next step uses `replace()`, so the back button leaves the mission. A step URL beyond the player's progress is rewritten (`replace`) to their current step. On every route change, `focus.ts` sets `document.title`, scrolls to the top and focuses the screen's `<h1 tabindex="-1">`.
+| Stickers | `link-detective` (*Lenkedetektiv*), `ten-fingers` (*Ti fingre*), `sharp-eye` (*Skarpt øye*), `steady-hand` (*Stø hånd*), `curious` (*Nysgjerrig*) |
+
+Inside a mission, moving to the next step uses `replace()`, so the back button leaves the mission. Only the player's current step can be shown: any other step URL (an old link, or one further ahead) is rewritten (`replace`) to the current step, and `done` to the current step until the mission is finished. A step link into a finished mission leads to its summary; it never restarts the mission. On every route change, `Page` sets `document.title`, and `focus.ts` scrolls to the top and focuses the screen's `<h1 tabindex="-1">` (except on the first screen after a page load, which keeps the browser's default focus).
 
 ### i18n (`i18n/`)
 
@@ -170,7 +172,7 @@ interface TypingRun { done: StepId[]; positional: boolean; bestFinalAccuracy?: n
 
 - **Storage:** one key, `surfelappen:progress`, holding JSON. No timestamps, no device info.
 - **Writes:** after every finished step and every sticker. Writes are synchronous and tiny.
-- **Versioning:** `migrations.ts` is a chain of `(vN) => vN+1`. Unknown or removed content IDs are ignored, never fatal. Corrupt JSON, or data from a newer `v`, starts a fresh in-memory state and **leaves the raw value untouched** (an older tab must not destroy newer data).
+- **Versioning:** `migrations.ts` is a chain of `(vN) => vN+1`. Unknown or removed content IDs are ignored, never fatal. Corrupt data starts a fresh state and is replaced by the next save (nothing in it can be used). Data from a newer `v` starts a fresh in-memory state, sets status `newer-version` (a note explains), and is **never overwritten** (an older tab must not destroy newer data).
 - **Backends:** `StorageBackend { read(): string | null; write(s): void; clear(): void }`, with `localStorageBackend` and `memoryBackend`. At startup the store probes `localStorage`. If that fails, it uses memory and sets `storageAvailable = false`, which shows the dismissible StorageNote.
 - **Sync boundary:** a future account sync or export/import code only needs a new backend or a `exportProgress()/importProgress()` pair working on the same versioned JSON. Mission code doesn't change.
 - **Cross-tab:** a `storage` event reloads the in-memory state and notifies subscribers.

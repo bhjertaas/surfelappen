@@ -1,0 +1,12 @@
+declare module 'subset-font' {
+  interface Options {
+    targetFormat?: 'woff2' | 'woff' | 'sfnt' | 'truetype';
+    variationAxes?: Record<string, number | { min: number; max: number; default?: number }>;
+    preserveNameIds?: number[];
+  }
+  export default function subsetFont(
+    font: Buffer,
+    text: string,
+    options?: Options,
+  ): Promise<Buffer>;
+}

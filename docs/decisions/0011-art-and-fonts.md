@@ -17,7 +17,8 @@ Art is built last (phase 7), and its source is still undecided (self-made, commi
 **Fonts**
 - **Pixelify Sans** (OFL): title, headings and building signs only.
 - **Atkinson Hyperlegible Next** (OFL): all body text, **including addresses in messages and the lupen**. A proportional font, like a real phone, so the *rn*/*m* lookalike works as in real life.
-- Self-hosted woff2, subset to Latin + Latin-1 + typographic punctuation, `font-display: swap`; OFL licence files committed alongside. Glyph coverage (æ ø å Æ Ø Å « » – ’) is verified when the fonts are added (phase 2).
+- Self-hosted woff2, subset to Latin + Latin-1 + typographic punctuation, `font-display: swap`; OFL licence files committed alongside. `scripts/build-fonts.ts` downloads the sources from a pinned commit of `google/fonts`, fails if a required glyph (æ ø å Æ Ø Å « » – — ‘ ’ “ ” … €) is missing, and writes fixed-weight subsets with `subset-font` (HarfBuzz/WASM, dev dependency): Pixelify Sans 500, Atkinson Hyperlegible Next 400, 400 italic, 700. Total ≈ 41 KB.
+- Pixelify Sans's "fi" ligature reads as "A" ("Ti fingre" → "Ti Angre"), so ligatures are off wherever the display font is used (`--display-ligatures`).
 
 ## Alternatives
 - Pixel font everywhere: most "game" feel, poor readability.

@@ -202,7 +202,7 @@ Each requirement is MVP unless marked. Acceptance criteria are written to be tes
 - Every building is a focusable, labelled control (a link for open destinations, a button for "kommer snart"); the text list contains exactly the same destinations in the same order.
 - Open, coming-soon and needs-keyboard buildings are distinguishable by text label, not only by look.
 - Every screen has a visible way back to the town; the browser back button works everywhere. Inside a mission, back leaves the mission rather than returning to an answered case.
-- A deep link to a mission step beyond the player's progress goes to their current step instead.
+- A deep link to a mission step other than the player's current one goes to their current step instead (or to the summary, if the mission is finished).
 - Deep links to a mission work after refresh on static hosting.
 
 ### FR-03 Generic mission flow

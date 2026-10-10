@@ -10,7 +10,7 @@ Every screen needs its own URL; refresh, deep links and the back button must wor
 - Slugs and IDs are English (code is English) and not localised: they're stable IDs that also appear in progress data and shared links. Renaming one later needs a progress migration.
 - **Feedback is state on the step route**, not a route.
 - Advancing between steps uses `history.replaceState`: back from any step leaves the mission (intro → town).
-- A step URL beyond the player's progress is replaced by their current step.
+- Only the current step can be shown: any other step URL is replaced by the current step (a finished mission's step URLs lead to its summary).
 - On navigation: set `document.title`, scroll to top, focus the screen's `<h1>`.
 
 ## Alternatives
