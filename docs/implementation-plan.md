@@ -86,7 +86,9 @@ Phase 1 can be built and tested locally without these; only its deploy step need
 **Verified by**
 - e2e: stickers survive reload and disappear on reset; replay never removes stickers; update-bar flow; storage blocked → note shown, game playable; axe on passport, about, error, dialogs.
 
-## Phase 6: Accessibility and device pass (in progress: automated part done, device runs pending)
+## Phase 6: Accessibility and device pass ✅ (trimmed)
+
+Closed after the automated sweep (`555e2fc`) and the owner's keyboard run (`fe94a3b`). The site is for friends and family, so the screen-reader and device matrix in `docs/accessibility-pass.md` is optional, not a gate; good defaults stay (native elements, focus, contrast, reduced motion) and the existing tests keep them from regressing. Effort moves to look & feel, fun and content.
 
 **Delivers**
 - Fixes from a full axe sweep (all screens and states) and manual passes: keyboard only; VoiceOver on iOS and macOS; TalkBack; NVDA on Windows; 320 px; 200% text zoom; reduced motion; an iPadOS 15 device if available.

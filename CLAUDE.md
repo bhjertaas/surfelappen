@@ -40,7 +40,7 @@ Targets: Safari/iOS 15.4+ and 2022-era Chrome/Edge/Firefox/Samsung. Don't rely o
 - Inline markup in text: `*em*` and `**strong**` only, rendered by `<Rich>`. Never `innerHTML`.
 - Only `src/progress/` touches storage. Save no timestamps, no device info, nothing the player types.
 - **No analytics, error-reporting services, external fonts or CDNs, or any request to another origin**, even "just for development". The CSP in `index.html` enforces `'self'`.
-- Accessibility (practical WCAG 2.2 AA): every interactive thing is a native button or link with visible focus; never colour alone; no timers; respect `prefers-reduced-motion`; touch targets ≥ 44 px; works at 320 px and 200% zoom. On route change focus the `<h1>`; when feedback appears move focus to it; use live regions only where focus doesn't move.
+- Audience is friends and family: put effort into fun, look & feel and content. Accessibility is good defaults, not a compliance project (no new audit suites unless asked): every interactive thing is a native button or link with visible focus; never colour alone; no timers; respect `prefers-reduced-motion`; touch targets ≥ 44 px; works at 320 px and 200% zoom. On route change focus the `<h1>`; when feedback appears move focus to it; use live regions only where focus doesn't move.
 - Interaction logic lives in pure, unit-tested modules (`flow.ts`, `matcher.ts`); views stay thin.
 - Placeholder art is obviously placeholder (labelled shapes) and has the final logical size. Art is referenced only through `src/content/art.ts`.
 - Commits: small and descriptive, in English; one per phase at minimum.

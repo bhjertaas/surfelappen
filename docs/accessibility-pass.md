@@ -4,7 +4,9 @@ Target: practical WCAG 2.2 AA (PRD "Accessibility", ADR 0009). This file is the 
 
 Test against the live site, **https://surfelappen.minhule.eu**, at the commit named in each result. Before each device run, clear the site's data (or use a private window) so you start as a new player.
 
-Mark each line `✅` (works), `⚠️` (works but awkward; describe) or `❌` (blocks a player; describe). Anything `❌` must be fixed before phase 6 is done.
+Mark each line `✅` (works), `⚠️` (works but awkward; describe) or `❌` (blocks a player; describe).
+
+**Status:** the manual sections (2–4) are optional. Surfelappen is for friends and family, so accessibility is a set of good defaults rather than a compliance gate; run these when convenient and fix what gets in someone's way.
 
 ## 1. Automated (done in CI on every push)
 
