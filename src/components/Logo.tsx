@@ -1,155 +1,163 @@
 /**
- * The Surfelappen wordmark: a neon wave of light ("the surf") over a receding
- * perspective grid, in the spirit of 80s computer films without copying any of
- * them. Inline SVG so the wordmark is real text in the page font.
+ * The Surfelappen logo: a round rubber stamp. The ring says SURFELAPPEN and
+ * GODKJENT · INTERNETT; inside, a sunset of ones and zeros over a neon grid, and a
+ * breaking wave. Drawn after docs/logo-ideas/6b-stamp-sunset-red.svg (made by
+ * docs/logo-ideas/stamp.py). Inline SVG so the ring text is in the page font.
+ * public/favicon.svg is the inner picture alone.
  */
 
-const HORIZON = 120;
-const VANISH_X = 320;
+const C = 200;
+const HORIZON = 214;
+const R_OUT = 188;
+const R_IN = 126;
+const INK = '#b03a27';
+const MONO = 'ui-monospace, Menlo, Consolas, monospace';
 
-/** Grid lines fanning out from the vanishing point, and rows getting closer to the horizon. */
-function Grid() {
-  const fan = Array.from({ length: 17 }, (_, i) => -880 + i * 110);
-  const rows = [6, 14, 26, 44, 70, 108];
-  return (
-    <g stroke="#ff5a36" stroke-width="1.6" opacity="0.85">
-      {fan.map((x) => (
-        <line key={x} x1={VANISH_X} y1={HORIZON} x2={VANISH_X + x} y2={260} />
-      ))}
-      {rows.map((dy) => (
-        <line key={dy} x1="0" y1={HORIZON + dy} x2="640" y2={HORIZON + dy} />
-      ))}
-    </g>
-  );
-}
+/** The sun's rays: short binary strings fanning out from the horizon. */
+const RAYS = [
+  { x: 114.4, y: 186.2, angle: 198, bits: '1011110' },
+  { x: 127.2, y: 161.1, angle: 216, bits: '0001010' },
+  { x: 147.1, y: 141.2, angle: 234, bits: '1011001' },
+  { x: 172.2, y: 128.4, angle: 252, bits: '0101101' },
+  { x: 200.0, y: 124.0, angle: 270, bits: '1100000' },
+  { x: 227.8, y: 128.4, angle: 288, bits: '0101100' },
+  { x: 252.9, y: 141.2, angle: 306, bits: '0000100' },
+  { x: 272.8, y: 161.1, angle: 324, bits: '0101011' },
+  { x: 285.6, y: 186.2, angle: 342, bits: '1001110' },
+] as const;
 
-/** A wave of light: a long swell that rises and curls over at the crest. */
+/** The sun: rows of binary, clipped to a half disc, further apart towards the horizon. */
+const SUN_ROWS = [
+  { y: 152.0, bits: '0010000010011000010010' },
+  { y: 160.5, bits: '0110111010101011100100' },
+  { y: 169.9, bits: '1001010100110001111011' },
+  { y: 180.2, bits: '0101110111000001100101' },
+  { y: 191.4, bits: '1101101001010010001010' },
+  { y: 203.5, bits: '1110000010001101101101' },
+] as const;
+
+/** The neon grid: lines from the vanishing point, and rows getting further apart. */
+const FAN = Array.from({ length: 19 }, (_, i) => C + (i - 9) * 46);
+const GRID_ROWS = (() => {
+  const rows: number[] = [];
+  let y = HORIZON;
+  let step = 4;
+  while (y < 340) {
+    y += step;
+    step *= 1.45;
+    rows.push(Math.round(y * 10) / 10);
+  }
+  return rows;
+})();
+
 const WAVE =
-  'M 30 112 C 120 112 160 100 210 80 C 270 56 330 34 392 40 C 440 45 462 76 440 92 C 424 104 400 92 410 78';
-/** The wave's translucent body, down to the horizon. */
-const WAVE_BODY =
-  'M 30 112 C 120 112 160 100 210 80 C 270 56 330 34 392 40 C 440 45 462 76 440 92 L 452 120 L 30 120 Z';
+  'M64 336 L64 288 C 104 280, 136 244, 176 226 C 218 208, 262 216, 268 244 C 272 264, 248 272, 239 259 C 232 248, 242 240, 251 245 C 241 231, 214 233, 203 252 C 190 276, 210 298, 252 302 C 292 306, 326 296, 340 292 L340 336 Z';
+const CREST = 'M176 226 C 218 208, 262 216, 268 244 C 272 264, 248 272, 239 259';
 
-export function Logo({ label }: { label: string }) {
+/** A four-pointed star on each side of the ring. */
+const star = (x: number) =>
+  `M${x} 190 L${x + 3} 197 L${x + 10} 200 L${x + 3} 203 L${x} 210 L${x - 3} 203 L${x - 10} 200 L${x - 3} 197 Z`;
+
+export function Logo({ label, motto }: { label: string; motto: string }) {
   const word = label.toLocaleUpperCase('nb');
   return (
-    <svg class="logo" viewBox="0 0 640 260" role="img" aria-label={label}>
+    <svg class="logo" viewBox="0 0 400 400" role="img" aria-label={label}>
       <defs>
-        <linearGradient id="logo-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#05060d" stop-opacity="0" />
-          <stop offset="1" stop-color="#3a0d2e" stop-opacity="0.9" />
-        </linearGradient>
-        <linearGradient id="logo-floor" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#05060d" stop-opacity="0" />
-          <stop offset="1" stop-color="#05060d" stop-opacity="1" />
-        </linearGradient>
-        <linearGradient id="logo-chrome" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#fff6e0" />
-          <stop offset="0.48" stop-color="#ffb08a" />
-          <stop offset="0.52" stop-color="#ff5a36" />
-          <stop offset="1" stop-color="#b3264f" />
-        </linearGradient>
-        <filter id="logo-glow" x="-20%" y="-50%" width="140%" height="200%">
-          <feGaussianBlur stdDeviation="5" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <linearGradient id="logo-water" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#2fd8ff" stop-opacity="0.45" />
-          <stop offset="1" stop-color="#2fd8ff" stop-opacity="0.04" />
-        </linearGradient>
-        <linearGradient id="logo-edges" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stop-color="#fff" stop-opacity="0" />
-          <stop offset="0.18" stop-color="#fff" stop-opacity="1" />
-          <stop offset="0.82" stop-color="#fff" stop-opacity="1" />
-          <stop offset="1" stop-color="#fff" stop-opacity="0" />
-        </linearGradient>
-        <mask id="logo-fade">
-          <rect x="0" y="0" width="640" height="260" fill="url(#logo-edges)" />
-        </mask>
-        <clipPath id="logo-below-horizon">
-          <rect x="0" y={HORIZON} width="640" height={260 - HORIZON} />
+        <clipPath id="logo-inner">
+          <circle cx={C} cy={C} r={R_IN} />
         </clipPath>
+        <clipPath id="logo-sun">
+          <circle cx={C} cy={HORIZON} r="70" />
+        </clipPath>
+        <linearGradient id="logo-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#160a33" />
+          <stop offset="0.55" stop-color="#5a1a5e" />
+          <stop offset="1" stop-color="#e2544a" />
+        </linearGradient>
+        <radialGradient id="logo-glow" cx="0.5" cy="1" r="1">
+          <stop offset="0" stop-color="#ffb347" stop-opacity="0.55" />
+          <stop offset="1" stop-color="#ffb347" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="logo-sunfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe66b" />
+          <stop offset="0.6" stop-color="#ff9a3c" />
+          <stop offset="1" stop-color="#ff3fa4" />
+        </linearGradient>
+        <linearGradient id="logo-wave" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#16a3c0" />
+          <stop offset="1" stop-color="#0a3b5c" />
+        </linearGradient>
+        <path id="logo-top" d={`M${C - 146} ${C} A146 146 0 0 1 ${C + 146} ${C}`} />
+        <path id="logo-bottom" d={`M${C - 164} ${C} A164 164 0 0 0 ${C + 164} ${C}`} />
       </defs>
 
-      <g mask="url(#logo-fade)">
-        <rect x="0" y="0" width="640" height={HORIZON} fill="url(#logo-sky)" />
-        <g clip-path="url(#logo-below-horizon)">
-          <Grid />
-          <rect
-            x="0"
-            y={HORIZON}
-            width="640"
-            height={260 - HORIZON}
-            fill="url(#logo-floor)"
-            opacity="0.55"
-          />
+      <circle cx={C} cy={C} r={R_OUT + 4} fill="#fdf8ec" />
+
+      <g clip-path="url(#logo-inner)">
+        <rect width="400" height={HORIZON} fill="url(#logo-sky)" />
+        <ellipse cx={C} cy={HORIZON} rx="120" ry="100" fill="url(#logo-glow)" />
+        <g font-family={MONO} font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8">
+          {RAYS.map((r) => (
+            <text
+              key={r.angle}
+              x={r.x}
+              y={r.y}
+              transform={`rotate(${r.angle} ${r.x} ${r.y})`}
+              dominant-baseline="middle"
+            >
+              {r.bits}
+            </text>
+          ))}
         </g>
-        <line
-          x1="0"
-          y1={HORIZON}
-          x2="640"
-          y2={HORIZON}
-          stroke="#ff8a5c"
+        <g
+          clip-path="url(#logo-sun)"
+          font-family={MONO}
+          font-size="8.5"
+          font-weight="800"
+          fill="url(#logo-sunfill)"
+        >
+          {SUN_ROWS.map((row) => (
+            <text key={row.y} x="126" y={row.y} textLength="148" lengthAdjust="spacing">
+              {row.bits}
+            </text>
+          ))}
+        </g>
+        <rect y={HORIZON} width="400" height={400 - HORIZON} fill="#070a18" />
+        <g stroke="#ff3fd0" stroke-width="1.6" stroke-opacity="0.9">
+          {FAN.map((x) => (
+            <line key={x} x1={C} y1={HORIZON} x2={x} y2="340" />
+          ))}
+          {GRID_ROWS.map((y) => (
+            <line key={y} x1="60" y1={y} x2="340" y2={y} />
+          ))}
+        </g>
+        <line x1="60" y1={HORIZON} x2="340" y2={HORIZON} stroke="#5ff2ff" stroke-width="2.5" />
+        <path
+          d={WAVE}
+          fill="url(#logo-wave)"
+          stroke="#5ff2ff"
           stroke-width="2.5"
-          filter="url(#logo-glow)"
+          stroke-linejoin="round"
         />
+        <path d={CREST} fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" />
       </g>
 
-      <path d={WAVE_BODY} fill="url(#logo-water)" />
-      <g fill="none" stroke-linecap="round" filter="url(#logo-glow)">
-        <path d={WAVE} stroke="#2fd8ff" stroke-width="9" />
-        <path d={WAVE} stroke="#e8fdff" stroke-width="2.5" />
-        <path
-          d={WAVE}
-          stroke="#2fd8ff"
-          stroke-width="1.5"
-          opacity="0.55"
-          transform="translate(-14 14)"
-        />
-        <path
-          d={WAVE}
-          stroke="#2fd8ff"
-          stroke-width="1.2"
-          opacity="0.35"
-          transform="translate(-28 26)"
-        />
-        <path
-          d="M 60 126 C 160 126 230 116 300 100"
-          stroke="#2fd8ff"
-          stroke-width="3"
-          opacity="0.6"
-        />
+      <circle cx={C} cy={C} r={R_OUT} fill="none" stroke={INK} stroke-width="9" />
+      <circle cx={C} cy={C} r={R_IN} fill="none" stroke={INK} stroke-width="6" />
+      <g class="logo__ring" fill={INK} font-weight="800" text-anchor="middle">
+        <text font-size="27" letter-spacing="5">
+          <textPath href="#logo-top" startOffset="50%">
+            {word}
+          </textPath>
+        </text>
+        <text font-size="23" letter-spacing="3">
+          <textPath href="#logo-bottom" startOffset="50%">
+            {motto.toLocaleUpperCase('nb')}
+          </textPath>
+        </text>
+        <path d={star(C - 157)} />
+        <path d={star(C + 157)} />
       </g>
-
-      <text
-        class="logo__word"
-        x="320"
-        y="205"
-        text-anchor="middle"
-        transform="skewX(-10) translate(36 0)"
-        fill="none"
-        stroke="#05060d"
-        stroke-width="12"
-        stroke-linejoin="round"
-      >
-        {word}
-      </text>
-      <text
-        class="logo__word"
-        x="320"
-        y="205"
-        text-anchor="middle"
-        transform="skewX(-10) translate(36 0)"
-        fill="url(#logo-chrome)"
-        stroke="#ff3d2e"
-        stroke-width="1.5"
-        paint-order="stroke"
-      >
-        {word}
-      </text>
     </svg>
   );
 }

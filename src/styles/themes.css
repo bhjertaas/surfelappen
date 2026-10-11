@@ -120,16 +120,13 @@
 
 .logo {
   display: block;
-  width: min(100%, 40rem);
+  width: min(100%, 22rem);
   height: auto;
   margin-inline: auto;
 }
 
-.logo__word {
+.logo__ring {
   font-family: var(--font-body);
-  font-size: 76px;
-  font-weight: 700;
-  letter-spacing: 4px;
 }
 
 /* Kafé Alfakrøll: the late-90s desktop. Teal desktop, grey bevelled windows, navy title bars. */

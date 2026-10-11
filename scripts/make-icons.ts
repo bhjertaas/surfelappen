@@ -1,6 +1,7 @@
 /**
- * Writes the favicon PNG and the PWA icons from public/favicon.svg (the logo's emblem:
- * a neon wave over the grid). Run after changing the SVG: `node scripts/make-icons.ts`.
+ * Writes the favicon PNG and the PWA icons from public/favicon.svg (the inside of the
+ * logo's stamp: a binary sunset, a neon grid and a wave, in the red ring). Run after
+ * changing the SVG: `node scripts/make-icons.ts`.
  */
 import { join } from 'node:path';
 import sharp from 'sharp';
@@ -14,12 +15,12 @@ await render(64).png(png).toFile(join(root, 'public/favicon.png'));
 await render(192).png(png).toFile(join(root, 'public/icons/icon-192.png'));
 await render(512).png(png).toFile(join(root, 'public/icons/icon-512.png'));
 await render(180)
-  .flatten({ background: '#05060d' })
+  .flatten({ background: '#fdf8ec' })
   .png(png)
   .toFile(join(root, 'public/icons/apple-touch-icon-180.png'));
 // Maskable: full-bleed background, emblem inside the 80 % safe zone.
 const inner = await render(410).png().toBuffer();
-await sharp({ create: { width: 512, height: 512, channels: 4, background: '#05060d' } })
+await sharp({ create: { width: 512, height: 512, channels: 4, background: '#fdf8ec' } })
   .composite([{ input: inner, left: 51, top: 51 }])
   .png(png)
   .toFile(join(root, 'public/icons/icon-maskable-512.png'));

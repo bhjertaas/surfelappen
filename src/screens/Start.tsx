@@ -12,7 +12,12 @@ export function Start() {
   const returning = hasStarted(progress);
 
   return (
-    <Page title={m.app.name} bare theme="neon" heading={<Logo label={m.app.name} />}>
+    <Page
+      title={m.app.name}
+      bare
+      theme="neon"
+      heading={<Logo label={m.app.name} motto={m.app.motto} />}
+    >
       <p class="tagline">{m.app.tagline}</p>
       <p class="lead">{m.app.pitch}</p>
       <div class="actions">

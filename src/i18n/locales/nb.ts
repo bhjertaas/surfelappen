@@ -77,6 +77,8 @@ const stickerCount: PluralForms = {
 export const nb = {
   app: {
     name: 'Surfelappen',
+    /** The bottom of the stamp in the logo (em spaces around the dot). */
+    motto: 'Godkjent\u2003·\u2003Internett',
     tagline:
       '«Å surfe på nettet» sier man gjerne om det å bruke Internett. Her tar du lappen på det.',
     pitch:
