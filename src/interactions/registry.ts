@@ -3,6 +3,7 @@ import type { InteractionId } from '../content/types.ts';
 import { FacadeStep, FacadeSummary } from './facade/FacadeStep.tsx';
 import { LinkInspectStep } from './link-inspect/LinkInspectStep.tsx';
 import { LinkInspectSummary } from './link-inspect/LinkInspectSummary.tsx';
+import { RumourStep, RumourSummary } from './rumour/RumourStep.tsx';
 import type { StepViewProps, SummaryDetailsProps } from './types.ts';
 import { TypingStep } from './typing/TypingStep.tsx';
 import { TypingSummary } from './typing/TypingSummary.tsx';
@@ -19,4 +20,5 @@ export const interactionViews: Record<InteractionId, InteractionViews> = {
   typing: { StepView: TypingStep, SummaryDetails: TypingSummary },
   facade: { StepView: FacadeStep, SummaryDetails: FacadeSummary },
   web: { StepView: WebStep, SummaryDetails: WebSummary },
+  rumour: { StepView: RumourStep, SummaryDetails: RumourSummary },
 };

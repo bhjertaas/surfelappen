@@ -151,6 +151,16 @@ const SPECS: Record<string, Spec> = {
     ]),
   ),
   'scene-cafe': { style: 'retroweb', width: 1536, height: 1024, generate: '1536x1024' },
+  'portrait-tora': {
+    style: 'noir',
+    width: 256,
+    height: 256,
+    generate: '1536x1024',
+    from: { id: 'scene-rumour', left: 930, top: 70, width: 340, height: 340 },
+  },
+  'scene-rumour': { style: 'noir', width: 1536, height: 1024, generate: '1536x1024' },
+  'photo-shark-old': { style: 'snapshot', width: 768, height: 768, generate: '1024x1024' },
+  'photo-shark-ai': { style: 'snapshot', width: 768, height: 768, generate: '1024x1024' },
   'sticker-link-detective': sticker,
   'sticker-sharp-eye': sticker,
   'sticker-ten-fingers': sticker,
@@ -159,6 +169,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-behind-the-facade': sticker,
   'sticker-ad-hunter': sticker,
   'sticker-web-explorer': sticker,
+  'sticker-fact-checker': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;

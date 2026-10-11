@@ -44,7 +44,13 @@ export interface WebRun {
   readonly done: readonly StepId[];
 }
 
-export type Run = LinkInspectRun | TypingRun | FacadeRun | WebRun;
+/** A playthrough of a rumour mission (Ryktebørsen). */
+export interface RumourRun {
+  readonly interaction: 'rumour';
+  readonly done: readonly StepId[];
+}
+
+export type Run = LinkInspectRun | TypingRun | FacadeRun | WebRun | RumourRun;
 
 export interface MissionProgress {
   readonly completedOnce: boolean;

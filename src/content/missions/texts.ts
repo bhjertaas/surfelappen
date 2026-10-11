@@ -5,6 +5,7 @@ import { howTheNetWorksNb } from './how-the-net-works/text.nb.ts';
 import { perfectLifeNb } from './perfect-life/text.nb.ts';
 import { tenFingersNb } from './ten-fingers/text.nb.ts';
 import type { MissionText } from './text-types.ts';
+import { theSharkRumourNb } from './the-shark-rumour/text.nb.ts';
 
 /**
  * Mission text by locale. The base text is written for adults (the default
@@ -16,6 +17,7 @@ export const missionTexts: Record<Locale, Record<MissionId, MissionText>> = {
     'find-the-impostor': findTheImpostorNb,
     'ten-fingers': tenFingersNb,
     'perfect-life': perfectLifeNb,
+    'the-shark-rumour': theSharkRumourNb,
   },
 };
 

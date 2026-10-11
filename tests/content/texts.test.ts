@@ -9,7 +9,7 @@ import type {
 import { allMissionTexts, missionTexts } from '../../src/content/missions/texts.ts';
 import { stickers } from '../../src/content/stickers.ts';
 import { buildingOrder, buildings } from '../../src/content/town.ts';
-import type { MissionStructure } from '../../src/content/types.ts';
+import type { Building, MissionStructure } from '../../src/content/types.ts';
 import { nb } from '../../src/i18n/locales/nb.ts';
 import { isBalanced } from '../../src/i18n/markup.ts';
 import { domainsIn, linkCases, linkInspectMissions, stringsIn } from './helpers.ts';
@@ -26,9 +26,9 @@ describe('locale files', () => {
     });
 
     it(`${locale}: has a name and description for every building`, () => {
-      for (const b of buildings) {
+      for (const b of buildings as readonly Building[]) {
         expect(messages.buildings[b.id], `${locale}.buildings.${b.id}`).toBeDefined();
-        if (b.status === 'coming-soon') {
+        if (b.status === 'coming-soon' || b.after) {
           expect(
             messages.buildings[b.id]?.closed,
             `${locale}.buildings.${b.id}.closed`,

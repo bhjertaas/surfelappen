@@ -41,8 +41,8 @@ export const buildings = [
   },
   {
     id: 'rumour-exchange',
-    status: 'coming-soon',
-    missions: [],
+    status: 'open',
+    missions: ['the-shark-rumour'],
     hotspot: { x: 1050, y: 420, w: 397, h: 340 },
     door: { x: 1120, y: 770 },
     image: 'town',

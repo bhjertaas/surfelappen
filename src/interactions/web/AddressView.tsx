@@ -4,9 +4,9 @@ import { Rich } from '../../components/Rich.tsx';
 import type { AddressText } from '../../content/missions/text-types.ts';
 import type { AddressStep } from '../../content/types.ts';
 import { useI18n } from '../../i18n/i18n.ts';
+import { useHeadingFocus } from '../useHeadingFocus.ts';
 import { completeWebStep } from './flow.ts';
 import type { WebViewProps } from './types.ts';
-import { useHeadingFocus } from './useHeadingFocus.ts';
 
 /**
  * "Les adressen": tap every part of an address to learn what it is, then tap the

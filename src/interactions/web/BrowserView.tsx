@@ -5,10 +5,10 @@ import type { BrowserText } from '../../content/missions/text-types.ts';
 import type { BrowserStep } from '../../content/types.ts';
 import { format } from '../../i18n/format.ts';
 import { useI18n } from '../../i18n/i18n.ts';
+import { useHeadingFocus } from '../useHeadingFocus.ts';
 import { readAddressBar, resultsAddress, searchFinds } from './browser.ts';
 import { completeWebStep } from './flow.ts';
 import type { WebViewProps } from './types.ts';
-import { useHeadingFocus } from './useHeadingFocus.ts';
 
 type Screen =
   | { readonly kind: 'start' }

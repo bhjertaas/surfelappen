@@ -35,7 +35,7 @@ test('data from a newer version is left alone, with a note', async ({ page }) =>
   await expect(page.getByRole('status').filter({ hasText: 'nyere versjon' })).toBeVisible();
   await page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('button', { name: /Ryktebørsen/ })
+    .getByRole('button', { name: /Agnbua/ })
     .click();
   expect(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY)).toBe('{"v":99}');
 });

@@ -10,10 +10,13 @@ import historySmartphone from '../assets/art/history-smartphone.webp';
 import historySocial from '../assets/art/history-social.webp';
 import historyTcpip from '../assets/art/history-tcpip.webp';
 import historyWeb from '../assets/art/history-web.webp';
+import photoSharkAi from '../assets/art/photo-shark-ai.webp';
+import photoSharkOld from '../assets/art/photo-shark-old.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
 import portraitIvar from '../assets/art/portrait-ivar.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
 import portraitMira from '../assets/art/portrait-mira.webp';
+import portraitTora from '../assets/art/portrait-tora.webp';
 import postBeach from '../assets/art/post-beach.webp';
 import postCabin from '../assets/art/post-cabin.webp';
 import postCat from '../assets/art/post-cat.webp';
@@ -30,9 +33,11 @@ import sceneArcade from '../assets/art/scene-arcade.png';
 import sceneCafe from '../assets/art/scene-cafe.webp';
 import sceneFacade from '../assets/art/scene-facade.webp';
 import scenePhishing from '../assets/art/scene-phishing.webp';
+import sceneRumour from '../assets/art/scene-rumour.webp';
 import stickerAdHunter from '../assets/art/sticker-ad-hunter.webp';
 import stickerBehindTheFacade from '../assets/art/sticker-behind-the-facade.webp';
 import stickerCurious from '../assets/art/sticker-curious.webp';
+import stickerFactChecker from '../assets/art/sticker-fact-checker.webp';
 import stickerLinkDetective from '../assets/art/sticker-link-detective.webp';
 import stickerSharpEye from '../assets/art/sticker-sharp-eye.webp';
 import stickerSteadyHand from '../assets/art/sticker-steady-hand.webp';
@@ -67,12 +72,16 @@ export const art = {
   'post-taco': { src: postTaco, width: 768, height: 768 },
   'sticker-ad-hunter': sticker(stickerAdHunter),
   'sticker-web-explorer': sticker(stickerWebExplorer),
+  'sticker-fact-checker': sticker(stickerFactChecker),
   'post-climbing': { src: postClimbing, width: 768, height: 768 },
   'post-football': { src: postFootball, width: 768, height: 768 },
   'post-cat': { src: postCat, width: 768, height: 768 },
   'post-dog': { src: postDog, width: 768, height: 768 },
   'portrait-mira': { src: portraitMira, width: 256, height: 256 },
   'portrait-ivar': { src: portraitIvar, width: 256, height: 256 },
+  'portrait-tora': { src: portraitTora, width: 256, height: 256 },
+  'photo-shark-old': { src: photoSharkOld, width: 768, height: 768 },
+  'photo-shark-ai': { src: photoSharkAi, width: 768, height: 768 },
   'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
   'history-arpanet': { src: historyArpanet, width: 768, height: 512 },
   'history-email': { src: historyEmail, width: 768, height: 512 },
@@ -85,6 +94,7 @@ export const art = {
   'history-smartphone': { src: historySmartphone, width: 768, height: 512 },
   'history-ai': { src: historyAi, width: 768, height: 512 },
   'scene-cafe': { src: sceneCafe, width: 1536, height: 1024 },
+  'scene-rumour': { src: sceneRumour, width: 1536, height: 1024 },
   'room-reality': { src: roomReality, width: 1536, height: 1024 },
   'sticker-behind-the-facade': sticker(stickerBehindTheFacade),
   'scene-phishing': { src: scenePhishing, width: 1536, height: 1024 },

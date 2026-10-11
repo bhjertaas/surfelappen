@@ -5,10 +5,10 @@ import type { JourneyText } from '../../content/missions/text-types.ts';
 import type { JourneyStep } from '../../content/types.ts';
 import { format } from '../../i18n/format.ts';
 import { useI18n } from '../../i18n/i18n.ts';
+import { useHeadingFocus } from '../useHeadingFocus.ts';
 import { completeWebStep } from './flow.ts';
 import { isCut, onPath, route } from './network.ts';
 import type { WebViewProps } from './types.ts';
-import { useHeadingFocus } from './useHeadingFocus.ts';
 
 type Phase = 'start' | 'looked-up' | 'sending' | 'arrived' | 'resending' | 'rerouted';
 

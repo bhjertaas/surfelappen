@@ -28,19 +28,6 @@ test('picture and list offer the same destinations in the same order', async ({ 
   expect(map).toEqual(list);
 });
 
-test('closed buildings say so in text and answer with a friendly line', async ({ page }) => {
-  await page.goto('/#/town');
-  const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
-  const square = list.getByRole('button', { name: /Ryktebørsen/ });
-  await expect(square).toContainText('Kommer snart');
-  await square.click();
-  await expect(
-    page.getByRole('status').filter({ hasText: 'rykter og falske nyheter' }),
-  ).toBeVisible();
-  await expect(square).toBeFocused();
-  expect((await storedProgress(page))?.visitedBuildings).toEqual(['rumour-exchange']);
-});
-
 test('Agnbua waits for Kafé Krøllalfa', async ({ page }) => {
   await page.goto('/#/town');
   const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
@@ -48,6 +35,8 @@ test('Agnbua waits for Kafé Krøllalfa', async ({ page }) => {
   await expect(agnbua).toContainText('Først: Kafé Krøllalfa');
   await agnbua.click();
   await expect(page.getByRole('status').filter({ hasText: 'lese en adresse' })).toBeVisible();
+  await expect(agnbua).toBeFocused();
+  expect((await storedProgress(page))?.visitedBuildings).toEqual(['gone-phishing']);
 });
 
 test('the arcade says "Trenger tastatur" only on touch-only devices', async ({ page }) => {

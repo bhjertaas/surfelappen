@@ -39,9 +39,9 @@ export interface Reading {
   readonly url: string;
 }
 
-export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb';
+export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb' | 'noir';
 
-export type InteractionId = 'link-inspect' | 'typing' | 'facade' | 'web';
+export type InteractionId = 'link-inspect' | 'typing' | 'facade' | 'web' | 'rumour';
 export type Requirement = 'physical-keyboard';
 
 interface MissionBase<I extends InteractionId, S> {
@@ -323,7 +323,71 @@ export type WebStep = ClassifyStep | BrowserStep | AddressStep | JourneyStep | T
 
 export type WebMission = MissionBase<'web', WebStep>;
 
-export type MissionStructure = LinkInspectMission | TypingMission | FacadeMission | WebMission;
+// ---------------------------------------------------------------------------
+// rumour (Ryktebørsen)
+
+/** An answer in a chat or a trace. `spread`: how many have seen the rumour, round by round, if you pick it. */
+export interface RumourOption {
+  readonly id: string;
+  readonly correct: boolean;
+  readonly spread?: readonly number[];
+}
+
+/** A chat thread with a message to react to: pick what to do, see what happens. */
+export interface ChatStep {
+  readonly kind: 'chat';
+  readonly id: StepId;
+  /** A picture attached to the last message. */
+  readonly image?: ArtId;
+  readonly options: readonly RumourOption[];
+}
+
+/** Follow a rumour back, share by share, to where it started. Hops are newest first. */
+export interface TraceStep {
+  readonly kind: 'trace';
+  readonly id: StepId;
+  readonly hops: readonly { readonly id: string; readonly image?: ArtId }[];
+  /** "How did it start?", asked at the source. */
+  readonly options: readonly RumourOption[];
+}
+
+export type Verdict = 'old' | 'ai' | 'real';
+
+/** A part of a picture to tap, in percent of its width and height. */
+export interface Spot {
+  readonly id: string;
+  readonly x: number;
+  readonly y: number;
+  readonly w: number;
+  readonly h: number;
+  /** A real clue; the others are there so tapping everything doesn't find them for you. */
+  readonly clue: boolean;
+}
+
+/** Check pictures: search for older copies, look for clues, then say what they are. */
+export interface InspectStep {
+  readonly kind: 'inspect';
+  readonly id: StepId;
+  readonly pictures: readonly {
+    readonly id: string;
+    readonly image: ArtId;
+    /** Whether a reverse image search finds older copies. */
+    readonly found: boolean;
+    readonly spots: readonly Spot[];
+    readonly answer: Verdict;
+  }[];
+}
+
+export type RumourStep = ChatStep | TraceStep | InspectStep;
+
+export type RumourMission = MissionBase<'rumour', RumourStep>;
+
+export type MissionStructure =
+  | LinkInspectMission
+  | TypingMission
+  | FacadeMission
+  | WebMission
+  | RumourMission;
 
 // ---------------------------------------------------------------------------
 // stickers and town

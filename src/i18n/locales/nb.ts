@@ -33,8 +33,7 @@ const buildings: Record<string, BuildingText> = {
   },
   'rumour-exchange': {
     name: 'Ryktebørsen',
-    about: 'Om å sjekke om noe du leser er sant.',
-    closed: 'Her kommer et oppdrag om rykter og falske nyheter. Det er ikke klart ennå.',
+    about: 'Detektivkontoret der du sjekker om noe du leser er sant.',
   },
   'licence-bureau': {
     name: 'Lisenskontoret',
@@ -62,6 +61,7 @@ const stickers: Record<string, StickerText> = {
   },
   'steady-hand': { name: 'Stø hånd', howTo: 'Skriv siste linje i Ti fingre uten feil.' },
   'web-explorer': { name: 'Nettkjenner', howTo: 'Fullfør Hva er egentlig nettet?' },
+  'fact-checker': { name: 'Faktasjekker', howTo: 'Fullfør Haien i Lenkevik.' },
   curious: { name: 'Nysgjerrig', howTo: 'Besøk alle husene i Lenkevik.' },
 };
 
@@ -269,6 +269,30 @@ export const nb = {
     previous: 'Forrige',
     play: 'Spill av med lyd',
     pause: 'Pause',
+  },
+  rumour: {
+    rightHeading: 'Riktig',
+    wrongHeading: 'Ikke helt',
+    tryAgain: 'Prøv igjen',
+    next: 'Neste',
+    me: 'Du',
+    reached: '{count} har sett det',
+    askSource: 'Hvor har {who} det fra?',
+    source: 'Her startet det',
+    search: 'Søk etter bildet på nettet',
+    searchHeading: 'Bildesøk',
+    spotsLabel: 'Deler av bildet. Trykk for å se nærmere.',
+    cluesFound: 'Spor funnet: {found} av {total}',
+    nothingOdd: 'Ingenting rart her.',
+    needSearch: 'Søk etter bildet først.',
+    needClues: 'Finn alle sporene i bildet først.',
+    verdictQuestion: 'Hva er dette bildet?',
+    verdicts: {
+      old: 'Gammelt bilde, ny historie',
+      ai: 'Laget med KI',
+      real: 'Ekte og nytt',
+    },
+    pictureProgress: 'Bilde {current} av {total}',
   },
   keyboard: {
     title: 'Trenger tastatur',

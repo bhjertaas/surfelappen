@@ -158,3 +158,33 @@
     inset -2px -2px 0 rgb(0 0 0 / 0.25),
     inset 2px 2px 0 rgb(255 255 255 / 0.7);
 }
+
+/* Ryktebørsen: film noir. Night-blue office, amber lamplight, stripes of light through the blinds. */
+.theme--noir {
+  color-scheme: dark;
+  --color-bg: #13171e;
+  --color-surface: #1f2631;
+  --color-text: #ece6d8;
+  --color-muted: #b8b2a4;
+  --color-primary: #e3ab4f;
+  --color-primary-strong: #f4c77d;
+  --color-on-primary: #13171e;
+  --color-accent: #ef6b5f;
+  --color-border: #8a93a3;
+  --color-focus: #ffd166;
+  --color-link-text: #f4c77d;
+  --color-notice-bg: #3a3220;
+  --color-notice-border: #e3ab4f;
+  --color-correct: #9ad9a8;
+  --color-correct-bg: #1c3324;
+  --color-wrong: #ffa497;
+  --color-wrong-bg: #3b2020;
+  --font-display: Georgia, "Times New Roman", serif;
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      rgb(255 236 200 / 0.035) 0 1.75rem,
+      transparent 1.75rem 3.5rem
+    ),
+    var(--color-bg);
+}

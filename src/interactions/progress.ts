@@ -6,6 +6,7 @@ import {
   linkInspectCurrentStep,
   linkInspectSequence,
 } from './link-inspect/flow.ts';
+import { emptyRumourRun, rumourCurrentStep, rumourSequence } from './rumour/flow.ts';
 import { emptyTypingRun, typingCurrentStep, typingSequence } from './typing/flow.ts';
 import { emptyWebRun, webCurrentStep, webSequence } from './web/flow.ts';
 
@@ -25,6 +26,8 @@ export function emptyRun(mission: MissionStructure): Run {
       return emptyFacadeRun();
     case 'web':
       return emptyWebRun();
+    case 'rumour':
+      return emptyRumourRun();
   }
 }
 
@@ -40,6 +43,7 @@ export function stepSequence(mission: MissionStructure, run: Run | undefined): S
   if (mission.interaction === 'typing') return typingSequence(mission);
   if (mission.interaction === 'facade') return facadeSequence(mission);
   if (mission.interaction === 'web') return webSequence(mission);
+  if (mission.interaction === 'rumour') return rumourSequence(mission);
   return [];
 }
 
@@ -56,6 +60,9 @@ export function currentStep(mission: MissionStructure, run: Run | undefined): St
   }
   if (mission.interaction === 'web' && r.interaction === 'web') {
     return webCurrentStep(mission, r);
+  }
+  if (mission.interaction === 'rumour' && r.interaction === 'rumour') {
+    return rumourCurrentStep(mission, r);
   }
   return 'done';
 }

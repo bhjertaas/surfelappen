@@ -4,6 +4,7 @@ import type { ClassifyText } from '../../content/missions/text-types.ts';
 import type { ClassifyStep, WebBin } from '../../content/types.ts';
 import { format } from '../../i18n/format.ts';
 import { useI18n } from '../../i18n/i18n.ts';
+import { useHeadingFocus } from '../useHeadingFocus.ts';
 import {
   type ClassifyState,
   choose,
@@ -17,7 +18,6 @@ import {
 } from './classify.ts';
 import { completeWebStep } from './flow.ts';
 import type { WebViewProps } from './types.ts';
-import { useHeadingFocus } from './useHeadingFocus.ts';
 
 const BINS: readonly WebBin[] = ['browser', 'search', 'site'];
 

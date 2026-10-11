@@ -24,7 +24,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 | **Agnbua** (a bait-and-tackle shop on the pier; the sign on the door says *Gone Phishing*. Every scam is bait, so the name covers more than phishing) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
 | **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
-| **Ryktebørsen** (working name) | Rumours, fact-checking, AI images | Noir detective | Later |
+| **Ryktebørsen** (the detective office in the brick house) | Rumours, fact-checking, AI images | Film noir: night blue, amber lamplight, venetian-blind stripes | *Haien i Lenkevik* (built) |
 | **Lisenskontoret** / *The Licence Bureau* | Passport, and the final practical test that combines skills | Town style | Passport now; final test later |
 
 ## Mission loop (from the brief)
@@ -56,6 +56,17 @@ Guide: Ivar, who has run the café since the modem squealed. Five short, hands-o
 3. **Les adressen:** tap each part of `https://www.nrk.no/sport`, `kari@epost.example` and a search address (`google.com/search?q=nrk`), then answer one question about each. Only the anatomy: spotting fake addresses is Agnbua's job, so the two lessons don't overlap.
 4. **Pakken på reise:** look up nrk.no (DNS gives an IP address), send, a digger cuts the Oslo cable, send again and the packets go via Bergen.
 5. **Tidsreisen:** ten illustrated cards from "LO" (1969) to ChatGPT (2022), incl. NORSAR at Kjeller (1973). Not quizzed. «Spill av med lyd» plays it as a short film: Ivar's AI voice reads each card (the card is the subtitle) and moves on by itself. Real AI video (e.g. Sora) was left out for now: about $0.10 per second and several MB.
+
+## Haien i Lenkevik (Ryktebørsen)
+
+Guide: Tora Tvil, private detective ("I investigate what everyone else just shares"). The full mission loop in four steps:
+
+1. **Meldingen:** tante Randi posts in the family chat: shark at the beach, the council is closing it, share with everyone. Share it and watch it reach 4 800 people (empty beach, the ice-cream kiosk sells nothing); snap back «Dette er sikkert tull» and get «Jaså?»; or wait and ask where it came from.
+2. **Følg sporet:** tap back through the shares (Randi → Bente in a Facebook group → Trond's cropped screenshot → *Lenkevik Løgnpost*, a joke account). Tora notes what was added at each step. Then: how did it start? (A joke taken seriously.)
+3. **Bildene:** two pictures. A reverse image search finds the beach photo on Hawaii in 2015 (clues: palms, Diamond Head). The mayor's shark selfie gets no hits and is AI-made (two dorsal fins, nonsense letters on the sign, and we can see the phone taking the selfie). Point: AI keeps getting better, so the source is what gives it away.
+4. **Si fra:** reply to Randi. Saying nothing lets it spread; scolding makes her defensive; thanking her and showing what you found stops it.
+
+Sticker: *Faktasjekker*. Sources: Faktisk.no's Tenk and Medietilsynet's *Falske nyheter*. Open: no «Vil du vite mer?» page yet, `reviewedOn` is null.
 
 ## Room for more places
 

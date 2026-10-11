@@ -3,6 +3,7 @@ import type {
   FeedCategory,
   LinkInspectMission,
   OptionId,
+  RumourMission,
   TypingMission,
   WebMission,
 } from '../types.ts';
@@ -206,7 +207,100 @@ export type StepText =
   | BrowserText
   | AddressText
   | JourneyText
-  | TimelineText;
+  | TimelineText
+  | ChatText
+  | TraceText
+  | InspectText;
+
+// ---------------------------------------------------------------------------
+// rumour (Ryktebørsen)
+
+/** One chat message. `from` is a name, or empty for the player's own messages. */
+export interface ChatMessage {
+  readonly from: string;
+  readonly body: string;
+}
+
+/** A chat thread to react to: what each choice leads to, and what the guide says about it. */
+export interface ChatText {
+  readonly heading: string;
+  readonly brief: string;
+  /** Where the thread is, e.g. "Familiechatten". */
+  readonly thread: string;
+  readonly messages: readonly ChatMessage[];
+  readonly prompt: string;
+  readonly options: Readonly<
+    Record<
+      string,
+      {
+        readonly label: string;
+        /** What the player sends to the thread, if anything. */
+        readonly says?: string;
+        /** What happens in the thread afterwards. */
+        readonly outcome: readonly ChatMessage[];
+        /** One line per round of `spread`, if the option has it. */
+        readonly spread?: readonly string[];
+        readonly explain: string;
+      }
+    >
+  >;
+  readonly done: string;
+}
+
+/** Following a rumour back to its source. */
+export interface TraceText {
+  readonly heading: string;
+  readonly brief: string;
+  readonly hops: Readonly<
+    Record<
+      string,
+      {
+        /** Who shared it, e.g. "Tante Randi". */
+        readonly who: string;
+        /** Where, e.g. "i familiechatten". */
+        readonly where: string;
+        readonly body: string;
+        /** The guide points out what changed on the way. */
+        readonly note?: string;
+      }
+    >
+  >;
+  readonly question: string;
+  readonly options: Readonly<Record<string, { readonly label: string; readonly feedback: string }>>;
+  readonly done: string;
+}
+
+/** Checking pictures. */
+export interface InspectText {
+  readonly heading: string;
+  readonly brief: string;
+  readonly pictures: Readonly<
+    Record<
+      string,
+      {
+        readonly intro: string;
+        /** What the reverse image search shows. */
+        readonly found: string;
+        readonly spots: Readonly<Record<string, { readonly label: string; readonly text: string }>>;
+        readonly right: string;
+        readonly wrong: string;
+      }
+    >
+  >;
+  readonly done: string;
+}
+
+type RumourTextForStep<S> = S extends { kind: 'chat' }
+  ? ChatText
+  : S extends { kind: 'trace' }
+    ? TraceText
+    : InspectText;
+
+export interface RumourText<M extends RumourMission> extends MissionText {
+  readonly steps: {
+    readonly [S in M['steps'][number] as S['id']]: RumourTextForStep<S>;
+  };
+}
 
 /** Text shared by every mission. */
 export interface MissionText {
