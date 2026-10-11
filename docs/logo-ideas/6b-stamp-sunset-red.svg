@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 400 400">
+  <title>Surfelappen logo idea: red stamp with a binary sunset</title>
+  <defs>
+    <clipPath id="inner"><circle cx="200" cy="200" r="126"/></clipPath>
+    <clipPath id="sun"><circle cx="200" cy="214" r="70"/></clipPath>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#160a33"/><stop offset="0.55" stop-color="#5a1a5e"/><stop offset="1" stop-color="#e2544a"/>
+    </linearGradient>
+    <linearGradient id="sunfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe66b"/><stop offset="0.6" stop-color="#ff9a3c"/><stop offset="1" stop-color="#ff3fa4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="1" r="1">
+      <stop offset="0" stop-color="#ffb347" stop-opacity="0.55"/><stop offset="1" stop-color="#ffb347" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wave" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16a3c0"/><stop offset="1" stop-color="#0a3b5c"/>
+    </linearGradient>
+    <path id="top" d="M54 200 A146 146 0 0 1 346 200"/>
+    <path id="bottom" d="M36 200 A164 164 0 0 0 364 200"/>
+  </defs>
+  <rect width="400" height="400" rx="28" fill="#fdf8ec"/>
+  <g clip-path="url(#inner)">
+    <rect x="0" y="0" width="400" height="214" fill="url(#sky)"/>
+    <ellipse cx="200" cy="214" rx="120" ry="100" fill="url(#glow)"/>
+    <text x="114.4" y="186.2" transform="rotate(198.0 114.4 186.2)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">1011110</text>
+    <text x="127.2" y="161.1" transform="rotate(216.0 127.2 161.1)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">0001010</text>
+    <text x="147.1" y="141.2" transform="rotate(234.0 147.1 141.2)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">1011001</text>
+    <text x="172.2" y="128.4" transform="rotate(252.0 172.2 128.4)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">0101101</text>
+    <text x="200.0" y="124.0" transform="rotate(270.0 200.0 124.0)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">1100000</text>
+    <text x="227.8" y="128.4" transform="rotate(288.0 227.8 128.4)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">0101100</text>
+    <text x="252.9" y="141.2" transform="rotate(306.0 252.9 141.2)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">0000100</text>
+    <text x="272.8" y="161.1" transform="rotate(324.0 272.8 161.1)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">0101011</text>
+    <text x="285.6" y="186.2" transform="rotate(342.0 285.6 186.2)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="700" fill="#ffb36b" fill-opacity="0.8" dominant-baseline="middle">1001110</text>
+    <g clip-path="url(#sun)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8.5" font-weight="800" fill="url(#sunfill)">
+      <text x="126" y="152.0" textLength="148" lengthAdjust="spacing">0010000010011000010010</text>
+      <text x="126" y="160.5" textLength="148" lengthAdjust="spacing">0110111010101011100100</text>
+      <text x="126" y="169.9" textLength="148" lengthAdjust="spacing">1001010100110001111011</text>
+      <text x="126" y="180.2" textLength="148" lengthAdjust="spacing">0101110111000001100101</text>
+      <text x="126" y="191.4" textLength="148" lengthAdjust="spacing">1101101001010010001010</text>
+      <text x="126" y="203.5" textLength="148" lengthAdjust="spacing">1110000010001101101101</text>
+    </g>
+    <rect x="0" y="214" width="400" height="186" fill="#070a18"/>
+    <g stroke="#ff3fd0" stroke-width="1.6" stroke-opacity="0.9">
+      <line x1="200" y1="214" x2="-214" y2="340"/>
+      <line x1="200" y1="214" x2="-168" y2="340"/>
+      <line x1="200" y1="214" x2="-122" y2="340"/>
+      <line x1="200" y1="214" x2="-76" y2="340"/>
+      <line x1="200" y1="214" x2="-30" y2="340"/>
+      <line x1="200" y1="214" x2="16" y2="340"/>
+      <line x1="200" y1="214" x2="62" y2="340"/>
+      <line x1="200" y1="214" x2="108" y2="340"/>
+      <line x1="200" y1="214" x2="154" y2="340"/>
+      <line x1="200" y1="214" x2="200" y2="340"/>
+      <line x1="200" y1="214" x2="246" y2="340"/>
+      <line x1="200" y1="214" x2="292" y2="340"/>
+      <line x1="200" y1="214" x2="338" y2="340"/>
+      <line x1="200" y1="214" x2="384" y2="340"/>
+      <line x1="200" y1="214" x2="430" y2="340"/>
+      <line x1="200" y1="214" x2="476" y2="340"/>
+      <line x1="200" y1="214" x2="522" y2="340"/>
+      <line x1="200" y1="214" x2="568" y2="340"/>
+      <line x1="200" y1="214" x2="614" y2="340"/>
+      <line x1="60" y1="218.0" x2="340" y2="218.0"/>
+      <line x1="60" y1="223.8" x2="340" y2="223.8"/>
+      <line x1="60" y1="232.2" x2="340" y2="232.2"/>
+      <line x1="60" y1="244.4" x2="340" y2="244.4"/>
+      <line x1="60" y1="262.1" x2="340" y2="262.1"/>
+      <line x1="60" y1="287.7" x2="340" y2="287.7"/>
+      <line x1="60" y1="324.9" x2="340" y2="324.9"/>
+      <line x1="60" y1="378.8" x2="340" y2="378.8"/>
+    </g>
+    <line x1="60" y1="214" x2="340" y2="214" stroke="#5ff2ff" stroke-width="2.5"/>
+    <path d="M64 336 L64 288 C 104 280, 136 244, 176 226 C 218 208, 262 216, 268 244 C 272 264, 248 272, 239 259 C 232 248, 242 240, 251 245 C 241 231, 214 233, 203 252 C 190 276, 210 298, 252 302 C 292 306, 326 296, 340 292 L340 336 Z" fill="url(#wave)" stroke="#5ff2ff" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M176 226 C 218 208, 262 216, 268 244 C 272 264, 248 272, 239 259" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <circle cx="200" cy="200" r="188" fill="none" stroke="#b03a27" stroke-width="9"/>
+  <circle cx="200" cy="200" r="126" fill="none" stroke="#b03a27" stroke-width="6"/>
+  <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="27" letter-spacing="5" fill="#b03a27" text-anchor="middle"><textPath xlink:href="#top" href="#top" startOffset="50%">SURFELAPPEN</textPath></text>
+  <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="23" letter-spacing="3" fill="#b03a27" text-anchor="middle"><textPath xlink:href="#bottom" href="#bottom" startOffset="50%">GODKJENT · INTERNETT</textPath></text>
+  <path d="M43 190 L46 197 L53 200 L46 203 L43 210 L40 203 L33 200 L40 197 Z" fill="#b03a27"/>
+  <path d="M357 190 L360 197 L367 200 L360 203 L357 210 L354 203 L347 200 L354 197 Z" fill="#b03a27"/>
+</svg>
