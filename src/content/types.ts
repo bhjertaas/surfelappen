@@ -39,9 +39,9 @@ export interface Reading {
   readonly url: string;
 }
 
-export type MissionTheme = 'pointclick' | 'arcade' | 'comic';
+export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb';
 
-export type InteractionId = 'link-inspect' | 'typing' | 'facade';
+export type InteractionId = 'link-inspect' | 'typing' | 'facade' | 'web';
 export type Requirement = 'physical-keyboard';
 
 interface MissionBase<I extends InteractionId, S> {
@@ -240,7 +240,77 @@ export type FacadeStep = ComposeStep | SortStep | FeedStep;
 /** Completion: every step done, in order. */
 export type FacadeMission = MissionBase<'facade', FacadeStep>;
 
-export type MissionStructure = LinkInspectMission | TypingMission | FacadeMission;
+// ---------------------------------------------------------------------------
+// web (Kafé Krøllalfa): how the net works
+
+/** What a name is: the program you browse with, a site that finds sites, or a site. */
+export type WebBin = 'browser' | 'search' | 'site';
+
+/** "Hvem er hvem?": sort names one at a time into browser / search engine / website. */
+export interface ClassifyStep {
+  readonly kind: 'classify';
+  readonly id: StepId;
+  readonly cards: readonly { readonly id: string; readonly bin: WebBin }[];
+}
+
+/** "Snarveien": reach `target` in a toy browser, by search and by the address bar. */
+export interface BrowserStep {
+  readonly kind: 'browser';
+  readonly id: StepId;
+  /** Host the player is asked to reach, e.g. `nrk.no`. */
+  readonly target: string;
+  /** A search for any of these words finds the target. */
+  readonly keywords: readonly string[];
+  /** The paid result above the real one. */
+  readonly adHost: string;
+  /** Search engines to choose between; `trees` shows a tree counter (Ecosia). */
+  readonly engines: readonly {
+    readonly id: string;
+    readonly host: string;
+    readonly trees?: boolean;
+  }[];
+}
+
+/** One address split into parts the player can tap; `answer` is the part asked for. */
+export interface Address {
+  readonly id: string;
+  readonly parts: readonly { readonly id: string; readonly text: string }[];
+  readonly answer: string;
+}
+
+/** "Les adressen": what each part of a web and an email address means. */
+export interface AddressStep {
+  readonly kind: 'address';
+  readonly id: StepId;
+  readonly addresses: readonly Address[];
+}
+
+/** A small network: nodes in a 360×220 picture and cables between them. */
+export interface JourneyStep {
+  readonly kind: 'journey';
+  readonly id: StepId;
+  readonly nodes: readonly { readonly id: string; readonly x: number; readonly y: number }[];
+  readonly cables: readonly (readonly [string, string])[];
+  readonly from: string;
+  readonly to: string;
+  /** The cable the digger breaks, so the packets find another way. */
+  readonly cut: readonly [string, string];
+  /** The address the name looks up to (a documentation address, RFC 5737). */
+  readonly ip: string;
+}
+
+/** "Tidsreisen": a few moments of the net's history, to page through. Not quizzed. */
+export interface TimelineStep {
+  readonly kind: 'timeline';
+  readonly id: StepId;
+  readonly events: readonly { readonly id: string; readonly year: number }[];
+}
+
+export type WebStep = ClassifyStep | BrowserStep | AddressStep | JourneyStep | TimelineStep;
+
+export type WebMission = MissionBase<'web', WebStep>;
+
+export type MissionStructure = LinkInspectMission | TypingMission | FacadeMission | WebMission;
 
 // ---------------------------------------------------------------------------
 // stickers and town
@@ -281,4 +351,6 @@ export interface Building {
   /** Where the player's character walks to before going in. */
   readonly door: Point;
   readonly image: ArtId;
+  /** Opens once this mission is done (or once the player has started one here). */
+  readonly after?: MissionId;
 }

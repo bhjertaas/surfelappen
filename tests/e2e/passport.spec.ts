@@ -14,9 +14,12 @@ async function visitEveryBuilding(page: import('@playwright/test').Page) {
     .getByRole('button', { name: /Ryktebørsen/ })
     .click();
   await list(page)
-    .getByRole('link', { name: /Agnbua/ })
+    .getByRole('button', { name: /Agnbua/ })
     .click();
-  await expectHeading(page, 'Finn bedrageren');
+  await list(page)
+    .getByRole('link', { name: /Kafé Krøllalfa/ })
+    .click();
+  await expectHeading(page, 'Hva er egentlig nettet?');
   await page.goto('/#/mission/ten-fingers');
   await expectHeading(page, 'Ti fingre');
   await page
@@ -35,10 +38,11 @@ test('the passport shows every sticker and how to earn it', async ({ page }) => 
     'Stø hånd',
     'Bak fasaden',
     'Reklamejeger',
+    'Nettkjenner',
     'Nysgjerrig',
   ]);
-  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(7);
-  await expect(page.getByText('Du har besøkt 1 av 5 hus.')).toBeVisible();
+  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(8);
+  await expect(page.getByText('Du har besøkt 1 av 6 hus.')).toBeVisible();
   await expectNoAxeViolations(page);
 });
 
@@ -84,7 +88,7 @@ test('stickers survive a reload and are cleared only by a confirmed reset', asyn
   ).toBeVisible();
   await expect(
     page.getByRole('list', { name: 'Klistremerker' }).getByText('Ikke tjent ennå'),
-  ).toHaveCount(7);
+  ).toHaveCount(8);
   expect(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY)).toBeNull();
   await page.goto('/');
   await expect(page.getByRole('link', { name: 'Fortsett der du slapp' })).toHaveCount(0);

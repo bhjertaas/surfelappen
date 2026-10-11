@@ -82,7 +82,14 @@ describe('applyAwards', () => {
   it('awards Nysgjerrig for visiting every building', () => {
     const p: Progress = {
       ...emptyProgress(),
-      visitedBuildings: ['gone-phishing', 'arcade', 'facade', 'rumour-exchange', 'licence-bureau'],
+      visitedBuildings: [
+        'cafe',
+        'gone-phishing',
+        'arcade',
+        'facade',
+        'rumour-exchange',
+        'licence-bureau',
+      ],
     };
     expect(applyAwards(p).stickers).toEqual(['curious']);
     expect(applyAwards({ ...p, visitedBuildings: p.visitedBuildings.slice(1) }).stickers).toEqual(

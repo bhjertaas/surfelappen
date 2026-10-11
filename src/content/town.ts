@@ -7,9 +7,18 @@ import type { Audience, Building, Point } from './types.ts';
  */
 export const buildings = [
   {
+    id: 'cafe',
+    status: 'open',
+    missions: ['how-the-net-works'],
+    hotspot: { x: 1280, y: 740, w: 256, h: 284 },
+    door: { x: 1300, y: 930 },
+    image: 'town',
+  },
+  {
     id: 'gone-phishing',
     status: 'open',
     missions: ['find-the-impostor'],
+    after: 'how-the-net-works',
     hotspot: { x: 102, y: 486, w: 435, h: 282 },
     door: { x: 470, y: 720 },
     image: 'town',

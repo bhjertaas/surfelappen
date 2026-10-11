@@ -5,12 +5,12 @@ import { href, type Route } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { art, characterFor } from '../content/art.ts';
 import { findMission } from '../content/missions/index.ts';
-import { buildingsFor, TOWN_SIZE, TOWN_START } from '../content/town.ts';
+import { buildings as allBuildings, buildingsFor, TOWN_SIZE, TOWN_START } from '../content/town.ts';
 import type { Building, Point } from '../content/types.ts';
-import { plural } from '../i18n/format.ts';
+import { format, plural } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
 import { useProgress } from '../progress/hooks.ts';
-import { visitBuilding } from '../progress/selectors.ts';
+import { isLocked, visitBuilding } from '../progress/selectors.ts';
 
 type Variant = 'map' | 'list';
 
@@ -44,20 +44,23 @@ interface ControlProps {
 /** One destination, rendered the same way in the picture and in the list (FR-02). */
 function BuildingControl({ building, variant, touchOnly, onClosed, onWalk }: ControlProps) {
   const { m } = useI18n();
-  const { store } = useProgress();
+  const { store, progress } = useProgress();
   const text = m.buildings[building.id];
   if (!text) return null;
+  const locked = isLocked(progress, building);
+  const opener = allBuildings.find((b) => b.missions.some((id) => id === building.after));
 
   const needsKeyboard =
     touchOnly &&
     building.missions.some((id) => findMission(id)?.requires.includes('physical-keyboard'));
-  const badge =
-    building.status === 'coming-soon'
+  const badge = locked
+    ? format(m.town.locked, { place: (opener && m.buildings[opener.id]?.name) ?? '' })
+    : building.status === 'coming-soon'
       ? m.town.comingSoon
       : needsKeyboard
         ? m.town.needsKeyboard
         : null;
-  const className = `building building--${variant} building--${building.status}`;
+  const className = `building building--${variant} building--${locked ? 'locked' : building.status}`;
   const style =
     variant === 'map'
       ? {
@@ -76,7 +79,7 @@ function BuildingControl({ building, variant, touchOnly, onClosed, onWalk }: Con
   );
   const visit = () => store.update((p) => visitBuilding(p, building.id));
 
-  if (building.status === 'coming-soon') {
+  if (building.status === 'coming-soon' || locked) {
     return (
       <button
         type="button"

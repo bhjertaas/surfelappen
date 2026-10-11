@@ -2,9 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { findTheImpostor } from '../content/missions/find-the-impostor/structure.ts';
 import { missions } from '../content/missions/index.ts';
 import { tenFingers } from '../content/missions/ten-fingers/structure.ts';
+import { buildings } from '../content/town.ts';
 import { emptyProgress, type Progress } from './schema.ts';
 import {
   hasStarted,
+  isLocked,
   restartMission,
   resumeRoute,
   startMission,
@@ -130,5 +132,34 @@ describe('visitBuilding', () => {
     const p = visitBuilding(emptyProgress(), 'rumour-exchange');
     expect(p.visitedBuildings).toEqual(['rumour-exchange']);
     expect(visitBuilding(p, 'rumour-exchange')).toBe(p);
+  });
+});
+
+describe('isLocked', () => {
+  const agnbua = buildings.find((b) => b.id === 'gone-phishing');
+  const arcade = buildings.find((b) => b.id === 'arcade');
+
+  it('keeps Agnbua shut until the café mission is done', () => {
+    if (!agnbua || !arcade) throw new Error('missing building');
+    const fresh = emptyProgress();
+    expect(isLocked(fresh, agnbua)).toBe(true);
+    expect(isLocked(fresh, arcade)).toBe(false);
+    const cafe = missions.find((m) => m.id === 'how-the-net-works');
+    if (!cafe) throw new Error('missing mission');
+    const started = startMission(fresh, cafe);
+    expect(isLocked(started, agnbua)).toBe(true);
+    const done: Progress = {
+      ...started,
+      missions: {
+        ...started.missions,
+        'how-the-net-works': { completedOnce: true, run: { interaction: 'web', done: [] } },
+      },
+    };
+    expect(isLocked(done, agnbua)).toBe(false);
+  });
+
+  it('lets in players who already started a mission inside', () => {
+    if (!agnbua) throw new Error('missing building');
+    expect(isLocked(startMission(emptyProgress(), findTheImpostor), agnbua)).toBe(false);
   });
 });

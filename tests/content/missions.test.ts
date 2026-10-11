@@ -5,6 +5,14 @@ import { domainsIn, stringsIn } from './helpers.ts';
 
 const missions = typed as readonly MissionStructure[];
 
+/**
+ * Real domains allowed in a mission's structure, where recognising the real thing is
+ * the point (the toy browser, search engines). Never for scam cases.
+ */
+const TEACHING_DOMAINS: Record<string, readonly string[]> = {
+  'how-the-net-works': ['nrk.no', 'google.com', 'bing.com', 'duckduckgo.com', 'ecosia.org'],
+};
+
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
 describe('all missions', () => {
@@ -29,6 +37,7 @@ describe('all missions', () => {
       it('only uses .example domains (sources excepted)', () => {
         for (const { path, value } of stringsIn(mission, ['sources', 'further'])) {
           for (const domain of domainsIn(value)) {
+            if (TEACHING_DOMAINS[mission.id]?.includes(domain)) continue;
             expect(domain, `${mission.id}.${path}: "${domain}" must end in .example`).toMatch(
               /\.example$/,
             );

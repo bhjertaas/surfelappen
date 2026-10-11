@@ -1,6 +1,7 @@
 import type { Locale } from '../../i18n/format.ts';
 import type { Audience, MissionId } from '../types.ts';
 import { findTheImpostorNb } from './find-the-impostor/text.nb.ts';
+import { howTheNetWorksNb } from './how-the-net-works/text.nb.ts';
 import { perfectLifeNb } from './perfect-life/text.nb.ts';
 import { tenFingersNb } from './ten-fingers/text.nb.ts';
 import type { MissionText } from './text-types.ts';
@@ -11,6 +12,7 @@ import type { MissionText } from './text-types.ts';
  */
 export const missionTexts: Record<Locale, Record<MissionId, MissionText>> = {
   nb: {
+    'how-the-net-works': howTheNetWorksNb,
     'find-the-impostor': findTheImpostorNb,
     'ten-fingers': tenFingersNb,
     'perfect-life': perfectLifeNb,

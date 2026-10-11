@@ -31,5 +31,10 @@ export const stickers = [
     image: 'sticker-ad-hunter',
     awardedBy: { mission: 'perfect-life', condition: 'ads-first-try' },
   },
+  {
+    id: 'web-explorer',
+    image: 'sticker-web-explorer',
+    awardedBy: { mission: 'how-the-net-works' },
+  },
   { id: 'curious', image: 'sticker-curious', awardedBy: { town: 'visited-all-buildings' } },
 ] as const satisfies readonly Sticker[];

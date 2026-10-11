@@ -20,6 +20,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 
 | Place | Topic | Art theme | Missions |
 | --- | --- | --- | --- |
+| **Kafé Krøllalfa** (the café on the corner; *krøllalfa* is Norwegian for @) | The basics: browser vs search engine vs site, the address bar, reading an address, how a request travels (DNS, IP, packets), a little history and AI | Late-90s desktop: teal, grey bevelled windows, CRT glow | *Hva er egentlig nettet?* (built). Comes first: Agnbua opens after it |
 | **Agnbua** (a bait-and-tackle shop on the pier; the sign on the door says *Gone Phishing*. Every scam is bait, so the name covers more than phishing) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
 | **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
@@ -45,3 +46,17 @@ Hands-on, not a quiz: the player *does* the tricks. Guide: Mira, who makes these
 After the mission, **«Vil du vite mer?»** (`#/mission/perfect-life/more`) gives real examples with links to the press: the ad business model (Forbrukerrådet), Instagram and body image (Haugen), TikTok's feed (Amnesty), Myanmar (BBC), Cambridge Analytica (Guardian, incl. that the Brexit link wasn't borne out) and the mixed research on polarisation (Nature). Tone: plain facts, say where research disagrees. Other missions can get the same page.
 
 Open items: the mission's sources are listed on the About page but `reviewedOn` is still null.
+
+## Hva er egentlig nettet? (Kafé Krøllalfa)
+
+Guide: Ivar, who has run the café since the modem squealed. Five short, hands-on steps:
+
+1. **Hvem er hvem?** Sort Chrome, Google, nrk.no, Safari, Ecosia, yr.no, Edge, Bing and wikipedia.org into nettleser / søkemotor / nettsted. Point: Google is not the internet.
+2. **Snarveien:** a toy browser. Get to NRK however you usually do; if you search, you get there in a few taps past an ad, then do it again by typing nrk.no in the address bar. Typing "nrk" without .no becomes a search, as in real browsers. Pick another search engine (Ecosia plants trees).
+3. **Les adressen:** tap each part of `https://www.nrk.no/sport`, `kari@epost.example` and a trick address (`nrk.no.nyheter-gratis.example`), then tap the part that decides where you are. Leads straight into Agnbua.
+4. **Pakken på reise:** look up nrk.no (DNS gives an IP address), send, a digger cuts the Oslo cable, send again and the packets go via Bergen.
+5. **Tidsreisen:** ten cards from "LO" (1969) to ChatGPT (2022), incl. NORSAR at Kjeller (1973). Not quizzed. Later: a short narrated video version, if we find a way that fits the size budget.
+
+## Room for more places
+
+The town picture has more houses than places: the yellow house on the left, the blue and yellow houses on the right, the red houses behind the arcade. New missions can move into those (a hotspot and a door point in `content/town.ts`), and the town can be redrawn wider when it gets crowded.

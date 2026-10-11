@@ -55,13 +55,13 @@ test('the back button leaves a mission instead of stepping through it', async ({
   await page.goto('/#/town');
   await page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Agnbua/ })
+    .getByRole('link', { name: /Kafé Krøllalfa/ })
     .click();
-  await expectHeading(page, 'Finn bedrageren');
+  await expectHeading(page, 'Hva er egentlig nettet?');
   await page.getByRole('button', { name: 'Begynn' }).click();
-  await expect(page).toHaveURL(/#\/mission\/find-the-impostor\/case-1$/);
+  await expect(page).toHaveURL(/#\/mission\/how-the-net-works\/who-is-who$/);
   await page.goBack();
-  await expectHeading(page, 'Finn bedrageren');
+  await expectHeading(page, 'Hva er egentlig nettet?');
   await page.goBack();
   await expectHeading(page, 'Lenkevik');
 });

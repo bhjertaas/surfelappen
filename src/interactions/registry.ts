@@ -6,6 +6,7 @@ import { LinkInspectSummary } from './link-inspect/LinkInspectSummary.tsx';
 import type { StepViewProps, SummaryDetailsProps } from './types.ts';
 import { TypingStep } from './typing/TypingStep.tsx';
 import { TypingSummary } from './typing/TypingSummary.tsx';
+import { WebStep, WebSummary } from './web/WebStep.tsx';
 
 /** The views of each interaction type. A new type adds one entry (architecture "Adding things"). */
 export interface InteractionViews {
@@ -17,4 +18,5 @@ export const interactionViews: Record<InteractionId, InteractionViews> = {
   'link-inspect': { StepView: LinkInspectStep, SummaryDetails: LinkInspectSummary },
   typing: { StepView: TypingStep, SummaryDetails: TypingSummary },
   facade: { StepView: FacadeStep, SummaryDetails: FacadeSummary },
+  web: { StepView: WebStep, SummaryDetails: WebSummary },
 };

@@ -126,6 +126,14 @@ const SPECS: Record<string, Spec> = {
     colours: 48,
   },
   'scene-facade': { style: 'comic', width: 1536, height: 1024, generate: '1536x1024' },
+  'portrait-ivar': {
+    style: 'retroweb',
+    width: 256,
+    height: 256,
+    generate: '1536x1024',
+    from: { id: 'scene-cafe', left: 1110, top: 190, width: 340, height: 340 },
+  },
+  'scene-cafe': { style: 'retroweb', width: 1536, height: 1024, generate: '1536x1024' },
   'sticker-link-detective': sticker,
   'sticker-sharp-eye': sticker,
   'sticker-ten-fingers': sticker,
@@ -133,6 +141,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-curious': sticker,
   'sticker-behind-the-facade': sticker,
   'sticker-ad-hunter': sticker,
+  'sticker-web-explorer': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;

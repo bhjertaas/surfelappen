@@ -38,7 +38,13 @@ export interface FacadeRun {
   readonly flawless?: readonly StepId[];
 }
 
-export type Run = LinkInspectRun | TypingRun | FacadeRun;
+/** A playthrough of a web mission (Kafé Krøllalfa). */
+export interface WebRun {
+  readonly interaction: 'web';
+  readonly done: readonly StepId[];
+}
+
+export type Run = LinkInspectRun | TypingRun | FacadeRun | WebRun;
 
 export interface MissionProgress {
   readonly completedOnce: boolean;

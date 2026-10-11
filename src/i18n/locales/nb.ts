@@ -14,9 +14,14 @@ interface BuildingText {
 }
 
 const buildings: Record<string, BuildingText> = {
+  cafe: {
+    name: 'Kafé Krøllalfa',
+    about: 'Hva er nettleser, søkemotor og nettadresse? Start her.',
+  },
   'gone-phishing': {
     name: 'Agnbua',
     about: 'Se hvor lenker i SMS og e-post egentlig fører.',
+    closed: 'Agnbua åpner når du har vært på Kafé Krøllalfa. Der lærer du å lese en adresse først.',
   },
   arcade: {
     name: 'Arkaden',
@@ -56,6 +61,7 @@ const stickers: Record<string, StickerText> = {
     howTo: 'Sorter de to siste innleggene i Reklamejakt riktig på første forsøk.',
   },
   'steady-hand': { name: 'Stø hånd', howTo: 'Skriv siste linje i Ti fingre uten feil.' },
+  'web-explorer': { name: 'Nettkjenner', howTo: 'Fullfør Hva er egentlig nettet?' },
   curious: { name: 'Nysgjerrig', howTo: 'Besøk alle husene i Lenkevik.' },
 };
 
@@ -71,7 +77,7 @@ export const nb = {
     tagline:
       '«Å surfe på nettet» sier man gjerne om det å bruke Internett. Her tar du lappen på det.',
     pitch:
-      'Korte oppdrag i den litt rare byen Lenkevik: avslør svindellenker, lær touch på tastaturet, og mer etter hvert.',
+      'Korte oppdrag i den litt rare byen Lenkevik: finn ut hvordan nettet henger sammen, avslør svindellenker, lær touch på tastaturet og mer.',
     version: 'Versjon',
   },
   nav: {
@@ -96,6 +102,7 @@ export const nb = {
     toPassport: 'Se passet ditt',
     comingSoon: 'Kommer snart',
     needsKeyboard: 'Trenger tastatur',
+    locked: 'Først: {place}',
   },
   buildings,
   stickers,
@@ -222,6 +229,42 @@ export const nb = {
     following: 'Følger',
     meter: 'Glansbilder i Saras feed: {count} av {total}',
     goalReached: 'Glansbildene tar ikke over lenger.',
+  },
+  web: {
+    headings: {
+      classify: 'Hvem er hvem?',
+      browser: 'Snarveien',
+      address: 'Les adressen',
+      journey: 'Pakken på reise',
+      timeline: 'Tidsreisen',
+    },
+    bins: { browser: 'Nettleser', search: 'Søkemotor', site: 'Nettsted' },
+    cardProgress: 'Navn {current} av {total}',
+    rightHeading: 'Riktig',
+    wrongHeading: 'Ikke helt',
+    tryAgain: 'Prøv igjen',
+    next: 'Neste',
+    finish: 'Ferdig',
+    browserLabel: 'Liten øvelsesnettleser',
+    addressBar: 'Adresselinje',
+    go: 'Gå',
+    back: 'Tilbake',
+    home: 'Startsiden',
+    search: 'Søk',
+    searchLabel: 'Søk med {engine}',
+    searchWith: 'Søkemotor:',
+    adLabel: 'Annonse',
+    clicks: 'Trykk så langt: {count}',
+    partsLabel: 'Delene av adressen',
+    explainHeading: 'Hva betyr det?',
+    allParts: 'Trykk på alle delene for å gå videre.',
+    answerPrompt: 'Trykk på riktig del.',
+    networkLabel: 'Kart over nettet mellom mobilen din og NRKs server',
+    lookUp: 'Slå opp nrk.no',
+    send: 'Send',
+    sendAgain: 'Send igjen',
+    eventProgress: '{current} av {total}',
+    previous: 'Forrige',
   },
   keyboard: {
     title: 'Trenger tastatur',

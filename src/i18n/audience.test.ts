@@ -37,6 +37,7 @@ describe('audience variants', () => {
     expect(buildingsFor('teen').map((b) => b.id)).toEqual([
       'facade',
       'gone-phishing',
+      'cafe',
       'arcade',
       'rumour-exchange',
       'licence-bureau',

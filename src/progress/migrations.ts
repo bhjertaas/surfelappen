@@ -34,6 +34,7 @@ function isRun(value: unknown): boolean {
   if (value.interaction === 'typing') {
     return isStringArray(value.done) && typeof value.positional === 'boolean';
   }
+  if (value.interaction === 'web') return isStringArray(value.done);
   if (value.interaction === 'facade') {
     return (
       isStringArray(value.done) && (value.flawless === undefined || isStringArray(value.flawless))

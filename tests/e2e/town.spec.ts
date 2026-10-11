@@ -18,6 +18,7 @@ test('picture and list offer the same destinations in the same order', async ({ 
   const list = await destinations(page.locator('.town__list'));
   const map = await destinations(page.locator('.town__hotspots'));
   expect(list.map((d) => d.name)).toEqual([
+    'Kafé Krøllalfa',
     'Agnbua',
     'Arkaden',
     'Fasaden',
@@ -38,6 +39,15 @@ test('closed buildings say so in text and answer with a friendly line', async ({
   ).toBeVisible();
   await expect(square).toBeFocused();
   expect((await storedProgress(page))?.visitedBuildings).toEqual(['rumour-exchange']);
+});
+
+test('Agnbua waits for Kafé Krøllalfa', async ({ page }) => {
+  await page.goto('/#/town');
+  const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
+  const agnbua = list.getByRole('button', { name: /Agnbua/ });
+  await expect(agnbua).toContainText('Først: Kafé Krøllalfa');
+  await agnbua.click();
+  await expect(page.getByRole('status').filter({ hasText: 'lese en adresse' })).toBeVisible();
 });
 
 test('the arcade says "Trenger tastatur" only on touch-only devices', async ({ page }) => {
@@ -76,9 +86,9 @@ test('choosing a place on the map walks the character there, then goes in', asyn
   const before = await walker.boundingBox();
   await page
     .locator('.town__hotspots')
-    .getByRole('link', { name: /Agnbua/ })
+    .getByRole('link', { name: /Kafé Krøllalfa/ })
     .click();
-  await expect(page).toHaveURL(/#\/mission\/find-the-impostor$/);
+  await expect(page).toHaveURL(/#\/mission\/how-the-net-works$/);
   expect(before).not.toBeNull();
 });
 

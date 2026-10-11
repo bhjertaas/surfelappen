@@ -1,6 +1,7 @@
 import characterAdultBack from '../assets/art/character-adult-back.webp';
 import characterAdultFront from '../assets/art/character-adult-front.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
+import portraitIvar from '../assets/art/portrait-ivar.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
 import portraitMira from '../assets/art/portrait-mira.webp';
 import postBeach from '../assets/art/post-beach.webp';
@@ -16,6 +17,7 @@ import postSponsored from '../assets/art/post-sponsored.webp';
 import postTaco from '../assets/art/post-taco.webp';
 import roomReality from '../assets/art/room-reality.webp';
 import sceneArcade from '../assets/art/scene-arcade.png';
+import sceneCafe from '../assets/art/scene-cafe.webp';
 import sceneFacade from '../assets/art/scene-facade.webp';
 import scenePhishing from '../assets/art/scene-phishing.webp';
 import stickerAdHunter from '../assets/art/sticker-ad-hunter.webp';
@@ -25,6 +27,7 @@ import stickerLinkDetective from '../assets/art/sticker-link-detective.webp';
 import stickerSharpEye from '../assets/art/sticker-sharp-eye.webp';
 import stickerSteadyHand from '../assets/art/sticker-steady-hand.webp';
 import stickerTenFingers from '../assets/art/sticker-ten-fingers.webp';
+import stickerWebExplorer from '../assets/art/sticker-web-explorer.webp';
 import townUrl from '../assets/art/town.webp';
 import type { Audience } from './types.ts';
 
@@ -53,12 +56,15 @@ export const art = {
   'post-gamer': { src: postGamer, width: 768, height: 768 },
   'post-taco': { src: postTaco, width: 768, height: 768 },
   'sticker-ad-hunter': sticker(stickerAdHunter),
+  'sticker-web-explorer': sticker(stickerWebExplorer),
   'post-climbing': { src: postClimbing, width: 768, height: 768 },
   'post-football': { src: postFootball, width: 768, height: 768 },
   'post-cat': { src: postCat, width: 768, height: 768 },
   'post-dog': { src: postDog, width: 768, height: 768 },
   'portrait-mira': { src: portraitMira, width: 256, height: 256 },
+  'portrait-ivar': { src: portraitIvar, width: 256, height: 256 },
   'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
+  'scene-cafe': { src: sceneCafe, width: 1536, height: 1024 },
   'room-reality': { src: roomReality, width: 1536, height: 1024 },
   'sticker-behind-the-facade': sticker(stickerBehindTheFacade),
   'scene-phishing': { src: scenePhishing, width: 1536, height: 1024 },

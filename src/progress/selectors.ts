@@ -1,6 +1,7 @@
 import type { Route } from '../app/routes.ts';
 import {
   type Audience,
+  type Building,
   type BuildingId,
   DEFAULT_AUDIENCE,
   type MissionStructure,
@@ -78,6 +79,16 @@ export function restartMission(progress: Progress, mission: MissionStructure): P
       },
     },
   };
+}
+
+/**
+ * A building with `after` stays shut until that mission is done. Players who already
+ * started a mission inside keep their way in (the lock came after them).
+ */
+export function isLocked(progress: Progress, building: Building): boolean {
+  if (!building.after) return false;
+  if (progress.missions[building.after]?.completedOnce) return false;
+  return !building.missions.some((id) => progress.missions[id] !== undefined);
 }
 
 export function visitBuilding(progress: Progress, id: BuildingId): Progress {

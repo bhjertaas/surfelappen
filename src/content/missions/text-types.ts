@@ -4,6 +4,7 @@ import type {
   LinkInspectMission,
   OptionId,
   TypingMission,
+  WebMission,
 } from '../types.ts';
 
 /**
@@ -120,6 +121,79 @@ export interface FeedText {
   readonly done: string;
 }
 
+// web (Kafé Krøllalfa)
+
+export interface ClassifyText {
+  readonly brief: string;
+  readonly cards: Readonly<
+    Record<string, { readonly name: string; readonly right: string; readonly wrong: string }>
+  >;
+  readonly done: string;
+}
+
+export interface BrowserText {
+  /** `{target}` is the host to reach. */
+  readonly brief: string;
+  readonly engines: Readonly<Record<string, string>>;
+  readonly adTitle: string;
+  readonly adSnippet: string;
+  readonly targetTitle: string;
+  readonly targetSnippet: string;
+  /** The target's name as its toy page shows it, e.g. "NRK". */
+  readonly targetName: string;
+  /** The toy target page. */
+  readonly targetPage: string;
+  /** Reached by searching; `{clicks}` steps. Asks for the shortcut. */
+  readonly afterSearch: string;
+  /** Reached through the address bar. */
+  readonly afterAddress: string;
+  /** Typed a word without a dot in the address bar: it became a search. */
+  readonly becameSearch: string;
+  /** Searched for something that doesn't find the target. */
+  readonly noResults: string;
+  /** An address other than the target; `{host}`. */
+  readonly elsewhere: string;
+  /** Clicked the paid result. */
+  readonly clickedAd: string;
+  /** Shown with a tree-counting engine. */
+  readonly trees: string;
+  readonly done: string;
+}
+
+export interface AddressText {
+  readonly brief: string;
+  readonly addresses: Readonly<
+    Record<
+      string,
+      {
+        readonly intro: string;
+        readonly question: string;
+        readonly parts: Readonly<Record<string, string>>;
+        readonly right: string;
+        readonly wrong: string;
+      }
+    >
+  >;
+  readonly done: string;
+}
+
+export interface JourneyText {
+  readonly brief: string;
+  readonly nodes: Readonly<Record<string, string>>;
+  /** The name is looked up; `{ip}`. */
+  readonly lookedUp: string;
+  readonly arrived: string;
+  readonly cutIntro: string;
+  readonly rerouted: string;
+  readonly done: string;
+}
+
+export interface TimelineText {
+  readonly brief: string;
+  readonly events: Readonly<Record<string, { readonly title: string; readonly body: string }>>;
+  readonly done: string;
+}
+
 export type StepText =
   | CaseText
   | ChoiceText
@@ -127,7 +201,12 @@ export type StepText =
   | TypingStepText
   | ComposeText
   | SortText
-  | FeedText;
+  | FeedText
+  | ClassifyText
+  | BrowserText
+  | AddressText
+  | JourneyText
+  | TimelineText;
 
 /** Text shared by every mission. */
 export interface MissionText {
@@ -172,6 +251,22 @@ type FacadeTextForStep<S> = S extends { kind: 'sort' }
 export interface FacadeText<M extends FacadeMission> extends MissionText {
   readonly steps: {
     readonly [S in M['steps'][number] as S['id']]: FacadeTextForStep<S>;
+  };
+}
+
+type WebTextForStep<S> = S extends { kind: 'classify' }
+  ? ClassifyText
+  : S extends { kind: 'browser' }
+    ? BrowserText
+    : S extends { kind: 'address' }
+      ? AddressText
+      : S extends { kind: 'journey' }
+        ? JourneyText
+        : TimelineText;
+
+export interface WebText<M extends WebMission> extends MissionText {
+  readonly steps: {
+    readonly [S in M['steps'][number] as S['id']]: WebTextForStep<S>;
   };
 }
 
