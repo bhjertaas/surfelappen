@@ -6,6 +6,7 @@ import { Guide } from '../components/Guide.tsx';
 import { Page } from '../components/Page.tsx';
 import { Rich } from '../components/Rich.tsx';
 import { Scene } from '../components/Scene.tsx';
+import { usePrefetchLesson } from '../components/usePrefetchLesson.ts';
 import { findMission } from '../content/missions/index.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
@@ -23,6 +24,7 @@ import { ErrorScreen } from './ErrorScreen.tsx';
 
 export function MissionIntro({ missionId }: { missionId: string }) {
   const mission = findMission(missionId);
+  usePrefetchLesson(mission);
   return mission ? <Intro mission={mission} /> : <ErrorScreen kind="not-found" />;
 }
 

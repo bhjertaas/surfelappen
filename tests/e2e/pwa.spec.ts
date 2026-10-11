@@ -85,3 +85,29 @@ test('a new version shows the update bar, and reloads only when asked', async ({
     await server.close();
   }
 });
+
+test('a lesson opened once works offline, pictures included', async ({ page, context }) => {
+  await page.goto('/');
+  await page.evaluate(() => navigator.serviceWorker.ready);
+  await page.reload();
+  await expect
+    .poll(() => page.evaluate(() => navigator.serviceWorker.controller !== null))
+    .toBe(true);
+
+  // Opening the lesson caches its media in the background.
+  await page.goto('/#/mission/how-the-net-works');
+  await expectHeading(page, 'Hva er egentlig nettet?');
+  await expect
+    .poll(() =>
+      page.evaluate(async () => (await (await caches.open('lesson-media')).keys()).length),
+    )
+    .toBeGreaterThanOrEqual(2);
+
+  await context.setOffline(true);
+  await page.reload();
+  await expectHeading(page, 'Hva er egentlig nettet?');
+  const scene = page.locator('.scene');
+  await expect(scene).toHaveJSProperty('complete', true);
+  expect(await scene.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+  await context.setOffline(false);
+});

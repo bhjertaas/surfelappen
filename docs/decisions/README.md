@@ -20,3 +20,4 @@ One short note per significant decision: context, decision, alternatives, conseq
 | [0014](0014-typing-input.md) | Typing capture, key/code matching, layout fallback, Caps Lock | Accepted |
 | [0015](0015-audience-variants.md) | Audience variants (child/teen/adult): built in now, written later | Accepted |
 | [0016](0016-ai-drafted-art.md) | Pixel art drafted with an image model, reduced to real pixels, reviewed | Accepted |
+| [0017](0017-lazy-lesson-media.md) | Precache the core; lesson media cached when a lesson opens | Accepted |

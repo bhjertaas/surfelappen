@@ -84,6 +84,19 @@ export function artFor(id: string): ArtAsset | undefined {
   return (art as Record<string, ArtAsset>)[id];
 }
 
+/** Every art ID mentioned anywhere in `value` (a mission structure), each once. */
+export function artUsedBy(value: unknown): string[] {
+  const found = new Set<string>();
+  const walk = (v: unknown) => {
+    if (typeof v === 'string') {
+      if (artFor(v)) found.add(v);
+    } else if (Array.isArray(v)) v.forEach(walk);
+    else if (v && typeof v === 'object') Object.values(v).forEach(walk);
+  };
+  walk(value);
+  return [...found];
+}
+
 /**
  * The player's character on the town map, per audience (who is playing). Only the
  * adult version exists so far; the others fall back to it.

@@ -44,7 +44,7 @@ function cspMeta(): Plugin {
 const THEME_COLOR = '#1f6f8b';
 const BACKGROUND_COLOR = '#fdf8ec';
 
-/** PWA (ADR 0007): precache everything, wait for the player before activating an update. */
+/** PWA (ADR 0007, 0017): precache the core, wait for the player before activating an update. */
 function pwa() {
   return VitePWA({
     registerType: 'prompt',
@@ -73,7 +73,24 @@ function pwa() {
       ],
     },
     workbox: {
-      globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2}'],
+      // The core: code, fonts, icons, and the art every visit needs (town, character, stickers).
+      globPatterns: [
+        '**/*.{js,css,html,svg,woff2}',
+        '*.png',
+        'icons/*.png',
+        'assets/{town,character-*,sticker-*}-*.{webp,png}',
+      ],
+      runtimeCaching: [
+        {
+          // Lesson media (scenes, portraits, pictures, sound): cached when a lesson opens
+          // (ADR 0017). Hashed names, so cache-first is safe. The function is copied into
+          // sw.js on its own, so the pattern must be written inside it.
+          urlPattern: ({ url, sameOrigin }) =>
+            sameOrigin && /\/assets\/[^/]+\.(?:webp|png|jpg|mp3|m4a)$/.test(url.pathname),
+          handler: 'CacheFirst',
+          options: { cacheName: 'lesson-media', expiration: { maxEntries: 400 } },
+        },
+      ],
       navigateFallback: '/index.html',
       cleanupOutdatedCaches: true,
     },

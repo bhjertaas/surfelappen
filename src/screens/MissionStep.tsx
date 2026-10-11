@@ -2,6 +2,7 @@ import { useEffect } from 'preact/hooks';
 import { replace } from '../app/router.ts';
 import { href } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
+import { usePrefetchLesson } from '../components/usePrefetchLesson.ts';
 import { findMission } from '../content/missions/index.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
@@ -14,6 +15,7 @@ import { ErrorScreen } from './ErrorScreen.tsx';
 
 export function MissionStep({ missionId, stepId }: { missionId: string; stepId: string }) {
   const mission = findMission(missionId);
+  usePrefetchLesson(mission);
   return mission ? <Step mission={mission} stepId={stepId} /> : <ErrorScreen kind="not-found" />;
 }
 
