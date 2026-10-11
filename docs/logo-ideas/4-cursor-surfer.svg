@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <title>Surfelappen logo idea: pointer surfer</title>
   <rect width="640" height="360" rx="24" fill="#fdf8ec"/>
   <!-- the wave -->
   <path d="M40 230 C 120 210, 170 120, 260 96 C 340 76, 400 110, 396 150 C 393 178, 362 182, 356 162 C 352 148, 366 140, 374 148 C 366 120, 320 112, 290 140 C 250 178, 250 222, 300 236 C 380 258, 500 226, 600 230 L600 260 L40 260 Z" fill="#1f8fa6"/>
