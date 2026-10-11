@@ -37,7 +37,9 @@ const buildings: Record<string, BuildingText> = {
   },
   'licence-bureau': {
     name: 'Lisenskontoret',
-    about: 'Her ligger passet ditt med klistremerkene du har samlet.',
+    about: 'Fire skranker og ett stempel: her får du surfelappen godkjent.',
+    closed:
+      'Lisenskontoret tar imot deg når du har vært i Kafé Krøllalfa, Agnbua, Fasaden og Ryktebørsen. Passet ditt finner du øverst på siden.',
   },
 };
 
@@ -62,6 +64,7 @@ const stickers: Record<string, StickerText> = {
   'steady-hand': { name: 'Stø hånd', howTo: 'Skriv siste linje i Ti fingre uten feil.' },
   'web-explorer': { name: 'Nettkjenner', howTo: 'Fullfør Hva er egentlig nettet?' },
   'fact-checker': { name: 'Faktasjekker', howTo: 'Fullfør Haien i Lenkevik.' },
+  licensed: { name: 'Surfelapp', howTo: 'Få stempelet ved alle fire skrankene på Lisenskontoret.' },
   curious: { name: 'Nysgjerrig', howTo: 'Besøk alle husene i Lenkevik.' },
 };
 

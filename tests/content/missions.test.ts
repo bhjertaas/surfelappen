@@ -11,6 +11,7 @@ const missions = typed as readonly MissionStructure[];
  */
 const TEACHING_DOMAINS: Record<string, readonly string[]> = {
   'how-the-net-works': ['nrk.no', 'google.com', 'bing.com', 'duckduckgo.com', 'ecosia.org'],
+  'the-counters': ['yr.no'],
 };
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;

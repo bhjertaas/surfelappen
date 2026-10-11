@@ -39,7 +39,7 @@ export interface Reading {
   readonly url: string;
 }
 
-export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb' | 'noir';
+export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb' | 'noir' | 'bureau';
 
 export type InteractionId = 'link-inspect' | 'typing' | 'facade' | 'web' | 'rumour';
 export type Requirement = 'physical-keyboard';
@@ -428,6 +428,6 @@ export interface Building {
   /** Where the player's character walks to before going in. */
   readonly door: Point;
   readonly image: ArtId;
-  /** Opens once this mission is done (or once the player has started one here). */
-  readonly after?: MissionId;
+  /** Opens once these missions are done (or once the player has started one here). */
+  readonly after?: readonly MissionId[];
 }

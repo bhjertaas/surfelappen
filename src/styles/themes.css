@@ -188,3 +188,17 @@
     ),
     var(--color-bg);
 }
+
+/* Lisenskontoret: civil-service green, cream forms, rubber-stamp red. */
+.theme--bureau {
+  --color-bg: #e9eee0;
+  --color-surface: #fffdf4;
+  --color-text: #1e2a20;
+  --color-muted: #47554a;
+  --color-primary: #2f5d3a;
+  --color-primary-strong: #1f4028;
+  --color-accent: #b3261e;
+  --color-border: #4f5e52;
+  --color-focus: #b3261e;
+  --color-link-text: #2f5d3a;
+}

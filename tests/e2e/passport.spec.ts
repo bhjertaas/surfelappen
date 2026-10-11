@@ -39,9 +39,10 @@ test('the passport shows every sticker and how to earn it', async ({ page }) => 
     'Reklamejeger',
     'Nettkjenner',
     'Faktasjekker',
+    'Surfelapp',
     'Nysgjerrig',
   ]);
-  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(9);
+  await expect(album.getByText('Ikke tjent ennå')).toHaveCount(10);
   await expect(page.getByText('Du har besøkt 1 av 6 hus.')).toBeVisible();
   await expectNoAxeViolations(page);
 });
@@ -88,7 +89,7 @@ test('stickers survive a reload and are cleared only by a confirmed reset', asyn
   ).toBeVisible();
   await expect(
     page.getByRole('list', { name: 'Klistremerker' }).getByText('Ikke tjent ennå'),
-  ).toHaveCount(9);
+  ).toHaveCount(10);
   expect(await page.evaluate((key) => localStorage.getItem(key), STORAGE_KEY)).toBeNull();
   await page.goto('/');
   await expect(page.getByRole('link', { name: 'Fortsett der du slapp' })).toHaveCount(0);

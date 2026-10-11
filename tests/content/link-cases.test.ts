@@ -76,6 +76,8 @@ for (const mission of linkInspectMissions(missions)) {
       const cases = linkCases(mission);
       const transfers = cases.filter((c) => c.role === 'transfer');
       const backups = cases.filter((c) => c.role === 'transfer-backup');
+      // Only missions with link cases need transfer cases (Skrankene has questions only).
+      if (cases.length === 0) return;
       expect(transfers.length, `${mission.id}: transfer cases`).toBeGreaterThan(0);
       for (const t of transfers) {
         const mine = backups.filter((b) => b.backupFor === t.id);

@@ -5,6 +5,7 @@ import { howTheNetWorksNb } from './how-the-net-works/text.nb.ts';
 import { perfectLifeNb } from './perfect-life/text.nb.ts';
 import { tenFingersNb } from './ten-fingers/text.nb.ts';
 import type { MissionText } from './text-types.ts';
+import { theCountersNb } from './the-counters/text.nb.ts';
 import { theSharkRumourNb } from './the-shark-rumour/text.nb.ts';
 
 /**
@@ -18,6 +19,7 @@ export const missionTexts: Record<Locale, Record<MissionId, MissionText>> = {
     'ten-fingers': tenFingersNb,
     'perfect-life': perfectLifeNb,
     'the-shark-rumour': theSharkRumourNb,
+    'the-counters': theCountersNb,
   },
 };
 

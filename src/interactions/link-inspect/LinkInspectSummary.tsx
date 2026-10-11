@@ -8,6 +8,7 @@ export function LinkInspectSummary({ mission, run }: SummaryDetailsProps) {
   const { m } = useI18n();
   if (mission.interaction !== 'link-inspect' || run.interaction !== 'link-inspect') return null;
   const score = firstTryScore(mission, run);
+  if (score.total === 0) return null;
   return (
     <p>
       {format(m.linkInspect.firstTry, score)}{' '}

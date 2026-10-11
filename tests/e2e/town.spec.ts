@@ -57,13 +57,14 @@ test('the arcade says "Trenger tastatur" only on touch-only devices', async ({ p
   }
 });
 
-test('Lisenskontoret opens the passport', async ({ page }) => {
+test('Lisenskontoret waits for the four lessons', async ({ page }) => {
   await page.goto('/#/town');
-  await page
+  const office = page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Lisenskontoret/ })
-    .click();
-  await expect(page).toHaveURL(/#\/passport$/);
+    .getByRole('button', { name: /Lisenskontoret/ });
+  await expect(office).toContainText('Først: Kafé Krøllalfa');
+  await office.click();
+  await expect(page.getByRole('status').filter({ hasText: 'Passet ditt finner du' })).toBeVisible();
   await expect
     .poll(async () => (await storedProgress(page))?.visitedBuildings)
     .toEqual(['licence-bureau']);

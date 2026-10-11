@@ -11,6 +11,7 @@ import {
   resumeRoute,
   startMission,
   visitBuilding,
+  waitingFor,
 } from './selectors.ts';
 
 const ALL_LINK_STEPS = [
@@ -156,6 +157,21 @@ describe('isLocked', () => {
       },
     };
     expect(isLocked(done, agnbua)).toBe(false);
+  });
+
+  it('keeps Lisenskontoret shut until all four lessons are done', () => {
+    const office = buildings.find((b) => b.id === 'licence-bureau');
+    if (!office) throw new Error('missing building');
+    const finished = (ids: string[]): Progress => ({
+      ...emptyProgress(),
+      missions: Object.fromEntries(
+        ids.map((id) => [id, { completedOnce: true, run: { interaction: 'web', done: [] } }]),
+      ),
+    });
+    const three = ['how-the-net-works', 'find-the-impostor', 'perfect-life'];
+    expect(isLocked(finished(three), office)).toBe(true);
+    expect(waitingFor(finished(three), office)).toBe('the-shark-rumour');
+    expect(isLocked(finished([...three, 'the-shark-rumour']), office)).toBe(false);
   });
 
   it('lets in players who already started a mission inside', () => {

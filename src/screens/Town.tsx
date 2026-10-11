@@ -10,7 +10,7 @@ import type { Building, Point } from '../content/types.ts';
 import { format, plural } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
 import { useProgress } from '../progress/hooks.ts';
-import { isLocked, visitBuilding } from '../progress/selectors.ts';
+import { isLocked, visitBuilding, waitingFor } from '../progress/selectors.ts';
 
 type Variant = 'map' | 'list';
 
@@ -48,7 +48,8 @@ function BuildingControl({ building, variant, touchOnly, onClosed, onWalk }: Con
   const text = m.buildings[building.id];
   if (!text) return null;
   const locked = isLocked(progress, building);
-  const opener = allBuildings.find((b) => b.missions.some((id) => id === building.after));
+  const waiting = waitingFor(progress, building);
+  const opener = allBuildings.find((b) => b.missions.some((id) => id === waiting));
 
   const needsKeyboard =
     touchOnly &&

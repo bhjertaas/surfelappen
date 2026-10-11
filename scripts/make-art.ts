@@ -158,6 +158,14 @@ const SPECS: Record<string, Spec> = {
     generate: '1536x1024',
     from: { id: 'scene-rumour', left: 930, top: 70, width: 340, height: 340 },
   },
+  'portrait-stempelsen': {
+    style: 'bureau',
+    width: 256,
+    height: 256,
+    generate: '1536x1024',
+    from: { id: 'scene-bureau', left: 280, top: 190, width: 330, height: 330 },
+  },
+  'scene-bureau': { style: 'bureau', width: 1536, height: 1024, generate: '1536x1024' },
   'scene-rumour': { style: 'noir', width: 1536, height: 1024, generate: '1536x1024' },
   'photo-shark-old': { style: 'snapshot', width: 768, height: 768, generate: '1024x1024' },
   'photo-shark-ai': { style: 'snapshot', width: 768, height: 768, generate: '1024x1024' },
@@ -170,6 +178,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-ad-hunter': sticker,
   'sticker-web-explorer': sticker,
   'sticker-fact-checker': sticker,
+  'sticker-licensed': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;
