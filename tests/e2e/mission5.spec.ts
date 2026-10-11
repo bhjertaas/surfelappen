@@ -61,4 +61,9 @@ test('Haien i Lenkevik: react, follow the trail, check the pictures, tell Randi'
 
   const dialog = page.getByRole('dialog', { name: 'Nytt klistremerke' });
   await expect(dialog).toContainText('Faktasjekker');
+  await dialog.getByRole('button', { name: 'Fint' }).click();
+
+  await page.getByRole('link', { name: /Vil du vite mer/ }).click();
+  await expect(page.getByRole('heading', { name: 'Haien på motorveien' })).toBeVisible();
+  await expectNoAxeViolations(page);
 });

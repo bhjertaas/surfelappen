@@ -25,6 +25,25 @@ export const theSharkRumour = {
       url: 'https://www.medietilsynet.no/globalassets/publikasjoner/undervisningsopplegg/falske_nyheter_kildekritikk_revidert_juni_2022.pdf',
     },
   ],
+  further: [
+    {
+      id: 'highway-shark',
+      url: 'https://www.yahoo.com/news/behind-fake-shark-photo-keeps-showing-hurricanes-164242883.html',
+    },
+    {
+      id: 'pope',
+      url: 'https://www.nbcnews.com/tech/pope-francis-ai-generated-images-fool-internet-rcna76838',
+    },
+    {
+      id: 'survey',
+      url: 'https://www.regjeringen.no/no/aktuelt/undersokelse-viser-stor-usikkerhet-om-falske-nyheter/id2547876/',
+    },
+    {
+      id: 'image-search',
+      url: 'https://www.tek.no/nyheter/guide/i/QoEpo8/avsloer-falsk-bildebruk',
+    },
+    { id: 'tenk', url: 'https://www.tenk.faktisk.no/' },
+  ],
   steps: [
     {
       kind: 'chat',

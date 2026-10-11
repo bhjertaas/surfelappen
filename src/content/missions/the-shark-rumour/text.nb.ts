@@ -19,6 +19,37 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
     takeaway:
       'Før du deler: Hvem sa det først? Et bilde kan være gammelt eller laget med KI, så sjekk kilden, ikke bare bildet. Og når noen du er glad i deler tull, si fra vennlig og vis hvor du sjekket.',
   },
+  further: {
+    intro:
+      'Haien i Lenkevik er oppdiktet, men historien er ikke ny. Her er noen ekte eksempler, og steder der du kan lære mer. Lenkene går til nettsteder utenfor Surfelappen.',
+    items: {
+      'highway-shark': {
+        title: 'Haien på motorveien',
+        body: 'Hver gang en orkan oversvømmer en by i USA, dukker det samme bildet opp: en hai som svømmer på en motorvei. Haien er ekte, men den er klippet inn fra et bilde tatt utenfor Sør-Afrika i 2005. Bildet har vært «sett» under minst seks orkaner siden 2011.',
+        link: 'Yahoo News, 2017 (engelsk)',
+      },
+      pope: {
+        title: 'Paven i boblejakke',
+        body: 'I 2023 gikk bilder av pave Frans i en hvit boblejakke verden rundt. De var laget med KI-programmet Midjourney, og mange trodde de var ekte. Hendene og korset hans så litt rare ut, men de fleste så ikke etter.',
+        link: 'NBC News, 2023 (engelsk)',
+      },
+      survey: {
+        title: 'Har du delt noe som ikke stemte?',
+        body: 'I en undersøkelse fra Medietilsynet sa nesten én av fire nordmenn at de hadde delt en nyhet som senere viste seg å være feil. 37 prosent gjorde ingenting når de mistenkte at en nyhet var falsk.',
+        link: 'Regjeringen.no, 2017',
+      },
+      'image-search': {
+        title: 'Slik søker du etter et bilde',
+        body: 'Omvendt bildesøk, som du prøvde i Ryktebørsen, finnes på ekte. Med Google bildesøk eller TinEye kan du se hvor et bilde har vært før. Denne guiden viser hvordan.',
+        link: 'Tek.no: Avslør falsk bildebruk',
+      },
+      tenk: {
+        title: 'Tenk, fra Faktisk.no',
+        body: 'Faktisk.no er de norske faktasjekkerne. På Tenk forklarer de hvordan du sjekker kilder, kjenner igjen falske nyheter og forstår KI.',
+        link: 'Tenk.faktisk.no',
+      },
+    },
+  },
   steps: {
     'the-message': {
       heading: 'Meldingen',

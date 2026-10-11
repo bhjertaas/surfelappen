@@ -66,7 +66,7 @@ Guide: Tora Tvil, private detective ("I investigate what everyone else just shar
 3. **Bildene:** two pictures. A reverse image search finds the beach photo on Hawaii in 2015 (clues: palms, Diamond Head). The mayor's shark selfie gets no hits and is AI-made (two dorsal fins, nonsense letters on the sign, and we can see the phone taking the selfie). Point: AI keeps getting better, so the source is what gives it away.
 4. **Si fra:** reply to Randi. Saying nothing lets it spread; scolding makes her defensive; thanking her and showing what you found stops it.
 
-Sticker: *Faktasjekker*. Sources: Faktisk.no's Tenk and Medietilsynet's *Falske nyheter*. Open: no «Vil du vite mer?» page yet, `reviewedOn` is null.
+Sticker: *Faktasjekker*. Sources: Faktisk.no's Tenk and Medietilsynet's *Falske nyheter*. «Vil du vite mer?» has the hurricane shark, the AI pope, Medietilsynet's survey, a reverse image search guide and Tenk. Open: `reviewedOn` is null.
 
 ## Room for more places
 
