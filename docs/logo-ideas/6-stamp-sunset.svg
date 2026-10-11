@@ -76,7 +76,7 @@
   <circle cx="200" cy="200" r="188" fill="none" stroke="#14182b" stroke-width="9"/>
   <circle cx="200" cy="200" r="126" fill="none" stroke="#14182b" stroke-width="6"/>
   <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="27" letter-spacing="5" fill="#14182b" text-anchor="middle"><textPath xlink:href="#top" href="#top" startOffset="50%">SURFELAPPEN</textPath></text>
-  <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="23" letter-spacing="3" fill="#14182b" text-anchor="middle"><textPath xlink:href="#bottom" href="#bottom" startOffset="50%">GODKJENT · INTERNETT</textPath></text>
+  <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="23" letter-spacing="3" fill="#14182b" text-anchor="middle"><textPath xlink:href="#bottom" href="#bottom" startOffset="50%">INTERNETT · GODKJENT</textPath></text>
   <path d="M43 190 L46 197 L53 200 L46 203 L43 210 L40 203 L33 200 L40 197 Z" fill="#14182b"/>
   <path d="M357 190 L360 197 L367 200 L360 203 L357 210 L354 203 L347 200 L354 197 Z" fill="#14182b"/>
 </svg>

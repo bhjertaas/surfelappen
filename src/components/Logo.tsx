@@ -1,6 +1,6 @@
 /**
  * The Surfelappen logo: a round rubber stamp. The ring says SURFELAPPEN and
- * GODKJENT · INTERNETT; inside, a sunset of ones and zeros over a neon grid, and a
+ * INTERNETT · GODKJENT; inside, a sunset of ones and zeros over a neon grid, and a
  * breaking wave. Drawn after docs/logo-ideas/6b-stamp-sunset-red.svg (made by
  * docs/logo-ideas/stamp.py). Inline SVG so the ring text is in the page font.
  * public/favicon.svg is the inner picture alone.
