@@ -183,7 +183,7 @@
   background:
     repeating-linear-gradient(
       -18deg,
-      rgb(255 236 200 / 0.035) 0 1.75rem,
+      rgb(255 236 200 / 0.012) 0 1.75rem,
       transparent 1.75rem 3.5rem
     ),
     var(--color-bg);
