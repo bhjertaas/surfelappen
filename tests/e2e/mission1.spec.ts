@@ -132,9 +132,15 @@ test('playable with the keyboard alone', async ({ page, isMobile }) => {
   }
   await page.keyboard.press('Enter');
   await expect(page.locator('.feedback')).toBeFocused();
-  // Through the feedback ("Les mer"), on to "Neste".
+  // Through the feedback ("Les mer", the fake page and its button), on to "Neste".
   await page.keyboard.press('Tab');
   await expect(page.getByText('Les mer')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Enter');
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('button', { name: 'Betal 29 kr' })).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.trap__after')).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.getByRole('button', { name: 'Neste' })).toBeFocused();
   await page.keyboard.press('Enter');
