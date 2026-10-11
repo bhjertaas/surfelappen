@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="24" fill="#fdf8ec"/>
+  <defs>
+    <path id="ring" d="M320 180 m-118 0 a118 118 0 1 1 236 0 a118 118 0 1 1 -236 0"/>
+  </defs>
+  <g transform="rotate(-8 320 180)" fill="none" stroke="#b03a27">
+    <circle cx="320" cy="180" r="150" stroke-width="8"/>
+    <circle cx="320" cy="180" r="92" stroke-width="4"/>
+    <text font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="25" fill="#b03a27" stroke="none">
+      <textPath xlink:href="#ring" href="#ring" startOffset="0" textLength="730" lengthAdjust="spacing">SURFELAPPEN · GODKJENT · LENKEVIK ·</textPath>
+    </text>
+    <path d="M250 196 C 270 170, 300 160, 330 168 C 360 176, 366 204, 344 208 C 328 211, 326 194, 338 192" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M244 222 C 280 212, 320 230, 360 220 S 396 214, 400 216" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

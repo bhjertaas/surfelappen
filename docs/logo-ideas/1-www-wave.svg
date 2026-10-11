@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="24" fill="#fdf8ec"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="26">
+    <path d="M70 90 L100 190 L130 125 L160 190 L190 90" stroke="#1f2a36"/>
+    <path d="M205 90 L235 190 L265 125 L295 190 L325 90" stroke="#1f2a36"/>
+    <!-- the third w: its last stroke rises into a breaking wave -->
+    <path d="M340 90 L370 190 L400 125 L430 190 C 455 120, 500 62, 556 66 C 600 70, 610 118, 578 128 C 556 135, 544 116, 560 104" stroke="#1f8fa6"/>
+  </g>
+  <g fill="#ffffff" stroke="#1f8fa6" stroke-width="3">
+    <circle cx="602" cy="84" r="7"/><circle cx="618" cy="104" r="5"/><circle cx="590" cy="60" r="5"/>
+  </g>
+  <path d="M60 222 C 120 208, 180 236, 240 222 S 360 208, 420 222 S 540 236, 600 214" fill="none" stroke="#7fd3df" stroke-width="7" stroke-linecap="round"/>
+  <text x="320" y="296" text-anchor="middle" font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="58" fill="#1f2a36" letter-spacing="1">Surfelappen</text>
+  <text x="320" y="334" text-anchor="middle" font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-size="20" fill="#4a5663">Ta lappen på nettet</text>
+</svg>

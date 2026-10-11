@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="24" fill="#0f3b4f"/>
+  <g font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="70" fill="#fdf8ec">
+    <text x="240" y="196" text-anchor="end">Surfel</text>
+    <text x="356" y="196" text-anchor="start">ppen</text>
+  </g>
+  <!-- the @: its tail runs on under "ppen" and breaks like a wave at the end -->
+  <g transform="translate(-22 0)">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="318" cy="174" r="17" stroke="#ffd166" stroke-width="11"/>
+    <path d="M335 156 L335 186 C 335 200, 360 202, 362 176 C 364 140, 340 124, 318 124 C 290 124, 268 146, 268 174 C 268 204, 290 226, 320 226 C 370 226, 420 238, 480 236 C 540 234, 584 230, 604 208 C 620 190, 610 168, 592 172 C 580 175, 582 190, 592 190" stroke="#5fd4e6" stroke-width="12"/>
+  </g>
+  <g fill="#ffffff"><circle cx="620" cy="176" r="4.5"/><circle cx="624" cy="194" r="3"/><circle cx="612" cy="160" r="3"/></g>
+  </g>
+  <text x="320" y="300" text-anchor="middle" font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-size="20" fill="#bfe8ee" letter-spacing="2">TA LAPPEN PÅ NETTET</text>
+</svg>

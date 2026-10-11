@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="24" fill="#fdf8ec"/>
+  <!-- the wave -->
+  <path d="M40 230 C 120 210, 170 120, 260 96 C 340 76, 400 110, 396 150 C 393 178, 362 182, 356 162 C 352 148, 366 140, 374 148 C 366 120, 320 112, 290 140 C 250 178, 250 222, 300 236 C 380 258, 500 226, 600 230 L600 260 L40 260 Z" fill="#1f8fa6"/>
+  <path d="M260 96 C 340 76, 400 110, 396 150 C 393 178, 362 182, 356 162" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <path d="M40 252 C 160 238, 260 262, 380 248 S 540 238, 600 248" fill="none" stroke="#7fd3df" stroke-width="6" stroke-linecap="round"/>
+  <!-- the mouse pointer, riding the face of the wave -->
+  <g transform="translate(262 186) rotate(-100)">
+    <path d="M0 0 L0 84 L20 66 L34 98 L48 92 L34 60 L60 60 Z" fill="#ffffff" stroke="#1f2a36" stroke-width="6" stroke-linejoin="round"/>
+  </g>
+  <text x="320" y="312" text-anchor="middle" font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="52" fill="#1f2a36">Surfelappen</text>
+  <text x="320" y="344" text-anchor="middle" font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-size="18" fill="#4a5663">Ta lappen på nettet</text>
+</svg>
