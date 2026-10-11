@@ -48,6 +48,11 @@ function Summary({ mission }: { mission: MissionStructure }) {
         </p>
       </Guide>
       {entry && <SummaryDetails mission={mission} run={entry.run} />}
+      {mission.further && (
+        <p>
+          <a href={href({ name: 'mission-more', missionId: mission.id })}>{m.summary.toMore}</a>
+        </p>
+      )}
       <h2>{m.summary.stickersHeading}</h2>
       <ul class="sticker-list">
         {mission.stickers.map((id) => {

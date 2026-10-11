@@ -15,7 +15,7 @@ interface BuildingText {
 
 const buildings: Record<string, BuildingText> = {
   'gone-phishing': {
-    name: 'Gone Phishing',
+    name: 'Agnbua',
     about: 'Se hvor lenker i SMS og e-post egentlig fører.',
   },
   arcade: {
@@ -205,7 +205,7 @@ export const nb = {
     notAd: 'Ikke reklame',
     retouchMark: 'Retusjert person',
     stampAd: 'Reklame',
-    stampNotAd: 'Ekte',
+    stampNotAd: 'Ikke reklame',
     rightHeading: 'Riktig',
     wrongHeading: 'Ikke helt',
     tryAgain: 'Prøv igjen',
@@ -236,6 +236,10 @@ export const nb = {
     takeawayHeading: 'Husk dette',
     toPassport: 'Til passet',
     toTown: 'Til byen',
+    toMore: 'Vil du vite mer? Se ekte eksempler',
+  },
+  more: {
+    title: 'Vil du vite mer?',
   },
   passport: {
     title: 'Passet ditt',

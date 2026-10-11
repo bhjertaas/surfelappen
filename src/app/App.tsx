@@ -11,6 +11,7 @@ import type { ProgressStore } from '../progress/store.ts';
 import { About } from '../screens/About.tsx';
 import { ErrorScreen } from '../screens/ErrorScreen.tsx';
 import { MissionIntro } from '../screens/MissionIntro.tsx';
+import { MissionMore } from '../screens/MissionMore.tsx';
 import { MissionStep } from '../screens/MissionStep.tsx';
 import { MissionSummary } from '../screens/MissionSummary.tsx';
 import { Passport } from '../screens/Passport.tsx';
@@ -31,6 +32,8 @@ function Screen({ route }: { route: Route }) {
       return <MissionStep missionId={route.missionId} stepId={route.stepId} />;
     case 'mission-summary':
       return <MissionSummary missionId={route.missionId} />;
+    case 'mission-more':
+      return <MissionMore missionId={route.missionId} />;
     case 'passport':
       return <Passport />;
     case 'about':

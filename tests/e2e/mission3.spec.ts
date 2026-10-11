@@ -94,4 +94,14 @@ test('Lag glansbildet: crop away the mess, polish, caption, post, look behind', 
   const dialog = page.getByRole('dialog', { name: 'Nye klistremerker' });
   await expect(dialog).toContainText('Bak fasaden');
   await expect(dialog).toContainText('Reklamejeger');
+  await dialog.getByRole('button', { name: 'Fint' }).click();
+
+  // Further reading: real examples, linking out.
+  await page.getByRole('link', { name: /Vil du vite mer/ }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Vil du vite mer?' })).toBeFocused();
+  await expect(page.getByRole('link', { name: /BBC News/ })).toHaveAttribute(
+    'href',
+    /^https:\/\/www\.bbc\.com\//,
+  );
+  await expectNoAxeViolations(page);
 });

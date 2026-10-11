@@ -21,6 +21,23 @@ export const perfectLife = {
       url: 'https://www.regjeringen.no/no/dokumenter/prop.-134-l-20202021/id2842301/',
     },
   ],
+  further: [
+    { id: 'free', url: 'https://www.forbrukerradet.no/out-of-control/' },
+    {
+      id: 'instagram',
+      url: 'https://www.npr.org/2021/10/05/1043194385/whistleblowers-testimony-facebook-instagram',
+    },
+    {
+      id: 'tiktok',
+      url: 'https://www.amnesty.org/en/latest/news/2023/11/tiktok-risks-pushing-children-towards-harmful-content/',
+    },
+    { id: 'myanmar', url: 'https://www.bbc.com/news/world-asia-46105934' },
+    {
+      id: 'cambridge-analytica',
+      url: 'https://www.theguardian.com/news/2018/mar/17/cambridge-analytica-facebook-influence-us-election',
+    },
+    { id: 'polarisation', url: 'https://www.nature.com/articles/d41586-023-02420-z' },
+  ],
   steps: [
     {
       kind: 'compose',

@@ -33,6 +33,12 @@ export interface Source {
   readonly url: string;
 }
 
+/** A real article or report for "Vil du vite mer?" (the mission's further reading). Real URL. */
+export interface Reading {
+  readonly id: string;
+  readonly url: string;
+}
+
 export type MissionTheme = 'pointclick' | 'arcade' | 'comic';
 
 export type InteractionId = 'link-inspect' | 'typing' | 'facade';
@@ -55,6 +61,8 @@ interface MissionBase<I extends InteractionId, S> {
   /** When the advice was last checked against `sources`; `null` until the first review. */
   readonly reviewedOn: IsoDate | null;
   readonly sources: readonly Source[];
+  /** Real-world examples to read after the mission; text per locale under `further`. */
+  readonly further?: readonly Reading[];
 }
 
 // ---------------------------------------------------------------------------

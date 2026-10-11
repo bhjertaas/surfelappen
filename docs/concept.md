@@ -20,7 +20,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 
 | Place | Topic | Art theme | Missions |
 | --- | --- | --- | --- |
-| **Gone Phishing** (a bait-and-tackle shop on the pier, with the sign on the door) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
+| **Agnbua** (a bait-and-tackle shop on the pier; the sign on the door says *Gone Phishing*. Every scam is bait, so the name covers more than phishing) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
 | **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
 | **Ryktebørsen** (working name) | Rumours, fact-checking, AI images | Noir detective | Later |
@@ -41,5 +41,7 @@ Hands-on, not a quiz: the player *does* the tricks. Guide: Mira, who makes these
 1. **Lag glansbildet** (built): you are Lina. Crop the messy flat down to the one nice spot (a live list names the mess still in the frame), polish with light/glow/warmth sliders while a likes forecast climbs, pick a caption (#nofilter gets the most likes, the honest one the warmest comments), post, watch the likes and Sara's comment, then «Se bak fasaden» shows the tiny square inside the whole room.
 2. **Reklamejakt** (built): sort a feed into reklame / ikke reklame / vet ikke, tapping posts for clues (discount codes, "annonse", retouch marks, unlabelled deals). New posts at the end are the transfer test.
 3. **Tren feeden** (built): pick what you stop at for three rounds, watch the feed fill with perfect lives, then adjust Sara's feed (mute, follow varied accounts) and see it change.
+
+After the mission, **«Vil du vite mer?»** (`#/mission/perfect-life/more`) gives real examples with links to the press: the ad business model (Forbrukerrådet), Instagram and body image (Haugen), TikTok's feed (Amnesty), Myanmar (BBC), Cambridge Analytica (Guardian, incl. that the Brexit link wasn't borne out) and the mixed research on polarisation (Nature). Tone: plain facts, say where research disagrees. Other missions can get the same page.
 
 Open items: the mission's sources are listed on the About page but `reviewedOn` is still null.

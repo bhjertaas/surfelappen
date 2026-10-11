@@ -7,11 +7,13 @@ export type Route =
   | { readonly name: 'mission-intro'; readonly missionId: MissionId }
   | { readonly name: 'mission-step'; readonly missionId: MissionId; readonly stepId: StepId }
   | { readonly name: 'mission-summary'; readonly missionId: MissionId }
+  | { readonly name: 'mission-more'; readonly missionId: MissionId }
   | { readonly name: 'passport' }
   | { readonly name: 'about' }
   | { readonly name: 'not-found'; readonly path: string };
 
 export const SUMMARY_SEGMENT = 'done';
+export const MORE_SEGMENT = 'more';
 
 /** Turns `#/mission/x/case-1` (or `''`) into a Route. Unknown paths become `not-found`. */
 export function parseHash(hash: string): Route {
@@ -43,6 +45,7 @@ export function parseHash(hash: string): Route {
       if (second === undefined) return { name: 'not-found', path };
       if (third === undefined) return { name: 'mission-intro', missionId: second };
       if (third === SUMMARY_SEGMENT) return { name: 'mission-summary', missionId: second };
+      if (third === MORE_SEGMENT) return { name: 'mission-more', missionId: second };
       return { name: 'mission-step', missionId: second, stepId: third };
     default:
       return { name: 'not-found', path };
@@ -67,6 +70,8 @@ export function href(route: Route): string {
       return `#/mission/${e(route.missionId)}/${e(route.stepId)}`;
     case 'mission-summary':
       return `#/mission/${e(route.missionId)}/${SUMMARY_SEGMENT}`;
+    case 'mission-more':
+      return `#/mission/${e(route.missionId)}/${MORE_SEGMENT}`;
     case 'not-found':
       return `#${route.path}`;
   }

@@ -55,7 +55,7 @@ test('the back button leaves a mission instead of stepping through it', async ({
   await page.goto('/#/town');
   await page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Gone Phishing/ })
+    .getByRole('link', { name: /Agnbua/ })
     .click();
   await expectHeading(page, 'Finn bedrageren');
   await page.getByRole('button', { name: 'Begynn' }).click();

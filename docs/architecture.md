@@ -97,6 +97,7 @@ A ~50-line hash router with no dependency. `routes.ts` is the only place URLs ar
 | `#/mission/:missionId` | Mission intro |
 | `#/mission/:missionId/:stepId` | Mission step (feedback is state here, not a route) |
 | `#/mission/:missionId/done` | Mission summary |
+| `#/mission/:missionId/more` | "Vil du vite mer?": real-world examples with links out (`further` in the structure, text under `further`) |
 | `#/passport` | Passport |
 | `#/about` | About / privacy |
 | anything else | ErrorScreen ("not found" variant) |

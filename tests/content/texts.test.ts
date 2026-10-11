@@ -59,6 +59,12 @@ describe('mission texts', () => {
         }
       });
 
+      it(`${where} has text for exactly its further reading`, () => {
+        const ids = (mission.further ?? []).map((r) => r.id);
+        expect(Object.keys(text?.further?.items ?? {}).sort(), where).toEqual([...ids].sort());
+        if (ids.length > 0) expect(text?.further?.intro, where).toBeTruthy();
+      });
+
       if (mission.interaction !== 'link-inspect') continue;
 
       it(`${where} has text of the right kind for every step`, () => {

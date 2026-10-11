@@ -176,6 +176,7 @@ export const perfectLifeNb: FacadeText<typeof perfectLife> = {
       trained: 'Du stoppet mest ved {category}. Se hva feeden din har blitt:',
       explain:
         'Tre valg, og feeden har allerede bestemt seg for hvem du er. Den viser mer av det du stopper ved, ikke det som er bra for deg. Sara stopper ved glansbilder. Hver gang.',
+      why: 'Hvorfor gjør appene det? De er gratis fordi de lever av reklame. Jo lenger du blir, jo flere annonser ser du, og alt du stopper ved, forteller dem hvem du er, så annonsene kan treffe deg bedre. Det samme som gir deg kattevideoer, kan gi andre stadig mer sinte eller ekstreme innlegg, hvis det er det de stopper ved. Ekte eksempler får du når oppdraget er ferdig.',
       saraIntro:
         'Her er Saras feed. Hjelp henne: vis færre glansbilder, og følg noe annet. Målet er at glansbildene ikke tar over.',
       suggestions: {
@@ -184,6 +185,42 @@ export const perfectLifeNb: FacadeText<typeof perfectLife> = {
         ida: { account: '@ida.m', about: 'Venninna fra hytteturen' },
       },
       done: 'Sånn. Feeden er ikke et speil av verden, den er et speil av hva du stopper ved. Og den kan du styre.',
+    },
+  },
+  further: {
+    intro:
+      'Det du prøvde i Fasaden, skjer i stor skala. Her er noen kjente eksempler fra nyheter og rapporter. Lenkene går til nettsteder utenfor Surfelappen, og de fleste er på engelsk.',
+    items: {
+      free: {
+        title: 'Gratis, men ikke gratis',
+        body: 'Sosiale medier og mange andre apper tjener penger på reklame. Jo mer de vet om deg, jo mer kan de ta betalt for plassen foran øynene dine. Forbrukerrådet undersøkte ti populære apper i 2020 og fant at de sendte opplysninger om brukerne videre til minst 135 selskaper i reklamebransjen. Forbrukerrådet vil nå forby reklame som bygger på overvåking.',
+        link: 'Forbrukerrådet: Ban surveillance-based advertising (engelsk)',
+      },
+      instagram: {
+        title: 'Instagram visste det',
+        body: 'I 2021 delte Frances Haugen, som hadde jobbet i Facebook, selskapets egne undersøkelser med pressen. En av dem sa at Instagram gjør kroppspresset verre for én av tre tenåringsjenter. Facebook, som nå heter Meta, var uenig i hvordan hun framstilte det.',
+        link: 'NPR, 2021 (engelsk)',
+      },
+      tiktok: {
+        title: 'Feeden som drar deg ned',
+        body: 'Amnesty laget testkontoer som om de var 13 år gamle. Når kontoene viste interesse for psykisk helse, handlet TikTok-feeden etter kort tid mest om depresjon og selvskading. Det er samme mekanisme som i Fasaden: feeden gir deg mer av det du stopper ved.',
+        link: 'Amnesty International, 2023 (engelsk)',
+      },
+      myanmar: {
+        title: 'Hat som spredte seg i Myanmar',
+        body: 'Facebook ble brukt til å spre hat mot rohingyaene i Myanmar før og under volden i 2017, som FN har sagt kan være folkemord. I 2018 innrømmet Facebook at selskapet ikke hadde gjort nok for å hindre at plattformen ble brukt til å oppfordre til vold.',
+        link: 'BBC News, 2018 (engelsk)',
+      },
+      'cambridge-analytica': {
+        title: 'Quizen som samlet inn millioner av profiler',
+        body: 'En quiz-app på Facebook samlet inn opplysninger om titalls millioner brukere, de fleste fordi en venn tok quizen. Selskapet Cambridge Analytica brukte dataene til politisk markedsføring, blant annet for Donald Trumps valgkamp i 2016. Mange trodde det også avgjorde Brexit, men det britiske datatilsynet fant senere ikke bevis for at selskapet var med på den valgkampen.',
+        link: 'The Guardian, 2018 (engelsk)',
+      },
+      polarisation: {
+        title: 'Gjør feeden oss mer splittet?',
+        body: 'Her er forskerne ikke enige. Store studier av Facebook og Instagram rundt det amerikanske valget i 2020 fant at en feed sortert etter tid, i stedet for etter hva du stopper ved, ikke gjorde folk mindre polariserte på tre måneder. Feeden er altså ikke hele forklaringen. Men den bestemmer mye av hva du ser.',
+        link: 'Nature, 2023 (engelsk)',
+      },
     },
   },
 };

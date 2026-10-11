@@ -111,6 +111,8 @@ export interface FeedText {
   readonly trained: string;
   /** Mira explains what just happened. */
   readonly explain: string;
+  /** Why apps do it: the business model, said plainly. */
+  readonly why: string;
   readonly saraIntro: string;
   readonly suggestions: Readonly<
     Record<string, { readonly account: string; readonly about: string }>
@@ -140,6 +142,13 @@ export interface MissionText {
   };
   /** Step texts by step ID; filled for every step of the mission. */
   readonly steps?: Readonly<Record<string, StepText>>;
+  /** "Vil du vite mer?": one entry per `further` reading in the structure. */
+  readonly further?: {
+    readonly intro: string;
+    readonly items: Readonly<
+      Record<string, { readonly title: string; readonly body: string; readonly link: string }>
+    >;
+  };
 }
 
 type TextForStep<S> = S extends { kind: 'case' }

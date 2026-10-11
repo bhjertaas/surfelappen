@@ -18,7 +18,7 @@ test('picture and list offer the same destinations in the same order', async ({ 
   const list = await destinations(page.locator('.town__list'));
   const map = await destinations(page.locator('.town__hotspots'));
   expect(list.map((d) => d.name)).toEqual([
-    'Gone Phishing',
+    'Agnbua',
     'Arkaden',
     'Fasaden',
     'Ryktebørsen',
@@ -76,7 +76,7 @@ test('choosing a place on the map walks the character there, then goes in', asyn
   const before = await walker.boundingBox();
   await page
     .locator('.town__hotspots')
-    .getByRole('link', { name: /Gone Phishing/ })
+    .getByRole('link', { name: /Agnbua/ })
     .click();
   await expect(page).toHaveURL(/#\/mission\/find-the-impostor$/);
   expect(before).not.toBeNull();

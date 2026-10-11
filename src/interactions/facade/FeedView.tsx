@@ -130,6 +130,7 @@ export function FeedView({ step, text, guide, guideName, run, advance }: Props) 
         </ul>
         <Guide portrait={guide} name={guideName}>
           <p>{text.explain}</p>
+          <p>{text.why}</p>
         </Guide>
         <div class="actions">
           <button type="button" class="button" onClick={() => setPhase('sara')}>

@@ -20,7 +20,7 @@ const WHAT_IS_LAST = 'Hva står helt til slutt, rett før første /?';
 
 export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
   title: 'Finn bedrageren',
-  character: 'Hanne på Gone Phishing',
+  character: 'Hanne i Agnbua',
   intro: [
     'Hei! Mange her i Lenkevik får meldinger med lenker de er usikre på. Noen er ekte, andre er forsøk på svindel. Vil du se på dem sammen med meg? Lupen viser hvor lenkene egentlig fører.',
   ],

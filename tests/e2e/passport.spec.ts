@@ -14,7 +14,7 @@ async function visitEveryBuilding(page: import('@playwright/test').Page) {
     .getByRole('button', { name: /Ryktebørsen/ })
     .click();
   await list(page)
-    .getByRole('link', { name: /Gone Phishing/ })
+    .getByRole('link', { name: /Agnbua/ })
     .click();
   await expectHeading(page, 'Finn bedrageren');
   await page.goto('/#/mission/ten-fingers');

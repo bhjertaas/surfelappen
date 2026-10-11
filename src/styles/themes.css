@@ -17,7 +17,7 @@
   border-radius: calc(var(--radius) * 2);
 }
 
-/* Gone Phishing: 90s point-and-click. Warm sand and rust, chunky outlines. */
+/* Agnbua (sign: "Gone Phishing"): 90s point-and-click. Warm sand and rust, chunky outlines. */
 .theme--pointclick {
   --color-bg: #f4e6c8;
   --color-surface: #fffaf0;
