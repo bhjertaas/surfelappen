@@ -31,6 +31,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
   },
   steps: {
     'case-1': {
+      trap: {
+        brand: 'Pakkeposten',
+        title: 'Pakken din er på vent',
+        body: 'Det mangler 29 kr i fraktgebyr. Betal innen kl. 23.59, ellers sendes pakken i retur.',
+        fields: ['Kortnummer', 'Utløpsdato', 'CVC'],
+        button: 'Betal 29 kr',
+        after:
+          'Det var aldri noen pakke. Nå har svindlerne kortet ditt, og i natt handler noen for 12 000 kr i en nettbutikk i et annet land.',
+      },
       situation: 'Bjørn har fått en SMS.',
       sender: 'Pakkeposten',
       message: 'Pakken din venter! Bekreft levering innen i dag:',
@@ -59,6 +68,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Slutten er *fjordbanken.example*. Alt foran det hører til samme nettsted.',
     },
     'case-3': {
+      trap: {
+        brand: 'Fjordbanken Kundeservice',
+        title: 'Kontoen din er låst',
+        body: 'Bekreft hvem du er for å låse opp kontoen.',
+        fields: ['Fødselsnummer', 'Passord'],
+        button: 'Lås opp kontoen',
+        after:
+          'Svindlerne har fødselsnummeret og passordet ditt. I morgen ringer «Fjordbanken» og ber om koden fra SMS-en du nettopp fikk. Da er kontoen tømt.',
+      },
       situation: 'Jonas har fått en e-post.',
       sender: 'Kundeservice',
       message: 'Kontoen din er låst. Kontakt kundeservice her:',
@@ -76,6 +94,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Er *fjordbanken-kundeservice.example* og *fjordbanken.example* nøyaktig like?',
     },
     'case-4': {
+      trap: {
+        brand: 'Fjordbanken',
+        title: 'Gratulerer, du har vunnet!',
+        body: 'Gavekortet ditt på 5 000 kr er klart. Du betaler bare 19 kr i frakt.',
+        fields: ['Navn', 'Kortnummer', 'Utløpsdato', 'CVC'],
+        button: 'Hent premien',
+        after:
+          'Det fantes ingen premie. I den lille skriften sto det at du meldte deg på et abonnement til 399 kr i måneden. Og vennen som delte innlegget, ble også lurt.',
+      },
       situation: 'Mari ser et innlegg som en venn har delt.',
       sender: 'Delt av en venn',
       message: 'Du har vunnet et gavekort fra Fjordbanken! Hent premien:',
@@ -89,6 +116,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Det som står før første / er *premie-trekning.example*.',
     },
     'case-5': {
+      trap: {
+        brand: 'Fjordbanken',
+        title: 'Sikkerhetsvarsel',
+        body: 'Vi har sett uvanlig aktivitet. Logg inn for å sikre kontoen din.',
+        fields: ['Brukernavn', 'Passord', 'Kode fra SMS'],
+        button: 'Logg inn',
+        after:
+          'Mens siden sier «Vent litt, vi sjekker kontoen din», bruker svindlerne passordet og koden til å logge inn i den ekte nettbanken din.',
+      },
       situation: 'Ole har fått en e-post.',
       sender: 'Fjordbanken Sikkerhet',
       message: 'Viktig sikkerhetsvarsel. Klikk her:',
@@ -102,6 +138,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Lupen viser *sikkerhet-varsel.example* rett før første /.',
     },
     'case-6': {
+      trap: {
+        brand: 'Lenkevik kommune',
+        title: 'Ubetalt faktura: 1 450 kr',
+        body: 'Betal nå for å unngå purregebyr på 350 kr.',
+        fields: ['Kortnummer', 'Utløpsdato', 'CVC'],
+        button: 'Betal 1 450 kr',
+        after:
+          'Kommunen har aldri sendt noen faktura. Pengene er borte, og svindlerne har kortet ditt i tillegg.',
+      },
       situation: 'Sunniva har fått en SMS.',
       sender: 'Lenkevik kommune',
       message: 'Du har en ubetalt faktura. Betal her for å unngå gebyr:',
@@ -138,11 +183,20 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
     'transfer-intro': {
       heading: 'Prøv selv',
       body: [
-        'Nå prøver du på egen hånd, i en ny situasjon. Ved Nettkaféen står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
+        'Nå prøver du på egen hånd, i en ny situasjon. Ved Kafé Krøllalfa står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
       ],
     },
     'transfer-1': {
-      situation: 'Ved Nettkaféen henger et parkeringsskilt med en QR-kode.',
+      trap: {
+        brand: 'Parkering Lenkevik',
+        title: 'Betal parkering',
+        body: 'Velg tid og betal med kort. Ingen app trengs!',
+        fields: ['Bilnummer', 'Kortnummer', 'Utløpsdato', 'CVC'],
+        button: 'Betal 40 kr',
+        after:
+          'QR-koden var et klistremerke over den ekte. Du betalte svindlerne, ikke kommunen, så du får parkeringsbot likevel. Og kortet ditt er på avveie.',
+      },
+      situation: 'Ved Kafé Krøllalfa henger et parkeringsskilt med en QR-kode.',
       sender: 'Parkering Lenkevik',
       message: 'Betal parkeringen enkelt! Skann koden:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted: parkering-app.example', c: CANT_TELL },
@@ -168,7 +222,16 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Slutten er *lenkevik-kommune.example*. Alt foran det hører til samme nettsted.',
     },
     'transfer-1-backup': {
-      situation: 'Inne på Nettkaféen henger en plakat på oppslagstavla.',
+      trap: {
+        brand: 'Fjordbanken',
+        title: 'Gratis kontosjekk',
+        body: 'Logg inn, så sjekker vi kontoen din for svindel.',
+        fields: ['Brukernavn', 'Passord'],
+        button: 'Logg inn',
+        after:
+          'Ironisk nok: «svindelsjekken» var svindelen. Med brukernavnet og passordet ditt prøver svindlerne seg nå i nettbanken din.',
+      },
+      situation: 'Inne på Kafé Krøllalfa henger en plakat på oppslagstavla.',
       sender: 'Plakat',
       message: 'Fjordbanken: Sjekk kontoen din gratis! Skann koden og logg inn:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted: trygg-sjekk.example', c: CANT_TELL },
@@ -181,7 +244,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Rett før / står *trygg-sjekk.example*. Er det Fjordbanken?',
     },
     'transfer-2-backup': {
-      situation: 'I vinduet på Nettkaféen henger en lapp.',
+      situation: 'I vinduet på Kafé Krøllalfa henger en lapp.',
       sender: 'Pakkeposten',
       message: 'Nå kan du hente pakker her! Spor pakken din:',
       options: { a: PAKKEPOSTEN, b: 'Et annet nettsted som heter «minside»', c: CANT_TELL },

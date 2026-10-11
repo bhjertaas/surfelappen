@@ -9,6 +9,7 @@ import { FeedbackPanel } from './FeedbackPanel.tsx';
 import { missTransfer, solveStep } from './flow.ts';
 import { Hints } from './Hints.tsx';
 import { OptionButtons } from './OptionButtons.tsx';
+import { TrapPage } from './TrapPage.tsx';
 
 interface Props {
   step: LinkCase;
@@ -128,6 +129,9 @@ export function CaseView({ step, text, run, save, advance }: Props) {
                 </details>
               )}
             </>
+          )}
+          {step.verdict === 'impostor' && text.trap && (
+            <TrapPage key={answer.attempt} host={step.expectedHost} trap={text.trap} />
           )}
         </FeedbackPanel>
       )}

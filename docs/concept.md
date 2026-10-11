@@ -29,7 +29,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 
 ## Mission loop (from the brief)
 
-Encounter → investigate → decide → **see what happens** → understand → try a new example. The "see what happens" step is new: after a choice, show the likely consequence (e.g. the fake login page that opens), then explain.
+Encounter → investigate → decide → **see what happens** → understand → try a new example. The "see what happens" step is new: after a choice, show the likely consequence (e.g. the fake login page that opens), then explain. Built in Agnbua: every impostor case's feedback has «Se hva som skjer om du trykker på lenken», which opens the fake page in a little phone (the brand on top, the real address in the bar, fields you can't type in); its button reveals what the scammers do next. In Ryktebørsen, sharing shows the rumour spreading.
 
 ## Not changing
 

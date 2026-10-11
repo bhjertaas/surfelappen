@@ -1901,3 +1901,88 @@
     animation: none;
   }
 }
+
+/* Agnbua, "Se hva som skjer": the fake page a scam link opens, in a little phone. */
+.trap {
+  margin-top: var(--space-4);
+}
+
+.trap__phone {
+  max-width: 20rem;
+  margin: var(--space-3) 0;
+  border: 6px solid #1d1d1f;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: #ffffff;
+  color: #1d1d1f;
+}
+
+.trap__bar {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  background: #e8e8ed;
+  font-size: 0.85rem;
+  overflow-wrap: anywhere;
+}
+
+.trap__page {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+}
+
+.trap__brand {
+  margin: 0 calc(-1 * var(--space-4)) var(--space-3);
+  margin-top: calc(-1 * var(--space-3));
+  padding: var(--space-2) var(--space-4);
+  background: #0b4f6c;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.trap__title {
+  margin: 0 0 var(--space-2);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.trap__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-2);
+  font-size: 0.9rem;
+}
+
+.trap__box {
+  height: 2.25rem;
+  border: 1px solid #6e6e73;
+  border-radius: 0.375rem;
+  background: #f5f5f7;
+}
+
+.trap__button {
+  width: 100%;
+  min-height: var(--tap);
+  margin-top: var(--space-2);
+  border: 0;
+  border-radius: 0.5rem;
+  background: #0b4f6c;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.trap__button:disabled {
+  background: #6e6e73;
+  cursor: default;
+}
+
+.trap__after {
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--color-wrong);
+  background: var(--color-surface);
+}
+
+.trap__after h3 {
+  margin-top: 0;
+}

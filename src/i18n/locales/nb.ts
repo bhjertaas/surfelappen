@@ -149,6 +149,10 @@ export const nb = {
     tryAgain: 'Prøv igjen',
     firstTry: 'Du svarte riktig på første forsøk på {correct} av {total} saker.',
     firstTryNote: 'Det er bare du som ser dette.',
+    seeWhatHappens: 'Se hva som skjer om du trykker på lenken',
+    trapLabel: 'Siden lenken åpner',
+    afterHeading: 'Dette skjer etterpå',
+    trapMoral: 'Siden så ekte ut. Bare adressen øverst avslørte den.',
   },
   typing: {
     lineProgress: 'Linje {current} av {total}',

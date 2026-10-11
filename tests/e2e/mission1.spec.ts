@@ -39,6 +39,15 @@ test('wrong answers explain, retries are free, and missed transfer cases get a b
   await choose(page, 'B');
   await expect(feedback).toContainText('Riktig svar');
   await expect(page.locator('.address')).toContainText('Nettstedet: sporing-levering.example');
+
+  // See what happens: the fake page looks like Pakkeposten, the address bar doesn't.
+  await page.getByRole('button', { name: 'Se hva som skjer om du trykker på lenken' }).click();
+  const fake = page.getByRole('figure', { name: 'Siden lenken åpner' });
+  await expect(fake).toContainText('pakkeposten.example.sporing-levering.example');
+  await fake.getByRole('button', { name: 'Betal 29 kr' }).click();
+  await expect(page.locator('.trap__after')).toBeFocused();
+  await expect(page.locator('.trap__after')).toContainText('12 000 kr');
+  await expectNoAxeViolations(page);
   await next(page);
 
   // Case 2: with both hint levels.

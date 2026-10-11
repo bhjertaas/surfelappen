@@ -30,6 +30,20 @@ export interface CaseText {
   readonly hint2: string;
   /** Optional longer explanation behind "Les mer". */
   readonly lesMer?: string;
+  /** Impostor cases: the fake page the link opens, and what happens if you go along with it. */
+  readonly trap?: TrapText;
+}
+
+/** "Se hva som skjer": a fake page dressed up as the brand, and the consequence. */
+export interface TrapText {
+  /** The brand it pretends to be, e.g. "Fjordbanken". */
+  readonly brand: string;
+  readonly title: string;
+  readonly body: string;
+  /** Labels of the fields it asks for; shown, never typed into. */
+  readonly fields: readonly string[];
+  readonly button: string;
+  readonly after: string;
 }
 
 /** A question with three answers and feedback per answer (the habit scene). */

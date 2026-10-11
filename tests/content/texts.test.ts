@@ -73,6 +73,9 @@ describe('mission texts', () => {
           expect(t, `${where}/${step.id}: missing text`).toBeDefined();
           if (step.kind === 'case')
             expect((t as CaseText).situation, `${where}/${step.id}`).toBeTruthy();
+          // Every impostor case can show the fake page it leads to (see what happens).
+          if (step.kind === 'case' && step.verdict === 'impostor')
+            expect((t as CaseText).trap?.after, `${where}/${step.id}: trap`).toBeTruthy();
           if (step.kind === 'choice')
             expect((t as ChoiceText).prompt, `${where}/${step.id}`).toBeTruthy();
           if (step.kind === 'info')
