@@ -265,6 +265,8 @@ export const nb = {
     sendAgain: 'Send igjen',
     eventProgress: '{current} av {total}',
     previous: 'Forrige',
+    play: 'Spill av med lyd',
+    pause: 'Pause',
   },
   keyboard: {
     title: 'Trenger tastatur',

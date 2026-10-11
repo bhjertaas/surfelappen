@@ -60,7 +60,13 @@ test('Hva er egentlig nettet? plays through and opens Agnbua', async ({ page }) 
   await expectNoAxeViolations(page);
   await page.getByRole('button', { name: 'Neste' }).click();
 
-  // Tidsreisen: jump to the end.
+  // Tidsreisen: the film plays on request and pauses; then jump to the end.
+  const play = page.getByRole('button', { name: 'Spill av med lyd' });
+  await play.click();
+  const pause = page.getByRole('button', { name: 'Pause' });
+  await expect(pause).toHaveAttribute('aria-pressed', 'true');
+  await pause.click();
+  await expect(play).toHaveAttribute('aria-pressed', 'false');
   await page.getByRole('button', { name: '2022' }).click();
   await expect(page.getByRole('heading', { name: 'KI for alle' })).toBeVisible();
   await expectNoAxeViolations(page);

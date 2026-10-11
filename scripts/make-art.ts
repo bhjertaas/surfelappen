@@ -133,6 +133,23 @@ const SPECS: Record<string, Spec> = {
     generate: '1536x1024',
     from: { id: 'scene-cafe', left: 1110, top: 190, width: 340, height: 340 },
   },
+  ...Object.fromEntries(
+    [
+      'arpanet',
+      'email',
+      'norsar',
+      'tcpip',
+      'web',
+      'free-web',
+      'google',
+      'social',
+      'smartphone',
+      'ai',
+    ].map((e): [string, Spec] => [
+      `history-${e}`,
+      { style: 'retroweb', width: 768, height: 512, generate: '1536x1024', refs: ['scene-cafe'] },
+    ]),
+  ),
   'scene-cafe': { style: 'retroweb', width: 1536, height: 1024, generate: '1536x1024' },
   'sticker-link-detective': sticker,
   'sticker-sharp-eye': sticker,

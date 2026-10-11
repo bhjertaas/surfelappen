@@ -303,7 +303,14 @@ export interface JourneyStep {
 export interface TimelineStep {
   readonly kind: 'timeline';
   readonly id: StepId;
-  readonly events: readonly { readonly id: string; readonly year: number }[];
+  readonly events: readonly {
+    readonly id: string;
+    readonly year: number;
+    /** Picture for the card (art ID). */
+    readonly image: ArtId;
+    /** Narration of the card's text (audio ID, content/audio.ts). */
+    readonly voice: string;
+  }[];
 }
 
 export type WebStep = ClassifyStep | BrowserStep | AddressStep | JourneyStep | TimelineStep;

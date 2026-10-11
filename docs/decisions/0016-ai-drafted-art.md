@@ -24,3 +24,7 @@ Phase 7 needs final art: the town, sticker art, portraits for the townspeople an
 - `sharp` is a dev dependency (image processing in the script only).
 - Pixel grids are approximate (Lanczos, not a hand-placed grid); acceptable at these sizes.
 - Hotspots in `content/town.ts` were redrawn to fit the new town picture.
+
+## Update: narration
+
+Narration is drafted the same way: `scripts/make-voice.ts` sends the on-screen text to OpenAI's speech model (`gpt-4o-mini-tts`, Norwegian instructions), re-encodes it to 40 kbps mono MP3 with a dev-only ffmpeg binary, and writes `src/assets/audio/`. Narration is referenced only through `content/audio.ts`. Review: listen, or transcribe it back and compare with the text. The spoken words are the text on screen, so the card doubles as subtitles.

@@ -169,7 +169,8 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
       done: 'Navn blir til IP-adresse, pakker finner veien selv, og siden kommer tilbake. Hver gang du trykker på en lenke.',
     },
     'time-travel': {
-      brief: 'Til slutt en liten tidsreise. Bla i ditt eget tempo, det er ingen spørsmål.',
+      brief:
+        'Til slutt en liten tidsreise. Trykk «Spill av med lyd», så forteller jeg, eller bla i ditt eget tempo. Det er ingen spørsmål.',
       events: {
         arpanet: {
           title: 'Den første meldingen',

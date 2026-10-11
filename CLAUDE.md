@@ -19,6 +19,7 @@ pnpm format       # biome check --write (format + safe fixes)
 node scripts/build-fonts.ts             # rebuild font subsets (only when fonts change)
 node scripts/make-art.ts <id> [--generate]  # draft art with the OpenAI API (ADR 0016)
 node scripts/make-icons.ts                 # favicon + PWA icons from public/favicon.svg
+node scripts/make-voice.ts [event…] [--draft]  # Norwegian narration for Tidsreisen (OpenAI speech)
 ```
 
 Deploy: push to `main`. GitHub Actions runs everything above and deploys to GitHub Pages (`https://surfelappen.minhule.eu`). There is no manual deploy.

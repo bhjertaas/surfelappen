@@ -68,4 +68,19 @@ describe('art', () => {
     for (const m of missions)
       expect(artFor(m.guide), `mission ${m.id}: guide "${m.guide}"`).toBeDefined();
   });
+
+  it('exists for every timeline card: picture and narration', async () => {
+    const { artFor } = await import('../../src/content/art.ts');
+    const { audioFor } = await import('../../src/content/audio.ts');
+    for (const m of missions) {
+      if (m.interaction !== 'web') continue;
+      for (const step of m.steps) {
+        if (step.kind !== 'timeline') continue;
+        for (const e of step.events) {
+          expect(artFor(e.image), `${m.id}/${e.id}: picture "${e.image}"`).toBeDefined();
+          expect(audioFor(e.voice), `${m.id}/${e.id}: narration "${e.voice}"`).toBeDefined();
+        }
+      }
+    }
+  });
 });

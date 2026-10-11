@@ -1,5 +1,15 @@
 import characterAdultBack from '../assets/art/character-adult-back.webp';
 import characterAdultFront from '../assets/art/character-adult-front.webp';
+import historyAi from '../assets/art/history-ai.webp';
+import historyArpanet from '../assets/art/history-arpanet.webp';
+import historyEmail from '../assets/art/history-email.webp';
+import historyFreeWeb from '../assets/art/history-free-web.webp';
+import historyGoogle from '../assets/art/history-google.webp';
+import historyNorsar from '../assets/art/history-norsar.webp';
+import historySmartphone from '../assets/art/history-smartphone.webp';
+import historySocial from '../assets/art/history-social.webp';
+import historyTcpip from '../assets/art/history-tcpip.webp';
+import historyWeb from '../assets/art/history-web.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
 import portraitIvar from '../assets/art/portrait-ivar.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
@@ -64,6 +74,16 @@ export const art = {
   'portrait-mira': { src: portraitMira, width: 256, height: 256 },
   'portrait-ivar': { src: portraitIvar, width: 256, height: 256 },
   'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
+  'history-arpanet': { src: historyArpanet, width: 768, height: 512 },
+  'history-email': { src: historyEmail, width: 768, height: 512 },
+  'history-norsar': { src: historyNorsar, width: 768, height: 512 },
+  'history-tcpip': { src: historyTcpip, width: 768, height: 512 },
+  'history-web': { src: historyWeb, width: 768, height: 512 },
+  'history-free-web': { src: historyFreeWeb, width: 768, height: 512 },
+  'history-google': { src: historyGoogle, width: 768, height: 512 },
+  'history-social': { src: historySocial, width: 768, height: 512 },
+  'history-smartphone': { src: historySmartphone, width: 768, height: 512 },
+  'history-ai': { src: historyAi, width: 768, height: 512 },
   'scene-cafe': { src: sceneCafe, width: 1536, height: 1024 },
   'room-reality': { src: roomReality, width: 1536, height: 1024 },
   'sticker-behind-the-facade': sticker(stickerBehindTheFacade),

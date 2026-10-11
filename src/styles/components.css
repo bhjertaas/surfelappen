@@ -1620,6 +1620,18 @@
   animation: web-card-in 250ms ease-out;
 }
 
+.timeline-card__picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: var(--space-3);
+  border: 2px solid var(--color-border);
+}
+
+.timeline-play {
+  justify-content: center;
+}
+
 .timeline-card__year {
   margin: 0;
   color: var(--color-accent);
