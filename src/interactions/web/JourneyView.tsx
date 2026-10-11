@@ -71,7 +71,7 @@ export function JourneyView({
           <p>{text.brief}</p>
         </Guide>
       )}
-      <svg class="network" viewBox="0 0 360 220" role="img" aria-label={m.web.networkLabel}>
+      <svg class="network" viewBox="0 0 280 360" role="img" aria-label={m.web.networkLabel}>
         {step.cables.map((cable) => {
           const cut = isCut(step, cable, broken);
           const lit = showPath && onPath(litUpTo, cable);
@@ -106,29 +106,24 @@ export function JourneyView({
             </g>
           );
         })}
-        {step.nodes.map((n) => (
-          <g key={n.id}>
-            <circle class="network__node" cx={n.x} cy={n.y} r="10" />
-            <text
-              class="network__label"
-              x={n.x}
-              y={n.y < 110 ? n.y - 16 : n.y + 26}
-              text-anchor="middle"
-            >
-              {text.nodes[n.id]}
-            </text>
-          </g>
-        ))}
-        {phase !== 'start' && (
-          <text
-            class="network__ip"
-            x={node(step.to)?.x ?? 0}
-            y={(node(step.to)?.y ?? 0) + 26}
-            text-anchor="middle"
-          >
-            {step.ip}
-          </text>
-        )}
+        {step.nodes.map((n) => {
+          const left = n.side === 'left';
+          const x = left ? n.x - 16 : n.x + 16;
+          const anchor = left ? 'end' : 'start';
+          return (
+            <g key={n.id}>
+              <circle class="network__node" cx={n.x} cy={n.y} r="10" />
+              <text class="network__label" x={x} y={n.y + 5} text-anchor={anchor}>
+                {text.nodes[n.id]}
+              </text>
+              {n.id === step.to && phase !== 'start' && (
+                <text class="network__ip" x={x} y={n.y + 22} text-anchor={anchor}>
+                  {step.ip}
+                </text>
+              )}
+            </g>
+          );
+        })}
         {packetAt && <circle class="network__packet" cx={packetAt.x} cy={packetAt.y} r="6" />}
       </svg>
 

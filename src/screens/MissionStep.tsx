@@ -6,7 +6,7 @@ import { usePrefetchLesson } from '../components/usePrefetchLesson.ts';
 import { findMission } from '../content/missions/index.ts';
 import type { MissionStructure } from '../content/types.ts';
 import { useI18n, useMissionText } from '../i18n/i18n.ts';
-import { currentStep } from '../interactions/progress.ts';
+import { currentStep, reopenPrevious } from '../interactions/progress.ts';
 import { interactionViews } from '../interactions/registry.ts';
 import { useProgress } from '../progress/hooks.ts';
 import type { Run } from '../progress/schema.ts';
@@ -59,6 +59,13 @@ function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }
     );
   };
 
+  const previous = reopenPrevious(mission, entry.run);
+  const back = () => {
+    if (!previous) return;
+    save(previous.run);
+    replace({ name: 'mission-step', missionId: mission.id, stepId: previous.stepId });
+  };
+
   const { StepView } = interactionViews[mission.interaction];
   return (
     <Page title={text.title} theme={mission.theme}>
@@ -70,9 +77,23 @@ function Step({ mission, stepId }: { mission: MissionStructure; stepId: string }
         save={save}
         advance={advance}
       />
-      <p class="exit">
+      <nav class="step-nav" aria-label={m.mission.stepNav}>
+        {previous ? (
+          <button type="button" class="button button--secondary" onClick={back}>
+            <span aria-hidden="true">←&nbsp;</span>
+            {m.mission.previousStep}
+          </button>
+        ) : (
+          <a
+            class="button button--secondary"
+            href={href({ name: 'mission-intro', missionId: mission.id })}
+          >
+            <span aria-hidden="true">←&nbsp;</span>
+            {m.mission.previousStep}
+          </a>
+        )}
         <a href={href({ name: 'town' })}>{m.mission.exit}</a>
-      </p>
+      </nav>
     </Page>
   );
 }

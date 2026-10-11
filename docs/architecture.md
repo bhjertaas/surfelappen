@@ -114,7 +114,7 @@ Slugs and IDs are English, like all code, and **not** localised. They are stable
 | Mission 2 steps | `step-1` … `step-5` |
 | Stickers | `link-detective` (*Lenkedetektiv*), `ten-fingers` (*Ti fingre*), `sharp-eye` (*Skarpt øye*), `steady-hand` (*Stø hånd*), `curious` (*Nysgjerrig*) |
 
-Inside a mission, moving to the next step uses `replace()`, so the back button leaves the mission. Only the player's current step can be shown: any other step URL (an old link, or one further ahead) is rewritten (`replace`) to the current step, and `done` to the current step until the mission is finished. A step link into a finished mission leads to its summary; it never restarts the mission. On every route change, `Page` sets `document.title`, and `focus.ts` scrolls to the top and focuses the screen's `<h1 tabindex="-1">` (except on the first screen after a page load, which keeps the browser's default focus).
+Inside a mission, moving to the next step uses `replace()`, so the back button leaves the mission. Only the player's current step can be shown: any other step URL (an old link, or one further ahead) is rewritten (`replace`) to the current step, and `done` to the current step until the mission is finished. A step link into a finished mission leads to its summary; it never restarts the mission. Under every step, «Forrige del» (`reopenPrevious` in `interactions/progress.ts`) marks the previous step as not done and goes back to its start; scores already earned are kept. On the first step it links to the intro. On every route change, `Page` sets `document.title`, and `focus.ts` scrolls to the top and focuses the screen's `<h1 tabindex="-1">` (except on the first screen after a page load, which keeps the browser's default focus).
 
 ### i18n (`i18n/`)
 

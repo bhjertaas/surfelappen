@@ -9,7 +9,7 @@ The service worker precached every built file, so the first visit downloaded eve
 ## Decision
 
 - **Precached (first visit):** code, CSS, fonts, icons and the art every visit needs: the town, the character and the stickers (`globPatterns` in `vite.config.ts`).
-- **Lesson media** (scenes, portraits, pictures, sound) is cached at runtime, cache-first, in the `lesson-media` cache. When a lesson's intro or a step opens, `usePrefetchLesson` fetches all the media its structure names (`artUsedBy`), so the whole lesson works offline from then on.
+- **Lesson media** (scenes, portraits, pictures, sound) is cached at runtime, cache-first, in the `lesson-media` cache. When a lesson's intro or a step opens, `usePrefetchLesson` fetches all the media its structure names (`artUsedBy`), so the whole lesson works offline from then on. Online play comes first: the prefetch waits for an idle moment, fetches one file at a time at low priority, stops when the lesson closes, and is skipped on data-saver or 2G connections.
 - `scripts/check-size.ts` budgets the first visit (read from the precache list in `dist/sw.js`) and each lesson separately.
 
 ## Consequences

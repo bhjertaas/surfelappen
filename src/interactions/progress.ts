@@ -59,3 +59,28 @@ export function currentStep(mission: MissionStructure, run: Run | undefined): St
   }
   return 'done';
 }
+
+/**
+ * The step before the current one, reopened: it's no longer marked done, so the player
+ * goes back to its start. Scores already earned (first try, flawless) are kept.
+ * Undefined on the first step.
+ */
+export function reopenPrevious(
+  mission: MissionStructure,
+  run: Run | undefined,
+): { run: Run; stepId: StepId } | undefined {
+  const r = matchingRun(mission, run);
+  const sequence = stepSequence(mission, r);
+  const current = currentStep(mission, r);
+  const index = current === 'done' ? sequence.length : sequence.indexOf(current);
+  const stepId = sequence[index - 1];
+  if (stepId === undefined) return undefined;
+  const without = (ids: readonly StepId[]) => ids.filter((id) => id !== stepId);
+  return {
+    stepId,
+    run:
+      r.interaction === 'link-inspect'
+        ? { ...r, solved: without(r.solved) }
+        : { ...r, done: without(r.done) },
+  };
+}

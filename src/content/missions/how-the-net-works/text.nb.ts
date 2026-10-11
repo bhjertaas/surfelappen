@@ -12,7 +12,7 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
     'Du lærer forskjellen på nettleser, søkemotor og nettsted, hvordan du leser en adresse, og hvordan nettet henger sammen.',
   summary: {
     takeaway:
-      'Nettleseren er programmet, søkemotoren er én nettside av mange, og adressen forteller hvem du er hos. Det er **domenet**, rett før den første skråstreken, som teller.',
+      'Nettleseren er programmet, søkemotoren er én nettside av mange, og **domenet** i adressen forteller hvem du er hos.',
   },
   steps: {
     'who-is-who': {
@@ -106,14 +106,14 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
           question: 'Hvilken del avgjør hvem du er hos?',
           parts: {
             scheme:
-              '**https://** forteller hvordan nettleseren snakker med siden. S-en står for sikker: ingen underveis kan lese med. Det betyr *ikke* at siden er til å stole på!',
+              '**https://** forteller hvordan nettleseren snakker med siden. S-en står for sikker: ingen underveis kan lese med.',
             www: '**www.** står for World Wide Web. Det er en gammel vane, og de fleste sider virker fint uten.',
             domain:
               '**nrk.no** er domenet: hvem du er hos. .no betyr Norge, og NRK eier navnet foran. Det er denne delen som avgjør hvem du snakker med.',
             path: '**/sport** er hvilken side hos NRK du vil se. Den kan være lang og kronglete, men den bytter aldri hvem du er hos.',
           },
-          right: 'Ja. Domenet, nrk.no, er det eneste som sier hvem siden tilhører.',
-          wrong: 'Ikke den. Se etter navnet rett før den første skråstreken.',
+          right: 'Ja. Domenet, nrk.no, sier hvem siden tilhører.',
+          wrong: 'Ikke den. Se etter navnet med .no på slutten.',
         },
         email: {
           intro: 'En e-postadresse.',
@@ -127,25 +127,23 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
             'Riktig. Alt etter krøllalfaen er stedet, akkurat som domenet i en nettadresse. Kari *hos* epost.example.',
           wrong: 'Ikke helt. Navnet sier hvem, men hvor står etter krøllalfaen.',
         },
-        trick: {
-          intro: 'Én til, og nå blir det lurt.',
-          question: 'Hvem er du egentlig hos her?',
+        search: {
+          intro: 'Til slutt adressen du får når du søker på Google.',
+          question: 'Hvor står det du søkte på?',
           parts: {
-            scheme:
-              '**https://** igjen. Den betyr bare at forbindelsen er sikret, ikke at siden er ærlig.',
-            decoy:
-              '**nrk.no.** ser kjent ut, men står *foran* det egentlige domenet. Hvem som helst kan sette hva som helst foran sitt eget navn.',
+            scheme: '**https://** igjen: forbindelsen er sikret.',
             domain:
-              '**nyheter-gratis.example** er det egentlige domenet: rett før den første skråstreken. Det er her du havner.',
-            path: '**/sport** er siden hos dem.',
+              '**google.com** er domenet. Du søkte etter NRK, men du er fortsatt hos Google. Søkemotoren er bare en side som peker videre.',
+            path: '**/search** er søkesiden hos Google.',
+            query:
+              '**?q=nrk** er søket ditt. Alt etter spørsmålstegnet er beskjeder til siden, her «q» for *query*, som betyr spørsmål.',
           },
           right:
-            'Akkurat. Domenet står rett før den første skråstreken: nyheter-gratis.example. NRK har ingenting med denne å gjøre. Sånne triks øver du mer på i Agnbua.',
-          wrong:
-            'Lurt, ikke sant? Domenet er ikke det som står først, men det som står rett før den første skråstreken.',
+            'Ja. Søket ditt står rett i adressen. Deler du lenken, ser mottakeren hva du søkte på.',
+          wrong: 'Ikke den. Se etter spørsmålstegnet.',
         },
       },
-      done: 'Nå kan du lese en adresse. Det er det beste våpenet du har mot svindel på nettet.',
+      done: 'Nå kan du lese en adresse. I Agnbua får du bruk for det: der lærer du å avsløre adresser som later som de er noe de ikke er.',
     },
     'packet-trip': {
       brief:

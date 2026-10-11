@@ -10,7 +10,7 @@ import { useHeadingFocus } from './useHeadingFocus.ts';
 
 /**
  * "Les adressen": tap every part of an address to learn what it is, then tap the
- * part that answers the question. Three addresses: web, email, and a trick one.
+ * part that answers the question. Three addresses: web, email, and a search.
  */
 export function AddressView({
   step,

@@ -285,11 +285,17 @@ export interface AddressStep {
   readonly addresses: readonly Address[];
 }
 
-/** A small network: nodes in a 360×220 picture and cables between them. */
+/** A small network, drawn top to bottom: nodes in a 280×360 picture and cables between them. */
 export interface JourneyStep {
   readonly kind: 'journey';
   readonly id: StepId;
-  readonly nodes: readonly { readonly id: string; readonly x: number; readonly y: number }[];
+  /** `side` is where the node's label goes (default right). */
+  readonly nodes: readonly {
+    readonly id: string;
+    readonly x: number;
+    readonly y: number;
+    readonly side?: 'left' | 'right';
+  }[];
   readonly cables: readonly (readonly [string, string])[];
   readonly from: string;
   readonly to: string;

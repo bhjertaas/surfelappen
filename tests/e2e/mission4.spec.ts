@@ -41,10 +41,10 @@ test('Hva er egentlig nettet? plays through and opens Agnbua', async ({ page }) 
   for (const parts of [
     ['https://', 'www.', 'nrk.no', '/sport'],
     ['kari', '@', 'epost.example'],
-    ['https://', 'nrk.no.', 'nyheter-gratis.example', '/sport'],
+    ['https://', 'google.com', '/search', '?q=nrk'],
   ]) {
     for (const part of parts) await page.getByRole('button', { name: part, exact: true }).click();
-    const answer = parts.find((p) => p.endsWith('.example') || p === 'nrk.no') as string;
+    const answer = parts.find((p) => ['nrk.no', 'epost.example', '?q=nrk'].includes(p)) as string;
     await page.getByRole('button', { name: answer, exact: true }).click();
     await expect(page.locator('.feedback')).toContainText('Riktig');
     await page.getByRole('button', { name: 'Neste' }).click();
@@ -58,6 +58,14 @@ test('Hva er egentlig nettet? plays through and opens Agnbua', async ({ page }) 
   await page.getByRole('button', { name: 'Send igjen' }).click();
   await expect(page.getByText('Pakkene fant en annen vei')).toBeVisible();
   await expectNoAxeViolations(page);
+  await page.getByRole('button', { name: 'Neste' }).click();
+
+  // «Forrige del» reopens the previous step, which is then played again.
+  await page.getByRole('button', { name: 'Forrige del' }).click();
+  await expect(page.getByRole('heading', { name: 'Pakken på reise' })).toBeVisible();
+  await page.getByRole('button', { name: 'Slå opp nrk.no' }).click();
+  await page.getByRole('button', { name: 'Send', exact: true }).click();
+  await page.getByRole('button', { name: 'Send igjen' }).click();
   await page.getByRole('button', { name: 'Neste' }).click();
 
   // Tidsreisen: the film plays on request and pauses; then jump to the end.

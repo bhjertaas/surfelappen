@@ -114,6 +114,8 @@ export const nb = {
     playAgain: 'Spill igjen',
     backToTown: 'Tilbake til byen',
     exit: 'Avslutt og gå til byen',
+    previousStep: 'Forrige del',
+    stepNav: 'Bla i oppdraget',
     progress: 'Del {current} av {total}',
   },
   linkInspect: {
