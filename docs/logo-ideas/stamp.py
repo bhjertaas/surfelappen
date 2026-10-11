@@ -67,7 +67,7 @@ def svg(ring, ring_text, bg, title):
     font='font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="27" letter-spacing="5"'
     o.append(f'  <text {font} fill="{ring_text}" text-anchor="middle"><textPath xlink:href="#top" href="#top" startOffset="50%">SURFELAPPEN</textPath></text>')
     small='font-family="Atkinson Hyperlegible Next, Atkinson Hyperlegible, Verdana, sans-serif" font-weight="800" font-size="23" letter-spacing="3"'
-    o.append(f'  <text {small} fill="{ring_text}" text-anchor="middle"><textPath xlink:href="#bottom" href="#bottom" startOffset="50%">GODKJENT · INTERNETT</textPath></text>')
+    o.append(f'  <text {small} fill="{ring_text}" text-anchor="middle"><textPath xlink:href="#bottom" href="#bottom" startOffset="50%">GODKJENT\u2003·\u2003INTERNETT</textPath></text>')
     for x in (C-157, C+157):
         o.append(f'  <path d="M{x} 190 L{x+3} 197 L{x+10} 200 L{x+3} 203 L{x} 210 L{x-3} 203 L{x-10} 200 L{x-3} 197 Z" fill="{ring_text}"/>')
     o.append('</svg>')
