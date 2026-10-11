@@ -1,0 +1,4 @@
+# Dev-only ffmpeg for scripts/make-voice.ts: the binary ships in the package, so its
+# install script isn't needed.
+allowBuilds:
+  '@ffmpeg-installer/linux-x64': false
