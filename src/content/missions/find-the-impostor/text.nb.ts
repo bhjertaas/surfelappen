@@ -183,7 +183,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
     'transfer-intro': {
       heading: 'Prøv selv',
       body: [
-        'Nå prøver du på egen hånd, i en ny situasjon. Ved Kafé Krøllalfa står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
+        'Nå prøver du på egen hånd, i en ny situasjon. Ved Kafé Alfakrøll står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
       ],
     },
     'transfer-1': {
@@ -196,7 +196,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
         after:
           'QR-koden var et klistremerke over den ekte. Du betalte svindlerne, ikke kommunen, så du får parkeringsbot likevel. Og kortet ditt er på avveie.',
       },
-      situation: 'Ved Kafé Krøllalfa henger et parkeringsskilt med en QR-kode.',
+      situation: 'Ved Kafé Alfakrøll henger et parkeringsskilt med en QR-kode.',
       sender: 'Parkering Lenkevik',
       message: 'Betal parkeringen enkelt! Skann koden:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted: parkering-app.example', c: CANT_TELL },
@@ -231,7 +231,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
         after:
           'Ironisk nok: «svindelsjekken» var svindelen. Med brukernavnet og passordet ditt prøver svindlerne seg nå i nettbanken din.',
       },
-      situation: 'Inne på Kafé Krøllalfa henger en plakat på oppslagstavla.',
+      situation: 'Inne på Kafé Alfakrøll henger en plakat på oppslagstavla.',
       sender: 'Plakat',
       message: 'Fjordbanken: Sjekk kontoen din gratis! Skann koden og logg inn:',
       options: { a: FJORDBANKEN, b: 'Et annet nettsted: trygg-sjekk.example', c: CANT_TELL },
@@ -244,7 +244,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       hint2: 'Rett før / står *trygg-sjekk.example*. Er det Fjordbanken?',
     },
     'transfer-2-backup': {
-      situation: 'I vinduet på Kafé Krøllalfa henger en lapp.',
+      situation: 'I vinduet på Kafé Alfakrøll henger en lapp.',
       sender: 'Pakkeposten',
       message: 'Nå kan du hente pakker her! Spor pakken din:',
       options: { a: PAKKEPOSTEN, b: 'Et annet nettsted som heter «minside»', c: CANT_TELL },

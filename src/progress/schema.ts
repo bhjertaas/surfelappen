@@ -38,7 +38,7 @@ export interface FacadeRun {
   readonly flawless?: readonly StepId[];
 }
 
-/** A playthrough of a web mission (Kafé Krøllalfa). */
+/** A playthrough of a web mission (Kafé Alfakrøll). */
 export interface WebRun {
   readonly interaction: 'web';
   readonly done: readonly StepId[];

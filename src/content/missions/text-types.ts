@@ -136,7 +136,7 @@ export interface FeedText {
   readonly done: string;
 }
 
-// web (Kafé Krøllalfa)
+// web (Kafé Alfakrøll)
 
 export interface ClassifyText {
   readonly brief: string;

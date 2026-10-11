@@ -5,12 +5,12 @@ import { href, type Route } from '../app/routes.ts';
 import { Page } from '../components/Page.tsx';
 import { art, characterFor } from '../content/art.ts';
 import { findMission } from '../content/missions/index.ts';
-import { buildings as allBuildings, buildingsFor, TOWN_SIZE, TOWN_START } from '../content/town.ts';
+import { buildingsFor, TOWN_SIZE, TOWN_START } from '../content/town.ts';
 import type { Building, Point } from '../content/types.ts';
-import { format, plural } from '../i18n/format.ts';
+import { plural } from '../i18n/format.ts';
 import { useI18n } from '../i18n/i18n.ts';
 import { useProgress } from '../progress/hooks.ts';
-import { isLocked, visitBuilding, waitingFor } from '../progress/selectors.ts';
+import { isLocked, isStartHere, visitBuilding } from '../progress/selectors.ts';
 
 type Variant = 'map' | 'list';
 
@@ -48,20 +48,21 @@ function BuildingControl({ building, variant, touchOnly, onClosed, onWalk }: Con
   const text = m.buildings[building.id];
   if (!text) return null;
   const locked = isLocked(progress, building);
-  const waiting = waitingFor(progress, building);
-  const opener = allBuildings.find((b) => b.missions.some((id) => id === waiting));
+  const startHere = isStartHere(progress, building);
 
   const needsKeyboard =
     touchOnly &&
     building.missions.some((id) => findMission(id)?.requires.includes('physical-keyboard'));
   const badge = locked
-    ? format(m.town.locked, { place: (opener && m.buildings[opener.id]?.name) ?? '' })
-    : building.status === 'coming-soon'
-      ? m.town.comingSoon
-      : needsKeyboard
-        ? m.town.needsKeyboard
-        : null;
-  const className = `building building--${variant} building--${locked ? 'locked' : building.status}`;
+    ? m.town.locked
+    : startHere
+      ? m.town.startHere
+      : building.status === 'coming-soon'
+        ? m.town.comingSoon
+        : needsKeyboard
+          ? m.town.needsKeyboard
+          : null;
+  const className = `building building--${variant} building--${locked ? 'locked' : building.status}${startHere ? ' building--start' : ''}`;
   const style =
     variant === 'map'
       ? {

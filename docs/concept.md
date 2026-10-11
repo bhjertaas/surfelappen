@@ -20,7 +20,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 
 | Place | Topic | Art theme | Missions |
 | --- | --- | --- | --- |
-| **Kafé Krøllalfa** (the café on the corner; *krøllalfa* is Norwegian for @) | The basics: browser vs search engine vs site, the address bar, reading an address, how a request travels (DNS, IP, packets), a little history and AI | Late-90s desktop: teal, grey bevelled windows, CRT glow | *Hva er egentlig nettet?* (built). Comes first: Agnbua opens after it |
+| **Kafé Alfakrøll** (the café on the corner; *alfakrøll* is what most Norwegians call @, *krøllalfa* is the dictionary word; the lesson mentions both, and «at») | The basics: browser vs search engine vs site, the address bar, reading an address, how a request travels (DNS, IP, packets), a little history and AI | Late-90s desktop: teal, grey bevelled windows, CRT glow | *Hva er egentlig nettet?* (built). Comes first: Agnbua opens after it |
 | **Agnbua** (a bait-and-tackle shop on the pier; the sign on the door says *Gone Phishing*. Every scam is bait, so the name covers more than phishing) | Suspicious links and messages, scams | Bold 90s point-and-click (painted, thick outlines, bright) | Finn bedrageren (exists); later a message/scam mission |
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
 | **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
@@ -47,7 +47,7 @@ After the mission, **«Vil du vite mer?»** (`#/mission/perfect-life/more`) give
 
 Open items: the mission's sources are listed on the About page but `reviewedOn` is still null.
 
-## Hva er egentlig nettet? (Kafé Krøllalfa)
+## Hva er egentlig nettet? (Kafé Alfakrøll)
 
 Guide: Ivar, who has run the café since the modem squealed. Five short, hands-on steps:
 

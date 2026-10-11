@@ -1,7 +1,7 @@
 import type { StepId, WebMission } from '../../content/types.ts';
 import type { WebRun } from '../../progress/schema.ts';
 
-/** Pure flow logic for web missions (Kafé Krøllalfa): steps are done in order. */
+/** Pure flow logic for web missions (Kafé Alfakrøll): steps are done in order. */
 
 export function emptyWebRun(): WebRun {
   return { interaction: 'web', done: [] };

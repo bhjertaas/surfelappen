@@ -9,6 +9,7 @@ export const buildings = [
   {
     id: 'cafe',
     status: 'open',
+    start: true,
     missions: ['how-the-net-works'],
     hotspot: { x: 1280, y: 740, w: 256, h: 284 },
     door: { x: 1300, y: 930 },

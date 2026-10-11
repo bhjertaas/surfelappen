@@ -12,7 +12,7 @@ import { ClassifyView } from './ClassifyView.tsx';
 import { JourneyView } from './JourneyView.tsx';
 import { TimelineView } from './TimelineView.tsx';
 
-/** Routes a web step (Kafé Krøllalfa) to its view. */
+/** Routes a web step (Kafé Alfakrøll) to its view. */
 export function WebStep({ mission, text, stepId, run, advance }: StepViewProps) {
   if (mission.interaction !== 'web' || run.interaction !== 'web') return null;
   const step = mission.steps.find((s) => s.id === stepId);

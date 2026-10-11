@@ -15,13 +15,13 @@ interface BuildingText {
 
 const buildings: Record<string, BuildingText> = {
   cafe: {
-    name: 'Kafé Krøllalfa',
+    name: 'Kafé Alfakrøll',
     about: 'Hva er nettleser, søkemotor og nettadresse? Start her.',
   },
   'gone-phishing': {
     name: 'Agnbua',
     about: 'Se hvor lenker i SMS og e-post egentlig fører.',
-    closed: 'Agnbua åpner når du har vært på Kafé Krøllalfa. Der lærer du å lese en adresse først.',
+    closed: 'Agnbua er stengt. Besøk Kafé Alfakrøll først, der lærer du å lese en adresse.',
   },
   arcade: {
     name: 'Arkaden',
@@ -39,7 +39,7 @@ const buildings: Record<string, BuildingText> = {
     name: 'Lisenskontoret',
     about: 'Fire skranker og ett stempel: her får du surfelappen godkjent.',
     closed:
-      'Lisenskontoret tar imot deg når du har vært i Kafé Krøllalfa, Agnbua, Fasaden og Ryktebørsen. Passet ditt finner du øverst på siden.',
+      'Lisenskontoret er stengt til du har vært i Kafé Alfakrøll, Agnbua, Fasaden og Ryktebørsen. Passet ditt finner du øverst på siden.',
   },
 };
 
@@ -93,6 +93,7 @@ export const nb = {
   start: {
     start: 'Start',
     continue: 'Fortsett der du slapp',
+    toTown: 'Gå til byen',
     about: 'Om spillet og personvern',
     free: 'Gratis, uten innlogging. Ingenting om deg blir samlet inn.',
   },
@@ -105,7 +106,8 @@ export const nb = {
     toPassport: 'Se passet ditt',
     comingSoon: 'Kommer snart',
     needsKeyboard: 'Trenger tastatur',
-    locked: 'Først: {place}',
+    locked: 'Stengt',
+    startHere: 'Begynn her',
   },
   buildings,
   stickers,

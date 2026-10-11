@@ -241,7 +241,7 @@ export type FacadeStep = ComposeStep | SortStep | FeedStep;
 export type FacadeMission = MissionBase<'facade', FacadeStep>;
 
 // ---------------------------------------------------------------------------
-// web (Kafé Krøllalfa): how the net works
+// web (Kafé Alfakrøll): how the net works
 
 /** What a name is: the program you browse with, a site that finds sites, or a site. */
 export type WebBin = 'browser' | 'search' | 'site';
@@ -428,6 +428,8 @@ export interface Building {
   /** Where the player's character walks to before going in. */
   readonly door: Point;
   readonly image: ArtId;
-  /** Opens once these missions are done (or once the player has started one here). */
+  /** Opens once these missions are done. */
   readonly after?: readonly MissionId[];
+  /** The place to begin: marked «Begynn her» until its missions are done. */
+  readonly start?: boolean;
 }

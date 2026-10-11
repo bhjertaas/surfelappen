@@ -4,7 +4,6 @@ import {
   type Building,
   type BuildingId,
   DEFAULT_AUDIENCE,
-  type MissionId,
   type MissionStructure,
 } from '../content/types.ts';
 import { currentStep, emptyRun } from '../interactions/progress.ts';
@@ -83,17 +82,19 @@ export function restartMission(progress: Progress, mission: MissionStructure): P
 }
 
 /**
- * A building with `after` stays shut until those missions are done. Players who already
- * started a mission inside keep their way in (the lock came after them).
+ * A building with `after` stays shut until those missions are done. Deep links still
+ * work (the lock is for the town, not a wall).
  */
 export function isLocked(progress: Progress, building: Building): boolean {
-  if (waitingFor(progress, building) === undefined) return false;
-  return !building.missions.some((id) => progress.missions[id] !== undefined);
+  return building.after?.some((id) => !progress.missions[id]?.completedOnce) ?? false;
 }
 
-/** The first mission a locked building still waits for. */
-export function waitingFor(progress: Progress, building: Building): MissionId | undefined {
-  return building.after?.find((id) => !progress.missions[id]?.completedOnce);
+/** "Begynn her": the starting place, until its missions are done. */
+export function isStartHere(progress: Progress, building: Building): boolean {
+  return (
+    building.start === true &&
+    !building.missions.every((id) => progress.missions[id]?.completedOnce)
+  );
 }
 
 export function visitBuilding(progress: Progress, id: BuildingId): Progress {

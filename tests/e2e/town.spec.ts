@@ -18,7 +18,7 @@ test('picture and list offer the same destinations in the same order', async ({ 
   const list = await destinations(page.locator('.town__list'));
   const map = await destinations(page.locator('.town__hotspots'));
   expect(list.map((d) => d.name)).toEqual([
-    'Kafé Krøllalfa',
+    'Kafé Alfakrøll',
     'Agnbua',
     'Arkaden',
     'Fasaden',
@@ -28,13 +28,16 @@ test('picture and list offer the same destinations in the same order', async ({ 
   expect(map).toEqual(list);
 });
 
-test('Agnbua waits for Kafé Krøllalfa', async ({ page }) => {
+test('Agnbua waits for Kafé Alfakrøll', async ({ page }) => {
   await page.goto('/#/town');
   const list = page.getByRole('navigation', { name: 'Steder i Lenkevik' });
   const agnbua = list.getByRole('button', { name: /Agnbua/ });
-  await expect(agnbua).toContainText('Først: Kafé Krøllalfa');
+  await expect(agnbua).toContainText('Stengt');
+  await expect(list.getByRole('link', { name: /Kafé Alfakrøll/ })).toContainText('Begynn her');
   await agnbua.click();
-  await expect(page.getByRole('status').filter({ hasText: 'lese en adresse' })).toBeVisible();
+  await expect(
+    page.getByRole('status').filter({ hasText: 'Besøk Kafé Alfakrøll først' }),
+  ).toBeVisible();
   await expect(agnbua).toBeFocused();
   expect((await storedProgress(page))?.visitedBuildings).toEqual(['gone-phishing']);
 });
@@ -62,7 +65,7 @@ test('Lisenskontoret waits for the four lessons', async ({ page }) => {
   const office = page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
     .getByRole('button', { name: /Lisenskontoret/ });
-  await expect(office).toContainText('Først: Kafé Krøllalfa');
+  await expect(office).toContainText('Stengt');
   await office.click();
   await expect(page.getByRole('status').filter({ hasText: 'Passet ditt finner du' })).toBeVisible();
   await expect
@@ -76,7 +79,7 @@ test('choosing a place on the map walks the character there, then goes in', asyn
   const before = await walker.boundingBox();
   await page
     .locator('.town__hotspots')
-    .getByRole('link', { name: /Kafé Krøllalfa/ })
+    .getByRole('link', { name: /Kafé Alfakrøll/ })
     .click();
   await expect(page).toHaveURL(/#\/mission\/how-the-net-works$/);
   expect(before).not.toBeNull();

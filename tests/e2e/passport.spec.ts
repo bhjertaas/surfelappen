@@ -16,7 +16,7 @@ async function visitEveryBuilding(page: import('@playwright/test').Page) {
     .getByRole('button', { name: /Agnbua/ })
     .click();
   await list(page)
-    .getByRole('link', { name: /Kafé Krøllalfa/ })
+    .getByRole('link', { name: /Kafé Alfakrøll/ })
     .click();
   await expectHeading(page, 'Hva er egentlig nettet?');
   await page.goto('/#/mission/ten-fingers');

@@ -1,7 +1,7 @@
 import type { WebMission } from '../../types.ts';
 
 /**
- * Hva er egentlig nettet? (Kafé Krøllalfa, docs/concept.md). The basics before Agnbua:
+ * Hva er egentlig nettet? (Kafé Alfakrøll, docs/concept.md). The basics before Agnbua:
  * browser vs search engine vs site, the address bar, reading an address, how a request
  * travels, and a little history. Real names (NRK, the search engines) are used on purpose
  * here: the point is to recognise the real thing. The toy browser never loads anything.

@@ -7,11 +7,11 @@ import { emptyProgress, type Progress } from './schema.ts';
 import {
   hasStarted,
   isLocked,
+  isStartHere,
   restartMission,
   resumeRoute,
   startMission,
   visitBuilding,
-  waitingFor,
 } from './selectors.ts';
 
 const ALL_LINK_STEPS = [
@@ -159,6 +159,20 @@ describe('isLocked', () => {
     expect(isLocked(done, agnbua)).toBe(false);
   });
 
+  it('marks the café «Begynn her» until its mission is done', () => {
+    const cafe = buildings.find((b) => b.id === 'cafe');
+    if (!cafe || !agnbua) throw new Error('missing building');
+    expect(isStartHere(emptyProgress(), cafe)).toBe(true);
+    expect(isStartHere(emptyProgress(), agnbua)).toBe(false);
+    const done: Progress = {
+      ...emptyProgress(),
+      missions: {
+        'how-the-net-works': { completedOnce: true, run: { interaction: 'web', done: [] } },
+      },
+    };
+    expect(isStartHere(done, cafe)).toBe(false);
+  });
+
   it('keeps Lisenskontoret shut until all four lessons are done', () => {
     const office = buildings.find((b) => b.id === 'licence-bureau');
     if (!office) throw new Error('missing building');
@@ -170,12 +184,6 @@ describe('isLocked', () => {
     });
     const three = ['how-the-net-works', 'find-the-impostor', 'perfect-life'];
     expect(isLocked(finished(three), office)).toBe(true);
-    expect(waitingFor(finished(three), office)).toBe('the-shark-rumour');
     expect(isLocked(finished([...three, 'the-shark-rumour']), office)).toBe(false);
-  });
-
-  it('lets in players who already started a mission inside', () => {
-    if (!agnbua) throw new Error('missing building');
-    expect(isLocked(startMission(emptyProgress(), findTheImpostor), agnbua)).toBe(false);
   });
 });

@@ -3,10 +3,10 @@ import type { howTheNetWorks } from './structure.ts';
 
 export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
   title: 'Hva er egentlig nettet?',
-  character: 'Ivar på Kafé Krøllalfa',
+  character: 'Ivar på Kafé Alfakrøll',
   intro: [
     'Hei, jeg er Ivar. Her på kafeen har folk surfet siden modemet pep og knitret.',
-    'Mange bruker nettet hver dag uten å vite hva som er hva. Er Google internett? Hva er krøllalfaen godt for? Ta en kopp, så finner vi ut av det.',
+    'Mange bruker nettet hver dag uten å vite hva som er hva. Er Google internett? Hva er alfakrøllen godt for? Ta en kopp, så finner vi ut av det.',
   ],
   learn:
     'Du lærer forskjellen på nettleser, søkemotor og nettsted, hvordan du leser en adresse, og hvordan nettet henger sammen.',
@@ -120,12 +120,12 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
           question: 'Hvilken del forteller hvor e-posten havner?',
           parts: {
             name: '**kari** er navnet på postkassa.',
-            at: '**@** heter krøllalfa på norsk og «at» på engelsk: «hos». Ray Tomlinson valgte tegnet til den første e-posten i 1971, nettopp fordi det betyr «hos» og ikke fantes i navn.',
+            at: '**@** har mange navn på norsk: alfakrøll, krøllalfa, eller bare «at», som på engelsk. «At» betyr «hos». Ray Tomlinson valgte tegnet til den første e-posten i 1971, nettopp fordi det betyr «hos» og ikke fantes i navn.',
             domain: '**epost.example** er domenet: hvem som har postkassa.',
           },
           right:
-            'Riktig. Alt etter krøllalfaen er stedet, akkurat som domenet i en nettadresse. Kari *hos* epost.example.',
-          wrong: 'Ikke helt. Navnet sier hvem, men hvor står etter krøllalfaen.',
+            'Riktig. Alt etter alfakrøllen er stedet, akkurat som domenet i en nettadresse. Kari *hos* epost.example.',
+          wrong: 'Ikke helt. Navnet sier hvem, men hvor står etter alfakrøllen.',
         },
         search: {
           intro: 'Til slutt adressen du får når du søker på Google.',

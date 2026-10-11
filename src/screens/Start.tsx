@@ -22,7 +22,7 @@ export function Start() {
           </a>
         )}
         <a class={returning ? 'button button--secondary' : 'button'} href={href({ name: 'town' })}>
-          {m.start.start}
+          {returning ? m.start.toTown : m.start.start}
         </a>
       </div>
       <p>{m.start.free}</p>

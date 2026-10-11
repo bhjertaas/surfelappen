@@ -55,7 +55,7 @@ test('the back button leaves a mission instead of stepping through it', async ({
   await page.goto('/#/town');
   await page
     .getByRole('navigation', { name: 'Steder i Lenkevik' })
-    .getByRole('link', { name: /Kafé Krøllalfa/ })
+    .getByRole('link', { name: /Kafé Alfakrøll/ })
     .click();
   await expectHeading(page, 'Hva er egentlig nettet?');
   await page.getByRole('button', { name: 'Begynn' }).click();
@@ -78,6 +78,9 @@ test('"Fortsett" appears once a mission is started and resumes it', async ({ pag
   await page.getByRole('button', { name: /Begynn|Start likevel/ }).click();
   await expect(page).toHaveURL(/#\/mission\/ten-fingers\/step-1$/);
   await page.goto('/');
+  // The second button no longer says "Start": it goes to the town.
+  await expect(page.getByRole('link', { name: 'Gå til byen' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Start', exact: true })).toHaveCount(0);
   await page.getByRole('link', { name: 'Fortsett der du slapp' }).click();
   await expect(page).toHaveURL(/#\/mission\/ten-fingers\/step-1$/);
   await page.goto('/#/mission/ten-fingers');

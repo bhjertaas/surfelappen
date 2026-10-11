@@ -321,6 +321,18 @@
   color: var(--color-text);
 }
 
+.building--map.building--locked .building__badge {
+  background: rgb(31 42 54 / 0.88);
+  color: #fff;
+}
+
+/* «Begynn her»: the one place that stands out until it's done. */
+.building.building--start .building__badge {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: #fff;
+}
+
 .town__message {
   min-height: 1.55em;
   margin-top: var(--space-4);
@@ -1267,7 +1279,7 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* Kafé Krøllalfa (web interaction) */
+/* Kafé Alfakrøll (web interaction) */
 
 .web-card {
   margin: var(--space-4) auto;
