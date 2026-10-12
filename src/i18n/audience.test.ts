@@ -40,6 +40,7 @@ describe('audience variants', () => {
       'cafe',
       'arcade',
       'rumour-exchange',
+      'bank',
       'licence-bureau',
     ]);
   });

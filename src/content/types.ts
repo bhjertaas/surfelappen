@@ -39,7 +39,14 @@ export interface Reading {
   readonly url: string;
 }
 
-export type MissionTheme = 'pointclick' | 'arcade' | 'comic' | 'retroweb' | 'noir' | 'bureau';
+export type MissionTheme =
+  | 'pointclick'
+  | 'arcade'
+  | 'comic'
+  | 'retroweb'
+  | 'noir'
+  | 'bureau'
+  | 'terminal';
 
 export type InteractionId = 'link-inspect' | 'typing' | 'facade' | 'web' | 'rumour';
 export type Requirement = 'physical-keyboard';

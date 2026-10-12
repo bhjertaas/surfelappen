@@ -2,6 +2,7 @@ import type { MissionId, MissionStructure } from '../types.ts';
 import { findTheImpostor } from './find-the-impostor/structure.ts';
 import { howTheNetWorks } from './how-the-net-works/structure.ts';
 import { perfectLife } from './perfect-life/structure.ts';
+import { securityBasics } from './security-basics/structure.ts';
 import { tenFingers } from './ten-fingers/structure.ts';
 import { theCounters } from './the-counters/structure.ts';
 import { theSharkRumour } from './the-shark-rumour/structure.ts';
@@ -13,6 +14,7 @@ export const missions = [
   tenFingers,
   perfectLife,
   theSharkRumour,
+  securityBasics,
   theCounters,
 ] as const satisfies readonly MissionStructure[];
 

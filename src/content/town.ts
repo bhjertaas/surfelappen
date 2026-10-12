@@ -49,6 +49,14 @@ export const buildings = [
     image: 'town',
   },
   {
+    id: 'bank',
+    status: 'open',
+    missions: ['security-basics'],
+    hotspot: { x: 1340, y: 0, w: 196, h: 236 },
+    door: { x: 1400, y: 232 },
+    image: 'town',
+  },
+  {
     id: 'licence-bureau',
     status: 'open',
     missions: ['the-counters'],

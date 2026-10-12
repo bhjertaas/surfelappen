@@ -3,6 +3,7 @@ import type { Audience, MissionId } from '../types.ts';
 import { findTheImpostorNb } from './find-the-impostor/text.nb.ts';
 import { howTheNetWorksNb } from './how-the-net-works/text.nb.ts';
 import { perfectLifeNb } from './perfect-life/text.nb.ts';
+import { securityBasicsNb } from './security-basics/text.nb.ts';
 import { tenFingersNb } from './ten-fingers/text.nb.ts';
 import type { MissionText } from './text-types.ts';
 import { theCountersNb } from './the-counters/text.nb.ts';
@@ -19,6 +20,7 @@ export const missionTexts: Record<Locale, Record<MissionId, MissionText>> = {
     'ten-fingers': tenFingersNb,
     'perfect-life': perfectLifeNb,
     'the-shark-rumour': theSharkRumourNb,
+    'security-basics': securityBasicsNb,
     'the-counters': theCountersNb,
   },
 };

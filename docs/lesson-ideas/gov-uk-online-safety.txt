@@ -1,0 +1,43 @@
+From https://digitalinclusion.salford.gov.uk/resources-learning-jobs/top-tips/ten-tips-for-staying-safe-on-the-internet/
+
+Online safety basics
+Use these ten tips to stay safe online, learn how to protect you and your family from online hackers.
+
+1. Keep personal information professional and limited
+When applying for a job be aware that you should not share your personal relationship status or your home address. Potential employers only need to know  about your expertise and professional background, and how to get in touch with you. Only give access to your personal information to websites and people you trust.
+
+2. Keep your privacy settings on
+Always check your privacy settings, web browsers and mobile operating systems have settings available to protect your privacy online.  Social media sites also have have privacy-enhancing settings available, they are some times hard to find as they want your personal information. Make sure you have enabled these privacy safeguards and keep them enabled.
+
+3. Practice safe browsing
+If a website doesn't look right, it normally isn't, you wouldn't visit an area you thought looked dangerous, so why would you on line.  Online hackers use information you are interested in as bait. They know people are sometimes tempted by dubious content and may let their guard down when searching for it. The Internet's demimonde is filled with hard-to-see pitfalls, where one careless click could expose personal data or infect your device
+
+4. Make sure your internet connection is secure. Use a secure VPN connection
+When you go online in a public place, for example by using a public Wi-Fi connection, be aware that you have no control of its security and privacy settings.
+
+When using public WIFI  make sure your device is secure, and when in doubt, wait for a better time (i.e. until you're able to connect to a secure Wi-Fi network) before providing information such as your bank account number.
+
+To further improve your Internet browsing safety, use secure VPN connection (virtual private network). VPN enables you to have a secure connection between your device and an Internet server that no one can monitor or access the data that you’re exchanging.
+
+5. Be careful what you download
+Hackers will always try to trick you into downloading malware (Malware is any software intentionally designed to cause damage to a computer, server, client, or computer network). Malware can be hidden in programs or apps and can be used to steal private information. This malware can be disguised as an app: anything from a popular game to something that checks traffic or the weather, don't download apps that look suspicious or come from a site you don't trust.
+
+6. Choose strong passwords
+Always choose a strong password, instead of one that is easy to remember  (such as "password" and "123456"), which are also easy for cyber thieves to guess. Password manager software can help you to manage multiple passwords so that you don't forget them. A strong password is one that is unique and complex—at least 15 characters long, mixing letters, numbers and special characters.
+
+7. Make online purchases from secure sites
+When making  a purchase online, you are asked to provide your credit card or bank account information—a cybercriminals dream. Be sure to only supply this information to sites that provide secure, encrypted connections. You can identify secure sites by looking for an address that starts with https: (the S stands for secure) rather than simply http: They may also be marked by a padlock icon next to the address bar.
+
+8. Be careful what you post
+What you post on line, stays on line. Any comment or image you post online may stay online forever because removing the original from example a social media site, does not remove any copies that other people may of made. You cant remove or Take back, a bad remark or embarrassing photo. Don't put anything online that you wouldn't want your mum or a prospective employer to see.
+
+9. Be careful who you meet online
+People you meet online are not always who they claim to be. They may not even be real. Fake social media profiles are a popular way for hackers to cozy up to unwary Web users and pick their cyber pockets. Be as cautious and sensible in your online social life as you are in your in-person social life.
+
+10. Keep your antivirus program up to date
+Be aware that Internet security software cannot protect against every threat, but it will detect and remove most malware—though you should make sure it's to date. Always make sure you stay current with your operating system's updates and updates to applications you use, as they provide a vital layer of security.
+
+Keep these 10 basic Internet safety rules in mind and you'll avoid many of the nasty surprises that lurk online for the careless.
+
+Keep an eye on your screen time
+Have you ever received a notification from your phone telling you how much time you’ve spent using it that week? It can be quite alarming and may feel like you’re being shamed by your own phone. But it can be the first step in realising you want to cut down on your phone usage. See this article by compare the market for more info.

@@ -25,6 +25,7 @@ A lively, slightly quirky little city you explore, in the spirit of late-80s/90s
 | **Arkaden** (the arcade) | Typing and keyboard confidence | Pixel art, arcade cabinets and neon | Ti fingre (exists; may be renamed, e.g. *Tasteninja*) |
 | **Fasaden** (the polished shopfront, and the front people show online) | Influencers, filters, sponsored content, algorithms, sharing | Comic book (flat colour, bold ink, halftone) | *Det perfekte livet* (next new mission) |
 | **Ryktebørsen** (the detective office in the brick house) | Rumours, fact-checking, AI images | Film noir: night blue, amber lamplight, venetian-blind stripes | *Haien i Lenkevik* (built) |
+| **Lenkevikbanken** (the old savings bank top right; painted over the yellow house with `scripts/place-bank.ts`) | Everyday security: passwords and password managers, two-step login, codes on the phone, updates, app permissions, backups, public Wi-Fi | Dark terminal: green and amber on black, plain and grown-up | *Sikkerhet* (built). Open from the start; not needed for the licence |
 | **Lisenskontoret** / *The Licence Bureau* | The final check that combines skills | Civil-service green, cream forms, rubber-stamp red | *Skrankene* (built). Opens after the café, Agnbua, Fasaden and Ryktebørsen (not Arkaden, so phone players can finish). The passport is in the header |
 
 ## Mission loop (from the brief)
@@ -71,6 +72,10 @@ Sticker: *Faktasjekker*. Sources: Faktisk.no's Tenk and Medietilsynet's *Falske 
 ## Skrankene (Lisenskontoret)
 
 Guide: Saksbehandler Stempelsen, stern but secretly amused. Four counters, one per house, each a short clerk's line and three questions in new situations (yr.no instead of NRK, a toll SMS, a discount-code influencer, a flood photo from 2016). No hints; a wrong answer is explained and tried again; no score. The last screen stamps the licence (*KLONK*) and gives the sticker *Surfelapp*. Built from the link-inspect `choice` and `info` steps, no new interaction.
+
+## Sikkerhet (Lenkevikbanken)
+
+Guide: Gandalf, the bank's white-hat hacker (chubby, ponytail, stained padlock t-shirt, dry). Grown-up and plain on purpose: eight questions, each showing what happens, and two short tip screens. Strong passwords (a passphrase beats `P@ssw0rd2024!`), one per site, a password manager (moved here from Agnbua, which keeps one line), two-step login, never reading a code to someone who calls, updates, a flashlight app that wants your contacts, backups, and the fake «GRATIS» Wi-Fi (VPN mentioned honestly, not sold). Extra: DNS4EU on the home router and Have I Been Pwned, under «Vil du vite mer?». Built from link-inspect choice and info steps. Sticker: *Sikret*.
 
 ## Room for more places
 

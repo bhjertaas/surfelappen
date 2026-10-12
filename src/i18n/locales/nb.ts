@@ -35,6 +35,11 @@ const buildings: Record<string, BuildingText> = {
     name: 'Ryktebørsen',
     about: 'Detektivkontoret der du sjekker om noe du leser er sant.',
   },
+  bank: {
+    name: 'Lenkevikbanken',
+    about:
+      'Banken øverst i gata. Sikkerhetseksperten Gandalf viser deg hvordan du låser dørene på nettet.',
+  },
   'licence-bureau': {
     name: 'Lisenskontoret',
     about: 'Fire skranker og ett stempel: her får du surfelappen godkjent.',
@@ -64,6 +69,7 @@ const stickers: Record<string, StickerText> = {
   'steady-hand': { name: 'Stø hånd', howTo: 'Skriv siste linje i Ti fingre uten feil.' },
   'web-explorer': { name: 'Nettkjenner', howTo: 'Fullfør Hva er egentlig nettet?' },
   'fact-checker': { name: 'Faktasjekker', howTo: 'Fullfør Haien i Lenkevik.' },
+  secure: { name: 'Sikret', howTo: 'Fullfør Sikkerhet i Lenkevikbanken.' },
   licensed: { name: 'Surfelapp', howTo: 'Få stempelet ved alle fire skrankene på Lisenskontoret.' },
   curious: { name: 'Nysgjerrig', howTo: 'Besøk alle husene i Lenkevik.' },
 };

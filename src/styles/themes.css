@@ -199,3 +199,26 @@
   --color-focus: #b3261e;
   --color-link-text: #2f5d3a;
 }
+
+/* Lenkevikbanken, Sikkerhet: the security expert's screens. Dark, green and amber, no frills. */
+.theme--terminal {
+  color-scheme: dark;
+  --color-bg: #0d1117;
+  --color-surface: #161b22;
+  --color-text: #e6edf3;
+  --color-muted: #a6b0bb;
+  --color-primary: #3fb950;
+  --color-primary-strong: #6fdd81;
+  --color-on-primary: #0d1117;
+  --color-accent: #e3b341;
+  --color-border: #7d8590;
+  --color-focus: #e3b341;
+  --color-link-text: #7ee787;
+  --color-notice-bg: #2b2412;
+  --color-notice-border: #e3b341;
+  --color-correct: #7ee787;
+  --color-correct-bg: #12261a;
+  --color-wrong: #ffa198;
+  --color-wrong-bg: #2d1416;
+  --font-display: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+}

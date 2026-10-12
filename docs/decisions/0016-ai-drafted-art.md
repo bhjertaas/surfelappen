@@ -28,3 +28,7 @@ Phase 7 needs final art: the town, sticker art, portraits for the townspeople an
 ## Update: narration
 
 Narration is drafted the same way: `scripts/make-voice.ts` sends the on-screen text to OpenAI's speech model (`gpt-4o-mini-tts`, Norwegian instructions), re-encodes it to 40 kbps mono MP3 with a dev-only ffmpeg binary, and writes `src/assets/audio/`. Narration is referenced only through `content/audio.ts`. Review: listen, or transcribe it back and compare with the text. The spoken words are the text on screen, so the card doubles as subtitles.
+
+## Addendum (2026-10-12)
+
+To change part of a finished picture, draw the new piece on its own and paste it in (`scripts/place-bank.ts` put Lenkevikbanken over a house in the town). The image edit endpoint with a mask (`scripts/repaint-art.ts`) was tried and redrew the whole scene instead, so it is kept only for experiments. The original town stays in `.cache/art/town.orig.png`.

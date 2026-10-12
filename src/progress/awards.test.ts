@@ -88,6 +88,7 @@ describe('applyAwards', () => {
         'arcade',
         'facade',
         'rumour-exchange',
+        'bank',
         'licence-bureau',
       ],
     };

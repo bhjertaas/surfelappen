@@ -23,6 +23,7 @@ test('picture and list offer the same destinations in the same order', async ({ 
     'Arkaden',
     'Fasaden',
     'Ryktebørsen',
+    'Lenkevikbanken',
     'Lisenskontoret',
   ]);
   expect(map).toEqual(list);

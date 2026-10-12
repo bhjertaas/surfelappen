@@ -12,6 +12,7 @@ import historyTcpip from '../assets/art/history-tcpip.webp';
 import historyWeb from '../assets/art/history-web.webp';
 import photoSharkAi from '../assets/art/photo-shark-ai.webp';
 import photoSharkOld from '../assets/art/photo-shark-old.webp';
+import portraitGandalf from '../assets/art/portrait-gandalf.webp';
 import portraitHanne from '../assets/art/portrait-hanne.webp';
 import portraitIvar from '../assets/art/portrait-ivar.webp';
 import portraitKai from '../assets/art/portrait-kai.png';
@@ -36,12 +37,14 @@ import sceneCafe from '../assets/art/scene-cafe.webp';
 import sceneFacade from '../assets/art/scene-facade.webp';
 import scenePhishing from '../assets/art/scene-phishing.webp';
 import sceneRumour from '../assets/art/scene-rumour.webp';
+import sceneSecurity from '../assets/art/scene-security.webp';
 import stickerAdHunter from '../assets/art/sticker-ad-hunter.webp';
 import stickerBehindTheFacade from '../assets/art/sticker-behind-the-facade.webp';
 import stickerCurious from '../assets/art/sticker-curious.webp';
 import stickerFactChecker from '../assets/art/sticker-fact-checker.webp';
 import stickerLicensed from '../assets/art/sticker-licensed.webp';
 import stickerLinkDetective from '../assets/art/sticker-link-detective.webp';
+import stickerSecure from '../assets/art/sticker-secure.webp';
 import stickerSharpEye from '../assets/art/sticker-sharp-eye.webp';
 import stickerSteadyHand from '../assets/art/sticker-steady-hand.webp';
 import stickerTenFingers from '../assets/art/sticker-ten-fingers.webp';
@@ -77,6 +80,7 @@ export const art = {
   'sticker-web-explorer': sticker(stickerWebExplorer),
   'sticker-fact-checker': sticker(stickerFactChecker),
   'sticker-licensed': sticker(stickerLicensed),
+  'sticker-secure': sticker(stickerSecure),
   'post-climbing': { src: postClimbing, width: 768, height: 768 },
   'post-football': { src: postFootball, width: 768, height: 768 },
   'post-cat': { src: postCat, width: 768, height: 768 },
@@ -85,6 +89,7 @@ export const art = {
   'portrait-ivar': { src: portraitIvar, width: 256, height: 256 },
   'portrait-tora': { src: portraitTora, width: 256, height: 256 },
   'portrait-stempelsen': { src: portraitStempelsen, width: 256, height: 256 },
+  'portrait-gandalf': { src: portraitGandalf, width: 256, height: 256 },
   'photo-shark-old': { src: photoSharkOld, width: 768, height: 768 },
   'photo-shark-ai': { src: photoSharkAi, width: 768, height: 768 },
   'scene-facade': { src: sceneFacade, width: 1536, height: 1024 },
@@ -101,6 +106,7 @@ export const art = {
   'scene-cafe': { src: sceneCafe, width: 1536, height: 1024 },
   'scene-rumour': { src: sceneRumour, width: 1536, height: 1024 },
   'scene-bureau': { src: sceneBureau, width: 1536, height: 1024 },
+  'scene-security': { src: sceneSecurity, width: 1536, height: 1024 },
   'room-reality': { src: roomReality, width: 1536, height: 1024 },
   'sticker-behind-the-facade': sticker(stickerBehindTheFacade),
   'scene-phishing': { src: scenePhishing, width: 1536, height: 1024 },

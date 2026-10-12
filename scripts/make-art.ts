@@ -83,6 +83,15 @@ const SPECS: Record<string, Spec> = {
   'post-cat': post(),
   'post-dog': post(),
   town: { style: 'town', width: 1536, height: 1024, generate: '1536x1024' },
+  /** Lenkevikbanken, pasted over the yellow house top right (scripts/place-bank.ts). */
+  'town-bank': {
+    style: 'town',
+    width: 512,
+    height: 512,
+    generate: '1024x1024',
+    transparent: true,
+    contain: true,
+  },
   character: { style: 'town', width: 512, height: 512, generate: '1536x1024', transparent: true },
   'character-adult-front': {
     style: 'town',
@@ -165,6 +174,14 @@ const SPECS: Record<string, Spec> = {
     generate: '1536x1024',
     from: { id: 'scene-bureau', left: 280, top: 190, width: 330, height: 330 },
   },
+  'portrait-gandalf': {
+    style: 'terminal',
+    width: 256,
+    height: 256,
+    generate: '1536x1024',
+    from: { id: 'scene-security', left: 590, top: 130, width: 360, height: 360 },
+  },
+  'scene-security': { style: 'terminal', width: 1536, height: 1024, generate: '1536x1024' },
   'scene-bureau': { style: 'bureau', width: 1536, height: 1024, generate: '1536x1024' },
   'scene-rumour': { style: 'noir', width: 1536, height: 1024, generate: '1536x1024' },
   'photo-shark-old': { style: 'snapshot', width: 768, height: 768, generate: '1024x1024' },
@@ -179,6 +196,7 @@ const SPECS: Record<string, Spec> = {
   'sticker-web-explorer': sticker,
   'sticker-fact-checker': sticker,
   'sticker-licensed': sticker,
+  'sticker-secure': sticker,
 };
 
 const root = new URL('..', import.meta.url).pathname;

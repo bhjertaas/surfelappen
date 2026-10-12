@@ -42,6 +42,11 @@ export const stickers = [
     awardedBy: { mission: 'the-shark-rumour' },
   },
   {
+    id: 'secure',
+    image: 'sticker-secure',
+    awardedBy: { mission: 'security-basics' },
+  },
+  {
     id: 'licensed',
     image: 'sticker-licensed',
     awardedBy: { mission: 'the-counters' },

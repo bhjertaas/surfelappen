@@ -174,11 +174,9 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       },
     },
     'habit-tip': {
-      heading: 'Gode vaner',
+      heading: 'To gode vaner',
       body: [
-        'Bruk et eget passord på hvert nettsted. Blir ett av dem lekket, er resten fortsatt trygge.',
-        'Ingen klarer å huske alle, så la en **passordbehandler** (på engelsk *password manager*) gjøre det. Den finnes innebygd i Chrome og på Android, og i Passord-appen på iPhone, iPad og Mac. Du kan også bruke en egen app, som Bitwarden, 1Password eller Proton Pass.',
-        'En bonus: passordbehandleren fyller bare inn passordet på det ekte nettstedet. Fyller den ikke inn? Da kan du være på feil sted.',
+        'Bruker du en passordbehandler (på engelsk *password manager*)? Den fyller bare inn passordet på det ekte nettstedet. Fyller den ikke inn, kan du være på feil sted. Mer om passord og passordbehandlere lærer du i Lenkevikbanken.',
         'Har du allerede tastet inn noe på en falsk side? Ring banken på nummeret på kortet ditt, og bytt passord.',
       ],
     },
