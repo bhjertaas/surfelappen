@@ -31,9 +31,6 @@ export function Start() {
         </a>
       </div>
       <p>{m.start.free}</p>
-      <p>
-        <a href={href({ name: 'about' })}>{m.start.about}</a>
-      </p>
     </Page>
   );
 }

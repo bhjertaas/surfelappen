@@ -116,7 +116,7 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
           wrong: 'Ikke den. Se etter navnet med .no på slutten.',
         },
         email: {
-          intro: 'En e-postadresse.',
+          intro: 'En e-postadresse. Mange sier *e-mail* eller bare *mail*, som på engelsk.',
           question: 'Hvilken del forteller hvor e-posten havner?',
           parts: {
             name: '**kari** er navnet på postkassa.',

@@ -19,7 +19,7 @@ interface PageProps {
   children: ComponentChildren;
 }
 
-/** Layout for every screen: header with a way back to town, <main>, focus and title. */
+/** Layout for every screen: header with a way back to town, <main>, a footer, focus and title. */
 export function Page({
   title,
   bare = false,
@@ -61,6 +61,12 @@ export function Page({
         </h1>
         {children}
       </main>
+      <footer class="site-footer">
+        <p>{m.app.footer}</p>
+        <p>
+          <a href={href({ name: 'about' })}>{m.start.about}</a>
+        </p>
+      </footer>
     </div>
   );
 }

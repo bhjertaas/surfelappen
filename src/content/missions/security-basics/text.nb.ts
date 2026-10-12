@@ -73,7 +73,7 @@ export const securityBasicsNb: LinkInspectText<typeof securityBasics> = {
     },
     'two-step': {
       prompt:
-        'En svindler har fått tak i passordet til e-posten din. Men du har slått på totrinnsbekreftelse. Hva skjer når de prøver å logge inn?',
+        'En svindler har fått tak i passordet til e-posten din. Men du har slått på totrinnsbekreftelse (ofte kalt *2FA* eller *MFA*). Hva skjer når de prøver å logge inn?',
       options: {
         a: 'De kommer rett inn',
         b: 'De står fast: de mangler koden som kommer til mobilen din',
@@ -81,7 +81,7 @@ export const securityBasicsNb: LinkInspectText<typeof securityBasics> = {
       },
       feedback: {
         a: 'Ikke med totrinnsbekreftelse. Da trengs både passordet og noe bare du har, som mobilen din.',
-        b: 'Riktig. Det er som en ekstra lås på døra. BankID virker på samme måte. Slå det på for e-post og sosiale medier, under Sikkerhet i innstillingene.',
+        b: 'Riktig. Det er som en ekstra lås på døra: noe du vet (passordet) og noe du har (mobilen). På engelsk heter det *two-factor* eller *multi-factor authentication*, derfor 2FA og MFA. BankID virker på samme måte. Slå det på for e-post og sosiale medier, under Sikkerhet i innstillingene.',
         c: 'Nei, de kommer bare ikke inn. Koden går til mobilen din, ikke til dem.',
       },
     },
