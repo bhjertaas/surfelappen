@@ -27,7 +27,7 @@ export type StickerId = string;
 export type BuildingId = string;
 export type ArtId = string;
 
-/** A source the advice was checked against (shown on the About page). Real URLs, not `.example`. */
+/** A source the advice was checked against (shown on the About page). Real URLs, unlike the made-up ones in `domains.ts`. */
 export interface Source {
   readonly title: string;
   readonly url: string;

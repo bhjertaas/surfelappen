@@ -48,14 +48,14 @@ export const theCountersNb: LinkInspectText<typeof theCounters> = {
       },
     },
     domain: {
-      prompt: 'Hvem er du hos i adressen *https://www.lenkevik-bibliotek.example/lån/bøker*?',
+      prompt: 'Hvem er du hos i adressen *https://www.lenkevik-bibliotek.no/lån/bøker*?',
       options: {
         a: 'www',
-        b: 'lenkevik-bibliotek.example',
+        b: 'lenkevik-bibliotek.no',
         c: 'bøker',
       },
       feedback: {
-        a: 'www er bare en gammel vane. Se etter navnet med .example på slutten.',
+        a: 'www er bare en gammel vane. Se etter navnet med .no på slutten.',
         b: 'Ja. Domenet forteller hvem du er hos. Resten er hvilken side hos dem.',
         c: 'Det er bare hvilken side hos dem. Domenet står foran den første skråstreken.',
       },
@@ -68,16 +68,16 @@ export const theCountersNb: LinkInspectText<typeof theCounters> = {
     },
     toll: {
       prompt:
-        'SMS: «Du har en ubetalt bompengefaktura. Betal her: *https://bomringen.example.betal-raskt.example*». Hvilket nettsted ville du kommet til?',
+        'SMS: «Du har en ubetalt bompengefaktura. Betal her: *https://lenkevik-bom-no.betal-raskt.com/faktura*». Hvilket nettsted ville du kommet til?',
       options: {
-        a: 'Bomringen (bomringen.example)',
-        b: 'Et annet nettsted: betal-raskt.example',
+        a: 'Lenkevik Bom (lenkevik-bom.no)',
+        b: 'Et annet nettsted: betal-raskt.com',
         c: 'Det kan man ikke vite ut fra adressen',
       },
       feedback: {
-        a: 'Bomringen står først, men det er bare pynt. Rett før skråstreken (eller helt på slutten) står betal-raskt.example.',
+        a: 'Lenkevik Bom står først, men det er bare pynt. Rett før skråstreken (eller helt på slutten) står betal-raskt.com.',
         b: 'Riktig. Navnet foran er pynt. Nettstedet står helt til slutt.',
-        c: 'Det kan du faktisk se: helt til slutt står betal-raskt.example.',
+        c: 'Det kan du faktisk se: helt til slutt står betal-raskt.com.',
       },
     },
     padlock: {

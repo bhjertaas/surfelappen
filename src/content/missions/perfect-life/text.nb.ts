@@ -118,7 +118,7 @@ export const perfectLifeNb: FacadeText<typeof perfectLife> = {
         },
         beach: {
           account: '@livmedlina',
-          caption: 'Fikk prøve den nye resorten til @solreiser.example 🌴 Lenke i bio!',
+          caption: 'Fikk prøve den nye resorten til @solreiser_lenkevik 🌴 Lenke i bio!',
           clues: [
             '«Fikk prøve»: turen var gratis.',
             'Et reiseselskap er tagget, og det er en lenke i bio.',

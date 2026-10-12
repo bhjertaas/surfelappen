@@ -1,5 +1,6 @@
 import { getDomain } from 'tldts';
 import { describe, expect, it } from 'vitest';
+import { FICTIONAL_DOMAINS } from '../../src/content/domains.ts';
 import { missions } from '../../src/content/missions/index.ts';
 import type { LinkCase, OptionId } from '../../src/content/types.ts';
 import { linkCases, linkInspectMissions } from './helpers.ts';
@@ -37,9 +38,10 @@ for (const mission of linkInspectMissions(missions)) {
           );
         });
 
-        it('has link text that is a plausible .example address', () => {
+        it('has link text that is a plausible made-up address', () => {
           const text = /^[a-z]+:\/\//.test(c.linkText) ? c.linkText : `https://${c.linkText}`;
-          expect(new URL(text).hostname, `${where}: linkText host`).toMatch(/\.example$/);
+          const site = getDomain(new URL(text).hostname) ?? '';
+          expect(FICTIONAL_DOMAINS, `${where}: linkText site`).toContain(site);
           if (c.pattern !== 'link-text-mismatch') {
             expect(c.linkText, `${where}: linkText differs from url without that pattern`).toBe(
               c.url,
@@ -100,3 +102,17 @@ for (const mission of linkInspectMissions(missions)) {
     });
   });
 }
+
+describe('QR codes', () => {
+  it('exist for every QR case and encode its url (run scripts/make-qr.ts after changes)', async () => {
+    const { readFileSync } = await import('node:fs');
+    const { qrSvg } = await import('../../scripts/qr-svg.ts');
+    for (const mission of linkInspectMissions(missions)) {
+      for (const c of linkCases(mission)) {
+        if (c.context !== 'qr') continue;
+        const file = new URL(`../../src/assets/qr/${c.id}.svg`, import.meta.url);
+        expect(readFileSync(file, 'utf8'), `${c.id}: QR out of date`).toBe(await qrSvg(c.url));
+      }
+    }
+  });
+});

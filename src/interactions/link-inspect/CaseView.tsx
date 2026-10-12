@@ -1,6 +1,7 @@
 import { useId, useRef, useState } from 'preact/hooks';
 import { Rich } from '../../components/Rich.tsx';
 import type { CaseText } from '../../content/missions/text-types.ts';
+import { qrFor } from '../../content/qr.ts';
 import type { LinkCase, OptionId } from '../../content/types.ts';
 import { useI18n } from '../../i18n/i18n.ts';
 import type { LinkInspectRun } from '../../progress/schema.ts';
@@ -8,6 +9,7 @@ import { AddressBreakdown } from './AddressBreakdown.tsx';
 import { FeedbackPanel } from './FeedbackPanel.tsx';
 import { missTransfer, solveStep } from './flow.ts';
 import { Hints } from './Hints.tsx';
+import { LinkPeek } from './LinkPeek.tsx';
 import { OptionButtons } from './OptionButtons.tsx';
 import { TrapPage } from './TrapPage.tsx';
 
@@ -24,13 +26,11 @@ interface Answer {
   readonly attempt: number;
 }
 
-/** One link case: the message, the lupen, three answers, hints and feedback (FR-04). */
+/** One link case: the message and its link to look at, three answers, hints and feedback (FR-04). */
 export function CaseView({ step, text, run, save, advance }: Props) {
   const { m } = useI18n();
   const questionId = useId();
-  const lupenId = useId();
   const question = useRef<HTMLHeadingElement>(null);
-  const [lupenOpen, setLupenOpen] = useState(false);
   const [hintsShown, setHintsShown] = useState(0);
   const [answer, setAnswer] = useState<Answer | null>(null);
   const [missed, setMissed] = useState(false);
@@ -69,26 +69,10 @@ export function CaseView({ step, text, run, save, advance }: Props) {
           </span>
         </p>
         <p class="message__body">
-          <Rich text={text.message} /> <span class="message__link">{step.linkText}</span>
+          <Rich text={text.message} />
         </p>
+        <LinkPeek step={step} qr={qrFor(step.id)} />
       </article>
-
-      <div class="lupen">
-        <button
-          type="button"
-          class="button button--secondary"
-          aria-expanded={lupenOpen}
-          aria-controls={lupenId}
-          onClick={() => setLupenOpen(!lupenOpen)}
-        >
-          <span class="lupen__icon" aria-hidden="true" />
-          {m.linkInspect.useLupen}
-        </button>
-        <div id={lupenId} class="lupen__result" hidden={!lupenOpen}>
-          <p>{m.linkInspect.lupenResult}</p>
-          <p class="address__url">{step.url}</p>
-        </div>
-      </div>
 
       <h2 id={questionId} ref={question} tabIndex={-1}>
         {m.linkInspect.question}

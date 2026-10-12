@@ -36,7 +36,7 @@ export interface CaseText {
 
 /** "Se hva som skjer": a fake page dressed up as the brand, and the consequence. */
 export interface TrapText {
-  /** The brand it pretends to be, e.g. "Fjordbanken". */
+  /** The brand it pretends to be, e.g. "Lenkevikbanken". */
   readonly brand: string;
   readonly title: string;
   readonly body: string;

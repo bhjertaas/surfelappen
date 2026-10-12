@@ -121,10 +121,10 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
           parts: {
             name: '**kari** er navnet på postkassa.',
             at: '**@** har mange navn på norsk: alfakrøll, krøllalfa, eller bare «at», som på engelsk. «At» betyr «hos». Ray Tomlinson valgte tegnet til den første e-posten i 1971, nettopp fordi det betyr «hos» og ikke fantes i navn.',
-            domain: '**epost.example** er domenet: hvem som har postkassa.',
+            domain: '**lenkevik-post.no** er domenet: hvem som har postkassa.',
           },
           right:
-            'Riktig. Alt etter alfakrøllen er stedet, akkurat som domenet i en nettadresse. Kari *hos* epost.example.',
+            'Riktig. Alt etter alfakrøllen er stedet, akkurat som domenet i en nettadresse. Kari *hos* lenkevik-post.no.',
           wrong: 'Ikke helt. Navnet sier hvem, men hvor står etter alfakrøllen.',
         },
         search: {

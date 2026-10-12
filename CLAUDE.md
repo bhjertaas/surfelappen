@@ -20,6 +20,7 @@ node scripts/build-fonts.ts             # rebuild font subsets (only when fonts 
 node scripts/make-art.ts <id> [--generate]  # draft art with the OpenAI API (ADR 0016)
 node scripts/make-icons.ts                 # favicon + PWA icons from public/favicon.svg
 node scripts/make-voice.ts [event…] [--draft]  # Norwegian narration for Tidsreisen (OpenAI speech)
+node scripts/make-qr.ts                    # real QR codes for the QR cases (after changing one)
 ```
 
 Deploy: push to `main`. GitHub Actions runs everything above and deploys to GitHub Pages (`https://surfelappen.minhule.eu`). There is no manual deploy.
@@ -40,7 +41,7 @@ Targets: Safari/iOS 15.4+ and 2022-era Chrome/Edge/Firefox/Samsung. Don't rely o
 
 - Code, comments, commit messages and docs are in **English**. Everything the player sees is **Norwegian**, and lives **only** in `src/i18n/locales/*.ts` and `src/content/missions/*/text.*.ts`. No hard-coded player-facing strings in components.
 - Mission **structure** (IDs, URLs, answers, sticker rules) and **text** (per locale) are separate files. Never put logic in text files or text in structure files.
-- All domains in content end in `.example`. Brands are fictional (Fjordbanken, Pakkeposten, Lenkevik kommune).
+- Domains in content are made up and listed in `src/content/domains.ts` (ADR 0018); check a new one has no DNS address (`getent hosts`). Brands are fictional (Lenkevikbanken, Pakkeposten, Lenkevik kommune). Links in content are never live.
 - Inline markup in text: `*em*` and `**strong**` only, rendered by `<Rich>`. Never `innerHTML`.
 - Only `src/progress/` touches storage. Save no timestamps, no device info, nothing the player types.
 - **No analytics, error-reporting services, external fonts or CDNs, or any request to another origin**, even "just for development". The CSP in `index.html` enforces `'self'`.

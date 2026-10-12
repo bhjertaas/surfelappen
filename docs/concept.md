@@ -53,7 +53,7 @@ Guide: Ivar, who has run the café since the modem squealed. Five short, hands-o
 
 1. **Hvem er hvem?** Sort Chrome, Google, nrk.no, Safari, Ecosia, yr.no, Edge, Bing and wikipedia.org into nettleser / søkemotor / nettsted. Point: Google is not the internet.
 2. **Snarveien:** a toy browser. Get to NRK however you usually do; if you search, you get there in a few taps past an ad, then do it again by typing nrk.no in the address bar. Typing "nrk" without .no becomes a search, as in real browsers. Pick another search engine (Ecosia plants trees).
-3. **Les adressen:** tap each part of `https://www.nrk.no/sport`, `kari@epost.example` and a search address (`google.com/search?q=nrk`), then answer one question about each. Only the anatomy: spotting fake addresses is Agnbua's job, so the two lessons don't overlap.
+3. **Les adressen:** tap each part of `https://www.nrk.no/sport`, `kari@lenkevik-post.no` and a search address (`google.com/search?q=nrk`), then answer one question about each. Only the anatomy: spotting fake addresses is Agnbua's job, so the two lessons don't overlap.
 4. **Pakken på reise:** look up nrk.no (DNS gives an IP address), send, a digger cuts the Oslo cable, send again and the packets go via Bergen.
 5. **Tidsreisen:** ten illustrated cards from "LO" (1969) to ChatGPT (2022), incl. NORSAR at Kjeller (1973). Not quizzed. «Spill av med lyd» plays it as a short film: Ivar's AI voice reads each card (the card is the subtitle) and moves on by itself. Real AI video (e.g. Sora) was left out for now: about $0.10 per second and several MB.
 

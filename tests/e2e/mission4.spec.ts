@@ -40,11 +40,13 @@ test('Hva er egentlig nettet? plays through and opens Agnbua', async ({ page }) 
   // Les adressen: tap every part, then the answer; three addresses.
   for (const parts of [
     ['https://', 'www.', 'nrk.no', '/sport'],
-    ['kari', '@', 'epost.example'],
+    ['kari', '@', 'lenkevik-post.no'],
     ['https://', 'google.com', '/search', '?q=nrk'],
   ]) {
     for (const part of parts) await page.getByRole('button', { name: part, exact: true }).click();
-    const answer = parts.find((p) => ['nrk.no', 'epost.example', '?q=nrk'].includes(p)) as string;
+    const answer = parts.find((p) =>
+      ['nrk.no', 'lenkevik-post.no', '?q=nrk'].includes(p),
+    ) as string;
     await page.getByRole('button', { name: answer, exact: true }).click();
     await expect(page.locator('.feedback')).toContainText('Riktig');
     await page.getByRole('button', { name: 'Neste' }).click();

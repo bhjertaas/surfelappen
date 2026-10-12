@@ -38,12 +38,12 @@ test('wrong answers explain, retries are free, and missed transfer cases get a b
   await expect(page.getByRole('heading', { name: QUESTION })).toBeFocused();
   await choose(page, 'B');
   await expect(feedback).toContainText('Riktig svar');
-  await expect(page.locator('.address')).toContainText('Nettstedet: sporing-levering.example');
+  await expect(page.locator('.address')).toContainText('Nettstedet: pakkesporing.ru');
 
   // See what happens: the fake page looks like Pakkeposten, the address bar doesn't.
   await page.getByRole('button', { name: 'Se hva som skjer om du trykker på lenken' }).click();
   const fake = page.getByRole('figure', { name: 'Siden lenken åpner' });
-  await expect(fake).toContainText('pakkeposten.example.sporing-levering.example');
+  await expect(fake).toContainText('pakkeposten-no.pakkesporing.ru');
   await fake.getByRole('button', { name: 'Betal 29 kr' }).click();
   await expect(page.locator('.trap__after')).toBeFocused();
   await expect(page.locator('.trap__after')).toContainText('12 000 kr');
@@ -74,17 +74,35 @@ test('wrong answers explain, retries are free, and missed transfer cases get a b
   await expect(page.getByText('Du kan også få Skarpt øye')).toBeVisible();
 });
 
-test('the lupen reveals where a link really goes', async ({ page }) => {
+test('pointing at a link shows where it really goes; pressing it shows a preview', async ({
+  page,
+}) => {
   await startMission1(page);
   await solveAll(page, PERFECT_RUN.slice(0, 4));
   await expect(page).toHaveURL(/\/case-5$/);
-  await expect(page.locator('.message__link')).toHaveText('fjordbanken.example/sikkerhet');
-  const lupen = page.getByRole('button', { name: 'Bruk lupen' });
-  await expect(lupen).toHaveAttribute('aria-expanded', 'false');
-  await expect(page.getByText('https://sikkerhet-varsel.example/fjordbanken')).toBeHidden();
-  await lupen.click();
-  await expect(lupen).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.getByText('https://sikkerhet-varsel.example/fjordbanken')).toBeVisible();
+  const link = page.getByRole('button', { name: 'lenkevikbanken.no/sikkerhet' });
+  const real = 'https://sikkerhet-varsel.xyz/lenkevikbanken';
+  await expect(page.locator('.statusbar')).toHaveCount(0);
+  await link.hover();
+  await expect(page.locator('.statusbar')).toHaveText(real);
+  await expect(link).toHaveAttribute('aria-expanded', 'false');
+  await link.click();
+  await expect(link).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('.link-preview')).toContainText(real);
+  // Nothing navigates.
+  await expect(page).toHaveURL(/\/case-5$/);
+});
+
+test('QR cases show a real QR code and what the camera would show', async ({ page }) => {
+  await startMission1(page);
+  await solveAll(page, PERFECT_RUN.slice(0, 9));
+  await expect(page).toHaveURL(/\/transfer-1$/);
+  await expect(page.getByRole('img', { name: 'QR-kode' })).toBeVisible();
+  await page.getByRole('button', { name: 'Vis hva kameraet ser' }).click();
+  await expect(page.locator('.link-preview')).toContainText(
+    'https://betal.lenkevik-kommune.no.parkering-app.net/',
+  );
+  await expectNoAxeViolations(page);
 });
 
 test('leaving mid-mission and coming back resumes at the first unfinished step', async ({
@@ -150,7 +168,7 @@ test('playable with the keyboard alone', async ({ page, isMobile }) => {
 
 test('no axe violations in any Mission 1 state', async ({ page }) => {
   await startMission1(page);
-  await page.getByRole('button', { name: 'Bruk lupen' }).click();
+  await page.locator('.message__link').click();
   await page.getByRole('button', { name: 'Vis et hint' }).click();
   await expectNoAxeViolations(page);
   await choose(page, 'A');

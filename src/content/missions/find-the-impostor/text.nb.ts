@@ -11,9 +11,9 @@ const CANT_TELL = 'Det kan man ikke vite ut fra adressen';
 const CANT_TELL_FEEDBACK =
   'Det kan du faktisk se. Se på slutten av adressen, rett før første skråstrek (/). Der står det ekte nettstedet. Alt foran kan avsenderen skrive fritt.';
 
-const FJORDBANKEN = 'Fjordbanken (fjordbanken.example)';
-const KOMMUNEN = 'Lenkevik kommune (lenkevik-kommune.example)';
-const PAKKEPOSTEN = 'Pakkeposten (pakkeposten.example)';
+const BANKEN = 'Lenkevikbanken (lenkevikbanken.no)';
+const KOMMUNEN = 'Lenkevik kommune (lenkevik-kommune.no)';
+const PAKKEPOSTEN = 'Pakkeposten (pakkeposten.no)';
 
 const FIND_FIRST_SLASH = 'Finn den første skråstreken (/) etter https://. Se rett foran den.';
 const WHAT_IS_LAST = 'Hva står helt til slutt, rett før første /?';
@@ -22,7 +22,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
   title: 'Finn bedrageren',
   character: 'Hanne i Agnbua',
   intro: [
-    'Hei! Mange her i Lenkevik får meldinger med lenker de er usikre på. Noen er ekte, andre er forsøk på svindel. Vil du se på dem sammen med meg? Lupen viser hvor lenkene egentlig fører.',
+    'Hei! Mange her i Lenkevik får meldinger med lenker de er usikre på. Noen er ekte, andre er forsøk på svindel. Vil du se på dem sammen med meg? Pek på lenkene, eller trykk på dem, så ser du hvor de egentlig fører.',
   ],
   learn: 'Du lærer å se hvilket nettsted en lenke egentlig går til.',
   summary: {
@@ -43,59 +43,59 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       situation: 'Bjørn har fått en SMS.',
       sender: 'Pakkeposten',
       message: 'Pakken din venter! Bekreft levering innen i dag:',
-      options: { a: PAKKEPOSTEN, b: 'Et annet nettsted: sporing-levering.example', c: CANT_TELL },
+      options: { a: PAKKEPOSTEN, b: 'Et annet nettsted: pakkesporing.ru', c: CANT_TELL },
       feedback: {
-        a: '*pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*.',
-        b: 'Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig.',
+        a: '*pakkeposten-no* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *pakkesporing.ru*.',
+        b: 'Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *pakkesporing.ru*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
-      hint2: 'Det som står helt til slutt før / er *sporing-levering.example*. Er det Pakkeposten?',
+      hint2: 'Det som står helt til slutt før / er *pakkesporing.ru*. Er det Pakkeposten?',
       lesMer:
         'Hvem som helst kan lage adresser som begynner med et kjent navn, så lenge slutten er deres eget nettsted. Det kalles et underdomene.',
     },
     'case-2': {
       situation: 'Fatima har fått en e-post fra banken.',
-      sender: 'Fjordbanken',
+      sender: 'Lenkevikbanken',
       message: 'Ny melding i nettbanken. Logg inn for å lese den:',
-      options: { a: FJORDBANKEN, b: 'Et annet nettsted som heter «nettbank»', c: CANT_TELL },
+      options: { a: BANKEN, b: 'Et annet nettsted som heter «nettbank»', c: CANT_TELL },
       feedback: {
-        a: 'Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alle meldinger er svindel.',
-        b: '*nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*.',
+        a: 'Rett før første / står *lenkevikbanken.no*. *nettbank* foran er bare en avdeling av Lenkevikbankens eget nettsted. Ikke alle meldinger er svindel.',
+        b: '*nettbank* står foran, men det er bare en del av Lenkevikbankens eget nettsted. Det som teller er det rett før første /: *lenkevikbanken.no*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,
-      hint2: 'Slutten er *fjordbanken.example*. Alt foran det hører til samme nettsted.',
+      hint2: 'Slutten er *lenkevikbanken.no*. Alt foran det hører til samme nettsted.',
     },
     'case-3': {
       trap: {
-        brand: 'Fjordbanken Kundeservice',
+        brand: 'Lenkevikbanken Kundeservice',
         title: 'Kontoen din er låst',
         body: 'Bekreft hvem du er for å låse opp kontoen.',
         fields: ['Fødselsnummer', 'Passord'],
         button: 'Lås opp kontoen',
         after:
-          'Svindlerne har fødselsnummeret og passordet ditt. I morgen ringer «Fjordbanken» og ber om koden fra SMS-en du nettopp fikk. Da er kontoen tømt.',
+          'Svindlerne har fødselsnummeret og passordet ditt. I morgen ringer «Lenkevikbanken» og ber om koden fra SMS-en du nettopp fikk. Da er kontoen tømt.',
       },
       situation: 'Jonas har fått en e-post.',
       sender: 'Kundeservice',
       message: 'Kontoen din er låst. Kontakt kundeservice her:',
       options: {
-        a: FJORDBANKEN,
-        b: 'Et annet nettsted: fjordbanken-kundeservice.example',
+        a: BANKEN,
+        b: 'Et annet nettsted: lenkevikbanken-kundeservice.com',
         c: CANT_TELL,
       },
       feedback: {
-        a: '*fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*.',
-        b: 'Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting.',
+        a: '*lenkevikbanken-kundeservice.com* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *lenkevikbanken.no*.',
+        b: 'Bindestreken gjør det til et helt annet nettsted. At det står *lenkevikbanken* i navnet, beviser ingenting.',
         c: CANT_TELL_FEEDBACK,
       },
-      hint1: 'Sammenlign navnet rett før / med Fjordbankens ekte nettsted, *fjordbanken.example*.',
-      hint2: 'Er *fjordbanken-kundeservice.example* og *fjordbanken.example* nøyaktig like?',
+      hint1: 'Sammenlign navnet rett før / med Lenkevikbankens ekte nettsted, *lenkevikbanken.no*.',
+      hint2: 'Er *lenkevikbanken-kundeservice.com* og *lenkevikbanken.no* nøyaktig like?',
     },
     'case-4': {
       trap: {
-        brand: 'Fjordbanken',
+        brand: 'Lenkevikbanken',
         title: 'Gratulerer, du har vunnet!',
         body: 'Gavekortet ditt på 5 000 kr er klart. Du betaler bare 19 kr i frakt.',
         fields: ['Navn', 'Kortnummer', 'Utløpsdato', 'CVC'],
@@ -105,19 +105,19 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       },
       situation: 'Mari ser et innlegg som en venn har delt.',
       sender: 'Delt av en venn',
-      message: 'Du har vunnet et gavekort fra Fjordbanken! Hent premien:',
-      options: { a: FJORDBANKEN, b: 'Et annet nettsted: premie-trekning.example', c: CANT_TELL },
+      message: 'Du har vunnet et gavekort fra Lenkevikbanken! Hent premien:',
+      options: { a: BANKEN, b: 'Et annet nettsted: premie-trekning.top', c: CANT_TELL },
       feedback: {
-        a: '*fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*.',
-        b: 'Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*.',
+        a: '*lenkevikbanken.no* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.top*.',
+        b: 'Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.top*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: 'Hvor er den første skråstreken? Står bankens navn før eller etter den?',
-      hint2: 'Det som står før første / er *premie-trekning.example*.',
+      hint2: 'Det som står før første / er *premie-trekning.top*.',
     },
     'case-5': {
       trap: {
-        brand: 'Fjordbanken',
+        brand: 'Lenkevikbanken',
         title: 'Sikkerhetsvarsel',
         body: 'Vi har sett uvanlig aktivitet. Logg inn for å sikre kontoen din.',
         fields: ['Brukernavn', 'Passord', 'Kode fra SMS'],
@@ -126,16 +126,16 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
           'Mens siden sier «Vent litt, vi sjekker kontoen din», bruker svindlerne passordet og koden til å logge inn i den ekte nettbanken din.',
       },
       situation: 'Ole har fått en e-post.',
-      sender: 'Fjordbanken Sikkerhet',
+      sender: 'Lenkevikbanken Sikkerhet',
       message: 'Viktig sikkerhetsvarsel. Klikk her:',
-      options: { a: FJORDBANKEN, b: 'Et annet nettsted: sikkerhet-varsel.example', c: CANT_TELL },
+      options: { a: BANKEN, b: 'Et annet nettsted: sikkerhet-varsel.xyz', c: CANT_TELL },
       feedback: {
-        a: 'Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*.',
-        b: 'Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen.',
+        a: 'Teksten i e-posten sier *lenkevikbanken.no*, men det er bare tekst. Pek på lenken, så ser du hvor den faktisk går: *sikkerhet-varsel.xyz*.',
+        b: 'Teksten du ser og adressen lenken går til kan være helt forskjellige. Gjør det til en vane: pek på lenken før du klikker, så viser nettleseren adressen nederst i hjørnet. På mobilen holder du fingeren på lenken.',
         c: CANT_TELL_FEEDBACK,
       },
-      hint1: 'Bruk lupen. Er adressen den samme som teksten?',
-      hint2: 'Lupen viser *sikkerhet-varsel.example* rett før første /.',
+      hint1: 'Pek på lenken, eller trykk på den. Er adressen den samme som teksten?',
+      hint2: 'Lenken går til *sikkerhet-varsel.xyz*, rett før første /.',
     },
     'case-6': {
       trap: {
@@ -150,7 +150,7 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       situation: 'Sunniva har fått en SMS.',
       sender: 'Lenkevik kommune',
       message: 'Du har en ubetalt faktura. Betal her for å unngå gebyr:',
-      options: { a: KOMMUNEN, b: 'Et annet nettsted: lenkevik-kornmune.example', c: CANT_TELL },
+      options: { a: KOMMUNEN, b: 'Et annet nettsted: lenkevik-kornmune.no', c: CANT_TELL },
       feedback: {
         a: 'Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre.',
         b: 'Godt sett. *rn* ser nesten ut som *m*, men det er et helt annet nettsted enn kommunens.',
@@ -174,16 +174,18 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       },
     },
     'habit-tip': {
-      heading: 'To gode vaner',
+      heading: 'Gode vaner',
       body: [
-        'Bruker du passordbehandler, og den ikke fyller inn passordet? Det kan være fordi du er på feil nettsted.',
-        'Har du allerede tastet inn noe? Ring banken på nummeret på kortet ditt, og bytt passord.',
+        'Bruk et eget passord på hvert nettsted. Blir ett av dem lekket, er resten fortsatt trygge.',
+        'Ingen klarer å huske alle, så la en **passordbehandler** (på engelsk *password manager*) gjøre det. Den finnes innebygd i Chrome og på Android, og i Passord-appen på iPhone, iPad og Mac. Du kan også bruke en egen app, som Bitwarden, 1Password eller Proton Pass.',
+        'En bonus: passordbehandleren fyller bare inn passordet på det ekte nettstedet. Fyller den ikke inn? Da kan du være på feil sted.',
+        'Har du allerede tastet inn noe på en falsk side? Ring banken på nummeret på kortet ditt, og bytt passord.',
       ],
     },
     'transfer-intro': {
       heading: 'Prøv selv',
       body: [
-        'Nå prøver du på egen hånd, i en ny situasjon. Ved Kafé Alfakrøll står et parkeringsskilt med QR-kode. Bruk lupen og se hvor koden fører.',
+        'Nå prøver du på egen hånd, i en ny situasjon. Ved Kafé Alfakrøll står et parkeringsskilt med QR-kode. Skann den gjerne med mobilen, eller trykk på «Vis hva kameraet ser».',
       ],
     },
     'transfer-1': {
@@ -199,14 +201,14 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       situation: 'Ved Kafé Alfakrøll henger et parkeringsskilt med en QR-kode.',
       sender: 'Parkering Lenkevik',
       message: 'Betal parkeringen enkelt! Skann koden:',
-      options: { a: KOMMUNEN, b: 'Et annet nettsted: parkering-app.example', c: CANT_TELL },
+      options: { a: KOMMUNEN, b: 'Et annet nettsted: parkering-app.net', c: CANT_TELL },
       feedback: {
-        a: '*lenkevik-kommune.example* står først, men det er bare en del av et lengre navn. Rett før første / står *parkering-app.example*.',
-        b: 'Kommunens navn er lagt foran som pynt. Det ekte nettstedet er *parkering-app.example*.',
+        a: '*lenkevik-kommune.no* står først, men det er bare en del av et lengre navn. Rett før første / står *parkering-app.net*.',
+        b: 'Kommunens navn er lagt foran som pynt. Det ekte nettstedet er *parkering-app.net*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
-      hint2: 'Rett før / står *parkering-app.example*. Er det kommunen?',
+      hint2: 'Rett før / står *parkering-app.net*. Er det kommunen?',
     },
     'transfer-2': {
       situation: 'På andre siden av gata står et annet parkeringsskilt.',
@@ -214,16 +216,16 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Betal for parkering her. Skann koden:',
       options: { a: KOMMUNEN, b: 'Et annet nettsted som heter «parkering»', c: CANT_TELL },
       feedback: {
-        a: 'Rett før første / står *lenkevik-kommune.example*. *parkering* foran er bare en avdeling av kommunens eget nettsted.',
-        b: '*parkering* står foran, men det er bare en del av kommunens eget nettsted. Det som teller er det rett før første /: *lenkevik-kommune.example*.',
+        a: 'Rett før første / står *lenkevik-kommune.no*. *parkering* foran er bare en avdeling av kommunens eget nettsted.',
+        b: '*parkering* står foran, men det er bare en del av kommunens eget nettsted. Det som teller er det rett før første /: *lenkevik-kommune.no*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,
-      hint2: 'Slutten er *lenkevik-kommune.example*. Alt foran det hører til samme nettsted.',
+      hint2: 'Slutten er *lenkevik-kommune.no*. Alt foran det hører til samme nettsted.',
     },
     'transfer-1-backup': {
       trap: {
-        brand: 'Fjordbanken',
+        brand: 'Lenkevikbanken',
         title: 'Gratis kontosjekk',
         body: 'Logg inn, så sjekker vi kontoen din for svindel.',
         fields: ['Brukernavn', 'Passord'],
@@ -233,15 +235,15 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       },
       situation: 'Inne på Kafé Alfakrøll henger en plakat på oppslagstavla.',
       sender: 'Plakat',
-      message: 'Fjordbanken: Sjekk kontoen din gratis! Skann koden og logg inn:',
-      options: { a: FJORDBANKEN, b: 'Et annet nettsted: trygg-sjekk.example', c: CANT_TELL },
+      message: 'Lenkevikbanken: Sjekk kontoen din gratis! Skann koden og logg inn:',
+      options: { a: BANKEN, b: 'Et annet nettsted: trygg-sjekk.ru', c: CANT_TELL },
       feedback: {
-        a: '*fjordbanken.example* står først, men det er bare en del av et lengre navn. Rett før første / står *trygg-sjekk.example*.',
-        b: 'Bankens navn er lagt foran som pynt. Det ekte nettstedet er *trygg-sjekk.example*, og der skal du ikke logge inn i banken.',
+        a: '*lenkevikbanken.no* står først, men det er bare en del av et lengre navn. Rett før første / står *trygg-sjekk.ru*.',
+        b: 'Bankens navn er lagt foran som pynt. Det ekte nettstedet er *trygg-sjekk.ru*, og der skal du ikke logge inn i banken.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: FIND_FIRST_SLASH,
-      hint2: 'Rett før / står *trygg-sjekk.example*. Er det Fjordbanken?',
+      hint2: 'Rett før / står *trygg-sjekk.ru*. Er det Lenkevikbanken?',
     },
     'transfer-2-backup': {
       situation: 'I vinduet på Kafé Alfakrøll henger en lapp.',
@@ -249,12 +251,12 @@ export const findTheImpostorNb: LinkInspectText<typeof findTheImpostor> = {
       message: 'Nå kan du hente pakker her! Spor pakken din:',
       options: { a: PAKKEPOSTEN, b: 'Et annet nettsted som heter «minside»', c: CANT_TELL },
       feedback: {
-        a: 'Rett før første / står *pakkeposten.example*. *minside* foran er bare en del av Pakkepostens eget nettsted.',
-        b: '*minside* står foran, men det er bare en del av Pakkepostens eget nettsted. Det som teller er det rett før første /: *pakkeposten.example*.',
+        a: 'Rett før første / står *pakkeposten.no*. *minside* foran er bare en del av Pakkepostens eget nettsted.',
+        b: '*minside* står foran, men det er bare en del av Pakkepostens eget nettsted. Det som teller er det rett før første /: *pakkeposten.no*.',
         c: CANT_TELL_FEEDBACK,
       },
       hint1: WHAT_IS_LAST,
-      hint2: 'Slutten er *pakkeposten.example*. Alt foran det hører til samme nettsted.',
+      hint2: 'Slutten er *pakkeposten.no*. Alt foran det hører til samme nettsted.',
     },
   },
 };

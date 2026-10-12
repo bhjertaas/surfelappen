@@ -3,7 +3,7 @@
  * host and real site from content (verified against the URL parser and the
  * Public Suffix List by the content tests).
  *
- *   https://  pakkeposten.example.  sporing-levering.example  /pakke/7731
+ *   https://  pakkeposten.no.  pakkesporing.ru  /pakke/7731
  *   scheme    subdomains            site                      rest
  */
 export interface AddressParts {

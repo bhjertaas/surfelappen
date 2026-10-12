@@ -18,14 +18,14 @@ What to build and why: [`PRD.md`](PRD.md). This document covers how it's built. 
 | Browsers | Safari/iOS 15.4+, Chrome/Edge/Firefox/Samsung from 2022 | [0010](decisions/0010-browser-support.md) |
 | Art / fonts | 320×180 logical town, 16 px grid, PNG; Pixelify Sans (headings) + Atkinson Hyperlegible Next (body) | [0011](decisions/0011-art-and-fonts.md) |
 | Licence | Public repo, code MIT, content/art CC BY-NC-SA 4.0 | [0012](decisions/0012-licensing.md) |
-| Mission 1 flow | Lupen reveals, feedback marks; transfer retry → backup | [0013](decisions/0013-link-inspect-flow.md) |
+| Mission 1 flow | Point at / press the link to see where it goes (`LinkPeek`), feedback marks; transfer retry → backup | [0013](decisions/0013-link-inspect-flow.md) |
 | Typing input | Native input as key capture; key vs code matching; layout fallback | [0014](decisions/0014-typing-input.md) |
 | Audiences | Optional child/teen/adult choice stored with progress; text variants with fallback; order per audience | [0015](decisions/0015-audience-variants.md) |
 
 **Runtime dependencies:** `preact` and `workbox-window`. Nothing else ships to the browser without asking first.
 **Dev dependencies (planned):** `vite`, `typescript`, `@preact/preset-vite`, `vite-plugin-pwa`, `@biomejs/biome`, `vitest`, `tldts`, `@playwright/test`, `@axe-core/playwright`.
 
-`tldts` is used in tests only. At runtime the lupen and feedback use the `expectedHost`/`expectedSite` already in content; the tests guarantee those match the real parser.
+`tldts` is used in tests only. At runtime the link preview and feedback use the `expectedHost`/`expectedSite` already in content; the tests guarantee those match the real parser.
 
 ## Folder structure
 
@@ -76,7 +76,7 @@ surfelappen/
 │     ├─ fonts/               # subsetted woff2 + OFL licence files
 │     └─ art/                 # indexed PNGs made by scripts/make-art.ts (ADR 0016)
 ├─ tests/
-│  ├─ content/                # Vitest: URLs (URL + tldts), .example, drills, locales, option rules
+│  ├─ content/                # Vitest: URLs (URL + tldts), made-up domains, QR codes, drills, locales, option rules
 │  └─ e2e/                    # Playwright: flows, axe per screen, offline, resume
 ├─ scripts/check-size.ts      # size budget over dist/
 └─ docs/
@@ -137,9 +137,10 @@ The schema is enforced in two layers, and both run in `pnpm check` and CI, so in
 1. **Shape**, by tsc.
 2. **Semantics**, by Vitest content tests (`tests/content/`):
    - every URL parses with `URL`
-   - `hostname === expectedHost` and `tldts.getDomain(url) === expectedSite` (note: `.example` is not on the Public Suffix List, so tldts applies the default `*` rule; this is what we want)
-   - every domain anywhere in structure or text ends in `.example`
-   - every `*.example` mentioned in a case's text is one of that case's url/host/site/claimedSite
+   - `hostname === expectedHost` and `tldts.getDomain(url) === expectedSite`
+   - every domain anywhere in structure or text is in `content/domains.ts` (made up, ADR 0018) or the mission's teaching domains
+   - every domain mentioned in a case's text is one of that case's url/host/site/claimedSite
+   - every QR case's QR code (`assets/qr/`) encodes its url
    - exactly three options, exactly one correct, IDs unique per mission and globally for stickers
    - every transfer case has a backup with the same pattern
    - typing drills use only keys taught in that or earlier steps

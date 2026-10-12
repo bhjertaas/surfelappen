@@ -138,8 +138,14 @@ export const nb = {
     },
     messageLabel: 'Meldingen',
     from: 'Fra:',
-    useLupen: 'Bruk lupen',
-    lupenResult: 'Lupen viser hvor lenken egentlig går:',
+    peekHelp:
+      'Pek på lenken med musa, så viser nettleseren adressen nederst i hjørnet. På mobilen holder du fingeren på lenken til adressen dukker opp. Her holder det å trykke.',
+    linkGoesTo: 'Lenken går egentlig til:',
+    qrAlt: 'QR-kode',
+    qrHelp:
+      'Skann gjerne koden med kameraet på mobilen. Kameraet viser adressen før du åpner den. Se på adressen, men ikke åpne den.',
+    showCamera: 'Vis hva kameraet ser',
+    cameraShows: 'Kameraet viser:',
     question: 'Hvilken nettside ville du egentlig kommet til?',
     optionLetters: ['A', 'B', 'C'],
     hint: 'Vis et hint',
@@ -369,7 +375,7 @@ export const nb = {
     informal: 'Klistremerkene og passet er bare for moro skyld. De er ikke et bevis på kompetanse.',
     fictionHeading: 'Alt er oppdiktet',
     fiction:
-      'Fjordbanken, Pakkeposten og Lenkevik kommune finnes ikke. Alle nettadressene i spillet slutter på *.example*, som aldri kan føre til et ekte nettsted.',
+      'Lenkevikbanken, Pakkeposten og Lenkevik kommune finnes ikke. Nettadressene i spillet er også oppdiktet, og ingen av dem fører til et ekte nettsted. Ikke prøv å åpne dem.',
     creditsHeading: 'Laget av',
     credits: [
       'Laget av Benny Hjertaas.',

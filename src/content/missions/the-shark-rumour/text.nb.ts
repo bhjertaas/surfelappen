@@ -243,8 +243,8 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
         },
         kind: {
           label:
-            '«Takk for at du passer på oss! Jeg sjekket, og det startet som en spøk på Lenkevik Løgnpost. Bildet er fra Hawaii i 2015. Kommunen skriver at stranda er åpen: lenkevik-kommune.example»',
-          says: 'Takk for at du passer på oss! Jeg sjekket, og det startet som en spøk på Lenkevik Løgnpost. Bildet er fra Hawaii i 2015. Kommunen skriver at stranda er åpen: lenkevik-kommune.example',
+            '«Takk for at du passer på oss! Jeg sjekket, og det startet som en spøk på Lenkevik Løgnpost. Bildet er fra Hawaii i 2015. Kommunen skriver at stranda er åpen: lenkevik-kommune.no»',
+          says: 'Takk for at du passer på oss! Jeg sjekket, og det startet som en spøk på Lenkevik Løgnpost. Bildet er fra Hawaii i 2015. Kommunen skriver at stranda er åpen: lenkevik-kommune.no',
           outcome: [
             { from: RANDI, body: 'Å nei, så flaut! Takk, jeg sletter den med en gang 🙈' },
             { from: PER, body: 'Jeg også. Is på stranda i morgen?' },

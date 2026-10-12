@@ -118,22 +118,22 @@ Feedback teaches; it never just says right or wrong.
 
 **Setting:** Postkontoret. Townspeople bring messages they've received: SMS, email, a QR poster. The player uses **lupen** on each link. Lupen reveals the full address the link really goes to, as the player would see it by long-pressing or hovering in real life. It does *not* point out the real site: finding it is the skill being taught. The feedback then shows the parsed address with the hostname and the real site marked by bold, underline and a text label (not colour alone).
 
-**Fictional real sites:** `fjordbanken.example` (bank), `pakkeposten.example` (parcels), `lenkevik-kommune.example` (municipality). All domains use the reserved `.example` TLD, so nothing can ever resolve to a real site.
+**Fictional real sites:** `lenkevikbanken.no` (bank), `pakkeposten.no` (parcels), `lenkevik-kommune.no` (municipality). All domains use the reserved `.example` TLD, so nothing can ever resolve to a real site.
 
 **Each case asks one question:** *"Hvilken nettside ville du egentlig kommet til?"* with three options. Feedback shows the parsed address and one sentence on the trick.
 
 | # | Context | Link (what lupen reveals) | Real site | Verdict | Teaches |
 | --- | --- | --- | --- | --- | --- |
-| 1 | SMS: "Pakken din venter" | `https://pakkeposten.example.sporing-levering.example/pakke/7731` | `sporing-levering.example` | Impostor | Familiar name as a subdomain; padlock/HTTPS doesn't prove honesty |
-| 2 | Email from the bank | `https://nettbank.fjordbanken.example/logg-inn` | `fjordbanken.example` | Genuine | Subdomains of the real domain are fine; not everything is a scam |
-| 3 | Email: "Kundeservice" | `https://fjordbanken-kundeservice.example/` | `fjordbanken-kundeservice.example` | Impostor | A brand name inside a different domain |
-| 4 | Social post: "Du har vunnet!" | `https://premie-trekning.example/fjordbanken.example/vinner` | `premie-trekning.example` | Impostor | Brand name in the path |
-| 5 | Email link text says `fjordbanken.example/sikkerhet` | `https://sikkerhet-varsel.example/fjordbanken` | `sikkerhet-varsel.example` | Impostor | Link text is not the destination; inspect before you tap |
-| 6 | SMS from "the municipality" | `https://lenkevik-kornmune.example/faktura` | `lenkevik-kornmune.example` | Impostor | Lookalike letters (rn vs m) |
+| 1 | SMS: "Pakken din venter" | `https://pakkeposten-no.pakkesporing.ru/pakke/7731` | `pakkesporing.ru` | Impostor | Familiar name as a subdomain; padlock/HTTPS doesn't prove honesty |
+| 2 | Email from the bank | `https://nettbank.lenkevikbanken.no/logg-inn` | `lenkevikbanken.no` | Genuine | Subdomains of the real domain are fine; not everything is a scam |
+| 3 | Email: "Kundeservice" | `https://lenkevikbanken-kundeservice.com/` | `lenkevikbanken-kundeservice.com` | Impostor | A brand name inside a different domain |
+| 4 | Social post: "Du har vunnet!" | `https://premie-trekning.top/lenkevikbanken.no/vinner` | `premie-trekning.top` | Impostor | Brand name in the path |
+| 5 | Email link text says `lenkevikbanken.no/sikkerhet` | `https://sikkerhet-varsel.xyz/lenkevikbanken` | `sikkerhet-varsel.xyz` | Impostor | Link text is not the destination; inspect before you tap |
+| 6 | SMS from "the municipality" | `https://lenkevik-kornmune.no/faktura` | `lenkevik-kornmune.no` | Impostor | Lookalike letters (rn vs m) |
 
 **Habit scene (after case 6):** the bank email in case 2 was genuine, but the player is asked what to do anyway. Best answer: open the bank app or type the address yourself. Also covered in one screen: if your password manager won't autofill, be suspicious; if you already entered details, call the bank using the number on your card and change your password.
 
-**Transfer test:** two unseen cases in a new context (a QR parking sign at Nettkaféen): one impostor (`https://betal.lenkevik-kommune.example.parkering-app.example/`) and one genuine (`https://parkering.lenkevik-kommune.example/betal`). A miss shows the explanation and the player retries that case (free, like everywhere else); once it is right, one unseen backup case of the same pattern follows, also with free retries.
+**Transfer test:** two unseen cases in a new context (a QR parking sign at Nettkaféen): one impostor (`https://betal.lenkevik-kommune.no.parkering-app.net/`) and one genuine (`https://parkering.lenkevik-kommune.no/betal`). A miss shows the explanation and the player retries that case (free, like everywhere else); once it is right, one unseen backup case of the same pattern follows, also with free retries.
 
 **Completion:** all six cases answered (retries free), the habit scene answered, and both transfer patterns answered correctly (retries free; a missed transfer case also needs its backup answered). The end screen shows privately how many of the six main cases were right on the first try. Sticker: *"Lenkedetektiv"*.
 
@@ -296,10 +296,10 @@ Example structure for case 1:
   "id": "case-1",
   "role": "main",
   "context": "sms",
-  "linkText": "https://pakkeposten.example.sporing-levering.example/pakke/7731",
-  "url": "https://pakkeposten.example.sporing-levering.example/pakke/7731",
-  "expectedHost": "pakkeposten.example.sporing-levering.example",
-  "expectedSite": "sporing-levering.example",
+  "linkText": "https://pakkeposten-no.pakkesporing.ru/pakke/7731",
+  "url": "https://pakkeposten-no.pakkesporing.ru/pakke/7731",
+  "expectedHost": "pakkeposten-no.pakkesporing.ru",
+  "expectedSite": "pakkesporing.ru",
   "verdict": "impostor",
   "pattern": "subdomain-trick",
   "options": [
@@ -360,7 +360,7 @@ All text, art and scenarios are original. Outside material is used only to check
 
 - **Advice reference:** check the takeaway and "what to do if you clicked" against current guidance from [Nettvett.no](https://nettvett.no) (NorSIS) and [NSM](https://nsm.no) before release.
 - **Review date:** each mission file records the date its advice was last checked. Re-check yearly.
-- **Brands:** fictional only (Fjordbanken, Pakkeposten, Lenkevik kommune). Recognisable *shapes* of real scams, never real logos or names.
+- **Brands:** fictional only (Lenkevikbanken, Pakkeposten, Lenkevik kommune). Recognisable *shapes* of real scams, never real logos or names.
 - **Credits page:** lists the sources checked and the art credits.
 
 The mission's URLs have already been verified with a WHATWG URL parser and `tldts`; all ten (including the transfer backups in Appendix A) resolve to the real site stated.
@@ -444,8 +444,8 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 **Fixed options for every case** (same order every time):
 
-- **A** – the familiar site, e.g. *Pakkeposten (pakkeposten.example)*
-- **B** – the other candidate, e.g. *Et annet nettsted: sporing-levering.example*
+- **A** – the familiar site, e.g. *Pakkeposten (pakkeposten.no)*
+- **B** – the other candidate, e.g. *Et annet nettsted: pakkesporing.ru*
 - **C** – *Det kan man ikke vite ut fra adressen*
 
 **Shared feedback for C** (when wrong): "Det kan du faktisk se. Se på slutten av adressen, rett før første skråstrek (/). Der står det ekte nettstedet. Alt foran kan avsenderen skrive fritt."
@@ -458,54 +458,54 @@ Draft text to start from. Polish the wording in testing; keep the structure. All
 
 ### Case 1 – SMS (subdomain trick) · answer B
 
-- **From:** Bjørn. **Message (SMS from "Pakkeposten"):** "Pakken din venter! Bekreft levering innen i dag: https://pakkeposten.example.sporing-levering.example/pakke/7731"
-- **Options:** A *Pakkeposten (pakkeposten.example)* · B *Et annet nettsted: sporing-levering.example*
-- **Feedback A:** "*pakkeposten.example* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *sporing-levering.example*."
-- **Feedback B:** "Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *sporing-levering.example*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig."
+- **From:** Bjørn. **Message (SMS from "Pakkeposten"):** "Pakken din venter! Bekreft levering innen i dag: https://pakkeposten-no.pakkesporing.ru/pakke/7731"
+- **Options:** A *Pakkeposten (pakkeposten.no)* · B *Et annet nettsted: pakkesporing.ru*
+- **Feedback A:** "*pakkeposten.no* står først, men det er bare en del av et lengre navn. Nettstedet står rett før første /, og der står *pakkesporing.ru*."
+- **Feedback B:** "Navnet Pakkeposten er lagt foran som pynt. Det ekte nettstedet er *pakkesporing.ru*. Legg også merke til hengelåsen: den betyr bare at forbindelsen er kryptert, ikke at nettstedet er ærlig."
 - **Hint 1:** "Finn den første skråstreken (/) etter https://. Se rett foran den."
-- **Hint 2:** "Det som står helt til slutt før / er *sporing-levering.example*. Er det Pakkeposten?"
+- **Hint 2:** "Det som står helt til slutt før / er *pakkesporing.ru*. Er det Pakkeposten?"
 - **Les mer:** "Hvem som helst kan lage adresser som begynner med et kjent navn, så lenge slutten er deres eget nettsted. Det kalles et underdomene."
 
 ### Case 2 – Email from the bank (genuine) · answer A
 
-- **From:** Fatima. **Message (email from Fjordbanken):** "Ny melding i nettbanken. Logg inn for å lese den: https://nettbank.fjordbanken.example/logg-inn"
-- **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted som heter «nettbank»*
-- **Feedback A:** "Rett før første / står *fjordbanken.example*. *nettbank* foran er bare en avdeling av Fjordbankens eget nettsted. Ikke alle meldinger er svindel."
-- **Feedback B:** "*nettbank* står foran, men det er bare en del av Fjordbankens eget nettsted. Det som teller er det rett før første /: *fjordbanken.example*."
+- **From:** Fatima. **Message (email from Lenkevikbanken):** "Ny melding i nettbanken. Logg inn for å lese den: https://nettbank.lenkevikbanken.no/logg-inn"
+- **Options:** A *Lenkevikbanken (lenkevikbanken.no)* · B *Et annet nettsted som heter «nettbank»*
+- **Feedback A:** "Rett før første / står *lenkevikbanken.no*. *nettbank* foran er bare en avdeling av Lenkevikbankens eget nettsted. Ikke alle meldinger er svindel."
+- **Feedback B:** "*nettbank* står foran, men det er bare en del av Lenkevikbankens eget nettsted. Det som teller er det rett før første /: *lenkevikbanken.no*."
 - **Hint 1:** "Hva står helt til slutt, rett før første /?"
-- **Hint 2:** "Slutten er *fjordbanken.example*. Alt foran det hører til samme nettsted."
+- **Hint 2:** "Slutten er *lenkevikbanken.no*. Alt foran det hører til samme nettsted."
 
 ### Case 3 – "Kundeservice" email (brand in another domain) · answer B
 
-- **From:** Jonas. **Message:** "Kontoen din er låst. Kontakt kundeservice her: https://fjordbanken-kundeservice.example/"
-- **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: fjordbanken-kundeservice.example*
-- **Feedback A:** "*fjordbanken-kundeservice.example* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *fjordbanken.example*."
-- **Feedback B:** "Bindestreken gjør det til et helt annet nettsted. At det står *fjordbanken* i navnet, beviser ingenting."
-- **Hint 1:** "Sammenlign navnet rett før / med Fjordbankens ekte nettsted, *fjordbanken.example*."
-- **Hint 2:** "Er *fjordbanken-kundeservice.example* og *fjordbanken.example* nøyaktig like?"
+- **From:** Jonas. **Message:** "Kontoen din er låst. Kontakt kundeservice her: https://lenkevikbanken-kundeservice.com/"
+- **Options:** A *Lenkevikbanken (lenkevikbanken.no)* · B *Et annet nettsted: lenkevikbanken-kundeservice.com*
+- **Feedback A:** "*lenkevikbanken-kundeservice.com* er ett eget navn som hvem som helst kan kjøpe. Det er ikke det samme som *lenkevikbanken.no*."
+- **Feedback B:** "Bindestreken gjør det til et helt annet nettsted. At det står *lenkevikbanken* i navnet, beviser ingenting."
+- **Hint 1:** "Sammenlign navnet rett før / med Lenkevikbankens ekte nettsted, *lenkevikbanken.no*."
+- **Hint 2:** "Er *lenkevikbanken-kundeservice.com* og *lenkevikbanken.no* nøyaktig like?"
 
 ### Case 4 – Social post (brand in path) · answer B
 
-- **From:** Mari. **Message (post shared by a friend):** "Du har vunnet et gavekort fra Fjordbanken! Hent premien: https://premie-trekning.example/fjordbanken.example/vinner"
-- **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: premie-trekning.example*
-- **Feedback A:** "*fjordbanken.example* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.example*."
-- **Feedback B:** "Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.example*."
+- **From:** Mari. **Message (post shared by a friend):** "Du har vunnet et gavekort fra Lenkevikbanken! Hent premien: https://premie-trekning.top/lenkevikbanken.no/vinner"
+- **Options:** A *Lenkevikbanken (lenkevikbanken.no)* · B *Et annet nettsted: premie-trekning.top*
+- **Feedback A:** "*lenkevikbanken.no* står etter første /, og der kan hvem som helst skrive hva som helst. Nettstedet er det som står før: *premie-trekning.top*."
+- **Feedback B:** "Alt etter første / er bare innhold på det samme nettstedet, som her er *premie-trekning.top*."
 - **Hint 1:** "Hvor er den første skråstreken? Står bankens navn før eller etter den?"
-- **Hint 2:** "Det som står før første / er *premie-trekning.example*."
+- **Hint 2:** "Det som står før første / er *premie-trekning.top*."
 
 ### Case 5 – Link text ≠ destination · answer B
 
-- **From:** Ole. **Message (email):** "Viktig sikkerhetsvarsel. Klikk her: fjordbanken.example/sikkerhet" (the visible text). Lupen reveals: `https://sikkerhet-varsel.example/fjordbanken`
-- **Options:** A *Fjordbanken (fjordbanken.example)* · B *Et annet nettsted: sikkerhet-varsel.example*
-- **Feedback A:** "Teksten i e-posten sier *fjordbanken.example*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.example*."
+- **From:** Ole. **Message (email):** "Viktig sikkerhetsvarsel. Klikk her: lenkevikbanken.no/sikkerhet" (the visible text). Lupen reveals: `https://sikkerhet-varsel.xyz/lenkevikbanken`
+- **Options:** A *Lenkevikbanken (lenkevikbanken.no)* · B *Et annet nettsted: sikkerhet-varsel.xyz*
+- **Feedback A:** "Teksten i e-posten sier *lenkevikbanken.no*, men det er bare tekst. Lupen viser hvor lenken faktisk går: *sikkerhet-varsel.xyz*."
 - **Feedback B:** "Teksten du ser og adressen lenken går til kan være helt forskjellige. På PC kan du holde musepekeren over lenken; på mobil kan du holde fingeren på lenken for å se adressen."
 - **Hint 1:** "Bruk lupen. Er adressen den samme som teksten?"
-- **Hint 2:** "Lupen viser *sikkerhet-varsel.example* rett før første /."
+- **Hint 2:** "Lupen viser *sikkerhet-varsel.xyz* rett før første /."
 
 ### Case 6 – Municipality SMS (lookalike letters) · answer B
 
-- **From:** Sunniva. **Message (SMS from "Lenkevik kommune"):** "Du har en ubetalt faktura. Betal her for å unngå gebyr: https://lenkevik-kornmune.example/faktura"
-- **Options:** A *Lenkevik kommune (lenkevik-kommune.example)* · B *Et annet nettsted: lenkevik-kornmune.example*
+- **From:** Sunniva. **Message (SMS from "Lenkevik kommune"):** "Du har en ubetalt faktura. Betal her for å unngå gebyr: https://lenkevik-kornmune.no/faktura"
+- **Options:** A *Lenkevik kommune (lenkevik-kommune.no)* · B *Et annet nettsted: lenkevik-kornmune.no*
 - **Feedback A:** "Se nøye: det står *kornmune*, med **r** og **n** i stedet for **m**. Svindlere bruker bokstaver som ligner hverandre."
 - **Feedback B:** "Godt sett. *rn* ser nesten ut som *m*, men det er et helt annet nettsted enn kommunens."
 - **Hint 1:** "Les navnet bokstav for bokstav."
@@ -529,10 +529,10 @@ Intro: "Nå prøver du på egen hånd, i en ny situasjon. Ved Nettkaféen står 
 
 | ID | URL | Answer | Pattern |
 | --- | --- | --- | --- |
-| T1 | `https://betal.lenkevik-kommune.example.parkering-app.example/` | B – *parkering-app.example* | subdomain trick |
-| T2 | `https://parkering.lenkevik-kommune.example/betal` | A – *lenkevik-kommune.example* | genuine subdomain |
-| T1-backup | `https://kunde.fjordbanken.example.trygg-sjekk.example/logg-inn` | B – *trygg-sjekk.example* | subdomain trick |
-| T2-backup | `https://minside.pakkeposten.example/sporing` | A – *pakkeposten.example* | genuine subdomain |
+| T1 | `https://betal.lenkevik-kommune.no.parkering-app.net/` | B – *parkering-app.net* | subdomain trick |
+| T2 | `https://parkering.lenkevik-kommune.no/betal` | A – *lenkevik-kommune.no* | genuine subdomain |
+| T1-backup | `https://kunde.lenkevikbanken.no.trygg-sjekk.ru/logg-inn` | B – *trygg-sjekk.ru* | subdomain trick |
+| T2-backup | `https://minside.pakkeposten.no/sporing` | A – *pakkeposten.no* | genuine subdomain |
 
 Feedback on transfer cases follows the same pattern as the main cases. Draft texts for the transfer cases and backups (situation, sender, message, options, feedback, hints) are in `src/content/missions/find-the-impostor/text.nb.ts`; review them with the rest of the wording in testing.
 

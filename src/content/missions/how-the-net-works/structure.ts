@@ -47,7 +47,7 @@ export const howTheNetWorks = {
       id: 'shortcut',
       target: 'nrk.no',
       keywords: ['nrk'],
-      adHost: 'tv-tilbud.example',
+      adHost: 'tv-tilbud.com',
       engines: [
         { id: 'google', host: 'google.com' },
         { id: 'bing', host: 'bing.com' },
@@ -74,7 +74,7 @@ export const howTheNetWorks = {
           parts: [
             { id: 'name', text: 'kari' },
             { id: 'at', text: '@' },
-            { id: 'domain', text: 'epost.example' },
+            { id: 'domain', text: 'lenkevik-post.no' },
           ],
           answer: 'domain',
         },

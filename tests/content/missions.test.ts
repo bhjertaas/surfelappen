@@ -1,4 +1,6 @@
+import { getDomain } from 'tldts';
 import { describe, expect, it } from 'vitest';
+import { FICTIONAL_DOMAINS } from '../../src/content/domains.ts';
 import { missions as typed } from '../../src/content/missions/index.ts';
 import type { MissionStructure } from '../../src/content/types.ts';
 import { domainsIn, stringsIn } from './helpers.ts';
@@ -35,13 +37,18 @@ describe('all missions', () => {
         }
       });
 
-      it('only uses .example domains (sources excepted)', () => {
+      it('only uses made-up domains, or its own teaching domains (sources excepted)', () => {
+        const allowed = new Set<string>([
+          ...FICTIONAL_DOMAINS,
+          ...(TEACHING_DOMAINS[mission.id] ?? []),
+        ]);
         for (const { path, value } of stringsIn(mission, ['sources', 'further'])) {
           for (const domain of domainsIn(value)) {
-            if (TEACHING_DOMAINS[mission.id]?.includes(domain)) continue;
-            expect(domain, `${mission.id}.${path}: "${domain}" must end in .example`).toMatch(
-              /\.example$/,
-            );
+            const site = getDomain(domain) ?? domain;
+            expect(
+              allowed.has(site),
+              `${mission.id}.${path}: "${site}" is not in FICTIONAL_DOMAINS (src/content/domains.ts)`,
+            ).toBe(true);
           }
         }
       });
