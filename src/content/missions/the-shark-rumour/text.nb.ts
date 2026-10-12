@@ -14,10 +14,10 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
     'I dag har halve Lenkevik fått samme melding: Det er hai ved badestranda, og kommunen skal stenge. Er det sant? Det finner vi ut. Ta med deg lupen.',
   ],
   learn:
-    'Du lærer å spore et rykte tilbake til kilden, sjekke om et bilde er gammelt eller laget med KI, og si fra uten å krangle.',
+    'Du lærer å spore et rykte tilbake til kilden, sjekke om et bilde er gammelt eller laget med AI, og si fra uten å krangle.',
   summary: {
     takeaway:
-      'Før du deler: Hvem sa det først? Et bilde kan være gammelt eller laget med KI, så sjekk kilden, ikke bare bildet. Og når noen du er glad i deler tull, si fra vennlig og vis hvor du sjekket.',
+      'Før du deler: Hvem sa det først? Et bilde kan være gammelt eller laget med AI, så sjekk kilden, ikke bare bildet. Og når noen du er glad i deler tull, si fra vennlig og vis hvor du sjekket.',
   },
   further: {
     intro:
@@ -30,7 +30,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
       },
       pope: {
         title: 'Paven i boblejakke',
-        body: 'I 2023 gikk bilder av pave Frans i en hvit boblejakke verden rundt. De var laget med KI-programmet Midjourney, og mange trodde de var ekte. Hendene og korset hans så litt rare ut, men de fleste så ikke etter.',
+        body: 'I 2023 gikk bilder av pave Frans i en hvit boblejakke verden rundt. De var laget med AI-programmet Midjourney, og mange trodde de var ekte. Hendene og korset hans så litt rare ut, men de fleste så ikke etter.',
         link: 'NBC News, 2023 (engelsk)',
       },
       survey: {
@@ -45,7 +45,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
       },
       tenk: {
         title: 'Tenk, fra Faktisk.no',
-        body: 'Faktisk.no er de norske faktasjekkerne. På Tenk forklarer de hvordan du sjekker kilder, kjenner igjen falske nyheter og forstår KI.',
+        body: 'Faktisk.no er de norske faktasjekkerne. På Tenk forklarer de hvordan du sjekker kilder, kjenner igjen falske nyheter og forstår AI.',
         link: 'Tenk.faktisk.no',
       },
     },
@@ -144,7 +144,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
     'the-pictures': {
       heading: 'Bildene',
       brief:
-        'Et bilde overbeviser mer enn ord. Men et ekte bilde kan likevel lyve: det kan være gammelt, fra et helt annet sted. Eller det kan være laget med KI. Søk etter bildet, og se nøye etter.',
+        'Et bilde overbeviser mer enn ord. Men et ekte bilde kan likevel lyve: det kan være gammelt, fra et helt annet sted. Eller det kan være laget med AI. Søk etter bildet, og se nøye etter.',
       pictures: {
         beach: {
           intro: 'Bildet fra Bente og tante Randi.',
@@ -179,7 +179,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
         selfie: {
           intro: 'Bildet fra Løgnposten: ordføreren tar selfie med haien.',
           found:
-            'Ingen treff. Bildet finnes ingen steder fra før i går. Det kan bety at det er nytt, eller at det er laget med KI.',
+            'Ingen treff. Bildet finnes ingen steder fra før i går. Det kan bety at det er nytt, eller at det er laget med AI.',
           spots: {
             fins: {
               label: 'Haien',
@@ -191,7 +191,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
             },
             sign: {
               label: 'Skiltet',
-              text: 'Bokstavene ser ut som ord, men betyr ingenting. KI har ofte trøbbel med tekst i bilder.',
+              text: 'Bokstavene ser ut som ord, men betyr ingenting. AI har ofte trøbbel med tekst i bilder.',
             },
             houses: {
               label: 'Husene',
@@ -203,7 +203,7 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
             },
           },
           right:
-            'Riktig, laget med KI. Men KI blir bedre hvert år, og snart finner du ingen feil å peke på. Da er det kilden som avslører bildet, slik som her: en humorkonto.',
+            'Riktig, laget med AI. Men AI blir bedre hvert år, og snart finner du ingen feil å peke på. Da er det kilden som avslører bildet, slik som her: en humorkonto.',
           wrong:
             'Ikke helt. Bildesøket fant ingenting eldre, og bildet har feil som et ekte foto ikke har.',
         },
@@ -232,8 +232,8 @@ export const theSharkRumourNb: RumourText<typeof theSharkRumour> = {
             'Det er lett å la være, men stillhet lar ryktet leve videre. Du er den eneste i chatten som vet hva som er sant.',
         },
         scold: {
-          label: '«Slutt å spre falske nyheter! Det der er KI og et bilde fra Hawaii.»',
-          says: 'Slutt å spre falske nyheter! Det der er KI og et bilde fra Hawaii.',
+          label: '«Slutt å spre falske nyheter! Det der er AI og et bilde fra Hawaii.»',
+          says: 'Slutt å spre falske nyheter! Det der er AI og et bilde fra Hawaii.',
           outcome: [
             { from: RANDI, body: 'Unnskyld at jeg prøvde å passe på dere da 😢' },
             { from: PER, body: 'Det var ikke så farlig, Randi.' },

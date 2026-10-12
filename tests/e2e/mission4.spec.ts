@@ -78,7 +78,7 @@ test('Hva er egentlig nettet? plays through and opens Agnbua', async ({ page }) 
   await pause.click();
   await expect(play).toHaveAttribute('aria-pressed', 'false');
   await page.getByRole('button', { name: '2022' }).click();
-  await expect(page.getByRole('heading', { name: 'KI for alle' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI for alle' })).toBeVisible();
   await expectNoAxeViolations(page);
   await page.getByRole('button', { name: 'Ferdig' }).click();
 

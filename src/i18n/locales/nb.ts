@@ -306,14 +306,14 @@ export const nb = {
     verdictQuestion: 'Hva er dette bildet?',
     verdicts: {
       old: 'Gammelt bilde, ny historie',
-      ai: 'Laget med KI',
+      ai: 'Laget med AI',
       real: 'Ekte og nytt',
     },
     pictureProgress: 'Bilde {current} av {total}',
   },
   keyboard: {
     title: 'Trenger tastatur',
-    body: 'For å lære touch må du ha et fysisk tastatur. Har du koblet til et tastatur? Da kan du starte likevel.',
+    body: 'For å lære touch må du ha et fysisk tastatur (keyboard). Har du koblet til et tastatur? Da kan du starte likevel.',
     startAnyway: 'Start likevel',
   },
   summary: {

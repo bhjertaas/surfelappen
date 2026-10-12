@@ -26,7 +26,7 @@ export const theCountersNb: LinkInspectText<typeof theCounters> = {
       options: {
         a: 'Søke etter «yr» og trykke på det øverste treffet',
         b: 'Skrive yr.no rett i adresselinja',
-        c: 'Spørre en KI-chatbot om å lenke til yr',
+        c: 'Spørre en AI-chatbot om å lenke til yr',
       },
       feedback: {
         a: 'Det øverste treffet kan være en annonse. Og du vet jo adressen!',
@@ -169,7 +169,7 @@ export const theCountersNb: LinkInspectText<typeof theCounters> = {
       feedback: {
         a: 'Mange delinger gjør ikke noe sannere, bare større.',
         b: 'Riktig. Finn kilden. Er den til å stole på, eller er det en spøk, en reklame eller noen som vil lure deg?',
-        c: 'Både ekte og falske videoer kan ha god kvalitet, særlig nå som KI blir bedre.',
+        c: 'Både ekte og falske videoer kan ha god kvalitet, særlig nå som AI blir bedre.',
       },
     },
     'old-picture': {
@@ -177,12 +177,12 @@ export const theCountersNb: LinkInspectText<typeof theCounters> = {
         'Et bildesøk finner det samme «flombildet» i en nettavis fra 2016, fra et helt annet land. Hva betyr det?',
       options: {
         a: 'Gammelt bilde, ny historie',
-        b: 'Bildet er laget med KI',
+        b: 'Bildet er laget med AI',
         c: 'Det er ekte og nytt',
       },
       feedback: {
         a: 'Riktig. Et ekte bilde kan likevel lyve, hvis det fortelles om noe annet.',
-        b: 'Et KI-bilde ville sjelden ligget i en avis fra 2016. Dette er et gammelt bilde i en ny historie.',
+        b: 'Et AI-bilde ville sjelden ligget i en avis fra 2016. Dette er et gammelt bilde i en ny historie.',
         c: 'Det er ekte, men ikke nytt, og ikke herfra.',
       },
     },

@@ -45,7 +45,7 @@ test('Haien i Lenkevik: react, follow the trail, check the pictures, tell Randi'
   await page.getByRole('button', { name: 'Ekte og nytt' }).click();
   await expect(page.locator('.feedback')).toContainText('Ikke helt');
   await page.getByRole('button', { name: 'Prøv igjen' }).click();
-  await page.getByRole('button', { name: 'Laget med KI' }).click();
+  await page.getByRole('button', { name: 'Laget med AI' }).click();
   await expect(page.locator('.feedback')).toContainText('Riktig');
   await expectNoAxeViolations(page);
   await page.getByRole('button', { name: 'Neste' }).click();

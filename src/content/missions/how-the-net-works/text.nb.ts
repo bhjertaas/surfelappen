@@ -22,7 +22,7 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
         chrome: {
           name: 'Chrome',
           right:
-            'Chrome er en nettleser: programmet du ser nettsider i. Den er laget av Google, men er ikke det samme som Google-søket.',
+            'Chrome er en nettleser, på engelsk *browser*: programmet du ser nettsider i. Den er laget av Google, men er ikke det samme som Google-søket.',
           wrong: 'Hint: Chrome er et program du åpner for å komme ut på nettet.',
         },
         google: {
@@ -207,11 +207,11 @@ export const howTheNetWorksNb: WebText<typeof howTheNetWorks> = {
           body: 'iPhone kom, og smarttelefonen flyttet nettet fra skrivebordet til lomma.',
         },
         ai: {
-          title: 'KI for alle',
-          body: 'ChatGPT ble lansert. Det er en språkmodell: kunstig intelligens trent på enorme mengder tekst, som gjetter hvilke ord som passer best. Den kan være til stor hjelp, men den kan ta feil og høres like sikker ut uansett.',
+          title: 'AI for alle',
+          body: 'ChatGPT ble lansert. Det er en språkmodell: AI, eller KI på norsk, kunstig intelligens trent på enorme mengder tekst, som gjetter hvilke ord som passer best. Den kan være til stor hjelp, men den kan ta feil og høres like sikker ut uansett.',
         },
       },
-      done: 'Fra «LO» til KI på et drøyt halvt århundre. Nå vet du hvordan nettet henger sammen.',
+      done: 'Fra «LO» til AI på et drøyt halvt århundre. Nå vet du hvordan nettet henger sammen.',
     },
   },
 };
